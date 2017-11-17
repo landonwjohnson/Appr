@@ -1,0 +1,112 @@
+
+  
+  .login-container {
+    width: 450px;
+    height: 100vh;
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  
+  .login-top {
+    height: 115px;
+    width: 100%;
+  /*   border: 1px solid black; */
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .logo-container {
+    width: 150px;
+    height: 45px;
+  /*   border: 1px solid black; */
+  }
+  
+  .logo-login {
+    height: 45px;
+    font-size: 30px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .login-middle {
+    height: 215px;
+    width: 100%;
+  /*   border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .usr-pswd-container{
+    height: 175px;
+    width: 275px;
+  /*   border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .usr-pswd-row {
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 275px;
+    height: 40px;
+    border: 1.5px solid #E5E5E5;
+  }
+  
+  .lgn-icon-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  /*   border: 1px solid black; */
+  }
+  
+  .lgn-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .usr-pswd-input {
+    height: 34px;
+    width: 100%;
+    border-style: none;
+    outline: none;
+  }
+  
+  .login-btn-con {
+    display: flex;
+    height: 50px;
+  /*   border: 1px solid black; */
+    justify-content: flex-end;
+  }
+  
+  .login-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 105px;
+    background-color: #4A4A4A;
+    color: white;
+    border-style: none;
+    font-size: 18px;
+    border-radius: 3px;
+  }
+  
+  .login-bottom {
+    height: 115px;
+    width: 100%;
+  /*   border: 1px solid black; */
+    display: flex;
+    align-items: flex-end;
+  }
+
+//   @media only screen and (max-width: 895px) {
+
+//   }
