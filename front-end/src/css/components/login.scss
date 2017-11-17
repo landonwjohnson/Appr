@@ -97,6 +97,14 @@
     border-style: none;
     font-size: 18px;
     border-radius: 3px;
+
+    &:hover {
+      background-color: #393939; 
+    }
+    
+    &:active{
+
+    }
   }
   
   .login-bottom {

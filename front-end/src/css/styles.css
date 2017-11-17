@@ -166,6 +166,8 @@
   border-style: none;
   font-size: 18px;
   border-radius: 3px; }
+  .login-btn:hover {
+    background-color: #393939; }
 
 .login-bottom {
   height: 115px;
@@ -173,6 +175,52 @@
   /*   border: 1px solid black; */
   display: flex;
   align-items: flex-end; }
+
+.reg-header {
+  display: block;
+  width: 100%;
+  height: 72px;
+  background: #4B4B4B;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.option-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  border: 1px solid black;
+  height: 540px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.option-container-inner {
+  display: flex;
+  justify-content: space-between;
+  width: 840px;
+  border: 1px solid black;
+  height: 420px; }
+
+.placeholder-div {
+  width: 379px;
+  background: lightgrey; }
+
+.option-divider {
+  height: 420px;
+  width: 1px;
+  background: black; }
+
+.create-account-outter {
+  display: flex;
+  justify-content: flex-end;
+  width: 379px;
+  background: lightgrey; }
+
+.create-account-inner h1 {
+  font-size: 40px;
+  font-weight: 100;
+  margin-top: 0; }
 
 .App {
   text-align: center;
@@ -236,7 +284,10 @@ body {
   font-size: 20px;
   background-color: #4A4A4A;
   border-style: none;
-  color: white; }
+  color: white;
+  outline: none; }
+  .register-btn:hover {
+    background-color: #393939; }
 
 .slider-footer {
   height: 70px;
@@ -253,6 +304,8 @@ body {
   justify-content: space-between;
   width: 180px;
   height: 34px;
-  font-size: 20px; }
+  font-size: 20px;
+  color: white;
+  opacity: 0.5; }
 
 /*# sourceMappingURL=styles.css.map */
