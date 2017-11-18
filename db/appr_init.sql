@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users, groups, project, user_group, group_project, user_project, roles, tracker;
-
+--test
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
