@@ -1,9 +1,9 @@
 const express = require('express');
 const authRouter = require('./auth.router');
-const accountRouter = require('./account.router');
-const dashboardRouter = require('./dashboard.router');
-const groupRouter = require('./group.router');
-const projectRouter = require('./project.router');
+// const accountRouter = require('./account.router');
+// const dashboardRouter = require('./dashboard.router');
+// const groupRouter = require('./group.router');
+// const projectRouter = require('./project.router');
 
 function delegateRoutesFor(app) {
     app.use('/api/auth', authRouter);
