@@ -68,6 +68,9 @@
   justify-content: flex-end;
   position: absolute; }
 
+.left-menu-container--hide {
+  display: none; }
+
 .left-menu-outter {
   width: 250px;
   height: 330px;

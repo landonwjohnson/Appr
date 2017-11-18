@@ -2,17 +2,35 @@ import React, { Component } from 'react';
 import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
 import AlertIcon from '../img/icons/Bell-02.svg';
 import BoardsIcon from '../img/icons/boards.svg';
+import classnames from 'classnames';
 
 
 
 class Header extends Component {
+    constructor(){
+        super();
+        this.state ={
+            leftMenuOpen: true,
+        }
+        this.handleLeftMenuClick = this.handleLeftMenuClick.bind(this); 
+    }
+
+    handleLeftMenuClick(){
+        if(this.state.leftMenuOpen){
+            this.setState({leftMenuOpen: false})
+        }
+        else {
+            this.setState({leftMenuOpen: true})
+        }
+    }
 
     
     
   render(){
-    let NavX = function() {
-        document.getElementById("bread-menu-toggle").classList.toggle("active");
-        }
+    var leftMenuClass = classnames({
+        "left-menu-container--hide": this.state.leftMenuOpen,
+        "left-menu-container": true
+    })
   
   
     return (
@@ -33,7 +51,7 @@ class Header extends Component {
                         <div className="avatar"><img src={UserAvatar} /></div>
                         <div className="hello-user">Hello Jaysen!</div>
                         <div className="alert-icon"><img src={AlertIcon} /></div>
-                        <div id="bread-menu-toggle" href="#" onClick={NavX}>
+                        <div id="bread-menu-toggle" href="#" onClick={this.handleLeftMenuClick} >
                             <div className="bread-menu">
                                 <div className="bread-top"> <span/> </div>
                                 <div className="bread-bottom"> <span/> </div>
@@ -43,7 +61,7 @@ class Header extends Component {
                
                 </div>    
         </div>
-        <div className="left-menu-container">
+        <div className={leftMenuClass}>
             <div className="left-menu-outter">
             <div className="left-menu-inner">
                 <ul>
