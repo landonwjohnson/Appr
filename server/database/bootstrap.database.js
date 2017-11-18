@@ -13,3 +13,5 @@ function getDb() {
     }
     return db;
 }
+
+module.exports = getDb;
