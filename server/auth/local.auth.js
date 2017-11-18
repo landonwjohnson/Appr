@@ -15,3 +15,5 @@ passport.deserializeUser(( user, done ) => {
         .then( user => done(null, user))
         .catch( err => done(err));
 });
+
+module.exports = passport;
