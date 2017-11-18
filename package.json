@@ -8,6 +8,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "helmet": "^3.9.0",
     "nodemon": "^1.12.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
