@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-//const passport = require('../auth/local.auth');
+const passport = require('../auth/local.auth');
 
 function decorate(app) {
     //app.use(express.static(/*directory of build folder*/));
@@ -15,8 +15,8 @@ function decorate(app) {
         resave: false,
         saveUninitialized: true
     }));
-    //app.use(passport.initialize());
-    //app.use(passport.session());
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     return app;
 }
