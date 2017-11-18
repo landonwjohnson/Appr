@@ -190,7 +190,6 @@
   display: flex;
   justify-content: center;
   width: 1000px;
-  border: 1px solid black;
   height: 540px;
   margin-left: auto;
   margin-right: auto; }
@@ -199,7 +198,6 @@
   display: flex;
   justify-content: space-between;
   width: 840px;
-  border: 1px solid black;
   height: 420px; }
 
 .placeholder-div {
@@ -214,13 +212,40 @@
 .create-account-outter {
   display: flex;
   justify-content: flex-end;
-  width: 379px;
-  background: lightgrey; }
+  width: 379px; }
 
-.create-account-inner h1 {
+.create-account-inner {
+  display: flex;
+  flex-direction: column; }
+
+.create-account-tag {
   font-size: 40px;
   font-weight: 100;
   margin-top: 0; }
+
+.create-account-btn {
+  font-size: 20px;
+  background: #EBE2E2;
+  color: #95989A; }
+
+.input-tag {
+  font-size: 20px;
+  text-align: left; }
+
+.input-combined {
+  height: 40px;
+  width: 150px; }
+
+.input-solo {
+  height: 40px; }
+
+.form-combined {
+  display: flex;
+  justify-content: space-between; }
+
+.create-account-btn {
+  width: 270px;
+  height: 50px; }
 
 .App {
   text-align: center;
@@ -307,5 +332,93 @@ body {
   font-size: 20px;
   color: white;
   opacity: 0.5; }
+
+.account-settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.profile-section-outter {
+  height: 185px;
+  background: #EAEAEA;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.profile-section-inner {
+  display: flex;
+  width: 650px;
+  height: 85px; }
+
+.avatar-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  width: 85px;
+  height: 85px;
+  border-radius: 100px;
+  background: #D6DADC; }
+
+.account-section {
+  width: 900px; }
+
+.headline-30 {
+  font-size: 30px;
+  text-align: left; }
+
+.headline-20 {
+  font-size: 20px;
+  text-align: left; }
+
+.headline-22 {
+  font-size: 20px;
+  text-align: left;
+  margin: none; }
+
+.text-9 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 9px;
+  text-align: left;
+  margin: none; }
+
+.landscape-divider {
+  height: 1px;
+  width: 100%;
+  background: black; }
+
+.account-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 115px;
+  width: 209px; }
+
+.name-and-username {
+  display: flex;
+  width: 245px;
+  height: 28px;
+  align-items: center; }
+
+.edit-profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 120px;
+  background: #E2E4E6; }
+
+.name-username-edit-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70px; }
+
+.button-icon {
+  width: 17px;
+  height: 17px; }
 
 /*# sourceMappingURL=styles.css.map */

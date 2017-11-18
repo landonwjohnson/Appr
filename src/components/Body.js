@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import AccountSettings from './content/AccountSettings';
 
 class Body extends Component {
   render() {
     return (
       <div>
-          <h1>Body</h1>
+          <AccountSettings />
       </div>
     );
   }
