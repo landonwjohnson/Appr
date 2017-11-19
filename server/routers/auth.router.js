@@ -10,7 +10,7 @@ authRouter.post('/register', (req, res) => {
     db.find_user_by_email([email])
         .then( user => {
             if (user) {
-                console.error('There is already an existing account using that email address.');
+                console.error('There is already another account using that email address.');
                 return res.send({message: 'There is already an existing account using that email address.'});
             }
             else {
