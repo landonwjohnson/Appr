@@ -8,3 +8,10 @@ function createGroup(body) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function findGroup(groupId) {
+    return axios
+        .get(`${baseURL + '/' + groupId}`)
+        .then( res => res )
+        .catch( err => {throw err});
+}
