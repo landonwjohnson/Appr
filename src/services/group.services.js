@@ -15,3 +15,10 @@ function findGroup(groupId) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function updateGroup(groupId, body) {
+    return axios
+        .put(`${baseURL + '/update' + groupId}`, body)
+        .then( res => res )
+        .catch( err => {throw err});
+}
