@@ -2,9 +2,9 @@ import 'axios';
 
 const baseURL = '/api/dashboard';
 
-function findUserGroupsAndUserProjects(id) {
+function findUserGroupsAndUserProjects(userId) {
     return axios
-        .get(`${baseURL + '/' + id}`)
+        .get(`${baseURL + '/' + userId}`)
         .then( res => res )
         .catch( err => {throw err});
 }
