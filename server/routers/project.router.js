@@ -19,7 +19,7 @@ projectRouter.get('/:projectid', (req, res) => {
         .catch( err => res.send(err));
 });
 
-projectRouter.update('/update/:projectid', (req, res) => {
+projectRouter.put('/update/:projectid', (req, res) => {
     const projectId = this.props.match.params.projectid;
     const {  } = req.body;
     const db = getDb();
