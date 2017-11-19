@@ -15,3 +15,16 @@ function login(body) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function logout() {
+    return axios
+        .post(`${baseURL}/logout`, body)
+        .then( res => res )
+        .catch( err => {throw err});
+}
+
+export {
+    register,
+    login,
+    logout
+}
