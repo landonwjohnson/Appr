@@ -4,35 +4,36 @@ const getDb = require('../database/bootstrap.database');
 const projectRouter = express.Router();
 
 projectRouter.post('/create', (req, res) => {
-    const db = getDb();
     const { authorId } = req.body;
+    const db = getDb();
     db.create_project([ authorId ])
-        .then( promise => res.status(200).send( promise ))
-        .catch( err => res.send( err ));
+        .then( promise => res.send(promise))
+        .catch( err => res.send(err));
 });
 
 projectRouter.get('/:projectid', (req, res) => {
+    const projectId = this.props.match.params.projectid;
     const db = getDb();
-    db.find_project_by_id([ this.props.match.params.projectid ])
-        .then( project => res.status(200).send( project ))
-        .catch( err => res.send( err ));
+    db.find_project_by_id([ projectId ])
+        .then( project => res.send(project))
+        .catch( err => res.send(err));
 });
 
 projectRouter.update('/update/:projectid', (req, res) => {
-    const db = getDb();
     const projectId = this.props.match.params.projectid;
     const {  } = req.body;
+    const db = getDb();
     db.update_project([ projectId ])
-        .then( promise => res.status(200).send( promise ))
-        .catch( err => res.send( err ));
+        .then( promise => res.send(promise))
+        .catch( err => res.send(err));
 });
 
 projectRouter.delete('/delete/:projectid', (req, res) => {
     const projectId = this.props.match.params.projectid;
     const db = getDb();
     db.delete_project([ projectId ])
-        .then( promise => res.send( promise ))
-        .catch( err => res.send( err ));
+        .then( promise => res.send(promise))
+        .catch( err => res.send(err));
 });
 
 module.exports = projectRouter;
