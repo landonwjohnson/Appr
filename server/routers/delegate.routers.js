@@ -7,10 +7,10 @@ const authRouter = require('./auth.router');
 
 function delegateRoutesFor(app) {
     app.use('/api/auth', authRouter);
-    app.use('/api/account', accountRouter);
-    app.use('/api/dashboard', dashboardRouter);
-    app.use('/api/group', groupRouter);
-    app.use('/api/project', projectRouter);
+    // app.use('/api/account', accountRouter);
+    // app.use('/api/dashboard', dashboardRouter);
+    // app.use('/api/group', groupRouter);
+    // app.use('/api/project', projectRouter);
 
     // app.all('*', (req, res) => {});
     
