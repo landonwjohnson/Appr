@@ -34,7 +34,7 @@ passport.serializeUser(( user, done ) => {
 
 passport.deserializeUser(( user, done ) => {
     const db = getDb();
-    db.find_user_by_id([user.id])
+    db.find_user_by_id([ user.id ])
         .then( user => done(null, user))
         .catch( err => done(err));
 });
