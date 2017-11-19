@@ -8,3 +8,10 @@ function findUser(id) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function updateUser(id, body) {
+    return axios
+        .get(`${baseURL + '/update' + id}`, body)
+        .then( res => res )
+        .catch( err => {throw err});
+}
