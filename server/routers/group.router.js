@@ -20,6 +20,10 @@ groupRouter.get('/:groupid', (req, res) => {
 
 groupRouter.put('/update/:groupid', (req, res) => {
     const db = getDb();
+    const { name } = req.body;
+    db.update_group([name])
+        .then( () => res.status(200).send())
+        .catch( err => res.send(err));
 });
 
 groupRouter.delete('/delete/:groupid', (req, res) => {
