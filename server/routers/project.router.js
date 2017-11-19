@@ -34,3 +34,5 @@ projectRouter.delete('/delete/:projectid', (req, res) => {
         .then( promise => res.send( promise ))
         .catch( err => res.send( err ));
 });
+
+module.exports = projectRouter;
