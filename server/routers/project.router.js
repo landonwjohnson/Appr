@@ -26,3 +26,11 @@ projectRouter.update('/update/:projectid', (req, res) => {
         .then( promise => res.status(200).send( promise ))
         .catch( err => res.send( err ));
 });
+
+projectRouter.delete('/delete/:projectid', (req, res) => {
+    const projectId = this.props.match.params.projectid;
+    const db = getDb();
+    db.delete_project([ projectId ])
+        .then( promise => res.send( promise ))
+        .catch( err => res.send( err ));
+});
