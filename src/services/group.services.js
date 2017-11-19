@@ -22,3 +22,10 @@ function updateGroup(groupId, body) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function deleteGroup(groupId) {
+    return axios
+        .delete(`${baseURL + '/delete' + groupId}`)
+        .then( res => res )
+        .catch( err => {throw err});
+}
