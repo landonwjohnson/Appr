@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 } 
 
 .profile-section-inner {
@@ -39,11 +40,13 @@
 .headline-30{
     font-size: 30px;
     text-align: left;
+    color: #95989A
 }
 
 .headline-20{
     font-size: 20px;
     text-align: left;
+    color: #95989A;
 }
 
 .headline-22{
@@ -60,14 +63,12 @@
     font-size: 9px;
     text-align: left;
     margin: none;
+    margin-left: 10px;
+    padding-top: 10px;
     // border: 1px solid black;
 }
 
-.landscape-divider{
-    height: 1px;
-    width: 100%;
-    background: black;
-}
+
 
 .account-options{
     display: flex;
@@ -75,6 +76,7 @@
     justify-content: space-between;
     height: 115px;
     width: 209px;
+    margin-left: 20px;
     // background: lightgrey;
 }
 
@@ -82,7 +84,9 @@
     display: flex;
     width: 245px;
     height: 28px;
-    align-items: center;
+    align-items: flex-start;
+    // border: 1px solid black;
+    
 }
 
 .edit-profile-btn {
@@ -99,9 +103,11 @@
     flex-direction: column;
     justify-content: space-between;
     height: 70px;
+    margin-left: 20px;
 }
 
 .button-icon {
     width: 17px;
     height: 17px;
+    margin-right: 7px;
 }
