@@ -28,6 +28,9 @@ groupRouter.put('/update/:groupid', (req, res) => {
 
 groupRouter.delete('/delete/:groupid', (req, res) => {
     const db = getDb();
+    db.delete_group([this.props.match.params.id])
+        .then( () => res.status(200).send())
+        .catch( err => res.send(err));
 });
 
 module.exports = groupRouter;
