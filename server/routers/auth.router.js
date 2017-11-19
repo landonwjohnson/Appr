@@ -5,8 +5,8 @@ const passport = require('../auth/local.auth');
 const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
-    const db = getDb();
     const { firstName, lastName, email, password, username } = req.body;
+    const db = getDb();
     db.find_user_by_email([ email ])
         .then( user => {
             if (user) {
