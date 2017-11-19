@@ -41,8 +41,9 @@ accountRouter.put('/update/:userid', (req, res) => {
 });
 
 accountRouter.delete('/delete/:userid', (req, res) => {
+    const userId = this.props.match.params.userid;
     const db = getDb();
-    db.delete_user([this.props.match.params.id])
+    db.delete_user([ userId ])
         .then( promise => res.send(promise))
         .catch( err => res.send(err));
 });
