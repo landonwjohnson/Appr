@@ -12,7 +12,9 @@ function delegateRoutesFor(app) {
     app.use('/api/group', groupRouter);
     app.use('/api/project', projectRouter);
 
-    // app.all('*', (req, res) => {});
+    app.all('*', (req, res) => {
+        res.status(404).send({message: 'Cannot access any resource at ' + req.originalUrl});
+    });
     
     return app;
 }
