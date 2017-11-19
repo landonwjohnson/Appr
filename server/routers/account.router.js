@@ -40,6 +40,11 @@ accountRouter.put('/update/:userid', (req, res) => {
         })
 });
 
-accountRouter.delete('/delete/:userid', (req, res) => {});
+accountRouter.delete('/delete/:userid', (req, res) => {
+    const db = getDb();
+    db.delete_user([this.props.match.params.id])
+        .then( () => res.send())
+        .catch( err => res.send(err));
+});
 
 module.exports = accountRouter;
