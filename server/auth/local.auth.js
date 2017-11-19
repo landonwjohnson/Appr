@@ -6,7 +6,7 @@ const getDb = require('../database/bootstrap.database');
 passport.use('login', new Strategy(
     (username, password, done) => {
         const db = getDb();
-         db.find_user([username])
+         db.find_user([ username ])
              .then( user => {
                  if (!user) {
                      console.error('That username does not exist');
@@ -28,13 +28,13 @@ passport.use('login', new Strategy(
 
 // passport.use( /* Logout Auth Strategy */ );
 
-passport.serializeUser(( user, done ) => {
+passport.serializeUser((user, done) => {
     return done(null, user.id);
 });
 
-passport.deserializeUser(( user, done ) => {
+passport.deserializeUser((user, done) => {
     const db = getDb();
-    db.find_user_by_id([user.id])
+    db.find_user_by_id([ user.id ])
         .then( user => done(null, user))
         .catch( err => done(err));
 });

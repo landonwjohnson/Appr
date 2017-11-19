@@ -2,16 +2,26 @@ const massive = require('massive');
 const connectionString = require('./connection.database.js');
 
 let db;
+let messageString;
 
 massive(connectionString)
-    .then( dbInstance => db = dbInstance )
-    .catch( err => {throw err});
+    .then( dbInstance => {
+        db = dbInstance;
+        messageString = 'Connection to the database was successful.'
+    })
+    .catch( err => {
+        throw err
+    });
 
 function getDb() {
     if (!db) {
-        console.error('We haven\'t connected to the database yet!');
+        messageString = 'We haven\'t connected to the database yet.';
+        console.error(messageString);
+        return messageString;
     }
-    return db;
+    else {
+        return db;
+    }
 }
 
 module.exports = getDb;
