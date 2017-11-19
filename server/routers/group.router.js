@@ -13,6 +13,9 @@ groupRouter.post('/create', (req, res) => {
 
 groupRouter.get('/:groupid', (req, res) => {
     const db = getDb();
+    db.find_group_by_id([this.props.match.params.id])
+        .then( group => res.send(group))
+        .catch( err => res.send(err));
 });
 
 groupRouter.put('/update/:groupid', (req, res) => {
