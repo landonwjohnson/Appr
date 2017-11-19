@@ -2,23 +2,23 @@ import 'axios';
 
 const baseURL = '/api/account';
 
-function findUser(id) {
+function findUser(userId) {
     return axios
-        .get(`${baseURL + '/' + id}`)
+        .get(`${baseURL + '/' + userId}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function updateUser(id, body) {
+function updateUser(userId, body) {
     return axios
-        .put(`${baseURL + '/update' + id}`, body)
+        .put(`${baseURL + '/update' + userId}`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function deleteUser(id) {
+function deleteUser(userId) {
     return axios
-        .delete(`${baseURL + '/update' + id}`)
+        .delete(`${baseURL + '/update' + userId}`)
         .then( res => res )
         .catch( err => {throw err});
 }
