@@ -7,7 +7,7 @@ const passport = require('../auth/local.auth');
 
 function decorate(app) {
     //app.use(express.static(/*directory of build folder*/));
-    app.use(bodyParser.JSON());
+    app.use(bodyParser.json());
     app.use(cors());
     app.use(helmet());
     app.use(session({

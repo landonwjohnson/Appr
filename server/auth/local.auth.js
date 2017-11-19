@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const passport = require('passport');
-const Strategy = require('passport-local'.Strategy);
+const Strategy = require('passport-local').Strategy;
 const getDb = require('../database/bootstrap.database');
 
 passport.use('login', new Strategy(
