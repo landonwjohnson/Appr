@@ -29,3 +29,10 @@ function deleteGroup(groupId) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+export {
+    createGroup,
+    findGroup,
+    updateGroup,
+    deleteGroup
+}
