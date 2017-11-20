@@ -4,7 +4,9 @@ const connectionString = require('./connection.database.js');
 let db;
 
 massive(connectionString)
-    .then( dbInstance => db = dbInstance )
+    .then( dbInstance => db = dbInstance ) 
+        console.log('initializing db')     
+        return dbInstance.appr_init()
     .catch( err => {throw err});
 
 function getDb() {
