@@ -51,12 +51,31 @@
 .create-account-inner{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: 379px;
+
+    input {
+        font-size: 20px;
+        color: #95989A;
+        text-align: left;
+        font-weight: normal;
+       }
+
+    ::-webkit-input-placeholder {
+        font-size: 20px;
+        color: #95989A;
+        text-align: left;
+        font-weight: lighter;
+    }
 }
 
 .create-account-tag {
-        font-size: 40px;
+        font-size: 45px;
+        line-height: 44px;
         font-weight: 100;
         margin-top: 0;
+        text-align: left;
+        margin-bottom: 10px;
         // border: 1px solid black;
 }
 
@@ -68,11 +87,13 @@
 .input-tag {
     font-size: 20px;
     text-align: left;
+
+ 
 }
 
 .input-combined {
     height: 40px;
-    width: 150px;
+    width: 170px;
 }
 
 .input-solo {
@@ -88,3 +109,7 @@
     width: 270px;
     height: 50px;
 }
+
+
+
+

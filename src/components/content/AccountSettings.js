@@ -23,13 +23,13 @@ class AccountSettings extends Component {
             </div>
           </div>
           <div className="account-section">
-          <div className="headline-30"> Account Settings </div>
-          <div className="landscape-divider" />
-          <div className="account-options">
-          <div className="headline-20"> Change Email </div>
-          <div className="headline-20"> Change Password </div>
-          <div className="headline-20"> Change Avatar </div>
-          </div>
+            <div className="headline-30"> Account Settings </div>
+            <div className="landscape-divider" />
+            <div className="account-options">
+              <div className="headline-20"> Change Email </div>
+              <div className="headline-20"> Change Password </div>
+              <div className="headline-20"> Change Avatar </div>
+            </div>
           </div>
       </div>
     );

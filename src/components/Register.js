@@ -21,18 +21,36 @@ class Register extends Component {
                                 Name
                             </div>
                             <div className="form-combined">
-                            <input className="input-combined" type="text" placeholder="First"/>
-                            <input className="input-combined" type="text" placeholder="Last"/>
+                            <input 
+                                className="input-combined"
+                                type="text" 
+                                placeholder="First"
+                            />
+                            <input 
+                                className="input-combined"
+                                type="text" 
+                                placeholder="Last"
+                            />
                             </div>
-                            <div className="input-tag">
+                            <div 
+                                className="input-tag">
                                 Email
                             </div>
-                            <input className="input-solo" type="text" placeholder="e.g, landonwjohnson@gmail.com"/>
+                            <input 
+                                className="input-solo" 
+                                type="text" 
+                                placeholder="e.g, landonwjohnson@gmail.com"
+                            />
                             
-                            <div className="input-tag">
+                            <div 
+                                className="input-tag">
                                 Password
                             </div>
-                            <input className="input-solo" type="text" placeholder="e.g, •••••••••••••"/>
+                            <input 
+                                className="input-solo" 
+                                type="text" 
+                                placeholder="e.g, •••••••••••••"
+                            />
                             <button className="create-account-btn"> Create New Account </button>
                       </div>
                   </div>
