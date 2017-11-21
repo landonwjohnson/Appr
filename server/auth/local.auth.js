@@ -4,6 +4,7 @@ const getDb = require('../database/bootstrap.database');
 
 passport.use('login', new Strategy(
     (username, password, done) => {
+        let message;
         const db = getDb();
 
         // We will ask the user to login using their email,
@@ -13,10 +14,12 @@ passport.use('login', new Strategy(
         db.find_user_by_email([ username ])
             .then( user => {
                 if (!user[0]) {
-                    return done('That email does not match our records.');
+                    message = 'That email does not match our records.';
+                    return done(message);
                 }
                 if (user[0].password !== password) {
-                    return done('That password is incorrect.');
+                    message = 'That password is incorrect.';
+                    return done(message);
                 }
                 return done(null, user[0]);
             })
