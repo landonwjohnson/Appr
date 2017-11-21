@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const getDb = require('../database/bootstrap.database');
@@ -6,23 +5,17 @@ const getDb = require('../database/bootstrap.database');
 passport.use('login', new Strategy(
     (username, password, done) => {
         const db = getDb();
-         db.find_user([ username ])
+         db.find_user_by_username([ username ])
              .then( user => {
-                 if (!user) {
-                     console.error('That username does not exist');
+                 if (!user[0]) {
                      return done({message: 'That username does not exist.'});
                  }
-                 if (user.password !== password) {
-                     console.error('That password is incorrect.');
+                 if (user[0].password !== password) {
                      return done({message: 'That password is incorrect.'});
                  }
-                 console.log(chalk.green('Login was successful!'));
-                 return done(null, user);
+                 return done(null, user[0]);
              })
-             .catch(err => {
-                 console.error('Error with login.');
-                 return done(err);
-             });
+             .catch(err => {return done(err)});
     }
 ));
 
@@ -35,7 +28,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     const db = getDb();
     db.find_user_by_id([ user.id ])
-        .then( user => done(null, user))
+        .then( user => done(null, user[0]))
         .catch( err => done(err));
 });
 
