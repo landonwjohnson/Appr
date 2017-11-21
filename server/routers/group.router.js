@@ -6,8 +6,18 @@ const groupRouter = express.Router();
 groupRouter.post('/create', (req, res) => {
     const { name, createdByUserId } = req.body;
     const db = getDb();
-    db.create_group([ name, createdByUserId ])
-        .then( promise => res.send(promise))
+    db.find_group_by_name([ name ])
+        .then( group => {
+            console.log(group, group[0], name);
+            if (group[0] && group[0].group_name === name) {
+                return res.status(409).send({message: 'There is another group that is currently using that name.'});
+            }
+            else {
+                db.create_group([ name, createdByUserId ])
+                .then( promise => res.send())
+                .catch( err => res.send(err));
+            }
+        })
         .catch( err => res.send(err));
 });
 
