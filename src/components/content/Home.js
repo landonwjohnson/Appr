@@ -3,6 +3,7 @@ import Login from './Login';
 import LandingSlider from './Landing-Slider';
 import Header from '../Header';
 
+
 class Home extends Component {
   render() {
     return (
