@@ -8,7 +8,6 @@ groupRouter.post('/create', (req, res) => {
     const db = getDb();
     db.find_group_by_name([ name ])
         .then( group => {
-            console.log(group, group[0], name);
             if (group[0] && group[0].group_name === name) {
                 return res.status(409).send({message: 'There is another group that is currently using that name.'});
             }
