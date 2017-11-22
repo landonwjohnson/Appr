@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
-import Nav_Sidebar from './Nav_Sidebar';
-import '../../css/project-components-css/idea_users.css';
+import Header from '../../Header/Header';
+import Nav_Sidebar from '../Nav_Sidebar/Nav_Sidebar';
+import './idea_users.scss';
 
 class Ideas_Users extends Component {
   render() {

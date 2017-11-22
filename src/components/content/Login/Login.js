@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PasswordIcon from '../../img/icons/Key-Icon.svg';
-import UsernameIcon from '../../img/icons/Username-Icon.svg';
+import PasswordIcon from '../../../img/icons/Key-Icon.svg';
+import UsernameIcon from '../../../img/icons/Username-Icon.svg';
 import { Link } from 'react-router-dom';
+import './login.scss';
 
 class Login extends Component {
   render() {

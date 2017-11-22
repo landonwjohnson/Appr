@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './landing-slider.scss';
 
 
 class LandingSlider extends Component {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Login from './Login';
-import LandingSlider from './Landing-Slider';
-import Header from '../Header';
+import Login from '../Login/Login';
+import LandingSlider from '../Landing-Slider/Landing-Slider';
+import Header from '../../Header/Header';
+import './home.scss';
 
 
 class Home extends Component {

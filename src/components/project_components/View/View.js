@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import '../../css/project-components-css/view.css';
+import Header from '../../Header/Header';
+import './view.scss';
 
 class View extends Component {
   render() {

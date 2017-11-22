@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import Nav_Sidebar from './Nav_Sidebar';
-import '../../css/project-components-css/features.css';
+import Header from '../../Header/Header';
+import Nav_Sidebar from '../Nav_Sidebar/Nav_Sidebar';
+import './features.scss';
 
 class Features extends Component {
   render() {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
-import AlertIcon from '../img/icons/Bell-02.svg';
-import BoardsIcon from '../img/icons/boards.svg';
+import UserAvatar from '../../img/placeholders/Landon-Thumb-Grey.jpg';
+import AlertIcon from '../../img/icons/Bell-02.svg';
+import BoardsIcon from '../../img/icons/boards.svg';
 import classnames from 'classnames';
+import './header.scss';
 
 
 

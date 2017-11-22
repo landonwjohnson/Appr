@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
-import '../../css/project-components-css/nav_sidebar.css';
+import './nav_sidebar.scss';
 
 export default class NavSidebar extends Component {
     render() {

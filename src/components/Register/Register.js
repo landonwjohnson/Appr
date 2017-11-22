@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
-import AlertIcon from '../img/icons/Bell-02.svg';
-import BoardsIcon from '../img/icons/boards.svg';
-import Header from './Header';
+import UserAvatar from '../../img/placeholders/Landon-Thumb-Grey.jpg';
+import AlertIcon from '../../img/icons/Bell-02.svg';
+import BoardsIcon from '../../img/icons/boards.svg';
+import Header from '../Header/Header';
+import './register.scss';
 
 class Register extends Component {
   render() {
