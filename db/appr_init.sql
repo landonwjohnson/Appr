@@ -18,7 +18,7 @@ CREATE TABLE groups (
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
-    name TEXT,
+    name TEXT
     -- idea_field TEXT,
     -- user_field TEXT,
     -- features_field TEXT,
