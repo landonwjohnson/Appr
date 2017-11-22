@@ -1,5 +1,5 @@
 INSERT INTO project
-    (group_id)
+    (name, author_id)
     VALUES
-        ($1)
+        ($1, $2)
 ;
