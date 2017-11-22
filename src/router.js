@@ -7,6 +7,7 @@ import Dashboard from './components/content/Dashboard/Dashboard';
 import Login from './components/content/Login/Login';
 import IdeasUsers from './components/content/project_components/Ideas_Users/Ideas_Users';
 import Features from './components/content/project_components/Features/Features';
+import Controllers from './components/content/project_components/Controllers/Controllers';
 
 
 
@@ -22,6 +23,7 @@ export default  (
             //Future Sub Routes In Wizard
             <Route component={ IdeasUsers } path="/ideas" exact/>
             <Route component={ Features } path="/features" exact/>
+            <Route component={ Controllers } path="/controllers" exact/>
 
         </Switch> 
     )

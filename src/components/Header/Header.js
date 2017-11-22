@@ -127,14 +127,17 @@ class Header extends Component {
                 </div>
                 <div className="personal-boards-con">
                     <div className="text-12">PERSONAL PROJECTS</div>
-                        <div className="create-board-item">
-                            <div className="create-board-thumbnail">
-                                <div className="plus-symbol">+</div>
+                        
+                        <Link to="/ideas" onClick={this.closeMenus}>
+                            <div className="create-board-item">
+                                <div className="create-board-thumbnail">
+                                    <div className="plus-symbol">+</div>
+                                </div>
+                                <div className="create-board-name">
+                                    Create Project
+                                </div>
                             </div>
-                            <div className="create-board-name">
-                                Create Project
-                            </div>
-                        </div>
+                        </Link>
                 </div>
             </div>
           </div>
@@ -146,7 +149,7 @@ class Header extends Component {
                     <div className="board-text">Projects</div>
                     </div>
                     <div>
-                        <div className="logo">Appr</div>
+                        <div className="logo"></div>
                     </div>
                 <div className="user-con">
                  

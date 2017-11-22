@@ -1,0 +1,133 @@
+.placeholder-4-sidebar-2-work{
+    display: flex;
+    flex-direction: row;
+}
+
+.controllers-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.controller-list-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    
+}
+
+.controllers-inner-container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.contro-item{
+    // padding-left: 15px;
+    // padding-right: 15px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
+
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+    height: 100%;
+    width: 30%;
+    border: 1px solid black;
+}
+
+.contro-inner-container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    
+}
+
+.contro-item-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    
+}
+
+.project-section-header{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+.contro-item-header{
+    font-size: 20px;
+    // border: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    background-color: grey;
+    
+}
+
+.contro-item-inputs{
+    display: flex;
+    flex-direction: column;  
+    // background: grey;
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+.contro-input-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+   
+}
+
+.contro-row-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+.contro-row-name{
+    font-size: 22px;
+    text-align: left;
+    width: 100%;
+}
+
+.contro-input-field{
+    margin-top: 10px;
+    height: 30px;
+    width: 100%;
+    
+    
+}
+
+.add-new-controller{
+    width: 80%;
+    background: slategrey;
+    color: white;
+    padding: 15px;
+}
