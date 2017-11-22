@@ -18,7 +18,7 @@ function updateUser(userId, body) {
 
 function deleteUser(userId) {
     return axios
-        .delete(`${baseURL + '/update' + userId}`)
+        .put(`${baseURL + '/update' + userId}`)
         .then( res => res )
         .catch( err => {throw err});
 }

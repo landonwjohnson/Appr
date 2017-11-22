@@ -19,6 +19,7 @@ CREATE TABLE groups (
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
+    author_id int references users(id)
     -- idea_field TEXT,
     -- user_field TEXT,
     -- features_field TEXT,
@@ -63,11 +64,11 @@ CREATE TABLE tracker (
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('username1234', 'password123', 'a@a.com', 'Testy', 'McTesterson');
 
-INSERT INTO groups ( group_name )
-VALUES ('Test Group');
+INSERT INTO groups ( created_by, owner_id, name )
+VALUES ('1', '1','Test Group');
 
-INSERT INTO project ( id, name )
-VALUES ('1', 'project name');
+INSERT INTO project ( name, author_id )
+VALUES ('project name', '1');
 
 /*Duplicate of what will be added later
 -- INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
