@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import editIcon from '../../img/icons/Pencil-Icon.svg';
+import editIcon from '../../../img/icons/Pencil-Icon.svg';
 import './account-settings.scss';
 
 class AccountSettings extends Component {

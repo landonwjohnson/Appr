@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import Header from '../../Header/Header';
-import Nav_Sidebar from '../Nav_Sidebar/Nav_Sidebar';
+import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 
 class Features extends Component {
   render() {
     return (
       <div className="features-body">
-          <Header />
+        
 
           <div className="features-wrapper">
 
-              <Nav_Sidebar />
+          <ProjectSetupSidebar />
 
               <div className="features-area">
                   <h1>Features</h1>

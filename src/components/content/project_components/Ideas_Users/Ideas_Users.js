@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../Header/Header';
-import Nav_Sidebar from '../Nav_Sidebar/Nav_Sidebar';
+import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './idea_users.scss';
 
 class Ideas_Users extends Component {
   render() {
     return (
       <div className="ideas-users-body">
-          <Header />
+       
 
           <div className="ideas-users-wrapper">
 
-              <Nav_Sidebar />
+              <ProjectSetupSidebar />
 
               <div className="ideas-users-input-area">
 

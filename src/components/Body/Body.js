@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import AccountSettings from './content/AccountSettings';
+import router from '../../router';
 
-class Body extends Component {
+export default class Body extends Component {
   render() {
     return (
       <div>
-          <AccountSettings />
+        { router }
       </div>
     );
   }
 }
-
-export default Body;
