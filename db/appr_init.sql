@@ -63,7 +63,7 @@ CREATE TABLE tracker (
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('username1234', 'password123', 'a@a.com', 'Testy', 'McTesterson');
 
-INSERT INTO groups ( group_name )
+INSERT INTO groups ( name )
 VALUES ('Test Group');
 
 INSERT INTO project ( id, name )
