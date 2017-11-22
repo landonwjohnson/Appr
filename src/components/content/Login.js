@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 class Login extends Component {
   render() {
     return (
-      <div>
+      <div className="login-parent">
           <div className="login-container">
                 <div className="login-top">
                     <div className="logo-container">
-                    <div className="logo-login">Logo</div>
+                    <div className="logo-login">Appr</div>
                     </div>
                 </div>
                 <div className="login-middle">
@@ -29,7 +29,7 @@ class Login extends Component {
                             <img src={PasswordIcon}/> 
                         </div>
                         </div>
-                        <input className="usr-pswd-input" placeholder="Password" type="text" />
+                        <input className="usr-pswd-input" placeholder="Password" type="password" />
                     </div>
                     
                     

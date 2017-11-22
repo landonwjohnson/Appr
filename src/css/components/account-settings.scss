@@ -1,0 +1,113 @@
+.account-settings-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-section-outter {
+    height: 185px;
+    background: #EAEAEA;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+} 
+
+.profile-section-inner {
+    display: flex;
+    width: 650px;
+    height: 85px;
+    // border: 1px solid white;
+} 
+
+.avatar-initial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    width: 85px;
+    height: 85px;
+    border-radius: 100px;
+    background: #D6DADC;
+}
+
+.account-section{
+    width: 900px;
+    // border: 1px solid black;
+}
+
+.headline-30{
+    font-size: 30px;
+    text-align: left;
+    color: #95989A
+}
+
+.headline-20{
+    font-size: 20px;
+    text-align: left;
+    color: #95989A;
+}
+
+.headline-22{
+    font-size: 20px;
+    text-align: left;
+    margin: none;
+    // border: 1px solid black;
+}
+
+.text-9{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 9px;
+    text-align: left;
+    margin: none;
+    margin-left: 10px;
+    padding-top: 10px;
+    // border: 1px solid black;
+}
+
+
+
+.account-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 115px;
+    width: 209px;
+    margin-left: 20px;
+    // background: lightgrey;
+}
+
+.name-and-username{
+    display: flex;
+    width: 245px;
+    height: 28px;
+    align-items: flex-start;
+    // border: 1px solid black;
+    
+}
+
+.edit-profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 120px;
+    background: #E2E4E6;
+}
+
+.name-username-edit-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+    margin-left: 20px;
+}
+
+.button-icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 7px;
+}

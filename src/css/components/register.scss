@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     width: 1000px;
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 540px;
     margin-left: auto;
     margin-right: auto;
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     width: 840px;
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 420px;
 }
 
@@ -45,15 +45,71 @@
     display: flex;
     justify-content: flex-end;
     width: 379px;
-    background: lightgrey;
-
-  
+    // background: lightgrey;
 }
 
 .create-account-inner{
-    h1{
-        font-size: 40px;
-        font-weight: 100;
-        margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 379px;
+
+    input {
+        font-size: 20px;
+        color: #95989A;
+        text-align: left;
+        font-weight: normal;
+       }
+
+    ::-webkit-input-placeholder {
+        font-size: 20px;
+        color: #95989A;
+        text-align: left;
+        font-weight: lighter;
     }
 }
+
+.create-account-tag {
+        font-size: 45px;
+        line-height: 44px;
+        font-weight: 100;
+        margin-top: 0;
+        text-align: left;
+        margin-bottom: 10px;
+        // border: 1px solid black;
+}
+
+.create-account-btn {
+    font-size: 20px;
+    background: #EBE2E2;
+    color: #95989A;
+}
+.input-tag {
+    font-size: 20px;
+    text-align: left;
+
+ 
+}
+
+.input-combined {
+    height: 40px;
+    width: 170px;
+}
+
+.input-solo {
+    height: 40px;
+}
+
+.form-combined {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-account-btn {
+    width: 270px;
+    height: 50px;
+}
+
+
+
+

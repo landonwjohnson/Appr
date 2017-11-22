@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+
 class LandingSlider extends Component {
   render() {
     return (
+    
       <div className="slider-container">
           <div className="outter-text-container">
             <div className="inner-text-container">
@@ -25,12 +27,16 @@ class LandingSlider extends Component {
               
                   <ul className="footer-nav">
                       <li>OUR TEAM</li>
-                      <li>FAQ</li>
+                      <li>FEEDBACK</li>
                   </ul>
              
           </div>
+          <div className="curtain">
+            </div>
+          <div className="blackscreen" />
           
       </div>
+      
     );
   }
 }
