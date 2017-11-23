@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import editIcon from '../../../img/icons/Pencil-Icon.svg';
 import './account-settings.scss';
+import EditProfile from './modals/EditProfile/EditProfile';
 
 class AccountSettings extends Component {
   render() {
@@ -32,6 +33,8 @@ class AccountSettings extends Component {
               <div className="headline-20"> Change Avatar </div>
             </div>
           </div>
+
+          <EditProfile />
       </div>
     );
   }
