@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import editIcon from '../../img/icons/Pencil-Icon.svg';
+import editIcon from '../../../img/icons/Pencil-Icon.svg';
 import './account-settings.scss';
+import EditProfile from './modals/EditProfile/EditProfile';
+import Header from '../../Header/Header';
 
 class AccountSettings extends Component {
   render() {
     return (
+      <div>
+      <Header />
       <div className="account-settings-container">
           <div className="profile-section-outter">
               <div className="profile-section-inner">
@@ -32,6 +36,9 @@ class AccountSettings extends Component {
               <div className="headline-20"> Change Avatar </div>
             </div>
           </div>
+
+          {/* <EditProfile /> */}
+      </div>
       </div>
     );
   }

@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import Header from '../../Header/Header';
-import Nav_Sidebar from '../Nav_Sidebar/Nav_Sidebar';
+import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
+import Header from '../../../Header/Header';
 
 class Features extends Component {
   render() {
     return (
+      <div>
+      <Header />
       <div className="features-body">
-          <Header />
+        
 
           <div className="features-wrapper">
 
-              <Nav_Sidebar />
+          <ProjectSetupSidebar />
 
               <div className="features-area">
                   <h1>Features</h1>
@@ -32,6 +34,7 @@ class Features extends Component {
 
           </div>
 
+      </div>
       </div>
     );
   }
