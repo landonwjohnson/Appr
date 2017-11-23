@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import Header from '../../../Header/Header';
 import './idea_users.scss';
 
 class Ideas_Users extends Component {
   render() {
     return (
+      <div>
+      <Header />
       <div className="ideas-users-body">
        
 
@@ -55,6 +58,7 @@ class Ideas_Users extends Component {
 
           </div>
 
+      </div>
       </div>
     );
   }

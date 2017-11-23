@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
+import Header from '../../../Header/Header';
 
 class Features extends Component {
   render() {
     return (
+      <div>
+      <Header />
       <div className="features-body">
         
 
@@ -31,6 +34,7 @@ class Features extends Component {
 
           </div>
 
+      </div>
       </div>
     );
   }

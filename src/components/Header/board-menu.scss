@@ -12,12 +12,14 @@
     display: flex;
     width: 260px;
     padding-left: 15px;
+    opacity: 0;
 }
 
 .back-icon{
     width: 30px;
     height: 30px;
     background: grey;
+    opacity: 0;
 }
 
 .board-menu-container--hide{

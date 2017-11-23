@@ -9,9 +9,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-
-          <Header />
           <Body />
 
         {/* <Route exact path="/" component={Home}/>

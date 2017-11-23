@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Header from '../../../Header/Header';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar'
-import './tracker.scss';
+import './endpoints.scss';
 
-class Tracker extends Component {
+class Endpoints extends Component {
   render() {
     return (
       <div>
       <Header />
         <div>
           <ProjectSetupSidebar />
-          <div className="tracker-container">
+          <div className="endpoints-container">
               
           </div>
         </div>
@@ -19,4 +19,4 @@ class Tracker extends Component {
   }
 }
 
-export default Tracker;
+export default Endpoints;

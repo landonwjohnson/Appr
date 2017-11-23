@@ -105,7 +105,7 @@ class Header extends Component {
 
                   
             </div>
-                <div className="recent-boards-con">
+                {/* <div className="recent-boards-con">
                     <div className="text-12">RECENT PROJECTS</div>
                         <div className="board-menu-item">
                             <div className="board-item-thumbnail">
@@ -124,7 +124,7 @@ class Header extends Component {
                         </div>
                     </div>
                
-                </div>
+                </div> */}
                 <div className="personal-boards-con">
                     <div className="text-12">PERSONAL PROJECTS</div>
                         

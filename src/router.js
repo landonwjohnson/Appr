@@ -8,6 +8,10 @@ import Login from './components/content/Login/Login';
 import IdeasUsers from './components/content/project_components/Ideas_Users/Ideas_Users';
 import Features from './components/content/project_components/Features/Features';
 import Controllers from './components/content/project_components/Controllers/Controllers';
+import View from './components/content/project_components/View/View';
+import Schema from './components/content/project_components/Schema/Schema'
+import Endpoints from './components/content/project_components/Endpoints/Endpoints';
+import Tracker from './components/content/project_components/Tracker/Tracker';
 
 
 
@@ -15,15 +19,21 @@ export default  (
         <Switch>
             <Route component={ Home } path="/" exact/>
             <Route component={ Register } path="/register" exact/>
-            <Route component={ Dashboard } path="/dashboard" exact/>
-            <Route component={ AccountSettings } path="/account-settings" exact/>
             <Route component={ Login } path="/login" exact/>
 
+            //Future Sub Routes
+                <Route component={ Dashboard } path="/dashboard" exact/>
+                <Route component={ AccountSettings } path="/account-settings" exact/>
 
             //Future Sub Routes In Wizard
-            <Route component={ IdeasUsers } path="/ideas" exact/>
-            <Route component={ Features } path="/features" exact/>
-            <Route component={ Controllers } path="/controllers" exact/>
+                <Route component={ IdeasUsers } path="/ideas" exact/>
+                <Route component={ Features } path="/features" exact/>
+                <Route component={ View } path="/views" exact/>
+                <Route component={ Controllers } path="/controllers" exact/>
+                <Route component={ Schema } path="/schema" exact/>
+                <Route component={ Endpoints } path="/endpoints" exact/>
+                <Route component={ Tracker } path="/tracker" exact/>
+            
 
         </Switch> 
     )
