@@ -4,15 +4,15 @@ const getDb = require('../database/bootstrap.database');
 const groupRouter = express.Router();
 
 groupRouter.post('/create', (req, res) => {
-    const { name, createdByUserId } = req.body;
+    const { name, createdByUserId, ownerId } = req.body;
     const db = getDb();
     db.find_group_by_name([ name ])
         .then( group => {
-            if (group[0] && group[0].group_name === name) {
+            if (group[0] && group[0].name === name) {
                 return res.status(409).send({message: 'There is another group that is currently using that name.'});
             }
             else {
-                db.create_group([ name, createdByUserId ])
+                db.create_group([ createdByUserId, ownerId, name ])
                 .then( promise => res.send())
                 .catch( err => res.send(err));
             }
@@ -30,7 +30,7 @@ groupRouter.get('/:groupid', (req, res) => {
 
 groupRouter.put('/update/:groupid', (req, res) => {
     const groupId = req.params.groupid;
-    const { name } = req.body;
+    const { name, ownerId } = req.body;
     const db = getDb();
     db.find_group_by_name([ name ])
         .then( group => {
@@ -38,7 +38,7 @@ groupRouter.put('/update/:groupid', (req, res) => {
                 return res.status(409).send({message: 'There is another group that is currently using that name.'});
             }
             else {
-                db.update_group([ groupId, name ])
+                db.update_group([ groupId, name, ownerId ])
                     .then( promise => res.status(200).send())
                     .catch( err => res.send(err));
             }

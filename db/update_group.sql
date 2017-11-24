@@ -1,4 +1,4 @@
 UPDATE groups
-    SET group_name = $2
+    SET name = $2, owner_id = $3
     WHERE id = $1
 ;

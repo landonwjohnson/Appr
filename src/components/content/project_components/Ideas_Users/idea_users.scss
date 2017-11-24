@@ -1,0 +1,131 @@
+.idea-users-body {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.ideas-users-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.ideas-users-input-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.ideas-area{
+    width: 900px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ideas-area input {
+    width: 800px;
+    height: 30px;
+}
+
+.ideas-area button {
+    width: 50px;
+    height: 30px;
+}
+
+.ideas-input-one {
+    width: 900px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ideas-input-two {
+    width: 900px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ideas-add-wrap {
+    width: 800px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ideas-add {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+}
+
+
+.users-area {
+    width: 900px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.users-area input {
+    width: 255px;
+    height: 30px;
+}
+
+.users-area button {
+    width: 50px;
+    height: 30px;
+}
+
+.users-input-one {
+    width: 900px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.users-input-two {
+    width: 900px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.users-add-wrap {
+    width: 800px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.users-add {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+}
+
+.ideas-and-users {
+    text-decoration: none;
+    color: blue;
+}
+
+.features {
+    text-decoration: none;
+    color: black;
+}
+
+.view {
+    text-decoration: none;
+    color: black;
+}
