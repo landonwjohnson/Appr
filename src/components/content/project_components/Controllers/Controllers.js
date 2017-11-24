@@ -54,11 +54,16 @@ class Controllers extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="add-contro-item">
+                            <div className="add-contro-item-inner">
+                              <label className="center-text-placehoder">ADD NEW CONTROLLER</label>
+                            </div>
+                        </div>
             
             </div>
             
         </div>
-        <button className="add-new-controller"> Add New Controller </button>
+      
       </div>
       </div>
       </div>

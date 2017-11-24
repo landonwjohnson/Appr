@@ -33,7 +33,5 @@ export default  (
                 <Route component={ Schema } path="/schema" exact/>
                 <Route component={ Endpoints } path="/endpoints" exact/>
                 <Route component={ Tracker } path="/tracker" exact/>
-            
-
         </Switch> 
     )

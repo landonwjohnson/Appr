@@ -7,7 +7,7 @@ export default class ProjectSetupSidebar extends Component {
         return (
             <div className="project-sidebar-container">
             <ul className="project-sidebar-inner">
-                <Link to="ideas"><li className="psb-item">Ideas & Users</li></Link>
+                <li className="psb-item"><Link to="ideas">Ideas & Users</Link></li>
                 <Link to="features"><li className="psb-item">Features</li></Link>
                 <Link to="views"><li className="psb-item">Views</li></Link>
                 <Link to="controllers"><li className="psb-item">Controllers</li></Link>

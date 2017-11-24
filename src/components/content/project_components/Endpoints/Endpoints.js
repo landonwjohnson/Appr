@@ -8,9 +8,16 @@ class Endpoints extends Component {
     return (
       <div>
       <Header />
-        <div>
+        <div className="project-view">
           <ProjectSetupSidebar />
           <div className="endpoints-container">
+          <div className="endpoints-inner-container">
+        
+            <label className="project-section-header">Endpoints</label>
+            <div>
+
+            </div>
+            </div>
               
           </div>
         </div>
