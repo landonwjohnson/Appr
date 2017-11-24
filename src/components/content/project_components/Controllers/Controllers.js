@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
+import addIcon from '../../../../img/icons/add-icon.svg';
 
 import './controllers.scss';
 
@@ -56,7 +57,12 @@ class Controllers extends Component {
                         </div>
                         <div className="add-contro-item">
                             <div className="add-contro-item-inner">
-                              <label className="center-text-placehoder">ADD NEW CONTROLLER</label>
+                                <div className="add-contro-item-body">
+                                    <img src={addIcon} alt="Add New Controller"/>
+                                </div>
+                                <div className="add-contro-item-footer">
+                                    <label>Add New Controller</label>
+                                </div>
                             </div>
                         </div>
             
