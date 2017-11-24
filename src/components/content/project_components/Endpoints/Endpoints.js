@@ -8,18 +8,19 @@ class Endpoints extends Component {
     return (
       <div>
       <Header />
-        <div className="project-view">
-          {/* <ProjectSetupSidebar /> */}
+        <div className="main-fix">
+          <ProjectSetupSidebar />
           <div className="endpoints-container">
-          <label className="project-section-header">Endpoints</label>
+          
           <div className="endpoints-wrapper">
+            <label className="project-section-header">Endpoints</label>
             <div className="endpoints-inner-container">
               
               <div className="endpoints-list-container">
                 <div className="endpoint-item">
                   
                   <div className="endpoint-section-con">
-                    <div className="endpoint-listing-con">
+                    <div className="endpoint-label-con">
                       1.
                     </div>
                     <div className="ep-field-con">
@@ -31,9 +32,55 @@ class Endpoints extends Component {
                           <option>DELETE</option>
                         </select>
                     </div>
-                  
-                    
                   </div>
+                  
+                  <div className="endpoint-divider"> </div>
+
+
+
+                  <div className="endpoint-section-con-bottom">
+                    <div className="ep-field-con-bottom" />
+
+                        <div className="ep-bottom-row">
+                          <div className="req-res-label">
+                            REQ
+                          </div>
+                            <div className="req-res-wrapper">
+                              <input className="req-input-field" type="text" placeholder="username" />
+                              <span>:</span>
+                              <input className="req-input-field" type="text" placeholder="" />
+                            </div>
+                        </div>
+                        <div className="ep-bottom-row">
+                        <div className="req-res-label">
+                            
+                          </div>
+                        <button className="req-res-add"> + Add </button>
+                        </div>
+                  </div>
+
+
+                  <div className="endpoint-section-con-bottom">
+                    <div className="ep-field-con-bottom" />
+
+                        <div className="ep-bottom-row">
+                          <div className="req-res-label">
+                            RES
+                          </div>
+                            <div className="req-res-wrapper">
+                              <input className="req-input-field" type="text" placeholder="username" />
+                              <span>:</span>
+                              <input className="req-input-field" type="text" placeholder="" />
+                            </div>
+                        </div>
+                        <div className="ep-bottom-row">
+                        <div className="req-res-label">
+                            
+                          </div>
+                        <button className="req-res-add"> + Add </button>
+                        </div>
+                  </div>
+                </div>
                 </div>
           
 
@@ -44,7 +91,7 @@ class Endpoints extends Component {
               
           </div>
         </div>
-      </div>
+      
     );
   }
 }
