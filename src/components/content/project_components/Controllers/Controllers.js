@@ -55,7 +55,7 @@ class Controllers extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="add-contro-item">
+                        <button className="add-contro-item">
                             <div className="add-contro-item-inner">
                                 <div className="add-contro-item-body">
                                     <img src={addIcon} alt="Add New Controller"/>
@@ -64,7 +64,7 @@ class Controllers extends Component {
                                     <label>Add New Controller</label>
                                 </div>
                             </div>
-                        </div>
+                        </button>
             
             </div>
             

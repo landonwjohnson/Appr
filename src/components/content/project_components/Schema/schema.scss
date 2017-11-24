@@ -36,7 +36,7 @@
     .name-table-row{
         display: flex;
         justify-content: flex-start;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         input{
             font-size: 20px;
@@ -45,10 +45,8 @@
             outline: none;
             width: 100%;
             background: transparent;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            border-bottom: 1px dashed black;
+            border: none;
+            // border-bottom: 1px dashed black;
         }
         ::-webkit-input-placeholder {
             color: #595959;
@@ -138,6 +136,7 @@
         height: 30px;
         display: flex;
         align-items: center;
+        
 
         img{
             padding-right: 5px;
