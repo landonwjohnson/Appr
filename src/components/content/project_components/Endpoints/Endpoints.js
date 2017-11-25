@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../../Header/Header';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar'
 import './endpoints.scss';
+import addIcon from '../../../../img/icons/add-icon.svg';
 
 class Endpoints extends Component {
   render() {
@@ -13,10 +14,10 @@ class Endpoints extends Component {
           <div className="endpoints-container">
           
           <div className="endpoints-wrapper">
-            <label className="project-section-header">Endpoints</label>
+            
             <div className="endpoints-inner-container">
-              
-              <div className="endpoints-list-container">
+            <label className="project-section-header">Endpoints</label>
+              <div className="endpoint-list-container">
                 <div className="endpoint-item">
                   
                   <div className="endpoint-section-con">
@@ -81,6 +82,20 @@ class Endpoints extends Component {
                         </div>
                   </div>
                 </div>
+
+
+                <button className="add-endpoint-item">
+                            <div className="add-endpoint-item-inner">
+                                <div className="add-endpoint-item-body">
+                                    <img src={addIcon} alt="Add New Controller"/>
+                                </div>
+                                <div className="add-endpoint-item-footer">
+                                    <label>Add New Endpoint</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                 </div>
           
 
