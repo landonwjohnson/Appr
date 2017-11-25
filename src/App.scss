@@ -1,14 +1,26 @@
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 .App {
   text-align: center;
   width: 100%;
-  
+  height: 100%;
 }
+
+body{
+  height: 100vh;
+}
+
 
 
 .project-section-header{
   font-size: 36px;
   margin-bottom: 20px;
-  text-align: center;
   width: 100%;
   margin-top: 50px;
 }
@@ -20,7 +32,8 @@ a{
 .main-fix{
   display: flex;
   flex-direction: row;
-  background: #FAFAFA;
+ 
+  height: 100%;
 }
 
 body {
