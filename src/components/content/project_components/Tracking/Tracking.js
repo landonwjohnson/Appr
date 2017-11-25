@@ -7,7 +7,7 @@ class Tracking extends Component {
     return (
       <div>
         <Header />
-        <div className="main-fix">
+        <div className="main-fix bg-grey">
         
         <div className="tracking-container">
         <div className="project-header">
@@ -19,7 +19,9 @@ class Tracking extends Component {
                 <div className="project-items-container">
                   <div className="project-item">
                     <div className="project-item-inner">
-                        <h6> board test </h6>
+                        <div className="prjt-item-header"> 
+                          <label> To Do </label>
+                        </div>
                         <ul>
                           <li>Test</li>
                           <li>Test </li>

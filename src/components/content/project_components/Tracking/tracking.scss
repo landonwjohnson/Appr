@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100vw;
     height: 90vh;
+    
 }
 
 .project-header{
@@ -33,14 +34,27 @@
 .project-item{
     max-width: 270px;
     height: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
     
     
 }
 .project-item-inner{
     width: 270px;
     border: 1px solid black;
+    padding: 10px;
+    background: #E2E4E6;
+}
 
-    
+.prjt-item-header{
+    display: flex;
+    height: 30px;
+    width: 100%;
+
+    label{
+        font-size: 20px;
+        text-align: left;
+        font-weight: bold;
+    }
 }
