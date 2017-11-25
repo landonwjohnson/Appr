@@ -1,11 +1,11 @@
 .project-sidebar-container {
-    width: 250px;
+    min-width: 240px;
     height: 100vh;
-    background-color: #E8E8E8;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-left: 1px solid black;
+    border-right: 1px solid #DCDCDC;
 }
 
 .project-sidebar-inner{
@@ -26,9 +26,13 @@
     color: #8C8984;
     text-decoration: none;
 
+}
+.psb-item:active{
+    border-left: 3px green solid;
+     
+ }
 
-    a:focus{
-       border-left: 3px green solid;
-        
-    }
+.psb-item:active{
+    border-left-color: #4285f4;
+    color: #4285f4;
 }
