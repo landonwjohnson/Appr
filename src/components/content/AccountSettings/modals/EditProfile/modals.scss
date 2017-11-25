@@ -1,13 +1,15 @@
   
     .modal-account-settings-content{
+        
         max-width: 390px;
         padding-left: 20px;
         padding-right: 20px;
-        padding-bottom: 20px;
+        
         background-color: #f4f4f4;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
         animation-name: modalopen;
         animation-duration: 1s;
+        z-index: 4;
        
       }
     
@@ -18,14 +20,17 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
+        z-index: 0;
       }
   
     .modalStyle-inner{
+        
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
+        z-index: 0;
     }
     
     
@@ -42,6 +47,7 @@
         color: grey;
         font-size: 30px;
         user-select: none;
+        
       }
     
       .closeBtn:hover {
@@ -92,6 +98,7 @@
       
       
       .submitModal{
+        margin-bottom: 20px;
         button{
           text-align: center;
           font-size: 18px;
