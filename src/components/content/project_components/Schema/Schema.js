@@ -13,7 +13,7 @@ class Schema extends Component {
           <ProjectSetupSidebar />
             <div className="schema-container">
               <div className="schema-wrapper">
-                <label className="project-section-header">Schema</label>
+                <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
                   <div className="schema-item">
                     <div className="name-table-row">
@@ -165,6 +165,7 @@ class Schema extends Component {
                       <button className="add-button"> <img src={addIcon} /> Add Column </button>
                     </div>
                   </div>
+                  <button className="add-table"> Add Table </button>
                 </div>
               </div>
             </div>

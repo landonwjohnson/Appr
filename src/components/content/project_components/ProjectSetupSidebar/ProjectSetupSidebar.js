@@ -14,6 +14,7 @@ export default class ProjectSetupSidebar extends Component {
                 <Link to="endpoints"><li className="psb-item">Endpoints</li></Link>
                 <Link to="schema"><li className="psb-item">Schema</li></Link>
                 <Link to="tracker"><li className="psb-item">Tracker</li></Link>
+                <Link to="tracking"><li className="psb-item">Tracking</li></Link>
                 
             </ul>
         </div>

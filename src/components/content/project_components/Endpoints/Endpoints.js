@@ -52,7 +52,7 @@ class Endpoints extends Component {
                               <input className="req-input-field" type="text" placeholder="" />
                             </div>
                         </div>
-                        <div className="ep-bottom-row">
+                        <div className="ep-bottom-add-row">
                         <div className="req-res-label">
                             
                           </div>
@@ -74,7 +74,7 @@ class Endpoints extends Component {
                               <input className="req-input-field" type="text" placeholder="" />
                             </div>
                         </div>
-                        <div className="ep-bottom-row">
+                        <div className="ep-bottom-add-row">
                         <div className="req-res-label">
                             
                           </div>
@@ -82,25 +82,21 @@ class Endpoints extends Component {
                         </div>
                   </div>
                 </div>
+                <div className="add-button-footer">
+                        <button className="add-endpoint-item"> Add Endpoint</button>
+              </div>
+               
 
 
-                <button className="add-endpoint-item">
-                            <div className="add-endpoint-item-inner">
-                                <div className="add-endpoint-item-body">
-                                    <img src={addIcon} alt="Add New Controller"/>
-                                </div>
-                                <div className="add-endpoint-item-footer">
-                                    <label>Add New Endpoint</label>
-                                </div>
-                            </div>
-                        </button>
-
-
-                </div>
-          
+              
 
 
               </div>
+              
+
+
+                </div>
+                
               </div>
             </div>  
               

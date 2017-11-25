@@ -14,9 +14,9 @@ class Controllers extends Component {
         <ProjectSetupSidebar />
         <div className="controllers-container">
       
-        <div className="controllers-inner-container">
+        <div className="controllers-wrapper">
         
-            <label className="project-section-header">Controllers</label>
+            <div className="project-section-header">Controllers</div>
             <div className="controller-list-container">
                         <div className="contro-item">
                             <div className="contro-item-inner">

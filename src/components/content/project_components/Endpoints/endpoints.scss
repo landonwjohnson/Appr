@@ -29,14 +29,18 @@
     padding-top: 32.5px;
     padding-left: 25px;
     padding-right: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
     margin: 20px;
 }
 
 .endpoint-list-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    max-height: 100%;
 }
+
+
 
 
 .endpoint-label-con{
@@ -50,6 +54,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    margin-bottom: 20px;
     // border: 1px solid black;
 }
 
@@ -98,6 +103,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 10px;
+}
+
+.ep-bottom-add-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .req-res-label{
@@ -116,9 +130,9 @@
     margin-right: auto;
     height: 1px;
     background-color: #595959;
-    margin-top:20px;
+    margin-top:10px;
     margin-bottom: 20px;
-    opacity: 0.1;
+    opacity: 1;
 
 }
 
@@ -135,59 +149,87 @@
 }
 
 .req-res-add{
-    margin-top:15px;
-    margin-bottom: 15px;
+ 
 }
 // num-url-get-post-con
 
 
-
-
-
-
-
-.add-endpoint-item{
-    
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    border-radius: 2px;
-    border: none;
-    height: 340px;
-    width: 225px;
-    outline: none;
-    padding: 25px;
-    margin: 20px;
-    
-}
-.add-endpoint-inner{
+.add-button-footer {
     width: 100%;
-    height: 100%;
-    
-}
-.add-endpoint-item-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-   
-    img{
-        margin-top: 10%;
-        width: 50%;
-        height: 50%;
+
+    button{
+        width: 450px;
+        height: 50px;
     }
 }
 
-.add-endpoint-item-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20%;
-    width: 100%;
 
-    label{
-        font-size: 22px;
-        color: #59595E
-}
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .add-endpoint-item{
+    
+//     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+//     border-radius: 2px;
+//     border: none;
+//     height: 100%;
+//     width: 225px;
+//     outline: none;
+//     padding: 25px;
+//     margin: 20px;
+    
+// }
+// .add-endpoint-inner{
+//     width: 100%;
+//     height: 100%;
+    
+// }
+// .add-endpoint-item-body{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 100%;
+   
+//     img{
+//         margin-top: 10%;
+//         width: 50%;
+//         height: 50%;
+//     }
+// }
+
+// .add-endpoint-item-footer{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 20%;
+//     width: 100%;
+
+//     label{
+//         font-size: 22px;
+//         color: #59595E
+// }
+
+// }
