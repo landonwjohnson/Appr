@@ -17,13 +17,13 @@ accountRouter.put('/update/:userid', (req, res) => {
     const db = getDb();
     db.find_user_by_email([ email ])
         .then( user => {
-            if (user[0]) {
+            if (user[0] && user[0].id != userId) {
                 return res.status(409).send({message: 'There is already an existing account using that email address.'});
             }
             else {
                 db.find_user_by_username([username])
                     .then( user => {
-                        if (user[0]) {
+                        if (user[0] && user[0].id != userId) {
                             return res.status(409).send({message: 'Another account is currently using that username.'});
                         }
                         else {
@@ -38,12 +38,12 @@ accountRouter.put('/update/:userid', (req, res) => {
         .catch(err => res.send(err));
 });
 
-accountRouter.delete('/delete/:userid', (req, res) => {
+accountRouter.put('/delete/:userid', (req, res) => {
     const userId = req.params.userid;
     const db = getDb();
     db.delete_user([ userId ])
-        .then( promise => res.status(200).send())
+        .then(promise => res.send())
         .catch( err => res.send(err));
-});
+})
 
 module.exports = accountRouter;

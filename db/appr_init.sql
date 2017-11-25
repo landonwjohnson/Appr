@@ -17,7 +17,12 @@ CREATE TABLE groups (
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
     name TEXT
+=======
+    name TEXT,
+    author_id int references users(id)
+>>>>>>> 27ff302b3ce2757b95e9e2be5f26da203cf1df6a
     -- idea_field TEXT,
     -- user_field TEXT,
     -- features_field TEXT,
@@ -102,6 +107,7 @@ VALUES ('Dark Side', '6');
 INSERT INTO groups ( name )
 VALUES ('Droids', '3');
 
+<<<<<<< HEAD
 --Projects
 
 INSERT INTO project ( id, name )
@@ -113,6 +119,13 @@ VALUES ('2', 'DeathStar');
 INSERT INTO project ( id, name )
 VALUES ('6', 'DeathStar2');
 
+=======
+INSERT INTO groups ( created_by, owner_id, name )
+VALUES ('1', '1','Test Group');
+
+INSERT INTO project ( name, author_id )
+VALUES ('project name', '1');
+>>>>>>> 27ff302b3ce2757b95e9e2be5f26da203cf1df6a
 
 /*Duplicate of what will be added later
 -- INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
