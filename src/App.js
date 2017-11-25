@@ -9,16 +9,17 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Ideas_Users from './components/project_components/Ideas_Users/Ideas_Users';
 import Features from './components/project_components/Features/Features';
 import View from './components/project_components/View/View';
+import Body from './components/Body/Body'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={Home}/>
-        <Route path="/dashboard" component={Dashboard}/>
-        <Route path="/ideas" component={Ideas_Users}/> 
-        <Route path="/features" component={Features}/>
-        <Route path="/view" component={View}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/ideas" component={Ideas_Users}/> 
+          <Route path="/features" component={Features}/>
+          <Route path="/view" component={View}/>
       </div>
     );
   }
