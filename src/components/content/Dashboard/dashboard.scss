@@ -1,5 +1,8 @@
-.dashboard-body {
-    width: 100vw;
+
+
+.dashboard-container {
+    height: 100vh;
+    background: #FAFAFA;
 }
 
 .create-project-btn {
@@ -8,6 +11,14 @@
     background-color: gray;
     border: none;
     margin-top: 20px;
+}
+
+.create-project-thumb-body{
+
+    img{
+        width: 60px;
+        height: 60px;
+    }
 }
 
 .create-project-btn-link {

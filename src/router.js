@@ -12,6 +12,7 @@ import View from './components/content/project_components/View/View';
 import Schema from './components/content/project_components/Schema/Schema'
 import Endpoints from './components/content/project_components/Endpoints/Endpoints';
 import Tracker from './components/content/project_components/Tracker/Tracker';
+import Tracking from './components/content/project_components/Tracking/Tracking';
 
 
 
@@ -21,11 +22,11 @@ export default  (
             <Route component={ Register } path="/register" exact/>
             <Route component={ Login } path="/login" exact/>
 
-            //Future Sub Routes
+            {/* Future Sub Routes */}
                 <Route component={ Dashboard } path="/dashboard" exact/>
                 <Route component={ AccountSettings } path="/account-settings" exact/>
 
-            //Future Sub Routes In Wizard
+            {/* Future Sub Routes In Wizard */}
                 <Route component={ IdeasUsers } path="/ideas" exact/>
                 <Route component={ Features } path="/features" exact/>
                 <Route component={ View } path="/views" exact/>
@@ -33,7 +34,6 @@ export default  (
                 <Route component={ Schema } path="/schema" exact/>
                 <Route component={ Endpoints } path="/endpoints" exact/>
                 <Route component={ Tracker } path="/tracker" exact/>
-            
-
+                <Route component={ Tracking } path="/tracking" exact/>
         </Switch> 
     )

@@ -1,17 +1,49 @@
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 .App {
   text-align: center;
   width: 100%;
-  
+  height: 100%;
+}
+
+body{
+  height: 100vh;
+}
+
+
+
+.project-section-header{
+  font-size: 36px;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+a{
+  text-decoration: none;
 }
 
 .main-fix{
   display: flex;
   flex-direction: row;
+ 
+  height: 100%;
 }
 
 body {
   font-family: sans-serif;
   
+}
+
+
+.project-view{
+  background: #FAFAFA;
 }
 
 
@@ -31,3 +63,9 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.bg-grey{
+  background: #DDDDDD;
+}
+
+
