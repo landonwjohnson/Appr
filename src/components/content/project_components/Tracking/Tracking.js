@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './tracking.scss'
 import Header from '../../../Header/Header';
-import editIcon from '../../../../img/icons/Pencil-Icon.svg';
+import ProjectItem from './ProjectItem/ProjectItem';
+
 
 class Tracking extends Component {
   render() {
@@ -18,151 +19,13 @@ class Tracking extends Component {
           </div>
            
                 <div className="project-items-container">
-               
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> To Do </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-
-
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Backlog </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                       
-
-
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Repo </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-
-
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Routing </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        
-
-
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Database </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
-
-
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-
-                      
-                  
-
+                    <ProjectItem listName="To Do" />
+                    {/* <ProjectItem listName="Backlog" />
+                    <ProjectItem listName="Repos" />
+                    <ProjectItem listName="Schema" />
+                    <ProjectItem listName="Database" />
+                    <ProjectItem listName="Test" />
+                    <ProjectItem listName="Another Test" /> */}
                 </div>
 
              

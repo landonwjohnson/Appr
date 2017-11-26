@@ -16,7 +16,7 @@ class ChangeEmail extends Component {
                 <div className="modal-body">
                     <label className="modal-input-tag">Current Email</label>
                     <section className="modal-row">
-                        <label className="current-email">jaysenreese@xtreox.com</label>
+                        <label className="current-email">landonjohnson@xtreox.com</label>
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">

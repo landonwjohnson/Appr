@@ -8,18 +8,18 @@ import ChangeAvatar from './modals/ChangeAvatar';
 import Header from '../../Header/Header';
 import Modal from 'react-modal';
 
-const editProfileStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    transform: 'translate(0%, 40%)',
-    outline:'none'
-  }
-};
+// const editProfileStyles = {
+//   content : {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: 'auto',
+//     marginRight: 'auto',
+//     marginLeft: 'auto',
+//     transform: 'translate(0%, 40%)',
+//     outline:'none'
+//   }
+// };
 
 
 
