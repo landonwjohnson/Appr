@@ -22,6 +22,31 @@ const editProfileStyles = {
 };
 
 
+
+
+const ModalBox = {
+
+  overlay : {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    overflow: "hidden",
+    width: "100%"
+  },
+  content : {
+    borderRadius: "4px",
+    outline: "none",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    right: "50%",
+    bottom: "50%",
+  }
+};
+
 class AccountSettings extends Component {
   constructor(){
     super()
@@ -116,8 +141,7 @@ class AccountSettings extends Component {
               isOpen ={this.state.modalIsOpen} 
               onRequestClose={this.closeModal}
               className="modal-account-settings-content"
-              overlayClassName="modalStyle"
-              style={editProfileStyles}
+              style={ModalBox}
           >
               <EditProfile onCloseBtnClick={this.closeModal} />
           </Modal>
@@ -126,8 +150,7 @@ class AccountSettings extends Component {
               isOpen ={this.state.emailModalOpen} 
               onRequestClose={this.closeEmailModal}
               className="modal-account-settings-content"
-              overlayClassName="modalStyle"
-              style={editProfileStyles}
+              style={ModalBox}
           >
               <ChangeEmail onCloseBtnClick={this.closeEmailModal} />
           </Modal>
@@ -136,8 +159,7 @@ class AccountSettings extends Component {
               isOpen ={this.state.passwordModalOpen} 
               onRequestClose={this.closePasswordModal}
               className="modal-account-settings-content"
-              overlayClassName="modalStyle"
-              style={editProfileStyles}
+              style={ModalBox}
           >
               <ChangePassword onCloseBtnClick={this.closePasswordModal} />
           </Modal>
@@ -146,8 +168,7 @@ class AccountSettings extends Component {
               isOpen ={this.state.avatarModalOpen} 
               onRequestClose={this.closeAvatarModal}
               className="modal-account-settings-content"
-              overlayClassName="modalStyle"
-              style={editProfileStyles}
+              style={ModalBox}
           >
               <ChangeAvatar onCloseBtnClick={this.closeAvatarModal} />
           </Modal>
