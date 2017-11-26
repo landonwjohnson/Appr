@@ -62,6 +62,7 @@ class ProjectCard extends Component {
             >
               <CardView listName={this.props.listName} cardTitle={this.props.cardTitle} onCloseBtnClick={this.closeCardView} />
             </Modal>
+            
 
             
       </div>

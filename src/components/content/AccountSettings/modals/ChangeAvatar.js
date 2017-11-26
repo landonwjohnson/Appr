@@ -10,7 +10,7 @@ class ChangeAvatar extends Component {
             <div className="modal-account-settings-content">
                 <div className="modal-header">
                     <div className="modal-header-placeholder"></div>
-                    <h2 className="modal-title">Change Email</h2>
+                    <h2 className="modal-title">Change Avatar</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
                 <div className="modal-body">
