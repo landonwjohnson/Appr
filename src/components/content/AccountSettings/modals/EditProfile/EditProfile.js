@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './modals.scss'
+import PropTypes from 'prop-types';
 
 class EditProfile extends Component {
+    
     render() {
       return (
-        <div id="editProfileModal" className="modalStyle">
+        
+        // <div className="modalStyle">
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
                 <div className="modal-header-placeholder"></div>
                 <h2 className="modal-title">Edit Profile</h2>
-                <Link to="/"><span className="closeBtn">&times;</span></Link>
-                
+                <span onClick={this.props.onCloseBtnClick} className="closeBtn">&times;</span>
               </div>
               <div className="modal-body">
                 <label className="modal-input-tag">First Name</label>
@@ -36,13 +38,15 @@ class EditProfile extends Component {
                 </button>
               </div>
             </div>
-            </div>
-        </div> 
-       
+           </div>
+        // </div> 
+        
       );
     }
   }
-  
+
+  EditProfile.propTypes = { onCloseBtnClick: PropTypes.func }
+  EditProfile.defaultProps = { onCloseBtnClick: () => {} }
   export default EditProfile;
 
 
