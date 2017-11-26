@@ -86,6 +86,8 @@
         text-align: left;
         font-weight: bold;
     }
+
+   
 }
 
 .prjt-item-body{
@@ -96,8 +98,41 @@
     ul{
         overflow-y: auto;
         max-height: 500px;
+        padding: 0px;
+        margin: 0px;
     }
     li{
-        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+       
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+        max-width: 245px;
+        min-height: 32px;
+        background: white;
+        border-radius: 4px;
+        
+        img{
+            display: none;
+        }
+
+        label{
+            padding-left: 10px;
+            line-height: 18px;
+        }
+
+        &:hover{
+            img{
+                display: block;
+                height: 15px;
+                width: 15px;
+                padding-right: 10px;
+            }
+        }
     }
+
+    
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './tracking.scss'
 import Header from '../../../Header/Header';
+import editIcon from '../../../../img/icons/Pencil-Icon.svg';
 
 class Tracking extends Component {
   render() {
@@ -17,16 +18,40 @@ class Tracking extends Component {
           </div>
            
                 <div className="project-items-container">
+               
                         <div className="project-item">
                               <div className="project-item-block">
                                 <div className="prjt-item-inner">
                                     <div className="prjt-item-header"> 
                                       <label> To Do </label>
                                     </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
+                                    <div className="prjt-item-body">
+                                      <ul>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+
+
+
+                                      </ul>
+                                      </div>
                               </div>
                               </div>
                         </div>
@@ -36,10 +61,18 @@ class Tracking extends Component {
                                     <div className="prjt-item-header"> 
                                       <label> Backlog </label>
                                     </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
+                                    <div className="prjt-item-body">
+                                      <ul>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                       
+
+
+
+                                      </ul>
+                                      </div>
                               </div>
                               </div>
                         </div>
@@ -51,57 +84,16 @@ class Tracking extends Component {
                                     </div>
                                     <div className="prjt-item-body">
                                       <ul>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
 
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
+
 
                                       </ul>
                                       </div>
@@ -114,10 +106,20 @@ class Tracking extends Component {
                                     <div className="prjt-item-header"> 
                                       <label> Routing </label>
                                     </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
+                                    <div className="prjt-item-body">
+                                      <ul>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        
+
+
+
+                                      </ul>
+                                      </div>
                               </div>
                               </div>
                         </div>
@@ -127,41 +129,37 @@ class Tracking extends Component {
                                     <div className="prjt-item-header"> 
                                       <label> Database </label>
                                     </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
+                                    <div className="prjt-item-body">
+                                      <ul>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+                                        <li><label>Test</label><div className="edit-con"><img src={editIcon}/></div></li>
+
+
+
+                                      </ul>
+                                      </div>
                               </div>
                               </div>
                         </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Test </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Test </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        
-                       
+
                       
                   
 

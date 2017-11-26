@@ -13,7 +13,8 @@ const customStyles = {
     bottom                : 'auto',
     marginRight           : 'auto',
     marginLeft            : 'auto',
-    transform             : 'translate(0%, 40%)'
+    transform             : 'translate(0%, 40%)',
+    outline :'none'
   }
 };
 
