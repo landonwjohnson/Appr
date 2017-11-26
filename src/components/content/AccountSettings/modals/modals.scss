@@ -4,7 +4,7 @@
         max-width: 390px;
         padding-left: 20px;
         padding-right: 20px;
-        
+        border: none;
         background-color: #f4f4f4;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
         animation-name: modalopen;
@@ -115,7 +115,7 @@
       }
     
       .modal-form {
-        height: 35px;
+        height: 33px;
         width: 382px;
         outline: none;
       }

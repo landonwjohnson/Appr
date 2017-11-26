@@ -7,8 +7,6 @@ class EditProfile extends Component {
     
     render() {
       return (
-        
-        // <div className="modalStyle">
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
@@ -39,7 +37,6 @@ class EditProfile extends Component {
               </div>
             </div>
            </div>
-        // </div> 
         
       );
     }
