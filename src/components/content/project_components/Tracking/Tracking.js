@@ -3,7 +3,17 @@ import './tracking.scss'
 import Header from '../../../Header/Header';
 import ProjectItem from './ProjectItem/ProjectItem';
 
+// var mouseWheelEvt = function (event) {
+//   if (document.body.doScroll)
+//       document.body.doScroll(event.wheelDelta>0?"left":"right");
+//   else if ((event.wheelDelta || event.detail) > 0)
+//       document.body.scrollLeft -= 10;
+//   else
+//       document.body.scrollLeft += 10;
 
+//   return false;
+// }
+// document.body.addEventListener("mousewheel", mouseWheelEvt);
 
 
 
