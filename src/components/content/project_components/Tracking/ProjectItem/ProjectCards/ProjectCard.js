@@ -31,8 +31,8 @@ const ModalBox = {
 class ProjectCard extends Component {
   constructor(){
     super()
-    this.state={
-      cardViewOpen: false
+    this.state = {
+      cardViewModalOpen: false
     }
 
     this.openCardView = this.openCardView.bind(this);
@@ -40,22 +40,24 @@ class ProjectCard extends Component {
   }
 
   openCardView(){
-    this.setState({cardViewOpen: true})
+    this.setState({cardViewModalOpen: true})
   }
 
   closeCardView(){
-    this.setState({cardViewOpen: false})
+    this.setState({cardViewModalOpen: false})
   }
 
 
   render() {
     return (
-      <div onClick={this.openCardView}>
-            <li ><label>{this.props.cardTitle}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
+
+     
+      <div >
+            <li onClick={this.openCardView}><label>{this.props.cardTitle}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
             
             <Modal 
-              isOpen ={this.state.openCardView} 
+              isOpen ={this.state.cardViewModalOpen} 
               onRequestClose={this.closeCardView}
               className="cardview-parent"
               style={ModalBox}

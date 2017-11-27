@@ -28,7 +28,7 @@ class CardView extends Component {
           </div>
           <div className="cardview-right">
                 <section className="top-con">
-                    <span> &times; </span>
+                    <span onClick={this.onCloseBtnClick}> &times; </span>
                 </section>
                 <section className="side-group-menu">
                     <div className="cv-side-title">
