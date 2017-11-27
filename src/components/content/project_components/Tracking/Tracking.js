@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import './tracking.scss'
 import Header from '../../../Header/Header';
+import ProjectItem from './ProjectItem/ProjectItem';
+
+
+
+
 
 class Tracking extends Component {
+  
   render() {
     return (
       <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
@@ -17,155 +23,16 @@ class Tracking extends Component {
           </div>
            
                 <div className="project-items-container">
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> To Do </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Backlog </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Repo </label>
-                                    </div>
-                                    <div className="prjt-item-body">
-                                      <ul>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-                                        <li>Test</li>
-                                        <li>Test </li>
-
-                                      </ul>
-                                      </div>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Routing </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Database </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Test </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        <div className="project-item">
-                              <div className="project-item-block">
-                                <div className="prjt-item-inner">
-                                    <div className="prjt-item-header"> 
-                                      <label> Test </label>
-                                    </div>
-                                    <ul>
-                                      <li>Test</li>
-                                      <li>Test </li>
-                                    </ul>
-                              </div>
-                              </div>
-                        </div>
-                        
-                       
-                      
-                  
-
+                    <ProjectItem listName="To Do" />
+                    <ProjectItem listName="Backlog" />
+                    <ProjectItem listName="Repos" />
+                    <ProjectItem listName="Schema" />
+                    <ProjectItem listName="Database" />
+                    <ProjectItem listName="Test" />
+                    <ProjectItem listName="Another Test" />
                 </div>
+
+            
 
              
           </div>
