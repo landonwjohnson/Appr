@@ -10,6 +10,7 @@ class ProjectItem extends Component {
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
                     <label> {this.props.listName} </label>
+                    <span></span>
                   </div>
                   <div className="prjt-item-body">
                     <ul>

@@ -37,8 +37,9 @@
     padding-right: 10px;
     padding-left: 10px;
     display: flex;
+    justify-content: space-between;
     height: 30px;
-    width: 100%;
+    max-width: 100%;
     position: relative;
     // border: 1px solid black;
    
@@ -47,6 +48,15 @@
         font-size: 20px;
         text-align: left;
         font-weight: bold;
+    }
+
+    span{
+        background-image: url("../../../../../img/icons/dot-menu.svg");
+        cursor: pointer;
+        background-position-x: 50%;
+        background-position-y: 50%;
+        width: 20px;
+        height: 20px;
     }
 
    
@@ -111,6 +121,7 @@
         border: none;
         border-radius: 4px;
         outline: none;
+        color: #838c91;
 
         &:hover{
             background-color: #CDD2D4;
