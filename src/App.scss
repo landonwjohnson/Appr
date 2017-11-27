@@ -117,3 +117,19 @@ body {
   white-space: nowrap;
 
 }
+
+.add-button{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  
+  
+
+  img{
+      padding-right: 5px;
+      height: 20px;
+      width: 20px;
+      
+  }
+}
