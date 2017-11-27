@@ -14,8 +14,17 @@ class ProjectItem extends Component {
                   </div>
                   <div className="prjt-item-body">
                     <ul>
-                      <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                      <ProjectCard  cardTitle="Party Component" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Mobile Nav Component" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Horizontal Wheel Scrolling" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Appr Website" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Passing Props" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Manage State" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Another Placeholder" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Party Component" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="The Cat App" listName={this.props.listName} />
+                     
                       
                      
                     </ul>

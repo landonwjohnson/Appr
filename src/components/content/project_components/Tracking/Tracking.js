@@ -3,6 +3,7 @@ import './tracking.scss'
 import Header from '../../../Header/Header';
 import ProjectItem from './ProjectItem/ProjectItem';
 
+
 // var mouseWheelEvt = function (event) {
 //   if (document.body.doScroll)
 //       document.body.doScroll(event.wheelDelta>0?"left":"right");
@@ -31,7 +32,7 @@ class Tracking extends Component {
           <div className="project-header">
             <label>Appr</label>
           </div>
-           
+             
                 <div className="project-items-container">
                     <ProjectItem listName="To Do" />
                     <ProjectItem listName="Backlog" />
