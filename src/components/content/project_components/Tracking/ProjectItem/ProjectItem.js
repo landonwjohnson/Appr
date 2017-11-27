@@ -18,7 +18,10 @@ class ProjectItem extends Component {
                       
                      
                     </ul>
-                    </div>
+                  </div>
+                  <div className="prjt-item-footer">
+                    <button>Add a Card ... </button>
+                  </div>
             </div>
             </div>
       </div>
