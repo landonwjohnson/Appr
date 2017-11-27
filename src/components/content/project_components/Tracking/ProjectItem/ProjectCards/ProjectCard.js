@@ -5,7 +5,7 @@ import CardView from './modals/CardView';
 import Modal from 'react-modal';
 
 
-const ModalBox = {
+const CardViewModalBox = {
   
     overlay : {
       position: "absolute",
@@ -59,8 +59,8 @@ class ProjectCard extends Component {
             <Modal 
               isOpen ={this.state.cardViewModalOpen} 
               onRequestClose={this.closeCardView}
-              className="cardview-parent"
-              style={ModalBox}
+              className="cardview-container"
+              style={CardViewModalBox}
             >
               <CardView listName={this.props.listName} cardTitle={this.props.cardTitle} onCloseBtnClick={this.closeCardView} />
             </Modal>

@@ -6,7 +6,9 @@ class CardView extends Component {
   render() {
     return (
     <div className="cardview-parent">
+    
       <div className="cardview-container">
+        <div className="cardview-inner">
           <div className="cardview-left">
               <section className="cardview-header">
                   <div className="cardview-title">
@@ -28,7 +30,7 @@ class CardView extends Component {
           </div>
           <div className="cardview-right">
                 <section className="top-con">
-                    <span onClick={this.onCloseBtnClick}> &times; </span>
+                    <span onClick={this.props.onCloseBtnClick}> &times; </span>
                 </section>
                 <section className="side-group-menu">
                     <div className="cv-side-title">
@@ -53,7 +55,9 @@ class CardView extends Component {
 
           </div>
       </div>
+      </div>
     </div>
+
                        
 
                       

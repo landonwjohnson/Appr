@@ -14,6 +14,7 @@ class ProjectItem extends Component {
                   <div className="prjt-item-body">
                     <ul>
                       <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                      <ProjectCard  cardTitle="Party Component" listName={this.props.listName} />
                       
                      
                     </ul>

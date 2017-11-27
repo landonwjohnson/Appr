@@ -1,18 +1,28 @@
 .cardview-parent{
-    position: absolute;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     z-index: 4;
 }
 
+
 .cardview-container{
+   
+    // border: 1px solid red;
+    z-index: 4
+}
+
+.cardview-inner{
     display: flex;
     width: 600px;
     height: 350px;
     padding: 10px;
     background: white;
-    z-index: 4;
-    // border: 1px solid red;
+    z-index: 0;
 }
-
 .cardview-left{
     margin-right: 15px;
     display: flex;
@@ -99,6 +109,7 @@
         margin-bottom: 10px;
 
         span{
+            cursor: pointer;
             position: relative;
             width: 30px;
             height: 30px;
