@@ -68,10 +68,23 @@
 
 
 
-
-
-
 .contro-item-header{
+    height: 20px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    border: 1px solid black;
+
+    span{
+        padding-right: 10px;
+        height: 20px;
+        width: 20px;
+        background-image: url('../../../../img/icons/dot-menu.svg');
+    }
+}
+
+
+.contro-item-title{
     font-size: 20px;
     // border: 1px solid black;
     padding-top: 10px;

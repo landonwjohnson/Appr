@@ -20,7 +20,10 @@ class Controllers extends Component {
             <div className="controller-list-container">
                         <div className="contro-item">
                             <div className="contro-item-inner">
-                                <div className="contro-item-header">View 1</div>
+                            <div className="contro-item-header">
+                                <span> </span>
+                            </div>
+                                <div className="contro-item-title">View 1</div>
                                 <div className="contro-item-inputs">
                                 <div className="contro-row-container">
                                     <label className="contro-row-name">When</label>
