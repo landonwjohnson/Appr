@@ -6,6 +6,9 @@ export default class ProjectSetupSidebar extends Component {
     render() {
         return (
             <div className="project-sidebar-container">
+            <div className="project-sidebar-header">
+                <input type="text" placeholder="Project Name" /> 
+            </div>
             <ul className="project-sidebar-inner">
                 <Link to="ideas" className="psb-item"><li>Ideas & Users</li></Link>
                 <Link to="features" className="psb-item"><li >Features</li></Link>
