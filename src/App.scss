@@ -14,7 +14,11 @@ body {
 
 body{
   height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
 }
+
+
 
 
 
@@ -168,3 +172,31 @@ body {
       }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+// .project-section-header-test{
+//   font-size: 32px;
+//   padding-bottom: 10px;
+//   width: 90%;
+//   padding-top: 20px;
+
+//   text-align: left;
+//   border-bottom: 1px solid #DCDCDC;
+//   color: #292929;
+//   margin-left: 50px;
+//   margin-right: 50px;
+
+//   ul{
+//     font-size: 12px;
+//     margin-top: 10px;
+//   }
+// }

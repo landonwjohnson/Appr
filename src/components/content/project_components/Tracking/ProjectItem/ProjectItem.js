@@ -5,12 +5,13 @@ import ProjectCard from './ProjectCards/ProjectCard';
 class ProjectItem extends Component {
   render() {
     return (
+      <div className="project-item-parent">
       <div className="project-item">
             <div className="project-item-block">
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
                     <label> {this.props.listName} </label>
-                    <span></span>
+                    <span> </span>
                   </div>
                   <div className="prjt-item-body">
                     <ul>
@@ -35,7 +36,7 @@ class ProjectItem extends Component {
             </div>
             </div>
       </div>
-                       
+      </div>    
 
                       
                   
@@ -46,3 +47,20 @@ class ProjectItem extends Component {
 }
 
 export default ProjectItem;
+
+{/* <div className="dotmenu--open">
+                    <div className="pop-over-menu">
+                        <div className="pop-over-menu-wrapper">
+                            <div className="menu-header">
+                              <span className="menu-placeholder"></span>
+                              <div classname="menu-title">
+                                List Actions
+                              </div>
+                              <span className="delete-x"> &times;</span>
+                            </div>
+                            <ul>
+                              <li>Archive This List</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div> */}

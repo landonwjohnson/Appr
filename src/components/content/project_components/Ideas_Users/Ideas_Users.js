@@ -15,7 +15,15 @@ class Ideas_Users extends Component {
 
           <div className="ideasUsers-container">
             <div className="ideasUsers-wrapper">
-             <div className="project-section-header">Ideas & Users</div>
+             <div className="project-section-header">
+                <label>Ideas & Users</label>
+                {/* <ul>
+                    <li>What problem(s) does your app solve?</li>
+                    <li>How does it solve those problems?</li>
+                    <li>Who is your target user?</li>
+                    <li>How much experience do they have with technology?</li>
+                </ul> */}
+            </div>
               
 
               
