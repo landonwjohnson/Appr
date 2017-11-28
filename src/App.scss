@@ -132,3 +132,18 @@ body {
       
   }
 }
+
+
+.delete-x{
+  margin: auto;
+  color: black;
+  font-size: 30px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  padding: auto;
+
+  &:hover{
+      color: red;
+      transition: 0.2s ease-in-out;
+  }
+}
