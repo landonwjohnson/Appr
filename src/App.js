@@ -15,13 +15,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-<<<<<<< HEAD
-          <Route exact path="/" component={Home}/>
-          {/* <Route path="/dashboard" component={Dashboard}/> */}
-          {/* <Route path="/ideas" component={Ideas_Users}/>  */}
-          {/* <Route path="/features" component={Features}/> */}
-          <Route path="/view" component={View}/>
-=======
         
           <Body />
 
@@ -30,7 +23,6 @@ class App extends Component {
         <Route path="/ideas" component={Ideas_Users}/> 
         <Route path="/features" component={Features}/>
         <Route path="/view" component={View}/> */}
->>>>>>> b5a67e70123ee537f034f4b3af3fa2d70b8aac58
       </div>
     );
   }
