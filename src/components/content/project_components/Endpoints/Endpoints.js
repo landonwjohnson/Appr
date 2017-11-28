@@ -16,9 +16,13 @@ class Endpoints extends Component {
           <div className="endpoints-wrapper">
             
             <div className="endpoints-inner-container">
+           
             <label className="project-section-header">Endpoints</label>
               <div className="endpoint-list-container">
                 <div className="endpoint-item">
+                  <div className="project-item-header">
+                      <span> </span>
+                  </div>
                   
                   <div className="endpoint-section-con">
                     <div className="endpoint-label-con">

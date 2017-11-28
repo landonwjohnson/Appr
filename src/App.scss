@@ -147,3 +147,24 @@ body {
       transition: 0.2s ease-in-out;
   }
 }
+
+
+.project-item-header{
+  height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  span{
+      padding-right: 10px;
+      height: 20px;
+      width: 20px;
+      background-image: url('../src/img/icons/dot-menu.svg');
+      background-repeat: no-repeat;
+      opacity: 0.5;
+
+      &:hover{
+          opacity: 0.8;
+      }
+  }
+}
