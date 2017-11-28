@@ -5,7 +5,7 @@ import ProjectCard from './ProjectCards/ProjectCard';
 class ProjectItem extends Component {
   render() {
     return (
-      <div className="project-item-parent">
+    
       <div className="project-item">
             <div className="project-item-block">
               <div className="prjt-item-inner">
@@ -36,7 +36,7 @@ class ProjectItem extends Component {
             </div>
             </div>
       </div>
-      </div>    
+    
 
                       
                   
