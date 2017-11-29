@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import Header from '../../../Header/Header';
 import ProjectItem from './ProjectItem/ProjectItem';
+import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 
 
 // var mouseWheelEvt = function (event) {
@@ -25,7 +26,7 @@ class Tracking extends Component {
       <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
         <Header />
         <div className="main-fix">
-        
+        <ProjectSetupSidebar />
         <div className="tracking-container">
         
           <div className="tracking-wrapper">
