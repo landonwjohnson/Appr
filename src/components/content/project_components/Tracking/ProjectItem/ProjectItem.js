@@ -75,7 +75,7 @@ addTaskToggle(){
                     <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
                     <ProjectCard  cardTitle="Mobile Nav Component" listName={this.props.listName} />
                     <ProjectCard  cardTitle="Horizontal Wheel Scrolling" listName={this.props.listName} />
-                    <div className={showText} onClick={this.addTaskToggle}> Add a task </div>
+                    <div className={showText} onClick={this.addTaskToggle}><label> Add a task... </label></div>
                       
                      
                     </ul>
@@ -84,7 +84,10 @@ addTaskToggle(){
                     <div className={addTaskInput} >
                      
                       <textarea type="text" />
-                      <button onClick={this.addTaskToggle}> Save </button>
+                      <div className="list-btn-set">
+                        <button> Save </button>
+                        <button onClick={this.addTaskToggle}> Close </button>
+                      </div>
                     </div>
                       
                     </div>
