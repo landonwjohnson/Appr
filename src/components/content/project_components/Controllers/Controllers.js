@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
+import addIcon from '../../../../img/icons/add-icon.svg';
 
 import './controllers.scss';
 
@@ -13,13 +14,18 @@ class Controllers extends Component {
         <ProjectSetupSidebar />
         <div className="controllers-container">
       
-        <div className="controllers-inner-container">
+        <div className="controllers-wrapper">
         
-            <label className="project-section-header">Controllers</label>
+            <div className="project-section-header">Controllers</div>
             <div className="controller-list-container">
                         <div className="contro-item">
                             <div className="contro-item-inner">
-                                <div className="contro-item-header">View 1</div>
+                            <div className="project-item-header">
+                                <span> </span>
+                            </div>
+                                <div className="contro-item-title">
+                                    <input type="text" placeholder="View 1" />
+                                </div>
                                 <div className="contro-item-inputs">
                                 <div className="contro-row-container">
                                     <label className="contro-row-name">When</label>
@@ -54,11 +60,21 @@ class Controllers extends Component {
                                 </div>
                             </div>
                         </div>
+                        <button className="add-contro-item">
+                            <div className="add-contro-item-inner">
+                                <div className="add-contro-item-body">
+                                    <img src={addIcon} alt="Add New Controller"/>
+                                </div>
+                                <div className="add-contro-item-footer">
+                                    <label>Add New Controller</label>
+                                </div>
+                            </div>
+                        </button>
             
             </div>
             
         </div>
-        <button className="add-new-controller"> Add New Controller </button>
+      
       </div>
       </div>
       </div>

@@ -3,3 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.ReactModal_Body--open, .ReactModal_Content-after-open {
+  outline: none;
+}
