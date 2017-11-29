@@ -155,7 +155,7 @@ class Header extends Component {
                  
                         <div className="avatar"><img src={UserAvatar} /></div>
                         <div className="hello-user">Hello Landon!</div>
-                        <div className="alert-icon"><img src={AlertIcon} /></div>
+                        <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
                         <div className="bread-container">
                             <div id="bread-menu-toggle" href="#" onClick={this.handleRightMenuClick} >
                                 <div className="bread-menu">
@@ -173,7 +173,7 @@ class Header extends Component {
             <div className="right-menu-inner">
                 <ul>
                     <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
-                    <li>Feedback</li>
+                    <li className="v2">Feedback</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
             </div>

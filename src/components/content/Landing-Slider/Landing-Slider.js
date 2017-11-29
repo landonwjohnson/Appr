@@ -32,8 +32,8 @@ class LandingSlider extends Component {
                         <Link to="/login" className="mobile-login-btn"> <button > Login </button> </Link>
                     </div>
                     <ul className="footer-nav">
-                        <li>OUR TEAM</li>
-                        <li>FEEDBACK</li>
+                        <li className="v2">OUR TEAM</li>
+                        <li className="v2">FEEDBACK</li>
                     </ul>
                
             </div>
