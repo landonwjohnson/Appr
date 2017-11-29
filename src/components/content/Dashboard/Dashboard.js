@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './dashboard.scss';
 import './dashboard-projects.scss';
+import addIcon from '../../../img/icons/add-icon.svg';
 import Header from '../../Header/Header'
 
 class Dashboard extends Component {
@@ -24,7 +25,9 @@ class Dashboard extends Component {
                */}
               <Link to="/ideas">
                   <li className="create-project-thumb">
-                      <div className="create-project-thumb-body"></div>
+                      <div className="create-project-thumb-body">
+                          <img src={addIcon} />
+                      </div>
                       <div className="create-project-thumb-footer">
                           <label>Create New Project</label>
                       </div>
