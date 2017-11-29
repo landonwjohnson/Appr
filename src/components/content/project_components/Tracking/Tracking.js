@@ -36,7 +36,11 @@ class Tracking extends Component {
           </div>
              
                 <div className="project-items-container">
-                    <span className="create-list"><label> Add a list.. </label></span>
+                    <span className="add-list-wrapper">
+                      <span className="add-list">
+                          <label> Add a list.. </label>
+                      </span>
+                    </span>
                     <ProjectItem listName="To Do" />
                     <ProjectItem listName="Backlog" />
                     <ProjectItem listName="Repos" />

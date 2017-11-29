@@ -21,11 +21,7 @@ class Features extends Component {
                         <h3>1.</h3>
                         <input placeholder="Feature"></input>
                         <button>Save</button>
-                  </div>
-                  <div className="features-input-two">
-                        <h3>2.</h3>
-                        <input placeholder="Feature"></input>
-                        <button>Save</button>
+                        <span className="delete-x">&times;</span> 
                   </div>
                   <div className="features-add">
                       <a href="">+Add</a>

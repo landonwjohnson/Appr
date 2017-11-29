@@ -1,3 +1,5 @@
+$item-box: #FFFFFF;
+
 body {
   height: 100vh;
   width: 100%;
@@ -160,8 +162,8 @@ body {
   width: 100%;
 
   span{
-    top: 4px;
-    right: 4px;
+      top: 4px;
+      right: 4px;
       position: relative;
       padding-right: 10px;
       background-image: url('./img/icons/trashcan-closed-icon.svg');
@@ -169,16 +171,13 @@ body {
       height: 25px;
       background-repeat: no-repeat;
       opacity: 0.5;
+      cursor: pointer;
 
       &:hover{
           background-image: url('./img/icons/trashcan-open-icon.svg');
           opacity: 0.8;
       }
   }
-}
-
-.delete-item{
-  
 }
 
 
@@ -209,7 +208,7 @@ body {
 
 
 .v2 {
-  display: none;
+  display: none !important;
 }
 
 .v2-placeholder {

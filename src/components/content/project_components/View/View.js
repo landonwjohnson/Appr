@@ -19,19 +19,9 @@ class View extends Component {
                     <input className="view-input-name" placeholder="Name" type="text" />
                     <input className="view-input-imgurl" placeholder="Image URL" type="text" />
                     <button className="button">Save</button>
+                    <span className="delete-x">&times;</span> 
                 </div>
-                <div className="view-input-individual">
-                  <label className="view-num-individual">2.</label>
-                    <input className="view-input-name" placeholder="Name" type="text" />
-                    <input className="view-input-imgurl" placeholder="Image URL" type="text" />
-                    <button className="button">Save</button>
-                </div>
-                <div className="view-input-individual">
-                  <label className="view-num-individual">3.</label>
-                    <input className="view-input-name" placeholder="Name" type="text" />
-                    <input className="view-input-imgurl" placeholder="Image URL" type="text" />
-                    <button className="button">Save</button>
-                </div>
+             
                 <div className="view-add">
                   <a href="">+Add</a>
                 </div>

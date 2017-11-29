@@ -2,7 +2,7 @@
 
 .project-item{
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     max-width: 100%;
     max-height: 100%;
     white-space: nowrap;
@@ -55,12 +55,20 @@
     }
 
     span{
-        background-image: url("../../../../../img/icons/dot-menu.svg");
+        position: relative;
+        bottom: 3px;
+        background-image: url("../../../../../img/icons/trashcan-closed-icon.svg");
         cursor: pointer;
+        opacity: 0.5;
         background-position-x: 50%;
         background-position-y: 50%;
         width: 20px;
         height: 20px;
+
+        &:hover{
+            background-image: url("../../../../../img/icons/trashcan-open-icon.svg");
+            opacity: 1;
+        }
     }
 
     .dotmenu-closed{
