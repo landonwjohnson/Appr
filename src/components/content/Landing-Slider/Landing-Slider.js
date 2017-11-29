@@ -8,6 +8,7 @@ class LandingSlider extends Component {
       return (
       
         <div className="slider-container">
+            <div className="slider-header"> </div>
             <div className="outter-text-container">
               <div className="inner-text-container">
                   <div className="text-container">
@@ -26,7 +27,10 @@ class LandingSlider extends Component {
   
             
             <div className="slider-footer">
-                
+                    <div className="mobile-footer-btn-set">
+                        <Link to="/register" className="mobile-register-btn"> <button > Sign Up </button> </Link>
+                        <Link to="/login" className="mobile-login-btn"> <button > Login </button> </Link>
+                    </div>
                     <ul className="footer-nav">
                         <li>OUR TEAM</li>
                         <li>FEEDBACK</li>

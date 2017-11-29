@@ -16,6 +16,9 @@ class Schema extends Component {
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
                   <div className="schema-item">
+                  <div className="project-item-header">
+                    <span> </span>
+                  </div>
                     <div className="name-table-row">
                       <input className="name-table" type="text" placeholder="Table Name" />
                     </div>
@@ -69,6 +72,9 @@ class Schema extends Component {
                     </div>
                   </div>
                   <div className="schema-item">
+                    <div className="project-item-header">
+                      <span> </span>
+                    </div>
                     <div className="name-table-row">
                       <input className="name-table" type="text" placeholder="Table Name" />
                     </div>
