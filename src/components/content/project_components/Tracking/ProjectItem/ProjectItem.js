@@ -1,9 +1,65 @@
 import React, { Component } from 'react';
 import './projectitem.scss'
 import ProjectCard from './ProjectCards/ProjectCard';
+import classnames from 'classnames';
 
 class ProjectItem extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+        isTaskInputOpen: true,
+        showText: false
+    }
+    this.addTaskToggle = this.addTaskToggle.bind(this); 
+    // this.showTextToggle = this.showTextToggle.bind(this);
+}
+
+
+addTaskToggle(){
+  
+    if(this.state.isTaskInputOpen){
+        
+        this.setState({
+          isTaskInputOpen: false,
+          showText: true
+        })
+    }
+    else {
+     
+        this.setState({
+          isTaskInputOpen: true,
+          showText: false
+        })
+        
+    }
+}
+
+// showTextToggle(){
+//   if(this.state.showText){
+//       this.setState({
+//         showText: false,
+//       })
+//   }
+//   else {
+//       this.setState({
+//         showText: true,
+//       })
+      
+//   }
+// }
+
+
   render() {
+
+    let addTaskInput = classnames({
+      "add-task-show": true,
+      "add-task": this.state.isTaskInputOpen
+  })
+
+    let showText = classnames({
+      "show-text": true,
+      "hide": this.state.showText
+    })
     return (
     
       <div className="project-item">
@@ -19,23 +75,23 @@ class ProjectItem extends Component {
                     <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
                     <ProjectCard  cardTitle="Mobile Nav Component" listName={this.props.listName} />
                     <ProjectCard  cardTitle="Horizontal Wheel Scrolling" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Appr Website" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Passing Props" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Manage State" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Another Placeholder" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Party Component" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="The Cat App" listName={this.props.listName} />
-                     
+                    <div className={showText} onClick={this.addTaskToggle}> Add a task </div>
                       
                      
                     </ul>
                   </div>
                   <div className="prjt-item-footer">
-                    <button>Add a task...</button>
+                    <div className={addTaskInput} >
+                     
+                      <textarea type="text" />
+                      <button onClick={this.addTaskToggle}> Save </button>
+                    </div>
+                      
+                    </div>
                   </div>
             </div>
             </div>
-      </div>
+
     
 
                       
