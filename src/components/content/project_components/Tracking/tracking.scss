@@ -108,28 +108,105 @@
     
 
 }
-.add-list{
+.add-list-before{
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 8px;
     display: flex;
-    align-items: center;
-    height: 40px;
+    margin-bottom: auto;   
+    max-height: 100%;
     width: 270px;
     border-radius: 4px;
-    background: #E2E4E6;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     white-space: nowrap;
-    
     background: black;
     opacity: 0.2;
     transition: 0.2s ease-in-out;
 
-    label{
+    input{
         color: white;
-        padding-left: 10px;
+        width: 90%;
+        background: transparent;
+        border: none;
+        outline: none;
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
     }
 
     &:hover{
         opacity: 0.5;
         transition: 0.2s ease-in-out;
+
+    }
+
+    .add-list-btn-set{
+        display: none;
+        flex-direction: flex-start;
+        width: 100%;
+        margin-top: 0px;
+       
+
+        button{
+            display: none;
+            width: 50px;
+            height: 0px;
+        }
+    }
+}
+
+.add-list-after{
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    display: flex;
+    margin-bottom: auto;   
+    max-height: 100%;
+    width: 270px;
+    border-radius: 4px;
+    
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    white-space: nowrap;
+    background: black;
+    opacity: 0.2;
+    transition: 0.2s ease-in-out;
+
+    .add-list-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input{
+        color: white;
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        max-height: 100%;
+        font-size: 20px;
+    }
+
+    &:hover{
+        opacity: 0.5;
+        transition: 0.2s ease-in-out;
+
+    }
+
+    .add-list-btn-set{
+        display: flex;
+        flex-direction: flex-start;
+        width: 100%;
+        margin-top: 10px;
+       
+
+        button{
+            width: 50px;
+            height: 30px;
+        }
 
     }
 }
