@@ -34,21 +34,6 @@ addTaskToggle(){
     }
 }
 
-// showTextToggle(){
-//   if(this.state.showText){
-//       this.setState({
-//         showText: false,
-//       })
-//   }
-//   else {
-//       this.setState({
-//         showText: true,
-//       })
-      
-//   }
-// }
-
-
   render() {
 
     let addTaskInput = classnames({

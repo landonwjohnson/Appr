@@ -24,48 +24,28 @@ class Tracking extends Component {
           constructor(props){
             super(props);
             this.state ={
-                isAddListInputOpen: false,
+                isAddListInputOpen: false
             }
-            this.addListToggleOpen = this.addListToggleOpen.bind(this); 
-            this.addListToggleClose = this.addListToggleClose.bind(this); 
+            this.openListToggle = this.openListToggle.bind(this); 
+            this.closeListToggle = this.closeListToggle.bind(this); 
         }
 
 
-        addListToggleOpen(){
-          
-            if(this.state.isTaskInputOpen){
-                this.setState({
-                  isAddListInputOpen: false
-                })
+        openListToggle(e){
+         this.setState({isAddListInputOpen: true})
                 console.log("input show");
-            }else {
-                this.setState({
-                  isAddListInputOpen: true,
-                })
-                console.log("input hide");
-            }
         }
 
-        addListToggleClose(){
-          
-            if(this.state.isTaskInputOpen){
-                this.setState({
-                  isAddListInputOpen: true
-                })
+        closeListToggle(e){
+          this.setState({isAddListInputOpen: false})
                 console.log("input show");
-            }else {
-                this.setState({
-                  isAddListInputOpen: false,
-                })
-                console.log("input hide");
-            }
-        }
+       }
   
   render() {
 
-    let addListToggleClass = classnames({
-        "add-list--before": true,
-        "add-list--after" : this.state.isAddListInputOpen
+    var addListToggleClass = classnames({
+        "add-list--after":  this.state.isAddListInputOpen, 
+        "add-list--before" : true
     })
     return (
       <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
@@ -76,31 +56,28 @@ class Tracking extends Component {
         
           <div className="tracking-wrapper">
           <div className="project-header">
-            <label>Tracking</label>
+            <label onClick={this.addListToggle}>Tracking</label>
          
           </div>
              
                 <div className="project-items-container">
-                    
-                      <div className="add-list-wrapper" >
-                      <span className={addListToggleClass} onClick={this.addListToggleOpen}>
-                         <div className="add-list-content">
-                          <input placeholder="Add a list..." /> 
-                          <div className="add-list-btn-set">
-                            <button> Save </button>
-                            <button onClick={this.addListToggleClose}> Close </button>
-                            </div>
-                        </div>
-                      </span>
-                      </div>
-                    
                     <ProjectItem listName="To Do" />
                     <ProjectItem listName="Backlog" />
                     <ProjectItem listName="Repos" />
                     <ProjectItem listName="Schema" />
                     <ProjectItem listName="Database" />
                     <ProjectItem listName="Test" />
-                    
+                    <div className="add-list-wrapper" >
+                          <div className={addListToggleClass} onFocus={this.openListToggle}>
+                            <div className="add-list-content">
+                              <input placeholder="Add a list..." /> 
+                              <div className="add-list-btn-set">
+                                <button> Save </button>
+                                <button onClick={this.closeListToggle}> Close </button>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
                     
                     
                 </div>
