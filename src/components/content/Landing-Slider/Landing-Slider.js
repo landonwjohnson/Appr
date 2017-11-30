@@ -3,6 +3,7 @@ import './landing-slider.scss';
 import { Link } from 'react-router-dom'
 
 
+
 class LandingSlider extends Component {
     render() {
       return (

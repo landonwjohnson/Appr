@@ -101,10 +101,11 @@
 }
 .add-list--before{
     display:block;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     padding-right: 10px;
     padding-left: 10px;
-    padding-top: 8px;
+    padding-top: 5px;
+    margin-right: 10px;
     display: flex;
     margin-bottom: auto; 
     margin-right: 10px;  
@@ -120,13 +121,13 @@
     input{
         display: block;
         color: white;
-        width: 90%;
+        width: 100%;
         background: transparent;
         border: none;
         outline: none;
-        height: 20px;
+        height: 32px;
         line-height: 20px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     &:hover{

@@ -177,12 +177,16 @@
         outline: none;
         color: #838c91;
         background: #E2E4E6;
+        transition: 0.2s ease-in-out;
         textarea{
             display: none;
+            transition: 0.2s ease-in-out;
         }
         button{
             display: none;
+            transition: 0.2s ease-in-out;
         }
+        transition: 0.2s ease-in-out;
     }
 
     .add-task-show{
@@ -202,6 +206,7 @@
         margin-left: 10px;
         margin-right: 14px;
         padding-bottom: 10px;
+        transition: 0.2s ease-in-out;
        
         
     
@@ -215,15 +220,19 @@
             width: 100%;
             height: 54px;
             background: white;
+            transition: 0.2s ease-in-out;
         }
 
- 
+        .list-btn-set{
+            margin-top: 5px;
+            display: flex;
+        }
 
         button{
-           margin-top: 5px;
            margin-right: 5px;
            width: 60px;
            height: 30px;
+           transition: 0.2s ease-in-out;
         }
 
        

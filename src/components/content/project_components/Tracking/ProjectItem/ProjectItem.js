@@ -70,7 +70,7 @@ addTaskToggle(){
                       <textarea type="text"/>
                       <div className="list-btn-set">
                         <button> Save </button>
-                        <button onClick={this.addTaskToggle}> Close </button>
+                        <button className="prjt-close-btn" onClick={this.addTaskToggle}> Close </button>
                       </div>
                     </div>
                       
