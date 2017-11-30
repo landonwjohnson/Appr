@@ -31,14 +31,14 @@ class Tracking extends Component {
         
           <div className="tracking-wrapper">
           <div className="project-header">
-            <label>Appr</label>
+            <label>Tracking</label>
          
           </div>
              
                 <div className="project-items-container">
                     
                       <div className="add-list-wrapper">
-                      <span className="add-list-before">
+                      <span className="add-list--after">
                          <div className="add-list-content">
                           <input placeholder="Add a list..." /> 
                           <div className="add-list-btn-set">
