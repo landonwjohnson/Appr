@@ -52,10 +52,12 @@
         text-align: left;
         margin-right: 10px;
     }
-
+    input{
+        height: 24px;
+    }
     .view-input-name {
         width: 60%;
-        height: 26px;
+       
         margin-right: 20px;
        
         // border: 1px solid black;
@@ -63,7 +65,7 @@
     
     .view-input-imgurl {
         width: 100%;
-        height: 26px;
+        
         // border: 1px solid black;
     }
 
@@ -77,10 +79,10 @@
 }
 
 .view-footer{
-    padding-right: 10px;
+  
     width: 100%;
     .add-button{
-        margin-left: 0px;
+        margin-left: 26.5px;
         max-width: 100%;
     }
 }
