@@ -65,10 +65,10 @@ addTaskToggle(){
                      
                     </ul>
                   </div>
-                  <div className="prjt-item-footer">
+                  <div className="prjt-item-footer" >
                     <div className={addTaskInput} >
                      
-                      <textarea type="text" />
+                      <textarea type="text"/>
                       <div className="list-btn-set">
                         <button> Save </button>
                         <button onClick={this.addTaskToggle}> Close </button>
