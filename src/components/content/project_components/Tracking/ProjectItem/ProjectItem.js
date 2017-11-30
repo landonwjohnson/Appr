@@ -51,7 +51,7 @@ addTaskToggle(){
             <div className="project-item-block">
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
-                    <label> {this.props.listName} </label>
+                    <input type="text" placeholder={this.props.listName}/>
                     <span> </span>
                   </div>
                   <div className="prjt-item-body">

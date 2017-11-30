@@ -51,11 +51,24 @@
     padding-right: 10px;
    
 
-    label{
+    input{
+        max-width: 90%;
         font-size: 18px;
         line-height: 18px;
         text-align: left;
         font-weight: bold;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #333;
+
+       
+    }
+
+    ::-webkit-input-placeholder {
+        font-size: 18px;
+        color: #333;
+        text-align: left;
     }
 
     span{
@@ -75,26 +88,26 @@
         }
     }
 
-    .dotmenu-closed{
-        background-image: url("../../../../../img/icons/dot-menu.svg");
-        cursor: pointer;
-        background-position-x: 50%;
-        background-position-y: 50%;
-        width: 20px;
-        height: 20px;
-    }
+    // .dotmenu-closed{
+    //     background-image: url("../../../../../img/icons/dot-menu.svg");
+    //     cursor: pointer;
+    //     background-position-x: 50%;
+    //     background-position-y: 50%;
+    //     width: 20px;
+    //     height: 20px;
+    // }
 
-    .dotmenu--open{
-        display: block;
-        position: absolute;
-        left: 90%;
-        background-image: none;
-        cursor: pointer;
-        width: 250px;
-        height: 250px;
-        background: blue;
-        z-index: 1000;
-    }
+    // .dotmenu--open{
+    //     display: block;
+    //     position: absolute;
+    //     left: 90%;
+    //     background-image: none;
+    //     cursor: pointer;
+    //     width: 250px;
+    //     height: 250px;
+    //     background: blue;
+    //     z-index: 1000;
+    // }
 
    
 }
@@ -192,8 +205,7 @@
        
         
     
-        textarea{
-            
+        textarea{    
             resize: none;
             border-radius: 4px;
             border: none;
