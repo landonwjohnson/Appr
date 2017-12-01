@@ -54,7 +54,7 @@ class Tracking extends Component {
         <ProjectSetupSidebar />
         <div className="tracking-container">
         <div className="project-header">
-            <label onClick={this.addListToggle}>Tracking</label>
+            <label>Tracker</label>
          
           </div>
           <div className="tracking-wrapper">
