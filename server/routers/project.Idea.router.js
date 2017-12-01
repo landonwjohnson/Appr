@@ -46,5 +46,13 @@ projectIdeaRouter.put('project/update/idea/:ideaid', (req, res) => {
         .catch( err => res.send(err));
 });
 
+projectIdeaRouter.delete('project/delete/idea/:ideaid', (req, res) => {
+    const ideaid = req.params.ideaId;
+    const db = getDb();
+    db.delete_project_idea([ ideaid ])
+        .then( promise => res.send())
+        .catch( err => res.send(err));
+});
 
+module.exports = projectIdeaRouter;
 
