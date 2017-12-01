@@ -20,3 +20,11 @@ projectIdeaRouter.post('project/create/idea', (req, res) => {
         .catch( err => res.send(err));
 });
 
+projectIdeaRouter.get('project/idea/:ideaid', (req, res) => {
+    const ideaId = req.params.ideaId;
+    const db = getDb();
+    db.read_project_idea([ ideaId ])
+        .then( projectIdea => res.send(projectIdea))
+        .catch( err => res.send(err));
+});
+
