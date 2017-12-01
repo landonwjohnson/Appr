@@ -28,3 +28,23 @@ projectIdeaRouter.get('project/idea/:ideaid', (req, res) => {
         .catch( err => res.send(err));
 });
 
+projectIdeaRouter.put('project/update/idea/:ideaid', (req, res) => {
+    const ideaId = req.params.ideaId;
+    const { projectId, ideaData } = req.body;
+    const db = getDb();
+    db.update_project_idea([ ideaData ])
+        .then( projectIdea => {
+            if (projectIdea[0] && projectIdea[0].id != ideaData) {
+                return res.status(409).send({message: 'There is another project that is using the idea'})
+            }
+            else {
+                db.update_project_idea([ projectId, ideaData ])
+                    .then( promise => res.status(200).send())
+                    .catch( err => res.send(err));
+            }
+        })
+        .catch( err => res.send(err));
+});
+
+
+
