@@ -60,7 +60,7 @@ class Tracking extends Component {
           <div className="tracking-wrapper">
           
              
-                <div className="project-items-container">
+                <div className="project-items-container" id="project">
                     <ProjectItem listName="To Do" />
                     <ProjectItem listName="Backlog" />
                     <ProjectItem listName="Repos" />

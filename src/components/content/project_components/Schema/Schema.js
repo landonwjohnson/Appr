@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
-import addIcon from '../../../../img/icons/add-icon.svg';
+
 
 class Schema extends Component {
   render() {
@@ -68,7 +68,7 @@ class Schema extends Component {
                         </div>
                         
                     <div className="column-item-footer">
-                      <button className="add-button"> <img src={addIcon} alt="Add Column"/> Add Column </button>
+                      <button className="add-button"> <span/> Add Column </button>
                     </div>
                   </div>
                   
@@ -170,7 +170,7 @@ class Schema extends Component {
                         </div>
                         
                     <div className="column-item-footer">
-                      <button className="add-button"> <img src={addIcon} /> Add Column </button>
+                      <button className="add-button"> <span/> Add Column </button>
                     </div>
                   </div>
                   <button className="add-table"> Add Table </button>
