@@ -60,14 +60,14 @@ CREATE TABLE project_user_field (
     skill_data TEXT,
     description_data TEXT
 );
-    -- user_field TEXT,
+
 
 CREATE TABLE project_feature (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     feature_data TEXT
 );
-    -- features_field TEXT,
+
 
 CREATE TABLE project_view (
     id SERIAL PRIMARY KEY,
@@ -75,7 +75,7 @@ CREATE TABLE project_view (
     name TEXT,
     image_url TEXT
 );
-    -- view_field TEXT,
+
 
 CREATE TABLE project_controller (
     id SERIAL PRIMARY KEY,
@@ -84,7 +84,7 @@ CREATE TABLE project_controller (
     do_data TEXT,
     require_data TEXT
 );
-    -- controller_field TEXT,
+
 
 CREATE TABLE req_endpoint (
     id SERIAL PRIMARY KEY,
@@ -170,7 +170,7 @@ CREATE TABLE tracker (
 
 
 
---
+--Start of Test user info
 
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
@@ -260,7 +260,7 @@ VALUES ('2', 'Dark Side Logo', 'http://secure.cdn1.wdpromedia.com/media/rundisne
 INSERT INTO project_controller ( project_id, when_data, do_data, require_data )
 VALUES ('1', 'The anger begins to flow through you', 'Just stop being angry', 'Force Sensitivity');
 
-INSERT INTO project_controller ( project_id, when_data, do_data, req_endpoint)
+INSERT INTO project_controller ( project_id, when_data, do_data, require_data)
 VALUES ('2', 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'A black outfit');
 
     --Endpoint
