@@ -1,15 +1,15 @@
 import 'axios'
 
-const baseURL = '/api/project';
+const baseURL = '/api/project/:projectid';
 
-function createProject(body) {
+function createProject(projectid, body) {
     return axios
         .post(`${baseURL}/create`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function findProject(projectId) {
+function findProject(projectid, projectId) {
     return axios
         .get(`${baseURL + '/' + projectId}`)
         .then( res => res )

@@ -1,29 +1,29 @@
 import 'axios'
 
-const baseURL = '/api/project';
+const baseURL = '/api/project/:projectid';
 
-function createProjectUserField(body) {
+function createProjectUserField(projectid, body) {
     return axios
         .post(`${baseURL}/create/userfield`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function findProjectUserField(userfieldid) {
+function findProjectUserField(projectid, userfieldid) {
     return axios
         .get(`${baseURL}/userfield/:${userfieldid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function updateProjectUserField(userfieldid, body) {
+function updateProjectUserField(projectid, userfieldid, body) {
     return axios    
         .put(`${baseURL}/update/userfield/:${userfieldid}`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function deleteProjectUserField(userfield) {
+function deleteProjectUserField(projectid, userfield) {
     return axios    
         .delete(`${baseURL}/delete/userfield/:${userfieldid}`)
         .then( res => res )
