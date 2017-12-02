@@ -25,16 +25,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-top: -150px;
 }
 
 .ideas-area input {
     width: 800px;
     height: 30px;
+    font-size: 12pt;
 }
 
 .ideas-area button {
     width: 50px;
     height: 30px;
+    font-size: 10pt;
 }
 
 .ideas-input-one {
@@ -74,16 +77,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-top: -350px;
 }
 
 .users-area input {
     width: 255px;
     height: 30px;
+    font-size: 12pt;
 }
 
 .users-area button {
     width: 50px;
     height: 30px;
+    font-size: 10pt;
 }
 
 .users-input-one {
@@ -113,19 +119,4 @@
 .users-add {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14pt;
-}
-
-.ideas-and-users {
-    text-decoration: none;
-    color: blue;
-}
-
-.features {
-    text-decoration: none;
-    color: black;
-}
-
-.view {
-    text-decoration: none;
-    color: black;
 }

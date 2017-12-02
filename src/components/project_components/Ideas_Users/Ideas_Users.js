@@ -20,12 +20,12 @@ class Ideas_Users extends Component {
                           <h1>Ideas</h1>
                           <div className="ideas-input-one">
                               <h3>1.</h3>
-                              <input placeholder="Idea"></input>
+                              <input placeholder="Idea"/>
                               <button>Save</button>
                           </div>
                           <div className="ideas-input-two">
                               <h3>2.</h3>
-                              <input placeholder="Idea"></input>
+                              <input placeholder="Idea"/>
                               <button>Save</button>
                           </div>
                           <div className="ideas-add-wrap">
@@ -36,15 +36,15 @@ class Ideas_Users extends Component {
                     <div className="users-area">
                           <h1>Users</h1>
                           <div className="users-input-one">
-                              <input placeholder="Target Demographic"></input>
-                              <input placeholder="Technology Skill"></input>
-                              <input placeholder="Description"></input>
+                              <input placeholder="Target Demographic"/>
+                              <input placeholder="Technology Skill"/>
+                              <input placeholder="Description"/>
                               <button>Save</button>
                           </div>
                           <div className="users-input-two">
-                              <input placeholder="Target Demographic"></input>
-                              <input placeholder="Technology Skill"></input>
-                              <input placeholder="Description"></input>
+                              <input placeholder="Target Demographic"/>
+                              <input placeholder="Technology Skill"/>
+                              <input placeholder="Description"/>
                               <button>Save</button>
                           </div>
                           <div className="users-add-wrap">

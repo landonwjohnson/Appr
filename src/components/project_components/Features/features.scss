@@ -18,11 +18,13 @@
 .features-area input {
     width: 800px;
     height: 30px;
+    font-size: 12pt;
 }
 
 .features-area button {
     width: 60px;
     height: 30px;
+    font-size: 10pt;
 }
 
 .features-area h1 {
@@ -54,14 +56,4 @@
     display: flex;
     justify-content: flex-start;
     margin-top: 20px;
-}
-
-.ideas-and-users {
-    text-decoration: none;
-    color: black;
-}
-
-.features {
-    text-decoration: none;
-    color: blue;
 }

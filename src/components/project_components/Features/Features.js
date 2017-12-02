@@ -17,12 +17,12 @@ class Features extends Component {
                   <h1>Features</h1>
                   <div className="features-input-one">
                         <h3>1.</h3>
-                        <input placeholder="Feature"></input>
+                        <input placeholder="Feature"/>
                         <button>Save</button>
                   </div>
                   <div className="features-input-two">
                         <h3>2.</h3>
-                        <input placeholder="Feature"></input>
+                        <input placeholder="Feature"/>
                         <button>Save</button>
                   </div>
                   <div className="features-add">
