@@ -1,29 +1,29 @@
 import 'axios'
 
-const baseURL = '/api/project';
+const baseURL = '/api/project/:projectid';
 
-function createProjectController(body) {
+function createProjectController(projectid, body) {
     return axios
         .post(`${baseURL}/create/controller`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function findProjectController(controllerid) {
+function findProjectController(projectid, controllerid) {
     return axios
         .get(`${baseURL}/controller/:${controllerid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function updateProjectController(controllerid, body) {
+function updateProjectController(projectid, controllerid, body) {
     return axios
         .put(`${baseURL}/update/controller/:${controllerid}`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function deleteProjectController(controllerid) {
+function deleteProjectController(projectid, controllerid) {
     return axios
         .delete(`${baseURL}/delete/controller/:${controllerid}`)
         .then( res => res )
