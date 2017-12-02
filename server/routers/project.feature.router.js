@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database');
 
 const projectFeatureRouter = express.Router();
 
-projectFeatureRouter.post('/project/create/feature', (req, res) => {
+projectFeatureRouter.post('/:projectid/create/feature', (req, res) => {
     const projectid = req.params.projectid
     const { feature_data } = req.body;
     const db = getDB();
@@ -13,7 +13,7 @@ projectFeatureRouter.post('/project/create/feature', (req, res) => {
     
 });
 
-projectFeatureRouter.get('/project/feature/:featureid', (req, res) => {
+projectFeatureRouter.get('/:projectid/feature/:featureid', (req, res) => {
     const projectid = req.params.projectid;
     const featureid = req.params.featureid;
     const db = getDB();
@@ -22,7 +22,7 @@ projectFeatureRouter.get('/project/feature/:featureid', (req, res) => {
         .catch(err => res.send(err))
 })
 
-projectFeatureRouter.put('/project/update/feature/:featureid', (req, res) => {
+projectFeatureRouter.put('/:projectid/update/feature/:featureid', (req, res) => {
     const projectid = req.params.projectid;
     const featureid = req.params.featureid;
     const { feature_data } = req.body;
@@ -31,11 +31,11 @@ projectFeatureRouter.put('/project/update/feature/:featureid', (req, res) => {
         .catch(err => res.send(err))
 })
 
-projectFeatureRouter.delete('/project/delete/feature/:featureid', (req, res) => {
+projectFeatureRouter.delete('/:projectid/delete/feature/:featureid', (req, res) => {
     const projectid = req.params.projectid;
     db.delete_project_feature({ featureid })
         .then( promise => res.send(err))
         .catch(err => res.send(err))
 })
 
-module.exports = groupRouter;
+module.exports = projectFeatureRouter;
