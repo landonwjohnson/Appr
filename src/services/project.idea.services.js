@@ -9,23 +9,23 @@ function createProjectIdea(body) {
         .catch( err => {throw err});
 }
 
-function findProjectIdea(ideaId) {
+function findProjectIdea(ideaid) {
     return axios
-        .get(`${baseURL + '/' + ideaId}`)
+        .get(`${baseURL + '/' + ideaid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function updateProjectIdea(ideaId, body) {
+function updateProjectIdea(ideaid, body) {
     return axios
-        .put(`${baseURL + '/update/idea/' + ideaId}`, body)
+        .put(`${baseURL + '/update/idea/' + ideaid}`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
-function deleteProjectIdea(ideaId) {
+function deleteProjectIdea(ideaid) {
     return axios
-        .delete(`${baseURL + '/delete/idea/' + ideaId}`)
+        .delete(`${baseURL + '/delete/idea/' + ideaid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
