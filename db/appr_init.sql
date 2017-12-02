@@ -11,20 +11,22 @@ CREATE TABLE users (
 
 CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
-    user_id int references users(id),
-    group_name TEXT
+    created_by int references users(id),
+    owner_id int references users(id),
+    name TEXT
 );
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
-    group_id int references groups(id),
-    idea_field TEXT,
-    user_field TEXT,
-    features_field TEXT,
-    view_field TEXT,
-    controller_field TEXT,
-    endpoint_field TEXT,
-    schema_field TEXT
+    name TEXT,
+    author_id int references users(id)
+    -- idea_field TEXT,
+    -- user_field TEXT,
+    -- features_field TEXT,
+    -- view_field TEXT,
+    -- controller_field TEXT,
+    -- endpoint_field TEXT,
+    -- schema_field TEXT
 );
 
 CREATE TABLE roles ( 
@@ -62,11 +64,16 @@ CREATE TABLE tracker (
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('username1234', 'password123', 'a@a.com', 'Testy', 'McTesterson');
 
-INSERT INTO groups ( group_name )
-VALUES ('Test Group');
+INSERT INTO groups ( created_by, owner_id, name )
+VALUES ('1', '1','Test Group');
 
-INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
-VALUES ('1', 'idea field', 'user field', 'features field', 'view field', 'controller field', 'endpoint field', 'schema field');
+INSERT INTO project ( name, author_id )
+VALUES ('project name', '1');
+
+/*Duplicate of what will be added later
+-- INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
+-- VALUES ('1', 'idea field', 'user field', 'features field', 'view field', 'controller field', 'endpoint field', 'schema field');
+*/
 
 INSERT INTO user_group ( user_id, group_id )
 VALUES ('1', '1');

@@ -1,12 +1,54 @@
+$item-box: #FFFFFF;
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 .App {
   text-align: center;
   width: 100%;
-  
+  height: 100%;
+}
+
+body{
+  height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+
+
+.project-section-header{
+  font-size: 36px;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.main-fix{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 
 body {
   font-family: sans-serif;
   
+}
+
+
+.project-view{
+  background: #FAFAFA;
 }
 
 
@@ -25,4 +67,163 @@ body {
   background: #95989A;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.bg-grey{
+  background: #DDDDDD;
+}
+
+.drop-shadow{
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.not-enough-info-btn{
+  background: #EBE2E2;
+  color: #95989A;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-weight: bold;
+}
+
+.default-btn{
+  border-radius: 4px;
+  background-color: #4A4A4A;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.btn-and-icon{
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 4px;
+  background-color: #4A4A4A;
+  outline: none;
+  border: none;
+  color: white;
+
+  img{
+    max-height: 17px;
+    max-width: 17px;
+    padding-right: 8px;
+  }
+  
+
+}
+
+.label-icon-con{
+  
+  // border: 1px solid black;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  white-space: nowrap;
+
+}
+
+.add-button{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  max-width: 100%;
+  
+  img{
+      position: relative;
+      padding-right: 5px;
+      height: 20px;
+      width: 20px;
+  }
+
+  span{
+    padding-right: 5px;
+    height: 20px;
+    width: 20px;
+    background-image: url('./img/icons/add-icon.svg');
+    background-repeat: no-repeat;
+  }
+}
+
+
+.delete-x{
+  margin: auto;
+  color: black;
+  font-size: 30px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  padding: auto;
+
+  &:hover{
+      color: red;
+      transition: 0.2s ease-in-out;
+  }
+}
+
+
+.project-item-header{
+  max-height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  span{
+      top: 4px;
+      right: 4px;
+      position: relative;
+      padding-right: 10px;
+      background-image: url('./img/icons/trashcan-closed-icon.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      cursor: pointer;
+
+      &:hover{
+          background-image: url('./img/icons/trashcan-open-icon.svg');
+          opacity: 0.8;
+      }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// .project-section-header-test{
+//   font-size: 32px;
+//   padding-bottom: 10px;
+//   width: 90%;
+//   padding-top: 20px;
+
+//   text-align: left;
+//   border-bottom: 1px solid #DCDCDC;
+//   color: #292929;
+//   margin-left: 50px;
+//   margin-right: 50px;
+
+//   ul{
+//     font-size: 12px;
+//     margin-top: 10px;
+//   }
+// }
+
+
+.v2 {
+  display: none !important;
+}
+
+.v2-placeholder {
+  opacity: 0;
+  
+  img{
+    opacity: 0;
+  }
 }
