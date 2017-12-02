@@ -11,7 +11,14 @@ function createProjectIdea(body) {
 
 function findProjectIdea(ideaId) {
     return axios
-        .get(`${baseURL + '/' + ideaId}/`)
+        .get(`${baseURL + '/' + ideaId}`)
+        .then( res => res )
+        .catch( err => {throw err});
+}
+
+function updateProjectIdea(ideaId, body) {
+    return axios
+        .put(`${baseURL + '/update/idea/' + ideaId}`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
