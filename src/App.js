@@ -8,7 +8,7 @@ import Home from './components/content/Home/Home';
 // import Dashboard from './components/Dashboard/Dashboard';
 // import Ideas_Users from './components/project_components/Ideas_Users/Ideas_Users';
 // import Features from './components/project_components/Features/Features';
-import View from './components/project_components/View/View';
+// import View from './components/project_components/View/View';
 import Body from './components/Body/Body'
 
 class App extends Component {
