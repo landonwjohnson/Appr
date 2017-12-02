@@ -1,5 +1,28 @@
-DROP TABLE IF EXISTS users, groups, project, user_group, group_project, user_project, roles, tracker;
---test
+--Drops current tables in DB and re-adds tables over again on Server restart
+
+DROP TABLE IF EXISTS 
+    users, 
+    groups, 
+    project, 
+    project_idea, 
+    project_user_field, 
+    project_feature, 
+    project_view, 
+    project_controller, 
+    project_endpoint, 
+    req_endpoint, 
+    res_endpoint, 
+    project_schema, 
+    schema_type, 
+    project_schema_table, 
+    user_group, 
+    group_project, 
+    user_project, 
+    roles, 
+    tracker;
+
+--Please keep the order of the CREATE TABLE inserts the same
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
@@ -21,20 +44,99 @@ CREATE TABLE project (
     author_id int references users(id)
 );
 
-CREATE TABLE idea (
+CREATE TABLE project_idea (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     idea_data TEXT
 );
 
-    -- idea_field TEXT,
-    -- user_field TEXT,
-    -- features_field TEXT,
-    -- view_field TEXT,
-    -- controller_field TEXT,
-    -- endpoint_field TEXT,
-    -- schema_field TEXT
+
+--Project Fields--
+
+CREATE TABLE project_user_field (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    target_demo_data TEXT,
+    skill_data TEXT,
+    description_data TEXT
 );
+    -- user_field TEXT,
+
+CREATE TABLE project_feature (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    feature_data TEXT
+);
+    -- features_field TEXT,
+
+CREATE TABLE project_view (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    name TEXT,
+    image_url TEXT
+);
+    -- view_field TEXT,
+
+CREATE TABLE project_controller (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    when_data TEXT,
+    do_data TEXT,
+    require_data TEXT
+);
+    -- controller_field TEXT,
+
+CREATE TABLE req_endpoint (
+    id SERIAL PRIMARY KEY,
+    -- project_endpoint_id int references project_endpoint(id),
+    key_data TEXT,
+    value_data TEXT
+);
+
+CREATE TABLE res_endpoint (
+    id SERIAL PRIMARY KEY,
+    -- project_endpoint_id int references project_endpoint(id),
+    key_data TEXT,
+    value_data TEXT
+);
+
+CREATE TABLE project_endpoint (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    url_data TEXT,
+    is_get BOOLEAN default TRUE,
+    is_post BOOLEAN default FALSE,
+    is_update BOOLEAN default FALSE,
+    is_delete BOOLEAN default FALSE,
+    req_endpoint_id int references req_endpoint(id),
+    res_endpoint_id int references res_endpoint(id)
+);
+
+CREATE TABLE schema_type ( 
+    id SERIAL PRIMARY KEY, 
+    type_data TEXT 
+); 
+
+CREATE TABLE project_schema_table (
+    id SERIAL PRIMARY KEY, 
+    table_name TEXT 
+);
+
+CREATE TABLE project_schema(
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    table_name int references project_schema_table(id),
+    column_name TEXT,
+    schema_type_id int references schema_type(id),
+    size_data TEXT,
+    is_primary_key BOOLEAN default FALSE,
+    is_foreign_key BOOLEAN default FALSE,
+    is_serial BOOLEAN default FALSE,
+    is_not_null BOOLEAN default FALSE,
+    is_unique BOOLEAN default FALSE
+);
+
+--end of project fields
 
 CREATE TABLE roles ( 
     id SERIAL PRIMARY KEY, 
@@ -48,8 +150,7 @@ CREATE TABLE user_group (
 
 CREATE TABLE group_project (
     group_id int references groups(id), 
-    project_id int references project(id), 
-    roles_id int references roles(id)
+    project_id int references project(id)
 );
 
 CREATE TABLE user_project ( 
@@ -68,7 +169,8 @@ CREATE TABLE tracker (
 );
 
 
---Users
+
+--
 
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
@@ -102,13 +204,13 @@ VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
 
 --Groups
 
-INSERT INTO groups ( created_by, name )
+INSERT INTO groups ( name, created_by )
 VALUES ('Good Guys', '1');
 
-INSERT INTO groups ( created_by, name )
+INSERT INTO groups (  name, created_by )
 VALUES ('Dark Side', '6');
 
-INSERT INTO groups ( name )
+INSERT INTO groups ( name, created_by )
 VALUES ('Droids', '3');
 
 --Projects
@@ -119,13 +221,112 @@ VALUES ('Save the Galaxy', '1');
 INSERT INTO project ( name, author_id )
 VALUES ('DeathStar', '2');
 
+---------------------------------Test Project Fields
 
-/*Duplicate of what will be added later
--- INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
--- VALUES ('1', 'idea field', 'user field', 'features field', 'view field', 'controller field', 'endpoint field', 'schema field');
-*/
+    --Ideas
 
---Groups
+INSERT INTO project_idea ( project_id, idea_data )
+VALUES ('1', 'idea feild test data');
+
+INSERT INTO project_idea ( project_id, idea_data )
+VALUES ('2', 'Group 2s idea feild test data');
+
+    --User Field
+
+INSERT INTO project_user_field ( project_id, target_demo_data, skill_data, description_data )
+VALUES ('1', '18+ years old', 'preferrably was trained in the jedi arts before the age of 10, or sympethetic to the rebellion cause', 'the good guys');
+
+INSERT INTO project_user_field ( project_id, target_demo_data, skill_data, description_data )
+VALUES ('2', 'Old enough to be angry', 'Loyalty to your sith leader, as well as a lust for hatred and killing the innocent', 'the dark side');
+    
+    --Features
+
+INSERT INTO project_feature ( project_id, feature_data )
+VALUES ('1', 'Protecting the people, saving the galaxy, getting chicks... outside your own bloodline...');
+
+INSERT INTO project_feature ( project_id, feature_data )
+VALUES ('2', 'Gain ultimate power in the universe');
+
+    --Views
+
+INSERT INTO project_view ( project_id, name, image_url )
+VALUES ('1', 'Good Guys Logo', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg');
+
+INSERT INTO project_view ( project_id, name, image_url )
+VALUES ('2', 'Dark Side Logo', 'http://secure.cdn1.wdpromedia.com/media/rundisney/global/events/runDisney_Icons_Website_SWHM_East200x200.png');
+
+    --Controllers
+
+INSERT INTO project_controller ( project_id, when_data, do_data, require_data )
+VALUES ('1', 'The anger begins to flow through you', 'Just stop being angry', 'Force Sensitivity');
+
+INSERT INTO project_controller ( project_id, when_data, do_data, req_endpoint)
+VALUES ('2', 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'A black outfit');
+
+    --Endpoint
+
+        --Req Data--
+
+INSERT INTO req_endpoint ( key_data, value_data )
+VALUES ('Group 1 Key', 'REQ Value');
+
+INSERT INTO req_endpoint ( key_data, value_data )
+VALUES ('Group 2 Key', 'REQ Value');
+
+        --Res Data--
+
+INSERT INTO res_endpoint ( key_data, value_data )
+VALUES ('Group 1 Key', 'RES Value');
+
+INSERT INTO res_endpoint ( key_data, value_data )
+VALUES ('Group 2 Key', 'RES Value');
+
+        --Actual Endpoint--
+
+INSERT INTO project_endpoint ( project_id, url_data, is_get, is_post, is_update, is_delete, req_endpoint_id, res_endpoint_id )
+VALUES ('1', 'api/lightside', TRUE, FALSE, FALSE, FALSE, '1', '1');
+
+INSERT INTO project_endpoint ( project_id, url_data, is_get, is_post, is_update, is_delete, req_endpoint_id, res_endpoint_id )
+VALUES ('2', 'api/darkside', TRUE, FALSE, FALSE, FALSE, '2', '2');
+
+    --Schema
+
+        --Schema Table Name--
+INSERT INTO project_schema_table ( table_name )
+VALUES ('Rebellion');
+
+INSERT INTO project_schema_table ( table_name )
+VALUES ('DarkSide');
+
+        --Schema Type--
+
+INSERT INTO schema_type ( type_data )
+VALUES ('Date');
+
+INSERT INTO schema_type ( type_data )
+VALUES ('Integer');
+
+INSERT INTO schema_type ( type_data )
+VALUES ('Text');
+
+INSERT INTO schema_type ( type_data )
+VALUES ('Varchar');
+
+INSERT INTO schema_type ( type_data )
+VALUES ('Char');
+
+
+        --Actual Schema--    
+
+INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+VALUES ('1', '1', 'Jedi Masters', '3', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
+
+INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+VALUES ('2', '2', 'Sith Lords', '4', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
+
+--------------------------------End of Project Test fields
+
+--user_groups
 
 INSERT INTO user_group ( user_id, group_id )
 VALUES ('1', '1');
@@ -170,8 +371,14 @@ VALUES ('can_read');
 
 --Group Projects
 
-INSERT INTO group_project (group_id, project_id, roles_id)
-VALUES ('1','1','1');
+INSERT INTO group_project (group_id, project_id)
+VALUES ('1','1');
+
+INSERT INTO group_project (group_id, project_id)
+VALUES ('3','1');
+
+INSERT INTO group_project (group_id, project_id)
+VALUES ('2','2');
 
 --User Projects
 
@@ -211,105 +418,105 @@ VALUES ('10','2','3');
 
 --Tracker for Group 1
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','1', '1', 'views and routes', 'test views and routes tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','1', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','4', '3', 'test front end', 'test FE tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','4', '4', 'create end points', 'test endpoint tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','5', '5', 'move staged data from service to server', 'test server staged data tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','5', '6', 'test endpoints with postman', 'test postman tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','7', '7', 'test FE with server', 'test FE w/ server tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','7', '8', 'replace staged data with queries', 'test query tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','9', '9', 'test full stack w/ postman ', 'test full stack tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','9', '10', 'test end to end', 'test end to end tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('1','1', '11', 'get site hosted', 'test site hosted tracker data');
 
 --Tracker for Group 2
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','2', '1', 'views and routes', 'test views and routes tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','2', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','2', '3', 'test front end', 'test FE tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','6', '4', 'create end points', 'test endpoint tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','6', '5', 'move staged data from service to server', 'test server staged data tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','6', '6', 'test endpoints with postman', 'test postman tracker data');
 
-INSERT INTO tracke r ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','10', '7', 'test FE with server', 'test FE w/ server tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','10', '8', 'replace staged data with queries', 'test query tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','10', '9', 'test full stack w/ postman ', 'test full stack tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','6', '10', 'test end to end', 'test end to end tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('2','2', '11', 'get site hosted', 'test site hosted tracker data');
 
 --Tracker for Group 3
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '1', 'views and routes', 'test views and routes tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '3', 'test front end', 'test FE tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '4', 'create end points', 'test endpoint tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '5', 'move staged data from service to server', 'test server staged data tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','3', '6', 'test endpoints with postman', 'test postman tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','8', '7', 'test FE with server', 'test FE w/ server tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','8', '8', 'replace staged data with queries', 'test query tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','8', '9', 'test full stack w/ postman ', 'test full stack tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','8', '10', 'test end to end', 'test end to end tracker data');
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
 VALUES ('3','8', '11', 'get site hosted', 'test site hosted tracker data');
