@@ -22,3 +22,17 @@ function updateProjectIdea(ideaId, body) {
         .then( res => res )
         .catch( err => {throw err});
 }
+
+function deleteProjectIdea(ideaId) {
+    return axios
+        .delete(`${baseURL + '/delete/idea/' + ideaId}`)
+        .then( res => res )
+        .catch( err => {throw err});
+}
+
+export {
+    createProjectIdea,
+    findProjectIdea,
+    updateProjectIdea,
+    deleteProjectIdea
+}
