@@ -192,11 +192,18 @@ body {
   }
 }
 
+.field-valid{
+  border: #00D16E solid 1.5px !important;
+}
 
+.field-invalid {
 
+  input{
+    border: #FF3560 solid 1px !important;
+  }
+  
 
-
-
+}
 
 
 
