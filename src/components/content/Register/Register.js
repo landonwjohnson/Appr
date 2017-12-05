@@ -8,16 +8,52 @@ class Register extends Component {
     constructor(){
         super()
         this.state={
+            showFirstNameFail: false,
+            showFirstNameSuccess: false,
+            showLastNameFail: false,
+            showLastNameSuccess: false,
             showEmailFail: false,
             showEmailSuccess: false,
             showPasswordFail: false,
             showPasswordSuccess: false,
-            showNameFail: false
+            
     }
+      this.handleFailedFirstName = this.handleFailedFirstName.bind(this);
+      this.handleSuccessFirstName = this.handleSuccessFirstName.bind(this);
+      this.handleFailedLastName = this.handleFailedLastName.bind(this);
+      this.handleSuccessLastName = this.handleSuccessLastName.bind(this);
       this.handleFailedEmail = this.handleFailedEmail.bind(this);
       this.handleSuccessEmail = this.handleSuccessEmail.bind(this);
       this.handleFailedPassword = this.handleFailedPassword.bind(this);
       this.handleSuccessPassword = this.handleSuccessPassword.bind(this);
+    }
+
+    handleFailedFirstName(){
+        this.setState({
+            showFirstNameSuccess: false,
+            showFirstNameFail: true
+        })
+    }
+
+    handleSuccessFirstName(){
+        this.setState({
+            showFirstNameFail: false,
+            showFirstNameSuccess: true
+        })
+    }
+
+    handleFailedLastName(){
+        this.setState({
+            showLastNameSuccess: false,
+            showLastNameFail: true
+        })
+    }
+
+    handleSuccessLastName(){
+        this.setState({
+            showLastNameFail: false,
+            showLastNameSuccess: true
+        })
     }
 
     handleFailedEmail() {
@@ -49,6 +85,27 @@ class Register extends Component {
     }
 
   render() {
+
+      let failFirstNameClass = classnames({
+          "reg-firstName": true,
+          "reg-firstName--fail": this.state.showFirstNameFail
+      })
+
+      let successFirstNameClass = classnames({
+          "reg-lastName": true,
+          "reg-lastName--success": this.state.showFirstNameSuccess
+      })
+
+      let failLastNameClass = classnames({
+          "reg-lastName": true,
+          "reg-lastName--fail": this.state.showLastNameFail
+      })
+
+      let successLastNameClass = classnames({
+          "reg-lastName": true,
+          "reg-lastName--success": this.state.showLastNameSuccess
+      })
+
       let failEmailClass = classnames({
           "reg-field": true,
           "reg-field--fail": this.state.showEmailFail
@@ -68,6 +125,7 @@ class Register extends Component {
         "reg-field": true,
         "reg-field--success": this.state.showPasswordSuccess
       })
+
     return (
     
       <div className="register-container">
@@ -84,22 +142,33 @@ class Register extends Component {
                                 <label className="input-tag">
                                     Name
                                 </label>
-                                <div className="form-combined">
-                                <input 
-                                    className="input-combined"
-                                    type="text" 
-                                    placeholder="First"
-                                />
-                                <input 
-                                    className="input-combined"
-                                    type="text" 
-                                    placeholder="Last"
-                                />
-                               
+                                <div className="reg-combined-wrapper">
+                                <div className={`${failFirstNameClass} ${successFirstNameClass}`}>
+                                    
+                                    <input 
+                                        type="text" 
+                                        placeholder="First"
+                                    />
+                                    <div className="reg-info">
+                                        <p className="invalid-text">Please type in your first name</p>
+                                        
+                                    </div>
+                                  
                                 </div>
-                                <div className="reg-info">
-                                    <p className="invalid-text">This email is invalid</p>
-                                    <p className="valid-text">This email is valid</p>
+                                <div className={`${failLastNameClass} ${successLastNameClass}`}>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Last"
+                                    />
+                                    <div className="reg-info">
+                                        <p className="invalid-text">Please type in your last name</p>
+                                        
+                                    </div>
+                                    
+
+                                </div>
+                               
+                               
                                 </div>
                             </div>
                             <div className={`${failEmailClass} ${successEmailClass}`}>
@@ -111,6 +180,8 @@ class Register extends Component {
                                     className="input-solo" 
                                     type="text" 
                                     placeholder="e.g, landonwjohnson@gmail.com"
+                                    onInvalid={this.handleFailedEmail}
+                                    required
                                     
                                 />
                                 <div className="reg-info">
@@ -141,14 +212,26 @@ class Register extends Component {
                       
                   </div>
               </div>
+
               <section>
-                <button onClick={this.handleSuccessEmail}>Email Success</button>
-                <button onClick={this.handleFailedEmail}>Email Failed</button>
+                <button className="pass" onClick={this.handleSuccessLastName}>Pass LastName</button>
+                <button className="fail" onClick={this.handleFailedLastName}>Fail Lastname</button>
               </section>
 
               <section>
-                <button onClick={this.handleSuccessPassword}>Password Success</button>
-                <button onClick={this.handleFailedPassword}>Password Failed</button>
+                <button className="pass" onClick={this.handleSuccessFirstName}>Pass FirstName</button>
+                <button className="fail" onClick={this.handleFailedFirstName}>Fail FirstName</button>
+              </section>
+             
+
+              <section>
+                <button className="pass" onClick={this.handleSuccessEmail}>Pass Email</button>
+                <button className="fail" onClick={this.handleFailedEmail}>Fail Email</button>
+              </section>
+
+              <section>
+                <button className="pass" onClick={this.handleSuccessPassword}>Pass Password</button>
+                <button className="fail" onClick={this.handleFailedPassword}>Fail Password</button>
               </section>
           </div>
         </div>

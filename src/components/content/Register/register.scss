@@ -1,5 +1,7 @@
 
 
+
+
 .register-container{
     display: flex;
     align-items: center;
@@ -64,6 +66,7 @@
     width: 379px;
 
     input {
+        padding-left: 5px;
         font-size: 20px;
         color: #95989A;
         text-align: left;
@@ -88,7 +91,9 @@
     flex-direction: column !important;
 
     input{
+        height: 40px;
         outline: none;
+        transition: 0.2s ease-in-out;
     }
     label{
         margin-bottom: 8px;
@@ -109,12 +114,15 @@
             display: none;
         }
     }
+
+
 }
 
 
 .reg-field--fail{
     input{
-        border: #FF3560 solid 2px !important;
+        border: #FF3560 solid 1px !important;
+        transition: 0.2s ease-in-out;
     }
     label{
         margin-bottom: 8px;
@@ -126,6 +134,7 @@
         margin-bottom: 0 !important;
         text-align: left;
         font-size: 0.75rem;
+        transition: 0.2s ease-in-out;
 
         .valid-text{
             display: none;
@@ -136,6 +145,7 @@
             margin-bottom: 0;
             display: block;
             color: #FF3560;
+            transition: 0.2s ease-in-out;
         }
     }
 }
@@ -143,7 +153,8 @@
 
 .reg-field--success{
     input{
-        border: #00D16E solid 2px !important;
+        border: #00D16E solid 1px !important;
+        transition: 0.2s ease-in-out;
     }
     label{
         margin-bottom: 8px;
@@ -155,12 +166,14 @@
         margin-bottom: 0 !important;
         text-align: left;
         font-size: 0.75rem;
+        transition: 0.2s ease-in-out;
 
         .valid-text{
             margin-top: 0;
             margin-bottom: 0;
             display: block !important; 
             color: #00D16E;
+            transition: 0.2s ease-in-out;
         }
 
         .invalid-text{
@@ -181,6 +194,7 @@
 .reg-btn-footer{
     display: flex;
     justify-content: flex-start;
+    height: 50px;
 }
 
 .create-account-btn {
@@ -193,26 +207,134 @@
  
 }
 
-.input-combined {
-    height: 40px;
-    width: 170px;
-}
+// .input-combined {
+//     height: 40px;
+    
+// }
 
 .input-solo {
     height: 40px;
 }
 
-.form-combined {
-    display: flex;
-    justify-content: space-between;
-}
+// .form-combined {
+//     display: flex;
+//     justify-content: space-between;
+// }
 
 .create-account-btn {
-    margin-top: 28px;
+    
     width: 270px;
     height: 50px;
+
+
 }
 
 
 
 
+.reg-firstName{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   
+    input{
+        max-width: 170px;
+    }
+
+    .reg-info{
+        display: flex;
+        justify-content: flex-start;
+        width: 170px; 
+       
+    }
+
+    .invalid-text{
+        display: none;
+    }
+}
+
+.reg-firstName--fail{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    input{
+        border: 1px solid #FF3560 !important;
+    }
+    .invalid-text{
+        margin-right: auto;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: block !important;
+        color: #FF3560;
+        transition: 0.2s ease-in-out;
+    }
+}
+
+
+
+
+.reg-lastName{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: flex-end;
+
+    input{
+       
+        max-width: 170px;
+    }
+
+    .reg-info{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        
+    }
+    .invalid-text{
+        display: none;
+    }
+    
+}
+
+.reg-lastName--fail{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    input{
+        border: 1px solid #FF3560 !important;
+    }
+    .invalid-text{
+        margin-right: auto;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: block !important;
+        color: #FF3560;
+        transition: 0.2s ease-in-out;
+    }
+    
+}
+
+
+
+.reg-combined-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+
+
+
+.pass {
+    background: grey;
+}
+
+.fail {
+    background: lightslategrey;
+}
