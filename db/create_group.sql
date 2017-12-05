@@ -1,3 +1,3 @@
-INSERT INTO groups (created_by, owner_id, name)
-VALUES ($1, $2, $3)
+INSERT INTO group (created_by, owner_id, name, status_id)
+    VALUES ($1, $2, $3, 1)
 ;
