@@ -1,5 +1,4 @@
-INSERT INTO project
-    (name, author_id)
+INSERT INTO project (name, author_id, status_id)
     VALUES
-        ($1, $2)
+        ($1, $2, 1)
 ;
