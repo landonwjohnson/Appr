@@ -2,7 +2,7 @@
 
 DROP TABLE IF EXISTS 
     users, 
-    groups, 
+    group, 
     project, 
     project_idea, 
     project_user_field, 
@@ -38,7 +38,7 @@ CREATE TABLE users (
     status_id int references status(id)
  );
 
-CREATE TABLE groups (
+CREATE TABLE group (
     id SERIAL PRIMARY KEY,
     created_by int references users(id),
     name TEXT,
@@ -150,11 +150,11 @@ CREATE TABLE roles (
 
 CREATE TABLE user_group (
     user_id int references users(id), 
-    group_id int references groups(id)
+    group_id int references group(id)
 );
 
 CREATE TABLE group_project (
-    group_id int references groups(id), 
+    group_id int references group(id), 
     project_id int references project(id)
 );
 
@@ -166,7 +166,7 @@ CREATE TABLE user_project (
 
 CREATE TABLE tracker (
     id SERIAL PRIMARY KEY,
-    group_id int references groups(id),
+    group_id int references group(id),
     user_id int references users(id),
     tracker_order int,
     tracker_name TEXT ,
@@ -221,13 +221,13 @@ VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
 
 --Groups
 
-INSERT INTO groups ( name, created_by )
+INSERT INTO group ( name, created_by )
 VALUES ('Good Guys', '1');
 
-INSERT INTO groups (  name, created_by )
+INSERT INTO group (  name, created_by )
 VALUES ('Dark Side', '6');
 
-INSERT INTO groups ( name, created_by )
+INSERT INTO group ( name, created_by )
 VALUES ('Droids', '3');
 
 --Projects
