@@ -1,4 +1,4 @@
-UPDATE project_userfield
+UPDATE project_user_field
     SET 
         target_demo_data = $3,
         skill_data = $4,

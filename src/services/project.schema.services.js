@@ -1,6 +1,5 @@
 import 'axios'
 
-<<<<<<< HEAD
 const baseURL = '/api/project';
 
 function createProjectSchema(body) {
@@ -37,6 +36,3 @@ export {
     updateProjectSchema,
     deleteProjectSchema
 }
-=======
-const baseURL = '/api/project/:projectid';
->>>>>>> e2ad71797ba48e4cfffd174736417a655ad1ad5a
