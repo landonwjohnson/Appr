@@ -18,7 +18,7 @@ projectFeatureRouter.get('/:projectid/feature/:featureid', (req, res) => {
     const featureid = req.params.featureid;
     const db = getDB();
     db.find_project_feature([ featureid ])
-        .then( promise => res.send() )
+        .then( promise => res.send(projectFeature) )
         .catch(err => res.send(err))
 })
 
@@ -34,7 +34,7 @@ projectFeatureRouter.put('/:projectid/update/feature/:featureid', (req, res) => 
 projectFeatureRouter.delete('/:projectid/delete/feature/:featureid', (req, res) => {
     const projectid = req.params.projectid;
     db.delete_project_feature({ featureid })
-        .then( promise => res.send(err))
+        .then( promise => res.send())
         .catch(err => res.send(err))
 })
 

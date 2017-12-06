@@ -4,28 +4,28 @@ const baseURL = '/api/project';
 
 function createProjectFeature(body) {
     return axios
-        .post(`${baseURL}/create`, body)
+        .post(`${baseURL + projectid}/create`, body)
         .then( res => res )
         .catch( err => {throw err});
 }
 
 function findProjectFeature(featureid) {
     return axios
-        .get(`${baseURL}/feature/:${featureid}`)
+        .get(`${baseURL + projectid}/feature/:${featureid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
 function updateProjectFeature(featureid, body){
     return axios
-        .put(`${baseURL}/update/feature/:${featureid}`)
+        .put(`${baseURL + projectid}/update/feature/:${featureid}`)
         .then( res => req )
         .catch( err => {throw err})
 }
 
 function deleteProjectFeature(featureid){
     return axios
-        .delete(`${baseURL}/delete/feature/:${featureid}`)
+        .delete(`${baseURL + projectid}/delete/feature/:${featureid}`)
         .then( res => req )
         .catch( err => {throw err} )
 }

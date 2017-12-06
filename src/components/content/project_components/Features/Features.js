@@ -5,13 +5,16 @@ import './features.scss';
 import Header from '../../../Header/Header';
 
 class Features extends Component {
+  
+
+
+
   render() {
     return (
       <div>
       <Header />
       <div className="main-fix">
         <ProjectSetupSidebar />
-
           <div className="features-container">
             <div className="container-wrapper">
                 <div className="project-section-header">
