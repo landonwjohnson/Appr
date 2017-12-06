@@ -1,4 +1,4 @@
-UPDATE "group"
+UPDATE groups
     SET 
         name = $2,
         owner_id = $3

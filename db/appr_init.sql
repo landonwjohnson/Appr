@@ -1,8 +1,9 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
 DROP TABLE IF EXISTS 
-    user, 
-    group, 
+    status,
+    users, 
+    groups, 
     project, 
     project_idea, 
     project_user_field, 
@@ -28,7 +29,7 @@ CREATE TABLE status (
     name TEXT
  );
 
-CREATE TABLE user (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
     first_name TEXT,
@@ -38,9 +39,9 @@ CREATE TABLE user (
     status_id int references status(id)
  );
 
-CREATE TABLE group (
+CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
-    created_by int references user(id),
+    created_by int references users(id),
     name TEXT,
     status_id int references status(id)
 );
@@ -48,7 +49,7 @@ CREATE TABLE group (
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    author_id int references user(id),
+    author_id int references users(id),
     status_id int references status(id)
 );
 
@@ -149,25 +150,25 @@ CREATE TABLE roles (
 ); 
 
 CREATE TABLE user_group (
-    user_id int references user(id), 
-    group_id int references group(id)
+    user_id int references users(id), 
+    group_id int references groups(id)
 );
 
 CREATE TABLE group_project (
-    group_id int references group(id), 
+    group_id int references groups(id), 
     project_id int references project(id)
 );
 
 CREATE TABLE user_project ( 
-    user_id int references user(id), 
+    user_id int references users(id), 
     project_id int references project(id), 
     roles_id int references roles(id)
 );
 
 CREATE TABLE tracker (
     id SERIAL PRIMARY KEY,
-    group_id int references group(id),
-    user_id int references user(id),
+    group_id int references groups(id),
+    user_id int references users(id),
     tracker_order int,
     tracker_name TEXT ,
     tracker_data TEXT
@@ -189,45 +190,45 @@ VALUES ('deleted');
 
 --User Table
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi');
 
-INSERT INTO user ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
 
 --Groups
 
-INSERT INTO group ( name, created_by )
+INSERT INTO groups ( name, created_by )
 VALUES ('Good Guys', '1');
 
-INSERT INTO group (  name, created_by )
+INSERT INTO groups (  name, created_by )
 VALUES ('Dark Side', '6');
 
-INSERT INTO group ( name, created_by )
+INSERT INTO groups ( name, created_by )
 VALUES ('Droids', '3');
 
 --Projects
@@ -335,10 +336,10 @@ VALUES ('Char');
 
         --Actual Schema--    
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('1', '1', 'Jedi Masters', '3', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('2', '2', 'Sith Lords', '4', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
 --------------------------------End of Project Test fields
