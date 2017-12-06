@@ -148,7 +148,10 @@ body {
 
 
 .delete-x{
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 30px;
   color: black;
   font-size: 30px;
   transition: 0.2s ease-in-out;
@@ -179,19 +182,28 @@ body {
       background-repeat: no-repeat;
       opacity: 0.5;
       cursor: pointer;
+      transition: 0.1s ease-in-out;
 
       &:hover{
           background-image: url('./img/icons/trashcan-open-icon.svg');
           opacity: 0.8;
+          transition: 0.1s ease-in-out;
       }
   }
 }
 
+.field-valid{
+  border: #00D16E solid 1.5px !important;
+}
 
+.field-invalid {
 
+  input{
+    border: #FF3560 solid 1px !important;
+  }
+  
 
-
-
+}
 
 
 

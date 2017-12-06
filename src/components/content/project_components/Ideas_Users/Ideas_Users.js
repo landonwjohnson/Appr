@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
-import AddIcon from '../../../../img/icons/add-icon.svg';
 import './idea_users.scss';
 
 class Ideas_Users extends Component {
@@ -41,7 +40,7 @@ class Ideas_Users extends Component {
                             </div>
                           </div>
                           <div className="ideas-users-footer">
-                              <button className="add-button"> <img src={AddIcon}/> Add Idea </button>
+                              <button className="add-button"> <span/> Add Idea </button>
                           </div>
                           </div>
                     </div>
@@ -62,7 +61,7 @@ class Ideas_Users extends Component {
                             </div>
                           </div>
                           <div className="ideas-users-footer">
-                              <button className="add-button"> <img src={AddIcon}/> Add User </button>
+                              <button className="add-button"> <span/> Add User </button>
                           </div>
                         </div>
                     </div>
