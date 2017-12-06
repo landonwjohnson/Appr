@@ -13,12 +13,7 @@ class Ideas_Users extends Component {
                     {
                      key: 1,
                      label: 1,
-                     name: "Nyan Cat"
-                    },
-                    {
-                     key: 2,
-                     label: 2,
-                     name: "Kitten Mittens"
+                     name: "Make an app to plan the development process of making applications"
                     }
                     
                 ]
@@ -28,9 +23,9 @@ class Ideas_Users extends Component {
                     {
                      key: 1,
                      label: 1,
-                     targetDemographic: 'Cat Lovers',
-                     techSkill: 'not too good',
-                     description: '#Selfies4Storm'
+                     targetDemographic: '15-30',
+                     techSkill: 'intermediate',
+                     description: 'DevMountain Student'
                     }
                 ]
             }
@@ -38,16 +33,16 @@ class Ideas_Users extends Component {
         this.addIdeaItemHandler = this.addIdeaItemHandler.bind(this);
         this.removeIdeaItemHandler = this.removeIdeaItemHandler.bind(this);
         this.addUserItemHandler = this.addUserItemHandler.bind(this);
-        this.removeUserItemHandler = this.removeIdeaItemHandler.bind(this);
+        this.removeUserItemHandler = this.removeUserItemHandler.bind(this);
 
     }
 
     addIdeaItemHandler(){
         let IdeaList = this.state.ideas.arr;
         IdeaList.push({
-            key: 3,
-            label: 3,
-            name: 'More Cats'
+            key: 2,
+            label: 2,
+            name: 'Type here'
         });
         this.setState({ arr: IdeaList})
 
@@ -55,24 +50,25 @@ class Ideas_Users extends Component {
 
     removeIdeaItemHandler(){
         let IdeaList = this.state.ideas.arr;
-        IdeaList.pop();
+        IdeaList.splice(1,1);
         this.setState({ arr: IdeaList})
     }
 
     addUserItemHandler(){
         let UserList = this.state.users.arr;
         UserList.push({
+            key: 2,
             label: 2,
-            targetDemographic: 'Developers',
-            techSkill: 'high',
-            description: 'something'
+            targetDemographic: 'Type here',
+            techSkill: 'Type here',
+            description: 'Type here'
         })
         this.setState({ arr: UserList})
     }
 
     removeUserItemHandler(){
         let UserList = this.state.users.arr;
-        UserList.pop();
+        UserList.splice(1,1);
         this.setState({ arr: UserList})
     }
   render() {
