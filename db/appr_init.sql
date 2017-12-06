@@ -1,6 +1,7 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
 DROP TABLE IF EXISTS 
+    status,
     users, 
     groups, 
     project, 
@@ -335,10 +336,10 @@ VALUES ('Char');
 
         --Actual Schema--    
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('1', '1', 'Jedi Masters', '3', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('2', '2', 'Sith Lords', '4', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
 --------------------------------End of Project Test fields
