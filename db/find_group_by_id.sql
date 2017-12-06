@@ -1,3 +1,3 @@
-SELECT * FROM groups
-    WHERE id = $1
+SELECT * FROM "group"
+    WHERE id = $1 AND status_id = 1
 ;
