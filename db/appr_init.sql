@@ -1,8 +1,8 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
 DROP TABLE IF EXISTS 
-    users, 
-    groups, 
+    user, 
+    group, 
     project, 
     project_idea, 
     project_user_field, 
@@ -23,35 +23,42 @@ DROP TABLE IF EXISTS
 
 --Please keep the order of the CREATE TABLE inserts the same
 
-CREATE TABLE users (
+CREATE TABLE status (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+ );
+
+CREATE TABLE user (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
     first_name TEXT,
     last_name TEXT,
     email TEXT unique, 
-    password TEXT
+    password TEXT,
+    status_id int references status(id)
  );
 
-CREATE TABLE groups (
+CREATE TABLE group (
     id SERIAL PRIMARY KEY,
-    created_by int references users(id),
-    name TEXT
+    created_by int references user(id),
+    name TEXT,
+    status_id int references status(id)
 );
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    author_id int references users(id)
+    author_id int references user(id),
+    status_id int references status(id)
 );
+
+--Project Fields--
 
 CREATE TABLE project_idea (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     idea_data TEXT
 );
-
-
---Project Fields--
 
 CREATE TABLE project_user_field (
     id SERIAL PRIMARY KEY,
@@ -88,14 +95,12 @@ CREATE TABLE project_controller (
 
 CREATE TABLE req_endpoint (
     id SERIAL PRIMARY KEY,
-    -- project_endpoint_id int references project_endpoint(id),
     key_data TEXT,
     value_data TEXT
 );
 
 CREATE TABLE res_endpoint (
     id SERIAL PRIMARY KEY,
-    -- project_endpoint_id int references project_endpoint(id),
     key_data TEXT,
     value_data TEXT
 );
@@ -125,7 +130,7 @@ CREATE TABLE project_schema_table (
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    table_name int references project_schema_table(id),
+    table_name_id int references project_schema_table(id),
     column_name TEXT,
     schema_type_id int references schema_type(id),
     size_data TEXT,
@@ -144,73 +149,85 @@ CREATE TABLE roles (
 ); 
 
 CREATE TABLE user_group (
-    user_id int references users(id), 
-    group_id int references groups(id)
+    user_id int references user(id), 
+    group_id int references group(id)
 );
 
 CREATE TABLE group_project (
-    group_id int references groups(id), 
+    group_id int references group(id), 
     project_id int references project(id)
 );
 
 CREATE TABLE user_project ( 
-    user_id int references users(id), 
+    user_id int references user(id), 
     project_id int references project(id), 
     roles_id int references roles(id)
 );
 
 CREATE TABLE tracker (
     id SERIAL PRIMARY KEY,
-    group_id int references groups(id),
-    user_id int references users(id),
+    group_id int references group(id),
+    user_id int references user(id),
     tracker_order int,
     tracker_name TEXT ,
     tracker_data TEXT
 );
 
 
+-----------Start of Test user info---------------
 
---Start of Test user info
+--Status Table
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO status ( name )
+VALUES ('active');
+
+INSERT INTO status ( name )
+VALUES ('inactive');
+
+INSERT INTO status ( name )
+VALUES ('deleted');
+
+--User Table
+
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
 
 --Groups
 
-INSERT INTO groups ( name, created_by )
+INSERT INTO group ( name, created_by )
 VALUES ('Good Guys', '1');
 
-INSERT INTO groups (  name, created_by )
+INSERT INTO group (  name, created_by )
 VALUES ('Dark Side', '6');
 
-INSERT INTO groups ( name, created_by )
+INSERT INTO group ( name, created_by )
 VALUES ('Droids', '3');
 
 --Projects
