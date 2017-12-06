@@ -213,7 +213,7 @@ class Register extends Component {
                   </div>
               </div>
 
-              <section>
+              {/* <section>
                 <button className="pass" onClick={this.handleSuccessLastName}>Pass LastName</button>
                 <button className="fail" onClick={this.handleFailedLastName}>Fail Lastname</button>
               </section>
@@ -232,7 +232,7 @@ class Register extends Component {
               <section>
                 <button className="pass" onClick={this.handleSuccessPassword}>Pass Password</button>
                 <button className="fail" onClick={this.handleFailedPassword}>Fail Password</button>
-              </section>
+              </section> */}
           </div>
         </div>
     );
