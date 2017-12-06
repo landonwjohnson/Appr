@@ -1,7 +1,7 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
 DROP TABLE IF EXISTS 
-    users, 
+    user, 
     group, 
     project, 
     project_idea, 
@@ -40,7 +40,7 @@ CREATE TABLE user (
 
 CREATE TABLE group (
     id SERIAL PRIMARY KEY,
-    created_by int references users(id),
+    created_by int references user(id),
     name TEXT,
     status_id int references status(id)
 );
@@ -48,7 +48,7 @@ CREATE TABLE group (
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    author_id int references users(id),
+    author_id int references user(id),
     status_id int references status(id)
 );
 
@@ -149,7 +149,7 @@ CREATE TABLE roles (
 ); 
 
 CREATE TABLE user_group (
-    user_id int references users(id), 
+    user_id int references user(id), 
     group_id int references group(id)
 );
 
@@ -159,7 +159,7 @@ CREATE TABLE group_project (
 );
 
 CREATE TABLE user_project ( 
-    user_id int references users(id), 
+    user_id int references user(id), 
     project_id int references project(id), 
     roles_id int references roles(id)
 );
@@ -167,7 +167,7 @@ CREATE TABLE user_project (
 CREATE TABLE tracker (
     id SERIAL PRIMARY KEY,
     group_id int references group(id),
-    user_id int references users(id),
+    user_id int references user(id),
     tracker_order int,
     tracker_name TEXT ,
     tracker_data TEXT
@@ -189,34 +189,34 @@ VALUES ('deleted');
 
 --User Table
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO user ( username, password, email, first_name, last_name )
 VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
 
 --Groups
