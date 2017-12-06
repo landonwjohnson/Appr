@@ -28,7 +28,7 @@ CREATE TABLE status (
     name TEXT
  );
 
-CREATE TABLE users (
+CREATE TABLE user (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
     first_name TEXT,
