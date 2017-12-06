@@ -13,8 +13,14 @@ class Ideas_Users extends Component {
                     {
                      key: 1,
                      label: 1,
-                     name: "Make an app to plan the development process of making applications"
+                     name: "What problem(s) does your app solve?"
+                    },
+                    {
+                     key: 2,
+                     label: 2,
+                     name: "How does it solve those problems?"
                     }
+                    
                     
                 ]
             },
@@ -23,9 +29,9 @@ class Ideas_Users extends Component {
                     {
                      key: 1,
                      label: 1,
-                     targetDemographic: '15-30',
-                     techSkill: 'intermediate',
-                     description: 'DevMountain Student'
+                     targetDemographic: 'Target Demographic',
+                     techSkill: 'Technology Skill',
+                     description: 'Description'
                     }
                 ]
             }
@@ -34,7 +40,6 @@ class Ideas_Users extends Component {
         this.removeIdeaItemHandler = this.removeIdeaItemHandler.bind(this);
         this.addUserItemHandler = this.addUserItemHandler.bind(this);
         this.removeUserItemHandler = this.removeUserItemHandler.bind(this);
-
     }
 
     addIdeaItemHandler(){
@@ -59,9 +64,9 @@ class Ideas_Users extends Component {
         UserList.push({
             key: 2,
             label: 2,
-            targetDemographic: 'Type here',
-            techSkill: 'Type here',
-            description: 'Type here'
+            targetDemographic: '15-30',
+            techSkill: 'Intermediate',
+            description: 'DevMountain Student'
         })
         this.setState({ arr: UserList})
     }
@@ -71,6 +76,7 @@ class Ideas_Users extends Component {
         UserList.splice(1,1);
         this.setState({ arr: UserList})
     }
+
   render() {
       const displayIdeas = this.state.ideas.arr.map( idea => {
         return(
