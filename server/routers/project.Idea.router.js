@@ -7,7 +7,7 @@ projectIdeaRouter.post('/:projectid/create/idea', (req, res) => {
     const { projectId, ideaData } = req.body;
     const db = getDb();
     db.read_project_idea([ ideaData ])
-        .then( projectIdea => res.send(projectIdea))
+        .then( promise => res.send())
         .catch( err => res.send(err));
 });
 
@@ -37,4 +37,3 @@ projectIdeaRouter.delete('/:projectid/delete/idea/:ideaid', (req, res) => {
 });
 
 module.exports = projectIdeaRouter;
-
