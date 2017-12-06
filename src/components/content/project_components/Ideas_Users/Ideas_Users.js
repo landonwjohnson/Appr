@@ -27,6 +27,7 @@ class Ideas_Users extends Component {
                 arr: [
                     {
                      key: 1,
+                     label: 1,
                      targetDemographic: 'Cat Lovers',
                      techSkill: 'not too good',
                      description: '#Selfies4Storm'
@@ -53,15 +54,26 @@ class Ideas_Users extends Component {
     }
 
     removeIdeaItemHandler(){
-
+        let IdeaList = this.state.ideas.arr;
+        IdeaList.pop();
+        this.setState({ arr: IdeaList})
     }
 
     addUserItemHandler(){
-
+        let UserList = this.state.users.arr;
+        UserList.push({
+            label: 2,
+            targetDemographic: 'Developers',
+            techSkill: 'high',
+            description: 'something'
+        })
+        this.setState({ arr: UserList})
     }
 
     removeUserItemHandler(){
-
+        let UserList = this.state.users.arr;
+        UserList.pop();
+        this.setState({ arr: UserList})
     }
   render() {
       const displayIdeas = this.state.ideas.arr.map( idea => {
@@ -72,9 +84,25 @@ class Ideas_Users extends Component {
                 <input placeholder={idea.name}></input>
             </section>
             <button className="not-enough-info-btn">Save</button>
-            <span className="delete-x">&times;</span>
+            <span className="delete-x" onClick={this.removeIdeaItemHandler}>&times;</span>
             </div>
         )
+      })
+
+      const displayUsers = this.state.users.arr.map( user => {
+          return(
+            <div className="users-item">
+            <section>
+            <label>{user.label + '.'}</label>
+                <input placeholder={user.targetDemographic}></input>
+                <input placeholder={user.techSkill}></input>
+                <input placeholder={user.description}></input>
+            </section>
+            <button className="not-enough-info-btn">Save</button>
+            <span className="delete-x" onClick={this.removeUserItemHandler}>&times;</span>
+        </div>
+              
+          )
       })
     return (
       <div>
@@ -87,14 +115,13 @@ class Ideas_Users extends Component {
              <div className="project-section-header">
                 <label>Ideas & Users</label>
             </div>
-              
-
-              
                     <div className="ideas-users-area drop-shadow">
                         <div className="ideas-users-wrapper">
                           <div className="area-title">Ideas</div>
                           <div className="ideas-list">
+
                            {displayIdeas}
+
                           </div>
                           <div className="ideas-users-footer">
                               <button className="add-button" onClick={this.addIdeaItemHandler}> <span/> Add Idea </button>
@@ -106,19 +133,12 @@ class Ideas_Users extends Component {
                         <div className="ideas-users-wrapper">
                         <div className="area-title">Users</div>
                         <div className="users-list">
-                            <div className="users-item">
-                                <section>
-                                <label>1.</label>
-                                    <input placeholder="Target Demographic"></input>
-                                    <input placeholder="Technology Skill"></input>
-                                    <input placeholder="Description"></input>
-                                </section>
-                                <button className="not-enough-info-btn">Save</button>
-                                <span className="delete-x">&times;</span>
-                            </div>
+
+                            {displayUsers}
+
                           </div>
                           <div className="ideas-users-footer">
-                              <button className="add-button"> <span/> Add User </button>
+                              <button className="add-button" onClick={this.addUserItemHandler}> <span/> Add User </button>
                           </div>
                         </div>
                     </div>
