@@ -31,7 +31,7 @@ class View extends Component {
                   </div>
               
                   <div className="view-footer">
-                  <button className="add-button"> <span /> Add View </button>
+                  <button className="add-button"> <span/> Add View </button>
                   </div>
                 </div>
               </div>
