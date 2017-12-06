@@ -14,7 +14,7 @@ projectIdeaRouter.post('/:projectid/create/idea', (req, res) => {
 projectIdeaRouter.get('/:projectid/idea/:ideaid', (req, res) => {
     const ideaid = req.params.ideaid;
     const db = getDb();
-    db.read_project_idea([ ideaid ])
+    db.find_project_idea([ ideaid ])
         .then( projectIdea => res.send(projectIdea))
         .catch( err => res.send(err));
 });
