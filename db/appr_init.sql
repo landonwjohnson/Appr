@@ -1,6 +1,7 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
 DROP TABLE IF EXISTS 
+    status,
     users, 
     groups, 
     project, 
@@ -23,35 +24,42 @@ DROP TABLE IF EXISTS
 
 --Please keep the order of the CREATE TABLE inserts the same
 
+CREATE TABLE status (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+ );
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
     first_name TEXT,
     last_name TEXT,
     email TEXT unique, 
-    password TEXT
+    password TEXT,
+    status_id int references status(id)
  );
 
 CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
     created_by int references users(id),
-    name TEXT
+    name TEXT,
+    status_id int references status(id)
 );
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    author_id int references users(id)
+    author_id int references users(id),
+    status_id int references status(id)
 );
+
+--Project Fields--
 
 CREATE TABLE project_idea (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     idea_data TEXT
 );
-
-
---Project Fields--
 
 CREATE TABLE project_user_field (
     id SERIAL PRIMARY KEY,
@@ -88,14 +96,12 @@ CREATE TABLE project_controller (
 
 CREATE TABLE req_endpoint (
     id SERIAL PRIMARY KEY,
-    -- project_endpoint_id int references project_endpoint(id),
     key_data TEXT,
     value_data TEXT
 );
 
 CREATE TABLE res_endpoint (
     id SERIAL PRIMARY KEY,
-    -- project_endpoint_id int references project_endpoint(id),
     key_data TEXT,
     value_data TEXT
 );
@@ -125,7 +131,7 @@ CREATE TABLE project_schema_table (
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    table_name int references project_schema_table(id),
+    table_name_id int references project_schema_table(id),
     column_name TEXT,
     schema_type_id int references schema_type(id),
     size_data TEXT,
@@ -169,8 +175,20 @@ CREATE TABLE tracker (
 );
 
 
+-----------Start of Test user info---------------
 
---Start of Test user info
+--Status Table
+
+INSERT INTO status ( name )
+VALUES ('active');
+
+INSERT INTO status ( name )
+VALUES ('inactive');
+
+INSERT INTO status ( name )
+VALUES ('deleted');
+
+--User Table
 
 INSERT INTO users ( username, password, email, first_name, last_name )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
@@ -318,10 +336,10 @@ VALUES ('Char');
 
         --Actual Schema--    
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('1', '1', 'Jedi Masters', '3', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
-INSERT INTO project_schema ( project_id, table_name, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
+INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 VALUES ('2', '2', 'Sith Lords', '4', 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE);
 
 --------------------------------End of Project Test fields

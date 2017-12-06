@@ -1,31 +1,31 @@
 import 'axios'
 
-const baseURL = '/api/project/:projectid';
+const baseURL = '/api/project/';
 
 function createProjectEndpoint(projectid, body) {
     return axios
-        .post(`${baseURL}/create/endpoint`, body)
+        .post(`${baseURL + projectid}/create/endpoint`, body)
         .then( res => res )
         .catch( err => {throw err} );
 }
 
 function findProjectEndpoint(projectid, endpointid) {
     return axios
-        .get(`${baseURL}/endpoint/:${endpointid}`)
+        .get(`${baseURL + projectid}/endpoint/:${endpointid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
 function updateProjectEndpoint(projectid, endpointid, body) {
     return axios
-        .put(`${baseURL}/update/endpoint/:${endpointid}`)
+        .put(`${baseURL + projectid}/update/endpoint/:${endpointid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
 
 function deleteProjectEndpoint(projectid, endpointid) {
     return axios
-        .delete(`${baseURL}/delete/endpoint/:${endpointid}`)
+        .delete(`${baseURL + projectid}/delete/endpoint/:${endpointid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
