@@ -7,6 +7,10 @@ const projectRouter = require('./project.router');
 const projectIdeaRouter = require('./project.Idea.router');
 const projectUserfieldRouter = require('./project.userfield.router');
 const projectFeatureRouter = require('./project.feature.router');
+const projectViewRouter = require('./project.view.router');
+const projectControllerRouter = require('./project.controller.router');
+const projectEndpointRouter = require('./project.endpoint.router');
+const projectSchemaRouter = require('./project.schema.router');
 
 function delegateRoutesFor(app) {
     app.use('/api/auth', authRouter);
@@ -14,7 +18,6 @@ function delegateRoutesFor(app) {
     app.use('/api/dashboard', dashboardRouter);
     app.use('/api/group', groupRouter);
     app.use('/api/project', projectRouter, projectFeatureRouter);
-  
 
     app.all('*', (req, res) => {
         res.status(404).send({message: 'Cannot access any resource at ' + req.originalUrl});
