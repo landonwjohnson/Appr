@@ -1,6 +1,6 @@
 import 'axios'
 
-const baseURL = '/api/project';
+const baseURL = '/api/project/';
 
 function createProjectFeature(body) {
     return axios
