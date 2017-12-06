@@ -4,6 +4,8 @@ const accountRouter = require('./account.router');
 const dashboardRouter = require('./dashboard.router');
 const groupRouter = require('./group.router');
 const projectRouter = require('./project.router');
+const projectIdeaRouter = require('./project.Idea.router');
+const projectUserfieldRouter = require('./project.userfield.router');
 const projectFeatureRouter = require('./project.feature.router');
 
 function delegateRoutesFor(app) {
