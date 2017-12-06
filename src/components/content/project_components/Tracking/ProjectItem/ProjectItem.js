@@ -58,6 +58,27 @@ addTaskToggle(){
                     <ul>
                     <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
                     <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
+                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
+                    
                   
                    
                       

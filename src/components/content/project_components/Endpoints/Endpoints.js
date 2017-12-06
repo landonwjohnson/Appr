@@ -14,10 +14,12 @@ class Endpoints extends Component {
           <div className="endpoints-container">
           
           <div className="endpoints-wrapper">
-            
+          <div className="project-section-header">
+              <label>Endpoints</label>
+            </div>
             <div className="endpoints-inner-container">
            
-            <label className="project-section-header">Endpoints</label>
+          
               <div className="endpoint-list-container">
                 <div className="endpoint-item">
                   <div className="project-item-header">
@@ -86,6 +88,7 @@ class Endpoints extends Component {
                         </div>
                   </div>
                 </div>
+                
                 <div className="add-button-footer">
                         <button className="add-endpoint-item"> Add Endpoint</button>
               </div>

@@ -74,18 +74,20 @@
         margin-right: 10px;
         border-radius: 0px;
         height: 30px;
-        font-size: 15px;
+       
     }
+
+    .view-footer{
+        
+          width: 100%;
+          .add-button{
+              margin-left: 26.5px;
+              max-width: 100%;
+          }
+      }
 }
 
-.view-footer{
-  
-    width: 100%;
-    .add-button{
-        margin-left: 26.5px;
-        max-width: 100%;
-    }
-}
+
 
 
 
