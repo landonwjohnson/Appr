@@ -8,24 +8,20 @@ class Endpoints extends Component {
     super(props);
       this.state ={
         endpoints: {
-                arr: [
-                      {
+                arr: [{
                         key: "1",
                         label: "1",
                         url: "www.twitter.com/landonwjohnson",
                         httpVerb: 'GET',
                         request: [{
-                                  field1: 'test',
-                                  field2: 'test me again'
-                                  }
-                        ],
+                            field1: 'test',
+                            field2: 'test me again'
+                        }],
                         response: [{
-                                  field1: 'test',
-                                  field2: 'test me again'
-                          }
-                ]
-                      }
-                ]
+                            field1: 'test',
+                            field2: 'test me again'
+                        }]
+                      }]
 
         }
       }
@@ -161,34 +157,21 @@ class Endpoints extends Component {
           <div className="endpoints-wrapper">
           <div className="project-section-header">
               <label>Endpoints</label>
-            </div>
+          </div>
             <div className="endpoints-inner-container">
-           
-          
               <div className="endpoint-list-container">
+
                   {displayEndpoints}
                 
                 <div className="add-button-footer">
-                        <button className="add-endpoint-item" onClick={this.addEndpointItemHandler}> Add Endpoint</button>
-              </div>
-               
-
-
-              
-
-
-              </div>
-              
-
-
+                      <button className="add-endpoint-item" onClick={this.addEndpointItemHandler}> Add Endpoint</button>
                 </div>
-                
               </div>
-            </div>  
-              
+            </div>
+          </div>
+          </div>  
           </div>
         </div>
-      
     );
   }
 }

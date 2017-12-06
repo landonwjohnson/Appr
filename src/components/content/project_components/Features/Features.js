@@ -8,13 +8,11 @@ class Features extends Component {
     super(props);
     this.state={
         features: {
-               arr: [
-                 {
+               arr: [{
                    key: 1,
                    label: 1,
                    name: 'Write use cases for your app'
-                 }
-               ]
+                 }]
         }
     }
     this.addFeatureItemHandler = this.addFeatureItemHandler.bind(this);

@@ -9,8 +9,7 @@ class Ideas_Users extends Component {
         super(props);
         this.state={
             ideas: {
-                arr: [
-                    {
+                arr: [{
                      key: 1,
                      label: 1,
                      name: "What problem(s) does your app solve?"
@@ -19,21 +18,16 @@ class Ideas_Users extends Component {
                      key: 2,
                      label: 2,
                      name: "How does it solve those problems?"
-                    }
-                    
-                    
-                ]
+                    }]
             },
             users: {
-                arr: [
-                    {
+                arr: [{
                      key: 1,
                      label: 1,
                      targetDemographic: 'Target Demographic',
                      techSkill: 'Technology Skill',
                      description: 'Description'
-                    }
-                ]
+                    }]
             }
         }
         this.addIdeaItemHandler = this.addIdeaItemHandler.bind(this);

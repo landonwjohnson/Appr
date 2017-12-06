@@ -12,29 +12,56 @@ class Tracking extends Component {
             super(props);
             this.state ={
                 isAddListInputOpen: false,
-                lists: {
-                  arr: [
-                    
-                  ]
-
-                },
+                trackerLists: [],
             }
             this.openListToggle = this.openListToggle.bind(this); 
             this.closeListToggle = this.closeListToggle.bind(this); 
+
+            this.addTrackerListHandle = this.addTrackerListHandle.bind(this);
+            this.removeTrackerListHandle = this.removeTrackerListHandle.bind(this);
         }
 
 
-        openListToggle(e){
-         this.setState({isAddListInputOpen: true})
-                console.log("input show");
-        }
 
-        closeListToggle(e){
-          this.setState({isAddListInputOpen: false})
-                console.log("input show");
-       }
+  //Add List Button methods
+  openListToggle(e){
+    this.setState({isAddListInputOpen: true})
+          console.log("input show");
+  }
+
+  closeListToggle(e){
+    this.setState({isAddListInputOpen: false})
+          console.log("input show");
+  }
+
+
+  //Trackerlist add remove methods
+  addTrackerListHandle(){
+    let TrackingList = this.state.trackerLists;
+    TrackingList.push({
+      name: ''
+    })
+    this.setState({
+      isAddListInputOpen: false,
+      trackerLists: TrackingList
+    })
+  }
+
+  removeTrackerListHandle(){
+    let TrackingList = this.state.trackerLists;
+    TrackingList.pop();
+    console.log('remove list')
+    this.setState({trackerLists: TrackingList})
+  }
   
   render() {
+
+    const displayTrackerLists= this.state.trackerLists.map( list => {
+      return(
+        <ProjectItem listName="To Do" PutInTrashClick={this.removeTrackerListHandle} />
+      )
+    })
+   
 
     var addListToggleClass = classnames({
         "add-list--after":  this.state.isAddListInputOpen, 
@@ -54,18 +81,14 @@ class Tracking extends Component {
           
              
                 <div className="project-items-container" id="project">
-                    <ProjectItem listName="To Do" />
-                    <ProjectItem listName="Backlog" />
-                    <ProjectItem listName="Repos" />
-                    <ProjectItem listName="Schema" />
-                    <ProjectItem listName="Database" />
-                    <ProjectItem listName="Test" />
+                    {displayTrackerLists}
+        
                     <div className="add-list-wrapper" >
                           <div className={addListToggleClass} onFocus={this.openListToggle}>
                             <div className="add-list-content">
                               <input placeholder="Add a list..." /> 
                               <div className="add-list-btn-set">
-                                <button> Save </button>
+                                <button onClick={this.addTrackerListHandle}> Save </button>
                                 <button onClick={this.closeListToggle}> Close </button>
                               </div>
                             </div>
@@ -89,3 +112,4 @@ class Tracking extends Component {
 }
 
 export default Tracking;
+
