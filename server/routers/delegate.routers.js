@@ -17,7 +17,17 @@ function delegateRoutesFor(app) {
     app.use('/api/account', accountRouter);
     app.use('/api/dashboard', dashboardRouter);
     app.use('/api/group', groupRouter);
-    app.use('/api/project', projectRouter, projectFeatureRouter);
+
+    app.use('/api/project', 
+        projectRouter,
+        projectIdeaRouter,
+        projectUserfieldRouter,
+        projectFeatureRouter,
+        projectViewRouter,
+        projectControllerRouter,
+        projectEndpointRouter,
+        projectSchemaRouter
+    );
 
     app.all('*', (req, res) => {
         res.status(404).send({message: 'Cannot access any resource at ' + req.originalUrl});
