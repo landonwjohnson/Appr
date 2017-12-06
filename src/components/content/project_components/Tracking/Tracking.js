@@ -6,25 +6,18 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import classnames from "classnames";
 
 
-// var mouseWheelEvt = function (event) {
-//   if (document.body.doScroll)
-//       document.body.doScroll(event.wheelDelta>0?"left":"right");
-//   else if ((event.wheelDelta || event.detail) > 0)
-//       document.body.scrollLeft -= 10;
-//   else
-//       document.body.scrollLeft += 10;
-
-//   return false;
-// }
-// document.body.addEventListener("mousewheel", mouseWheelEvt);
-
-
 
 class Tracking extends Component {
           constructor(props){
             super(props);
             this.state ={
-                isAddListInputOpen: false
+                isAddListInputOpen: false,
+                lists: {
+                  arr: [
+                    
+                  ]
+
+                },
             }
             this.openListToggle = this.openListToggle.bind(this); 
             this.closeListToggle = this.closeListToggle.bind(this); 
