@@ -4,28 +4,28 @@ const baseURL = '/api/project';
 
 function createProjectSchema(body) {
     return axios
-        .post( `${baseURL}/create/schema`, body )
+        .post( `${baseURL + projectid}/create/schema`, body )
         .then( res => res )
         .catch( err => {throw err} );
 }
 
 function findProjectSchema(schemaid) {
     return axios
-        .get( `${baseURL}/schema/:${schemaid}`)
+        .get( `${baseURL + projectid}/schema/:${schemaid}`)
         .then( res => res )
         .catch( err => {throw err} );
 }
 
 function updateProjectSchema(schemaid, body) {
     return axios
-        .put( `${baseURL}/update/schema/:${schemaid}`, body )
+        .put( `${baseURL + projectid}/update/schema/:${schemaid}`, body )
         .then( res => res )
         .catch( err => {throw err});
 }
 
 function deleteProjectSchema(schemaid) {
     return axios
-        .delete( `${baseURL}/delete/schema/:${schemaid}`)
+        .delete( `${baseURL + projectid}/delete/schema/:${schemaid}`)
         .then( res => res )
         .catch( err => {throw err});
 }

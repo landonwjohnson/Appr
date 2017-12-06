@@ -12,7 +12,7 @@ projectEndpointRouter.post('/:project/create/endpoint', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectEndpointRouter.get('/:project/endpoint/:endpoint', (req, res) => {
+projectEndpointRouter.get('/:project/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const db = getDB;
@@ -21,7 +21,7 @@ projectEndpointRouter.get('/:project/endpoint/:endpoint', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectEndpointRouter.put('/:project/update/endpoint/:endpoint', (req, res) => {
+projectEndpointRouter.put('/:project/update/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const {urlData, isGet, isPost, isUpdate, isDelete} = req.body;
