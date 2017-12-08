@@ -123,11 +123,28 @@
         cursor: pointer;
         margin-bottom: 5px;
         margin-left: 10px;
-    margin-right: 10px;
-        
+        margin-right: 10px;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 100%;
+            
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background-color: #C4C9CC;
+             
+        }
+
+        &::-webkit-scrollbar-thumb:window-inactive {
+            background-color: rgba(50, 50, 50, 0.40); 
+            
+        }
     }
-    li{
-        
+
+    li{ 
         display: flex;
         align-items: center;
         justify-content: space-between;  
