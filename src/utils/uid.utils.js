@@ -6,5 +6,9 @@ function uIdGenerator() {
 }
 
 const getUId = uIdGenerator();
+const getAltUId = uIdGenerator();
 
-export default getUId;
+export {
+    getUId,
+    getAltUId
+};
