@@ -5,9 +5,9 @@ const projectFeatureRouter = express.Router();
 
 projectFeatureRouter.post('/:projectid/create/feature', (req, res) => {
     const projectid = req.params.projectid
-    const { feature_data } = req.body;
+    const { featureData } = req.body;
     const db = getDB();
-    db.create_project_feature([ projectid, feature_data] )
+    db.create_project_feature([ projectid, featureData] )
         .then( promise => res.send())
         .catch(err => res.send(err));
     
@@ -25,8 +25,8 @@ projectFeatureRouter.get('/:projectid/feature/:featureid', (req, res) => {
 projectFeatureRouter.put('/:projectid/update/feature/:featureid', (req, res) => {
     const projectid = req.params.projectid;
     const featureid = req.params.featureid;
-    const { feature_data } = req.body;
-    db.update_project_feature({ projectid, feature_data} )
+    const { featureData } = req.body;
+    db.update_project_feature({ projectid, featureData} )
         .then( promise => res.send() )
         .catch(err => res.send(err))
 })
