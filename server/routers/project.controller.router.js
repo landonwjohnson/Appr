@@ -9,7 +9,7 @@ projectControllerRouter.post('/:projectid/create/controller', (req, res) => {
     const db = getDB();
     db.create_project_controller( [projectid, whenData, doData, requireData] )
         .then( promise => res.send() )
-        .catch( err = res.send(err) );
+        .catch( err => res.send(err) );
 })
 
 projectControllerRouter.get('/:projectid/controller/:controllerid', (req, res) => {
