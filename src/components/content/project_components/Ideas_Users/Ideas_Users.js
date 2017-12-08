@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
+import getUId from '../../../../utils/uid.utils';
 
 class Ideas_Users extends Component {
     constructor(props) {
