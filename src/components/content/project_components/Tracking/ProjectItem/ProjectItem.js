@@ -97,8 +97,8 @@ removeTaskItemHandler(){
                         taskName: e.target.value
                       })}/>
                       <div className="list-btn-set">
-                        <button onClick={this.addTaskItemHandler}> Save </button>
-                        <button className="prjt-close-btn" onClick={this.addTaskToggle}> Close </button>
+                        <button className="saveTBtn" onClick={this.addTaskItemHandler}> Add </button>
+                        <button className="closeTBtn" onClick={this.addTaskToggle}> <span /> </button>
                       </div>
                     </div>
                       

@@ -79,7 +79,7 @@ class CardView extends Component {
                                 <label> Labels </label> 
                             </div>
                         </button>
-                        <button className="btn-and-icon" onClick={this.props.onDeleteTaskClick} >
+                        <button className="btn-and-icon delete-task-btn" onClick={this.props.onDeleteTaskClick} >
                             <div className="label-icon-con">
                                 <label > Delete </label> 
                             </div>

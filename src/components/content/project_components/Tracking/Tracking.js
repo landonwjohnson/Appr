@@ -93,8 +93,8 @@ class Tracking extends Component {
                                 listName: e.target.value
                               })} /> 
                               <div className="add-list-btn-set">
-                                <button onClick={this.addTrackerListHandle}> Save </button>
-                                <button onClick={this.closeListToggle}> Close </button>
+                                <button className="saveTBtn" onClick={this.addTrackerListHandle}> Save </button>
+                                <button className="closeTBtn" onClick={this.closeListToggle}> <span />  </button>
                               </div>
                             </div>
                           </div>
