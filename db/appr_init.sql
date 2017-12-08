@@ -192,31 +192,31 @@ VALUES ('deleted');
 INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
 VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett', '1');
 
 --Groups
