@@ -1,4 +1,4 @@
-const express = require('expresss');
+const express = require('express');
 const getDb = require('../database/bootstrap.database');
 
 const projectIdeaRouter = express.Router();
