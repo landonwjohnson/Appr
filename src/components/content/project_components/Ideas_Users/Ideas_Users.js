@@ -23,10 +23,10 @@ class Ideas_Users extends Component {
                 <div className="ideas-item" key={getUId()}>
                     <section>
                         <label>{(ideas[idea] + 1) + '.'}</label>
-                        <input value={}></input>
+                        <input></input>
                     </section>
-                    <button className="not-enough-info-btn" onClick={}> Save </button>
-                    <span className="delete-x" onClick={}> &times; </span>
+                    <button className="not-enough-info-btn"> Save </button>
+                    <span className="delete-x"> &times; </span>
                 </div>
             )
         });
@@ -36,12 +36,12 @@ class Ideas_Users extends Component {
                 <div className="users-item" key={getAltUId()}>
                     <section>
                         <label>{(users[user] + 1) + '.'}</label>
-                        <input value={}></input>
-                        <input value={}></input>
-                        <input value={}></input>
+                        <input></input>
+                        <input></input>
+                        <input></input>
                     </section>
-                    <button className="not-enough-info-btn" onClick={}> Save </button>
-                    <span className="delete-x" onClick={}> &times; </span>
+                    <button className="not-enough-info-btn"> Save </button>
+                    <span className="delete-x"> &times; </span>
                 </div>
             )
         });
@@ -63,7 +63,7 @@ class Ideas_Users extends Component {
                                         {displayIdeas}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button" onClick={this.addIdeaItemHandler}> <span/> Add Idea </button>
+                                        <button className="add-button"> <span/> Add Idea </button>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ class Ideas_Users extends Component {
                                         {displayUsers}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button" onClick={this.addUserItemHandler}> <span/> Add User </button>
+                                        <button className="add-button"> <span/> Add User </button>
                                     </div>
                                 </div>
                             </div>
