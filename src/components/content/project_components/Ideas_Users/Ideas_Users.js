@@ -4,6 +4,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
 import { getUId, getAltUId } from '../../../../utils/uid.utils';
+import { findProjectIdeas } from '../../../../services/project.idea.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
