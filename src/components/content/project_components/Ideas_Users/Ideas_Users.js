@@ -9,32 +9,9 @@ class Ideas_Users extends Component {
     constructor(props) {
         super(props);
         this.state={
-            ideas: {
-                arr: [{
-                     key: 1,
-                     label: 1,
-                     name: "What problem(s) does your app solve?"
-                    },
-                    {
-                     key: 2,
-                     label: 2,
-                     name: "How does it solve those problems?"
-                    }]
-            },
-            users: {
-                arr: [{
-                     key: 1,
-                     label: 1,
-                     targetDemographic: 'Target Demographic',
-                     techSkill: 'Technology Skill',
-                     description: 'Description'
-                    }]
-            }
+            ideas: [],
+            users: []
         }
-        this.addIdeaItemHandler = this.addIdeaItemHandler.bind(this);
-        this.removeIdeaItemHandler = this.removeIdeaItemHandler.bind(this);
-        this.addUserItemHandler = this.addUserItemHandler.bind(this);
-        this.removeUserItemHandler = this.removeUserItemHandler.bind(this);
     }
 
     addIdeaItemHandler(){
