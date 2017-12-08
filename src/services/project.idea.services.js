@@ -9,9 +9,16 @@ function createProjectIdea(projectid, body) {
         .catch( err => {throw err});
 }
 
+function findProjectIdeas(projectid) {
+    return axios
+        .get(`${baseURL + projectid + '/' + 'idea'}`)
+        .then( res => res )
+        .catch( err => {throw err});
+}
+
 function findProjectIdea(projectid, ideaid) {
     return axios
-        .get(`${baseURL + projectid + '/' + ideaid}`)
+        .get(`${baseURL + projectid + '/idea' + ideaid}`)
         .then( res => res )
         .catch( err => {throw err});
 }
