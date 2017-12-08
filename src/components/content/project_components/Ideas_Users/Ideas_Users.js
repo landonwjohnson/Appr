@@ -14,41 +14,6 @@ class Ideas_Users extends Component {
         }
     }
 
-    addIdeaItemHandler(){
-        let IdeaList = this.state.ideas.arr;
-        IdeaList.push({
-            key: 2,
-            label: 2,
-            name: 'Type here'
-        });
-        this.setState({ arr: IdeaList})
-
-    }
-
-    removeIdeaItemHandler(){
-        let IdeaList = this.state.ideas.arr;
-        IdeaList.splice(1,1);
-        this.setState({ arr: IdeaList})
-    }
-
-    addUserItemHandler(){
-        let UserList = this.state.users.arr;
-        UserList.push({
-            key: 2,
-            label: 2,
-            targetDemographic: '15-30',
-            techSkill: 'Intermediate',
-            description: 'DevMountain Student'
-        })
-        this.setState({ arr: UserList})
-    }
-
-    removeUserItemHandler(){
-        let UserList = this.state.users.arr;
-        UserList.splice(1,1);
-        this.setState({ arr: UserList})
-    }
-
   render() {
       const displayIdeas = this.state.ideas.arr.map( idea => {
         return(
