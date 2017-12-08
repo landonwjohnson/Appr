@@ -39,6 +39,7 @@ function deleteProjectIdea(projectid, ideaid) {
 
 export {
     createProjectIdea,
+    findProjectIdeas,
     findProjectIdea,
     updateProjectIdea,
     deleteProjectIdea
