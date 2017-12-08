@@ -12,7 +12,7 @@ projectViewRouter.post('/:projectid/create/view', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectViewRouter.get('/:projectid/view', (req, res) => {
+projectViewRouter.get('/:projectid/views', (req, res) => {
     const projectid = req.params.projectid;
     const db = getDb();
     db.find_project_views([ projectid ])
