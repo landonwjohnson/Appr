@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
-import getUId from '../../../../utils/uid.utils';
+import { getUId, getAltUId } from '../../../../utils/uid.utils';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -14,35 +14,37 @@ class Ideas_Users extends Component {
         }
     }
 
-  render() {
-      const displayIdeas = this.state.ideas.arr.map( idea => {
-        return(
-            <div className="ideas-item">
-            <section>
-                <label>{idea.label + '.'}</label>
-                <input placeholder={idea.name}></input>
-            </section>
-            <button className="not-enough-info-btn">Save</button>
-            <span className="delete-x" onClick={this.removeIdeaItemHandler}>&times;</span>
-            </div>
-        )
-      })
+    render() {
+        const ideas = this.state.ideas;
+        const users = this.state.users;
+        const displayIdeas = ideas.map( idea => {
+            return(
+                <div className="ideas-item" key={getUId()}>
+                    <section>
+                        <label>{(ideas[idea] + 1) + '.'}</label>
+                        <input value={}></input>
+                    </section>
+                    <button className="not-enough-info-btn" onClick={}> Save </button>
+                    <span className="delete-x" onClick={}> &times; </span>
+                </div>
+            )
+        });
 
-      const displayUsers = this.state.users.arr.map( user => {
-          return(
-            <div className="users-item">
-            <section>
-            <label>{user.label + '.'}</label>
-                <input placeholder={user.targetDemographic}></input>
-                <input placeholder={user.techSkill}></input>
-                <input placeholder={user.description}></input>
-            </section>
-            <button className="not-enough-info-btn">Save</button>
-            <span className="delete-x" onClick={this.removeUserItemHandler}>&times;</span>
-        </div>
-              
-          )
-      })
+        const displayUsers = users.map( user => {
+            return(
+                <div className="users-item" key={getAltUId()}>
+                    <section>
+                    <label>{(users[user] + 1) + '.'}</label>
+                        <input value={}></input>
+                        <input value={}></input>
+                        <input value={}></input>
+                    </section>
+                    <button className="not-enough-info-btn" onClick={}> Save </button>
+                    <span className="delete-x" onClick={}> &times; </span>
+                </div>
+            )
+        });
+
     return (
       <div>
       <Header />
