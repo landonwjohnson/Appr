@@ -14,6 +14,7 @@ import './board-menu.scss';
 
 
 
+
 class Header extends Component {
     constructor(props){
         super(props);
@@ -22,13 +23,21 @@ class Header extends Component {
             breadToX: false,
             boardMenuOpen: true,
             showHeader: false,
-            showCurtain: true
+            showCurtain: true,
+            
+            userInfo: {
+                name: 'Landon',
+                username: 'landonwjohnson',
+                email: 'landonwjohnson@gmail.com'
+            }
+         
+            
         }
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
         this.handleHeader = this.handleHeader.bind(this);
         this.closeMenus = this.closeMenus.bind(this);
-        // this.breadTransform = this.breadTransform.bind(this);
+ 
 
     }
 
@@ -43,7 +52,6 @@ class Header extends Component {
             this.setState({
                 rightMenuOpen: true,
                 breadToX: false
-
             })
         }
     }
@@ -77,6 +85,8 @@ class Header extends Component {
     }
     
   render(){
+
+    const userInitials = this.state.userInfo.name.charAt(0);
     let rightMenuClass = classnames({
         "right-menu-container--hide": this.state.rightMenuOpen,
         "right-menu-container": true
@@ -167,8 +177,8 @@ class Header extends Component {
                     </div>
                 <div className="user-con">
                  
-                        <div className="avatar"> <label>L</label> </div>
-                        <div className="hello-user">Hello Landon!</div>
+                        <div className="avatar"> <label>{userInitials}</label> </div>
+                        <div className="hello-user">Hello {this.state.userInfo.name}!</div>
                         <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
                         <div className="bread-container" onClick={this.handleRightMenuClick}>
                             <div className={breadMenuTransform} href="#" >
