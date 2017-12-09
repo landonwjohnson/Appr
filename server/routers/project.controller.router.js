@@ -8,8 +8,16 @@ projectControllerRouter.post('/:projectid/create/controller', (req, res) => {
     const { whenData, doData, requireData } = req.body;
     const db = getDb();
     db.create_project_controller( [projectid, whenData, doData, requireData] )
-        .then(promise => res.send())
-        .catch(err => res.send(err));
+        .then( promise => res.send() )
+        .catch( err => res.send(err) );
+})
+
+projectControllerRouter.get('/:projectid/controller', (req, res) => {
+    const projectid = req.params.projectid;
+    const db = getDb();
+    db.find_project_endpoints([ projectid ])
+        .then( projectControllers => res.send(projectControllers))
+        .catch( err => res.send(err));
 })
 
 projectControllerRouter.get('/:projectid/controllers', (req, res) => {
