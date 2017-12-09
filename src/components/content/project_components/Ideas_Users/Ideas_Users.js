@@ -84,7 +84,7 @@ class Ideas_Users extends Component {
         else if (field === 'userfields') {
             body = { target_demo_data: '', skill_data: '', description_data: '' };
             newState.push(body);
-            this.setState({ ideas: newState });
+            this.setState({ userfields: newState });
 
             createProjectUserField(projectid, body)
                 .then(res => {
