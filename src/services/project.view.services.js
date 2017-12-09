@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = '/api/project';
+const baseURL = 'http://localhost:8080/api/project';
 
 function createProjectView(projectid, body) {
     return axios
@@ -18,21 +18,21 @@ function findProjectViews(projectid) {
 
 function findProjectView(projectid, viewid) {
     return axios
-        .get(`${baseURL}/${projectid}/view/:${viewid}`)
+        .get(`${baseURL}/${projectid}/view/${viewid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function updateProjectView(projectid, viewid, body) {
     return axios
-        .put(`${baseURL}/${projectid}/update/view/:${viewid}`, body)
+        .put(`${baseURL}/${projectid}/update/view/${viewid}`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function deleteProjectView(projectid, viewid) {
     return axios   
-        .delete(`${baseURL}/${projectid}/delete/view/:${viewid}`)
+        .delete(`${baseURL}/${projectid}/delete/view/${viewid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
