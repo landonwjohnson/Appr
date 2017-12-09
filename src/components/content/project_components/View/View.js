@@ -107,7 +107,7 @@ class View extends Component {
             <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index)} />
             <input className="view-input-imgurl" type="text" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index)} />
           </section>
-            <button className="not-enough-info-btn" id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
+            <button  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
             <span className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</span> 
         </div>
         )
