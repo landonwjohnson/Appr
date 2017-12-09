@@ -49,7 +49,7 @@ class Ideas_Users extends Component {
 
     handleAddIdeaButton() {
         // const projectid = this.props.match.params.projectid
-        // when testing is over, delete the next line and uncomment the line above.
+        // the line above should work, below is just a temporary solution
         const projectid = 1;
 
         const body = {ideaData: ''};
@@ -73,7 +73,14 @@ class Ideas_Users extends Component {
         const newState = this.state.ideas;
 
         // newState[index].idea_data = e.target.value;
-        // this.setState({ ideas: newState });
+        // the line above should work, below is just a temporary solution
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                idea.idea_data = e.target.value;
+            }
+        });
+
+        this.setState({ ideas: newState });
     }
 
     submitChangeIdea(e) {
@@ -81,19 +88,28 @@ class Ideas_Users extends Component {
         // const index = Number(e.target.index);
 
         // const projectid = this.props.match.params.projectid
-        // when testing is over, delete the next line and uncomment the line above.
+        // the line above should work, below is just a temporary solution
         const projectid = 1;
 
         const ideaid = Number(e.target.id);
-        // const body = this.state.ideas[index].idea_data;
 
-        // updateProjectIdea(projectid, ideaid, body)
-        //     .then(res => {
-        //         if(res.status !== 200) {
-        //             console.log(res);
-        //         }
-        //     })
-        //     .catch(err => {throw err});
+        // const body = this.state.ideas[index].idea_data;
+        // the line above should work, below is just a temporary solution
+        let body;
+        const newState = this.state.ideas;
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                body = idea.idea_data;
+            }
+        });
+
+        updateProjectIdea(projectid, ideaid, body)
+            .then(res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err});
     }
 
     handleDeleteIdeaButton(e) {
@@ -101,22 +117,29 @@ class Ideas_Users extends Component {
         // const index = Number(e.target.index);
 
         // const projectid = this.props.match.params.projectid
-        // when testing is over, delete the next line and uncomment the line above.
+        // the line above should work, below is just a temporary solution
         const projectid = 1;
 
         const ideaid = Number(e.target.id);
         const newState = this.state.ideas;
 
         // newState.splice(index, 1);
-        // this.setState({ ideas: newState });
+        // the line above should work, below is just a temporary solution
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                newState.splice(newState.indexOf(idea), 1);
+            }
+        }); 
 
-        // deleteProjectIdea(projectid, ideaid)
-        //     .then(res => {
-        //         if(res.status !== 200) {
-        //             console.log(res);
-        //         }
-        //     })
-        //     .catch(err => {throw err});
+        this.setState({ ideas: newState });
+
+        deleteProjectIdea(projectid, ideaid)
+            .then(res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err});
     }
 
     render() {
@@ -128,7 +151,7 @@ class Ideas_Users extends Component {
                 <div className="ideas-item" key={getUId()}>
                     <section>
                         <label>{(i + 1) + '.'}</label>
-                        <input index={i} value={idea.idea_data} onChange={this.handleChangeIdea}></input>
+                        <input index={i} id={idea.id} value={idea.idea_data} onChange={this.handleChangeIdea}></input>
                     </section>
                     <button className="not-enough-info-btn" index={i} id={idea.id} onClick={this.submitChangeIdea}> Save </button>
                     <span className="delete-x" index={i} id={idea.id} onClick={this.handleDeleteIdeaButton}> &times; </span>
