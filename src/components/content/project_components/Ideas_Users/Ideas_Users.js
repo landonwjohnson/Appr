@@ -4,7 +4,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
 import { getUId, getAltUId } from '../../../../utils/uid.utils';
-import { findProjectIdeas } from '../../../../services/project.idea.services';
+import { createProjectIdea, findProjectIdeas } from '../../../../services/project.idea.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class Ideas_Users extends Component {
             ideas: [],
             users: []
         }
+        this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ class Ideas_Users extends Component {
             { idea_data: 'example: Rule the Galaxy.' },
             { idea_data: 'example: Get Baby out of the corner.'}
         ];
-        findProjectIdeas(3)
+        findProjectIdeas(1)
             .then( res => {
                 if (res.data.length > 0) {
                     this.setState({ ideas: res.data });
@@ -30,6 +31,23 @@ class Ideas_Users extends Component {
                 }
             })
             .catch(err => {throw err});
+    }
+
+    handleAddIdeaButton() {
+        // const projectid = this.props.match.params.projectid
+        // when testing is over, delete the next line and uncomment the line above.
+        const projectid = 1;
+        const body = {ideaData: ''};
+        const newState = this.state.ideas;
+        newState.push(body);
+        this.setState({ ideas: newState });
+        createProjectIdea( projectid, body)
+            .then(res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err})
     }
 
     render() {
@@ -80,7 +98,7 @@ class Ideas_Users extends Component {
                                         {displayIdeas}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button"> <span/> Add Idea </button>
+                                        <button className="add-button" id="ideas" onClick={this.handleAddIdeaButton}> <span/> Add Idea </button>
                                     </div>
                                 </div>
                             </div>
