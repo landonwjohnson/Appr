@@ -243,10 +243,22 @@ VALUES ('DeathStar', '2', '1');
     --Ideas
 
 INSERT INTO project_idea ( project_id, idea_data )
-VALUES ('1', 'idea feild test data');
-
-INSERT INTO project_idea ( project_id, idea_data )
-VALUES ('2', 'Group 2s idea feild test data');
+VALUES
+    ('1', 'Enslave the Galaxy'),
+    ('1', 'Construct Bigger Death Star'),
+    ('1', 'Construct Death Star'),
+    ('1', 'Execute Order 66'),
+    ('1', 'Turn Anakin Skywalker to the Dark Side'),
+    ('1', 'Commission a Grand Army of the Republic'),
+    ('1', 'Become Supreme Chancellor of the Republic'),
+    ('2', 'Save the Galaxy'),
+    ('2', 'Blow up Bigger Death Star'),
+    ('2', 'Have Bothans get clearance codes'),
+    ('2', 'Rescue Han Solo'),
+    ('2', 'Complete Jedi Training'),
+    ('2', 'Blow up Death Star'),
+    ('2', 'Get off this Rock')
+;
 
     --User Field
 
