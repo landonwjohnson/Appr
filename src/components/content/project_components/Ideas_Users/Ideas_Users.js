@@ -4,7 +4,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
-import { findProjectUserFields } from '../../../../services/project.userfield.services';
+import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -13,10 +13,10 @@ class Ideas_Users extends Component {
             ideas: [],
             userfields: []
         }
-        this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
+        this.handleAddField = this.handleAddField.bind(this);
         this.handleChangeField = this.handleChangeField.bind(this);
-        this.submitChangeIdea = this.submitChangeIdea.bind(this);
-        this.handleDeleteIdeaButton = this.handleDeleteIdeaButton.bind(this);
+        this.submitChangeField = this.submitChangeField.bind(this);
+        this.handleDeleteField = this.handleDeleteField.bind(this);
     }
 
     componentWillMount() {
@@ -63,20 +63,37 @@ class Ideas_Users extends Component {
             .catch(err => {throw err});
     }
 
-    handleAddIdeaButton() {
+    handleAddField(field) {
         const projectid = this.props.match.params.projectid
-        const body = {ideaData: ''};
-        const newState = this.state.ideas;
-        newState.push(body);
-        this.setState({ ideas: newState });
+        let body;
+        const newState = this.state[field];
 
-        createProjectIdea( projectid, body)
-            .then(res => {
-                if (res.status !== 200) {
-                    console.log(res);
-                }
-            })
-            .catch(err => {throw err});
+        if (field === 'ideas') {
+            body = {ideaData: ''};
+            newState.push(body);
+            this.setState({ ideas: newState });
+
+            createProjectIdea(projectid, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            body = { target_demo_data: '', skill_data: '', description_data: '' };
+            newState.push(body);
+            this.setState({ ideas: newState });
+
+            createProjectUserField(projectid, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
     }
 
     handleChangeField(e, field, index) {
@@ -87,34 +104,58 @@ class Ideas_Users extends Component {
         this.setState({ [field]: newState });
     }
 
-    submitChangeIdea(e, index) {
+    submitChangeField(e, field, index) {
+        const key = e.target.name;
         const projectid = this.props.match.params.projectid
-        const ideaid = Number(e.target.id);
-        const body = this.state.ideas[index].idea_data;
+        const id = Number(e.target.id);
+        const body = this.state[field][index];
 
-        updateProjectIdea(projectid, ideaid, body)
+        if (field === 'ideas') {
+            updateProjectIdea(projectid, id, body)
             .then(res => {
                 if (res.status !== 200) {
                     console.log(res);
                 }
             })
             .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            updateProjectUserField(projectid, id, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        
     }
 
-    handleDeleteIdeaButton(e, index) {
+    handleDeleteField(e, field, index) {
         const projectid = this.props.match.params.projectid
-        const ideaid = Number(e.target.id);
-        const newState = this.state.ideas;
+        const id = Number(e.target.id);
+        const newState = this.state[field];
         newState.splice(index, 1);
-        this.setState({ ideas: newState });
+        this.setState({ [field]: newState });
 
-        deleteProjectIdea(projectid, ideaid)
-            .then(res => {
-                if (res.status !== 200) {
-                    console.log(res);
-                }
-            })
-            .catch(err => {throw err});
+        if (field === 'ideas') {
+            deleteProjectIdea(projectid, id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            deleteProjectUserField(projectid, id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
     }
 
     render() {
@@ -130,8 +171,8 @@ class Ideas_Users extends Component {
                         <label>{(index + 1) + '.'}</label>
                         <input id={idea.id} name="idea_data" value={idea.idea_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
-                    <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeIdea(e, index)}> Save </button>
-                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteIdeaButton(e, index)}> &times; </span>
+                    <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
+                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
             )
         });
@@ -140,15 +181,15 @@ class Ideas_Users extends Component {
             const field = 'userfields';
             const index = userfields.indexOf(userfield);
             return (
-                <div className="user-item" key={`userfield-${index}`}>
+                <div className="users-item" key={`userfield-${index}`}>
                     <section>
                         <label>{(index + 1) + '.'}</label>
                         <input id={userfield.id} name="target_demo_data" value={userfield.target_demo_data} onChange={e => this.handleChangeField(e, field, index)}/>
                         <input id={userfield.id} name="skill_data" value={userfield.skill_data} onChange={e => this.handleChangeField(e, field, index)}/>
                         <input id={userfield.id} name="description_data" value={userfield.description_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
-                    <button className="not-enough-info-btn" id={userfield.id}> Save </button>
-                    <span className="delete-x" id={userfield.id}> &times; </span>
+                    <button className="not-enough-info-btn" id={userfield.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
+                    <span className="delete-x" id={userfield.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
             )
         });
@@ -170,7 +211,7 @@ class Ideas_Users extends Component {
                                         {displayIdeas}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button" id="ideas" onClick={this.handleAddIdeaButton}> <span/> Add Idea </button>
+                                        <button className="add-button" id="ideas" onClick={() => this.handleAddField('ideas')}> <span/> Add Idea </button>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +222,7 @@ class Ideas_Users extends Component {
                                         {displayUsers}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button"> <span/> Add User </button>
+                                        <button className="add-button"  onClick={() => this.handleAddField('userfields')}> <span/> Add User </button>
                                     </div>
                                 </div>
                             </div>
