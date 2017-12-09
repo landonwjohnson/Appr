@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
-import { getUId } from '../../../../utils/uid.utils';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
+import { findProjectUserFields } from '../../../../services/project.userfield.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             ideas: [],
-            users: []
+            userfields: []
         }
         this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
         this.handleChangeIdea = this.handleChangeIdea.bind(this);
@@ -22,21 +22,41 @@ class Ideas_Users extends Component {
     componentWillMount() {
         const projectid = this.props.match.params.projectid
         const ideaExamples = [
-            { idea_data: 'example: Rule the Galaxy.' },
-            { idea_data: 'example: Get Baby out of the corner.'}
+            { idea_data: 'e.g. Rule the Galaxy.' },
+            { idea_data: 'e.g. Get Baby out of the corner.'}
+        ];
+        const userfieldExamples = [
+            { target_demo_data: 'e.g. Jedi', skill_data: 'diplomacy', description_data: 'what a bunch of squares'},
+            { target_demo_data: 'e.g. Sith', skill_data: 'violence', description_data: 'the cool kids table'}
         ];
 
         findProjectIdeas(projectid)
             .then( res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
                 else {
-                    if(res.data.length > 0) {
+                    if (res.data.length > 0) {
                         this.setState({ ideas: res.data });
                     }
                     else {
                         this.setState({ ideas: ideaExamples });
+                    }
+                }
+            })
+            .catch(err => {throw err});
+
+        findProjectUserFields(projectid)
+            .then(res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    if (res.data.length > 0) {
+                        this.setState({ userfields: res.data });
+                    }
+                    else {
+                        this.setState({ userfields: userfieldExamples });
                     }
                 }
             })
@@ -52,7 +72,7 @@ class Ideas_Users extends Component {
 
         createProjectIdea( projectid, body)
             .then(res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
             })
@@ -72,7 +92,7 @@ class Ideas_Users extends Component {
 
         updateProjectIdea(projectid, ideaid, body)
             .then(res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
             })
@@ -88,7 +108,7 @@ class Ideas_Users extends Component {
 
         deleteProjectIdea(projectid, ideaid)
             .then(res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
             })
@@ -97,32 +117,34 @@ class Ideas_Users extends Component {
 
     render() {
         const ideas = this.state.ideas;
-        const users = this.state.users;
+        const userfields = this.state.userfields;
+
         const displayIdeas = ideas.map( idea => {
             const index = ideas.indexOf(idea);
-            return(
+            return (
                 <div className="ideas-item" key={`idea-${index}`}>
                     <section>
                         <label>{(index + 1) + '.'}</label>
                         <input id={idea.id} value={idea.idea_data} onChange={e => this.handleChangeIdea(e, index)} />
                     </section>
                     <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeIdea(e, index)}> Save </button>
-                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteIdeaButton(e, index)} aria-label="delete button"> &times; </span>
+                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteIdeaButton(e, index)}> &times; </span>
                 </div>
             )
         });
 
-        const displayUsers = users.map( user => {
-            return(
-                <div className="users-item">
+        const displayUsers = userfields.map( userfield => {
+            const index = userfields.indexOf(userfield);
+            return (
+                <div className="user-item" key={`userfield-${index}`}>
                     <section>
-                        <label></label>
-                        <input/>
-                        <input/>
-                        <input/>
+                        <label>{(index + 1) + '.'}</label>
+                        <input id={userfield.id} value={userfield.target_demo_data}/>
+                        <input id={userfield.id} value={userfield.skill_data}/>
+                        <input id={userfield.id} value={userfield.description_data}/>
                     </section>
-                    <button className="not-enough-info-btn"> Save </button>
-                    <span className="delete-x"> &times; </span>
+                    <button className="not-enough-info-btn" id={userfield.id}> Save </button>
+                    <span className="delete-x" id={userfield.id}> &times; </span>
                 </div>
             )
         });

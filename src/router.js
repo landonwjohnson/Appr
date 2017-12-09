@@ -27,13 +27,13 @@ export default  (
                 <Route component={ AccountSettings } path="/account-settings" exact/>
 
             {/* Future Sub Routes In Wizard */}
-                <Route component={ IdeasUsers } path="/projectrs/:projectid/ideas" exact/>
-                <Route component={ Features } path="/projectrs/:projectid/features" exact/>
-                <Route component={ View } path="/projectrs/:projectid/views" exact/>
-                <Route component={ Controllers } path="/projectrs/:projectid/controllers" exact/>
-                <Route component={ Schema } path="/projectrs/:projectid/schema" exact/>
-                <Route component={ Endpoints } path="/projectrs/:projectid/endpoints" exact/>
-                <Route component={ Tracker } path="/projectrs/:projectid/tracker" exact/>
-                <Route component={ Tracking } path="/projectrs/:projectid/tracking" exact/>
+                <Route component={ IdeasUsers } path="/project/:projectid/ideas" exact/>
+                <Route component={ Features } path="/project/:projectid/features" exact/>
+                <Route component={ View } path="/project/:projectid/views" exact/>
+                <Route component={ Controllers } path="/project/:projectid/controllers" exact/>
+                <Route component={ Schema } path="/project/:projectid/schema" exact/>
+                <Route component={ Endpoints } path="/project/:projectid/endpoints" exact/>
+                <Route component={ Tracker } path="/project/:projectid/tracker" exact/>
+                <Route component={ Tracking } path="/project/:projectid/tracking" exact/>
         </Switch> 
     )
