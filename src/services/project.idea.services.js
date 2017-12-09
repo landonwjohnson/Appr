@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = '/api/project';
+const baseURL = 'http://localhost:8080/api/project';
 
 function createProjectIdea(projectid, body) {
     return axios

@@ -15,6 +15,23 @@ class Ideas_Users extends Component {
         }
     }
 
+    componentDidMount() {
+        const ideaExamples = [
+            { idea_data: 'example: Rule the Galaxy.' },
+            { idea_data: 'example: Get Baby out of the corner.'}
+        ];
+        findProjectIdeas(3)
+            .then( res => {
+                if (res.data.length > 0) {
+                    this.setState({ ideas: res.data });
+                }
+                else {
+                    this.setState({ ideas: ideaExamples });
+                }
+            })
+            .catch(err => {throw err});
+    }
+
     render() {
         const ideas = this.state.ideas;
         const users = this.state.users;
@@ -22,8 +39,8 @@ class Ideas_Users extends Component {
             return(
                 <div className="ideas-item" key={getUId()}>
                     <section>
-                        <label>{(ideas[idea] + 1) + '.'}</label>
-                        <input></input>
+                        <label>{(ideas.indexOf(idea) + 1) + '.'}</label>
+                        <input placeholder={idea.idea_data}></input>
                     </section>
                     <button className="not-enough-info-btn"> Save </button>
                     <span className="delete-x"> &times; </span>
