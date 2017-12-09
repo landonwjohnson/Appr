@@ -14,7 +14,7 @@ class Ideas_Users extends Component {
             userfields: []
         }
         this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
-        this.handleChangeIdea = this.handleChangeIdea.bind(this);
+        this.handleChangeField = this.handleChangeField.bind(this);
         this.submitChangeIdea = this.submitChangeIdea.bind(this);
         this.handleDeleteIdeaButton = this.handleDeleteIdeaButton.bind(this);
     }
@@ -76,13 +76,15 @@ class Ideas_Users extends Component {
                     console.log(res);
                 }
             })
-            .catch(err => {throw err})
+            .catch(err => {throw err});
     }
 
-    handleChangeIdea(e, index) {
-        const newState = this.state.ideas;
-        newState[index].idea_data = e.target.value;
-        this.setState({ ideas: newState });
+    handleChangeField(e, field, index) {
+        const key = e.target.name;
+        const value = e.target.value;
+        const newState = this.state[field];
+        newState[index][key] = value;
+        this.setState({ [field]: newState });
     }
 
     submitChangeIdea(e, index) {
@@ -120,12 +122,13 @@ class Ideas_Users extends Component {
         const userfields = this.state.userfields;
 
         const displayIdeas = ideas.map( idea => {
+            const field = 'ideas';
             const index = ideas.indexOf(idea);
             return (
                 <div className="ideas-item" key={`idea-${index}`}>
                     <section>
                         <label>{(index + 1) + '.'}</label>
-                        <input id={idea.id} value={idea.idea_data} onChange={e => this.handleChangeIdea(e, index)} />
+                        <input id={idea.id} name="idea_data" value={idea.idea_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
                     <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeIdea(e, index)}> Save </button>
                     <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteIdeaButton(e, index)}> &times; </span>
@@ -134,14 +137,15 @@ class Ideas_Users extends Component {
         });
 
         const displayUsers = userfields.map( userfield => {
+            const field = 'userfields';
             const index = userfields.indexOf(userfield);
             return (
                 <div className="user-item" key={`userfield-${index}`}>
                     <section>
                         <label>{(index + 1) + '.'}</label>
-                        <input id={userfield.id} value={userfield.target_demo_data}/>
-                        <input id={userfield.id} value={userfield.skill_data}/>
-                        <input id={userfield.id} value={userfield.description_data}/>
+                        <input id={userfield.id} name="target_demo_data" value={userfield.target_demo_data} onChange={e => this.handleChangeField(e, field, index)}/>
+                        <input id={userfield.id} name="skill_data" value={userfield.skill_data} onChange={e => this.handleChangeField(e, field, index)}/>
+                        <input id={userfield.id} name="description_data" value={userfield.description_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
                     <button className="not-enough-info-btn" id={userfield.id}> Save </button>
                     <span className="delete-x" id={userfield.id}> &times; </span>
