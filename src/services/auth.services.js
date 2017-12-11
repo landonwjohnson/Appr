@@ -6,21 +6,21 @@ function register(body) {
     return axios
         .post(`${baseURL}/register`, body)
         .then(res => res)
-        .catch(err => res.status(500).send(err));
+        .catch(err => {throw err});
 }
 
 function login(body) {
     return axios
         .post(`${baseURL}/login`, body)
         .then(res => res)
-        .catch(err => res.status(500).send(err));
+        .catch(err => {throw err});
 }
 
 function logout() {
     return axios
         .post(`${baseURL}/logout`, body)
         .then(res => res)
-        .catch(err => res.status(500).send(err));
+        .catch(err => {throw err});
 }
 
 export {

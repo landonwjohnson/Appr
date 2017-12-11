@@ -6,7 +6,7 @@ function findDashboardInfo(userid) {
     return axios
         .get(`${baseURL}/${userid}`)
         .then(res => res)
-        .catch(err => res.status(500).send(err));
+        .catch(err => {throw err});
 }
 
 export {
