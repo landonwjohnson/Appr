@@ -5,6 +5,13 @@ import { Link } from 'react-router-dom';
 import './login.scss';
 
 class Login extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			username: '',
+			password: ''
+		};
+	}
 	render() {
 		return (
 			<div className="login-parent">
