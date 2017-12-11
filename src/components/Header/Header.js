@@ -6,11 +6,34 @@ import AlertIcon from '../../img/icons/Bell-02.svg';
 import BoardsIcon from '../../img/icons/boards.svg';
 import classnames from 'classnames';
 import {Link, Route} from 'react-router-dom';
+import Modal from 'react-modal';
+import Feedback from '../content/Feedback/Feedback'
 import './header.scss';
 import './board-menu.scss';
 
 
-
+const ModalBox = {
+    
+      overlay : {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        right: "0",
+        bottom: "0",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        overflow: "hidden",
+        width: "100%"
+      },
+      content : {
+        borderRadius: "4px",
+        outline: "none",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        right: "50%",
+        bottom: "50%",
+      }
+    };
 
 
 
@@ -24,6 +47,7 @@ class Header extends Component {
             boardMenuOpen: true,
             showHeader: false,
             showCurtain: true,
+            feedbackModalOpen: false,
             
             userInfo: {
                 name: 'Landon',
@@ -37,15 +61,29 @@ class Header extends Component {
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
         this.handleHeader = this.handleHeader.bind(this);
         this.closeMenus = this.closeMenus.bind(this);
- 
+        this.openFeedbackModal = this.openFeedbackModal.bind(this);
+        this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
+    }
 
+    openFeedbackModal(){
+        this.setState({breadToX: false})
+        this.setState({boardMenuOpen: true})
+        this.setState({showCurtain: true})
+        this.setState({rightMenuOpen: true})
+        this.setState({feedbackModalOpen: true})
+        
+    }
+      
+      
+    closeFeedbackModal(){
+        this.setState({feedbackModalOpen: false})
     }
 
     handleRightMenuClick(){
         if(this.state.rightMenuOpen){
             this.setState({
                 rightMenuOpen: false,
-                breadToX: true
+                breadToX: true,
             })
         }
         else {
@@ -197,7 +235,7 @@ class Header extends Component {
             <div className="right-menu-inner">
                 <ul>
                     <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
-                    <li className="v2">Feedback</li>
+                    <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
             </div>
@@ -210,6 +248,15 @@ class Header extends Component {
 
         <div className={handleCurtain} onClick={this.handleBoardMenuClick}>
         </div>
+
+        <Modal 
+              isOpen ={this.state.feedbackModalOpen} 
+              onRequestClose={this.closeFeedbackModal}
+              className="modal-account-settings-content"
+              style={ModalBox}
+        >
+              <Feedback onCloseBtnClick={this.closeFeedbackModal} />
+        </Modal>
       </div>
     );
   }

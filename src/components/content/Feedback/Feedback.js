@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../AccountSettings/modals/modals.scss';
 
 
 class Feedback extends Component {
