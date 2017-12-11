@@ -23,7 +23,7 @@ export default  (
             <Route component={ Login } path="/login" exact/>
 
             {/* Future Sub Routes */}
-                <Route component={ Dashboard } path="/dashboard" exact/>
+                <Route component={ Dashboard } path="/dashboard/:userid" exact/>
                 <Route component={ AccountSettings } path="/account-settings" exact/>
 
             {/* Future Sub Routes In Wizard */}

@@ -9,7 +9,24 @@ import { findDashboardInfo } from '../../../services/dashboard.services';
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			groups: [],
+			projects: []
+		};
+	}
+
+	componentWillMount() {
+		const userid = this.props.match.params.userid;
+		findDashboardInfo(userid)
+			.then( res => {
+				if (res.status !== 200) {
+                    console.log(res);
+				}
+				else {
+					this.setState(res.data);
+				}
+			})
+			.catch(err => {throw err});
 	}
 
 	render() {
