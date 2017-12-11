@@ -11,7 +11,14 @@ class Login extends Component {
 			username: '',
 			password: ''
 		};
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
+
+	handleInputChange(e) {
+		const field = e.target.name;
+		this.setState({ [field]: e.target.value });
+	}
+
 	render() {
 		return (
 			<div className="login-parent">
@@ -29,7 +36,7 @@ class Login extends Component {
 										<img src={UsernameIcon} alt="username icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="text" value="username" placeholder="Username" onChange={this.handleInputChange}/>
+								<input className="usr-pswd-input" type="text" name="username" placeholder="Username" onChange={e => this.handleInputChange(e)}/>
 							</div>
 							<div className="usr-pswd-row">
 								<div className="lgn-icon-con">
@@ -37,7 +44,7 @@ class Login extends Component {
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="password" value="password" placeholder="Password" onChange={this.handleInputChange}/>
+								<input className="usr-pswd-input" type="password" name="password" placeholder="Password" onChange={e => this.handleInputChange(e)}/>
 							</div>
 
 							<div className="login-btn-con">
