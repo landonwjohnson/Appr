@@ -6,7 +6,7 @@ function findUserGroupsAndUserProjects(userid) {
     return axios
         .get(`${baseURL}/${userid}`)
         .then(res => res)
-        .catch(err => {throw err});
+        .catch(err => res.status(500).send(err));
 }
 
 export {
