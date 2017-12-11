@@ -9,10 +9,10 @@ dashboardRouter.get('/:userid', (req, res) => {
     db.find_usergroups_by_userid([ userId ])
         .then( groups => {
             db.find_userprojects_by_userid([ userId ])
-                .then( projects => res.send(groups, projects))
-                .catch( err => res.send(err));
+                .then(projects => res.send(groups, projects))
+                .catch(err => res.status(500).send(err));
         })
-        .catch( err => res.send(err));
+        .catch(err => res.status(500).send(err));
 });
 
 module.exports = dashboardRouter;
