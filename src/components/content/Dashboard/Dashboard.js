@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import './dashboard.scss';
 import './dashboard-projects.scss';
 import addIcon from '../../../img/icons/add-icon.svg';
-import Header from '../../Header/Header'
+import Header from '../../Header/Header';
+import { findDashboardInfo } from '../../../services/dashboard.services';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -12,7 +13,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		
+
 		return (
 			<div>
 				<Header />
