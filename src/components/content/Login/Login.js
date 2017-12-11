@@ -29,7 +29,7 @@ class Login extends Component {
 										<img src={UsernameIcon} alt="username icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" placeholder="Username" type="text" />
+								<input className="usr-pswd-input" type="text" value="username" placeholder="Username" onChange={this.handleInputChange}/>
 							</div>
 							<div className="usr-pswd-row">
 								<div className="lgn-icon-con">
@@ -37,7 +37,7 @@ class Login extends Component {
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" placeholder="Password" type="password" />
+								<input className="usr-pswd-input" type="password" value="password" placeholder="Password" onChange={this.handleInputChange}/>
 							</div>
 
 							<div className="login-btn-con">
