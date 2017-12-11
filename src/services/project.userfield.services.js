@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/api/project';
+const baseURL = '/api/project';
 
 function createProjectUserField(projectid, body) {
     return axios
