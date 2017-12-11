@@ -30,6 +30,24 @@ class Dashboard extends Component {
 	}
 
 	render() {
+		const groups = this.state.groups;
+		const projects = this.state.projects;
+		const displayGroups = groups.map( group => {
+			const index = groups.indexOf(group);
+			return (
+				<Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
+					<p>{group.name}</p>
+				</Link>
+			);
+		});
+		const displayProjects = projects.map( project => {
+			const index = projects.indexOf(project);
+			return (
+				<Link to={`/project/${project.id}/ideas`} key={`project-${index}`}>
+					<p>{project.name}</p>
+				</Link>
+			);
+		});
 
 		return (
 			<div>
@@ -38,8 +56,8 @@ class Dashboard extends Component {
 					<div className="group-list-container">
 						<label className="dash-section-title">Groups</label>
 						<ul className="groups-list">
-
-							{/* groups render here */}
+							{displayGroups}
+							
 							{/* create a group renders here */}
 
 						</ul>
@@ -47,9 +65,7 @@ class Dashboard extends Component {
 					<div className="personal-list-container">
 						<label className="dash-section-title">Personal Projects</label>
 						<ul className="projects-list">
-
-							{/* projects render here */}
-
+							{displayProjects}
 							<Link to="/ideas">
 								<li className="create-project-thumb">
 									<div className="create-project-thumb-body">
@@ -60,7 +76,6 @@ class Dashboard extends Component {
 									</div>
 								</li>
 							</Link>
-
 						</ul>
 					</div>
 				</div>
