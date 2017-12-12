@@ -34,20 +34,21 @@ class Login extends Component {
 			}
 			else {
 				loginTest(creds)
-				.then( res => {
-					if (res.data === 'login test was successful!') {
-						login(creds)
-							.then( res => {
-								if (res.status === 200) {
-									this.props.history.push(`/dashboard/${res.data.id}`)
-								}
-							})
-					}
-					else {
-						alert(res.data);
-					}
-				})
-				.catch(err => {throw err});
+					.then( res => {
+						if (res.data === 'login test was successful!') {
+							login(creds)
+								.then( res => {
+									if (res.status === 200) {
+										this.props.history.push(`/dashboard/${res.data.id}`)
+									}
+								})
+								.catch(err => {throw err});
+						}
+						else {
+							alert(res.data);
+						}
+					})
+					.catch(err => {throw err});
 			}
 		}
 	}
