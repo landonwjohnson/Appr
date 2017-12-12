@@ -1,6 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const feedbackMailer = express();
+const feedbackMailer = express.Router();
 
 
 feedbackMailer.post('/reportbug', (req, res) => {
