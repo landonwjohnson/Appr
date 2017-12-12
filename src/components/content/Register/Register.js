@@ -31,6 +31,7 @@ class Register extends Component {
         this.handleSuccessEmail = this.handleSuccessEmail.bind(this);
         this.handleFailedPassword = this.handleFailedPassword.bind(this);
         this.handleSuccessPassword = this.handleSuccessPassword.bind(this);
+        this.handleButtonRegister = this.handleButtonRegister.bind(this);
     }
 
     handleChangeInput(e) {
@@ -95,6 +96,18 @@ class Register extends Component {
             showPasswordFail: false,
             showPasswordSuccess: true
         });
+    }
+
+    handleButtonRegister() {
+        const { firstName, lastName, email, password, username } = this.state;
+        const reqBody = { firstName, lastName, email, password, username };
+        register(reqBody)
+            .then( res => {
+                if (res.status === 200) {
+                    
+                }
+            })
+            .catch(err => {throw err});
     }
 
     render() {
@@ -196,7 +209,7 @@ class Register extends Component {
 
 
                                 <div className="reg-btn-footer">
-                                    <button className="create-account-btn not-enough-info-btn"> Create New Account </button>
+                                    <button className="create-account-btn not-enough-info-btn" onClick={this.handleButtonRegister}> Create New Account </button>
                                 </div>
                             </div>
                         </div>
