@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './register.scss';
 import classnames from "classnames";
-
+import { register } from '../../../services/auth.services';
 
 class Register extends Component {
     constructor(){
