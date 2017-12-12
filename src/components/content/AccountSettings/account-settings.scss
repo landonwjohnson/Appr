@@ -65,11 +65,13 @@
     background: rgba(0, 0, 0, 0.00);
     line-height: 30px;
     font-size: 15px;
-    z-index: 8;
-    cursor: pointer;
+    z-index: 1;
+    
+  
     
     
     div{
+        opacity: 0;
         display: flex;
         position: relative;
         justify-content: center;
@@ -101,9 +103,12 @@
     font-size: 15px;
     z-index: 1;
     cursor: pointer;
+
+  
     
     
     div{
+        opacity: 1;
         color: white;
         display: flex;
         align-items: flex-end;

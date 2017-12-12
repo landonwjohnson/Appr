@@ -36,7 +36,8 @@ const ModalBox = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     overflow: "hidden",
     width: "100%",
-    zIndex: "3"
+    zIndex: "5",
+    
   },
   content : {
     borderRadius: "4px",
@@ -217,8 +218,7 @@ class AccountSettings extends Component {
           <div className="profile-section-outter">
               <div className="profile-section-inner">
               <div className="wrapper">
-                  <div className="change-initial" onClick={this.openAvatarModal}>
-                    
+                  <div className="change-initial" onClick={this.openAvatarModal}>  
                     <div>Change</div>
                   </div>
                   <div className="avatar-initial"  style={{backgroundImage: `url(${this.state.userInfo.avatar})`}} >
