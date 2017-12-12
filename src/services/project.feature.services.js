@@ -11,28 +11,28 @@ function createProjectFeature(projectid, body) {
 
 function findProjectFeatures(projectid) {
     return axios
-        .get(`${baseURL}/${projectid}/feature`)
+        .get(`${baseURL}/${projectid}/features`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function findProjectFeature(projectid, featureid) {
     return axios
-        .get(`${baseURL}/${projectid}/feature/:${featureid}`)
+        .get(`${baseURL}/${projectid}/feature/${featureid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function updateProjectFeature(projectid, featureid, body){
     return axios
-        .put(`${baseURL}/${projectid}/update/feature/:${featureid}`)
+        .put(`${baseURL}/${projectid}/update/feature/${featureid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function deleteProjectFeature(projectid, featureid){
     return axios
-        .delete(`${baseURL}/${projectid}/delete/feature/:${featureid}`)
+        .delete(`${baseURL}/${projectid}/delete/feature/${featureid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
