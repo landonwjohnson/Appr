@@ -104,8 +104,8 @@ class View extends Component {
           <div className="view-item" key={`idea-${index}`}>
           <section>
             <label>{(index + 1) + '.'}</label>
-            <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index)} />
-            <input className="view-input-imgurl" type="text" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index)} />
+            <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index)} required />
+            <input className="view-input-imgurl" type="url" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index)} required />
           </section>
             <button  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
             <span className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</span> 
