@@ -123,6 +123,7 @@ class Register extends Component {
             "reg-field": true,
             "reg-field--success": this.state.showPasswordSuccess
         });
+
         return (
             <div className="register-container">
                 {/* <div className="reg-header v2"> </div> */}
@@ -167,7 +168,7 @@ class Register extends Component {
                                     </div>
                                 </div>
                                 <div className="reg-btn-footer">
-                                    <Link to="dashboard"><button className="create-account-btn not-enough-info-btn"> Create New Account </button> </Link>
+                                    <button className="create-account-btn not-enough-info-btn"> Create New Account </button>
                                 </div>
                             </div>
                         </div>
