@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const baseURL = '/api/project';
+const baseURL = 'localhost:8080/api/project';
 
-function createProjectFeature(body) {
+function createProjectFeature(projectid, body) {
     return axios
         .post(`${baseURL}/${projectid}/create`, body)
         .then(res => res)

@@ -271,11 +271,20 @@ VALUES ('2', 'Old enough to be angry', 'Loyalty to your sith leader, as well as 
     --Features
 
 INSERT INTO project_feature ( project_id, feature_data )
-VALUES ('1', 'Protecting the people, saving the galaxy, getting chicks... outside your own bloodline...');
-
-INSERT INTO project_feature ( project_id, feature_data )
-VALUES ('2', 'Gain ultimate power in the universe');
-
+VALUES 
+    ('1', 'Protecting the people'),
+    ('1', 'saving the galaxy'),
+    ('1', 'getting chicks...outside your own bloodline'),
+    ('1', 'going on quests with droids'),
+    ('1', 'wearing dope jedi attire'),
+    ('1', 'finding kyber krystals to make light sabers')
+    ('2', 'Enslaving the Galaxy'),
+    ('2', 'killing anyone who gets in the way, even younglings'),
+    ('2', 'Planning and orchestrating Order66'),
+    ('2', 'Ultimate Power!!'),
+    ('2', 'Finding why Galactic Empire Generals have such a high attrition rate'),
+    ('2', 'you can save the ones you love from death...')
+;
     --Views
 
 INSERT INTO project_view ( project_id, name, image_url )
