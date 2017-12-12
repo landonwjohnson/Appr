@@ -17,7 +17,7 @@ class Feedback extends Component {
             <div className="modal-body">
                 <label class="modal-input-tag">Problem</label>
                 <section class="modal-row">
-                    <input type="text" name="problem" id="problem" class="modal-form" required />
+                    <input type="text" name="problem" id="problem" class="modal-form" required autoFocus />
                 </section>
                 <label class="modal-input-tag">Description</label>
                 <section class="modal-row">
@@ -28,7 +28,7 @@ class Feedback extends Component {
             </div>
             <div className="submitModal">
                 <button type="submit">
-                hello
+                Send
                 </button>
             </div>
             </form>
