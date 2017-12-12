@@ -25,8 +25,8 @@ export default (
         {/* Future Sub Routes */}
             <Route component={ Dashboard } path="/dashboard/:userid"/>
             <Route component={ AccountSettings } path="/account-settings/:userid"/>
-            {/* <Route component={ GroupDashboard } path="/group-dashboard/:groupid"/> */}
-            {/* <Route component={ GroupSettings } path="/group-settings/:groupid"/> */}
+            {/* <Route component={ GroupDashboard } path="/group/:groupid/dashboard"/> */}
+            {/* <Route component={ GroupSettings } path="/group/:groupid/settings"/> */}
 
         {/* Future Sub Routes In Wizard */}
             <Route component={ IdeasUsers } path="/project/:projectid/ideas"/>
