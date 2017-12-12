@@ -15,7 +15,7 @@
       height: 100%;
       // background: blue;
       -webkit-box-direction: normal;
-      padding-top: 40px;
+      margin-top: 40px;
       // border: 1px solid red;
     }
 
@@ -26,8 +26,12 @@
       max-height: 100%;
       // background: blue;
       -webkit-box-direction: normal;
-      padding-top: 40px;
+      margin-top: 40px;
       // border: 1px solid red;
+
+      ul{
+        padding: 0px;
+      }
     }
   
     .dash-section-title{

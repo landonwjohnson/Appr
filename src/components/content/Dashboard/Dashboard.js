@@ -36,7 +36,12 @@ class Dashboard extends Component {
 			const index = groups.indexOf(group);
 			return (
 				<Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
-					<p>{group.name}</p>
+					<li className="create-project-thumb">
+						<div className="create-project-thumb-body"></div>
+						<div className="create-project-thumb-footer">
+							<label>{group.name}</label>
+						</div>
+					</li>
 				</Link>
 			);
 		});
@@ -44,7 +49,12 @@ class Dashboard extends Component {
 			const index = projects.indexOf(project);
 			return (
 				<Link to={`/project/${project.id}/ideas`} key={`project-${index}`}>
-					<p>{project.name}</p>
+					<li className="create-project-thumb">
+						<div className="create-project-thumb-body"></div>
+						<div className="create-project-thumb-footer">
+							<label>{project.name}</label>
+						</div>
+					</li>
 				</Link>
 			);
 		});
