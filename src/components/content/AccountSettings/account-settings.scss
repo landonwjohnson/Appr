@@ -16,9 +16,16 @@
 } 
 
 .profile-section-inner {
+    justify-content: center;
     display: flex;
-    width: 45%;
+    width: 55%;
     height: 85px;
+
+    .wrapper{
+        display: flex;
+        justify-content: flex-start;
+        width: 85%;
+    }
    
    
     // border: 1px solid white;
@@ -29,8 +36,8 @@
     justify-content: center;
     align-items: center;
     font-size: 40px;
-    width: 85px;
-    height: 85px;
+    min-width: 85px;
+    min-height: 85px;
     border-radius: 100px;
     background: #D6DADC;
     background-size: cover;
@@ -40,7 +47,7 @@
 
 .account-section{
     padding-top: 30px;
-    width: 65%;
+    width: 55%;
     // border: 1px solid black;
 }
 

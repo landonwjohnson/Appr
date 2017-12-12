@@ -202,28 +202,37 @@ class AccountSettings extends Component {
       }
       return userInitials;
     }
+
+    handleUserName(){
+      let userName = this.state.userInfo.email;
+      var getPosition = this.state.userInfo.email.indexOf("@");
+      return userName.slice(0, getPosition);
+    }
   
   render() {
     
     
     return (
+
       <div>
       <Header />
       <div className="account-settings-container">
           <div className="profile-section-outter">
               <div className="profile-section-inner">
-              <div className="avatar-initial" style={{backgroundImage: `url(${this.state.userInfo.avatar})`}}>
-              <label>{this.handleInitials()}</label>
-              </div>
-              <div className="name-username-edit-con">
-                <div className="name-and-username">
-                    <div className="headline-22">{this.state.userInfo.firstName} {this.state.userInfo.lastName} </div>
-                    <div className="text-9">@{this.state.userInfo.username}</div>
-                </div>
-                <div className="edit-profile-btn" onClick={this.openModal}>
-                  <div className="button-icon"><img src={editIcon} alt="edit profile"/></div>
-                  Edit Profile
+              <div className="wrapper">
+                  <div className="avatar-initial" style={{backgroundImage: `url(${this.state.userInfo.avatar})`}}>
+                  <label>{this.handleInitials()}</label>
                   </div>
+                  <div className="name-username-edit-con">
+                    <div className="name-and-username">
+                        <div className="headline-22">{this.state.userInfo.firstName} {this.state.userInfo.lastName} </div>
+                        <div className="text-9">@{this.handleUserName()}</div>
+                    </div>
+                    <div className="edit-profile-btn" onClick={this.openModal}>
+                      <div className="button-icon"><img src={editIcon} alt="edit profile"/></div>
+                      Edit Profile
+                      </div>
+                    </div>
                 </div>
             </div>
           </div>
@@ -235,6 +244,8 @@ class AccountSettings extends Component {
               <div className="headline-20" onClick={this.openPasswordModal}> Change Password </div>
               <div className="headline-20"  onClick={this.openAvatarModal}> Change Avatar </div>
             </div>
+
+          
           </div>
 
 

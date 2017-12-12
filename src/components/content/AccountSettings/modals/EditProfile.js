@@ -27,10 +27,10 @@ class EditProfile extends Component {
                       <input className="modal-form" placeholder={this.props.userInfo.lastName} onChange={ (e) => {this.props.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
-                  <label className="modal-input-tag">Username</label>
+                  {/* <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
                       <input className="modal-form" placeholder={this.props.userInfo.username} onChange={ (e) => {this.props.handleUserNameChange(e.target.value)}} maxLength="18"/>
-                    </section>
+                    </section> */}
                 </div>
               <div className="submitModal">
                 <button id="updateProfile">
