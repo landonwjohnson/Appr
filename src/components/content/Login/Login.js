@@ -3,6 +3,8 @@ import PasswordIcon from '../../../img/icons/Key-Icon.svg';
 import UsernameIcon from '../../../img/icons/Username-Icon.svg';
 import { Link } from 'react-router-dom';
 import './login.scss';
+import { loginTest, login } from '../../../services/auth.services';
+import { request } from 'https';
 
 class Login extends Component {
 	constructor(props) {
@@ -12,11 +14,44 @@ class Login extends Component {
 			password: ''
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
 	}
 
 	handleInputChange(e) {
 		const field = e.target.name;
 		this.setState({ [field]: e.target.value });
+	}
+
+	handleSubmitLogin() {
+		const { username, password } = this.state;
+		const creds = { username, password };
+		if (!username.includes('@') || username[username.length - 4] !== '.'){
+			alert('Make sure you entered your email correctly!');
+		}
+		else {
+			if (password.length === 0) {
+				alert('Type in your password.')
+			}
+			else {
+				loginTest(creds)
+				.then( res => {
+					if (res.data === 'login test was successful!') {
+						login(creds)
+							.then( res => {
+								if (res.status === 200) {
+									alert('login was successful!')
+									// this should work, but it returns that this.props.history is undefined.
+									// this.props.history.push(`/dashboard/${res.data.id}`)
+								}
+							})
+					}
+					else {
+						alert(res.data);
+					}
+				})
+				.catch(err => {throw err});
+			}
+		}
 	}
 
 	render() {
@@ -48,9 +83,7 @@ class Login extends Component {
 							</div>
 
 							<div className="login-btn-con">
-								<Link to="/dashboard">
-									<button className="login-btn"> LOGIN </button>
-								</Link>
+								<button className="login-btn" onClick={this.handleSubmitLogin}> LOGIN </button>
 							</div>
 						</div>
 					</div>
