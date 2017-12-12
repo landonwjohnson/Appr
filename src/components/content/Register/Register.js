@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './register.scss';
 import classnames from "classnames";
 import { register } from '../../../services/auth.services';
@@ -8,6 +8,11 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            username: '',
             showFirstNameFail: false,
             showFirstNameSuccess: false,
             showLastNameFail: false,
@@ -17,6 +22,7 @@ class Register extends Component {
             showPasswordFail: false,
             showPasswordSuccess: false,
         };
+        this.handleChangeInput = this.handleChangeInput.bind(this);
         this.handleFailedFirstName = this.handleFailedFirstName.bind(this);
         this.handleSuccessFirstName = this.handleSuccessFirstName.bind(this);
         this.handleFailedLastName = this.handleFailedLastName.bind(this);
@@ -25,6 +31,14 @@ class Register extends Component {
         this.handleSuccessEmail = this.handleSuccessEmail.bind(this);
         this.handleFailedPassword = this.handleFailedPassword.bind(this);
         this.handleSuccessPassword = this.handleSuccessPassword.bind(this);
+    }
+
+    handleChangeInput(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+        let newState = this.state[key];
+        newState = value;
+        this.setState({ [key]: newState });
     }
 
     handleFailedFirstName() {
@@ -138,13 +152,13 @@ class Register extends Component {
                                     <label className="input-tag"> Name </label>
                                     <div className="reg-combined-wrapper">
                                         <div className={`${failFirstNameClass} ${successFirstNameClass}`}>
-                                            <input type="text" placeholder="First"/>
+                                            <input type="text" name="firstName" placeholder="First" onChange={e => this.handleChangeInput(e)}/>
                                             <div className="reg-info">
                                                 <p className="invalid-text">Please type in your first name</p>
                                             </div>
                                         </div>
                                         <div className={`${failLastNameClass} ${successLastNameClass}`}>
-                                            <input type="text" placeholder="Last"/>
+                                            <input type="text" name="lastName" placeholder="Last" onChange={e => this.handleChangeInput(e)}/>
                                             <div className="reg-info">
                                                 <p className="invalid-text"> Please type in your last name </p>
                                             </div>
@@ -153,7 +167,7 @@ class Register extends Component {
                                 </div>
                                 <div className={`${failEmailClass} ${successEmailClass}`}>
                                     <label className="input-tag"> Email </label>
-                                    <input className="input-solo" type="text" placeholder="e.g, landonwjohnson@gmail.com" onInvalid={this.handleFailedEmail} required/>
+                                    <input className="input-solo" type="text" name="email" placeholder="e.g. kyloren@firstorder.org" onChange={e => this.handleChangeInput(e)} onInvalid={this.handleFailedEmail} required/>
                                     <div className="reg-info">
                                         <p className="invalid-text"> This email is invalid </p>
                                         <p className="valid-text"> This email is valid </p>
@@ -161,12 +175,26 @@ class Register extends Component {
                                 </div>
                                 <div className={`${successPasswordClass} ${failPasswordClass}`}>
                                     <label className="input-tag"> Password </label>
-                                    <input className="input-solo" type="password" placeholder="e.g, •••••••••••••"/>
+                                    <input className="input-solo" type="password" name="password" placeholder="e.g. ih8ud@ddy" onChange={e => this.handleChangeInput(e)}/>
                                     <div className="reg-info">
                                         <p className="invalid-text"> Try again </p>
                                         <p className="valid-text"> Ready to go! </p>
                                     </div>
                                 </div>
+                                
+
+
+                                <div className="username-wrapper">
+                                    <label className="input-tag"> Create a Username </label>
+                                    <input className="input-solo" type="text" name="username" placeholder="e.g. radar_tech_matt548" onChange={e => this.handleChangeInput(e)}/>
+                                    <div className="reg-info">
+                                        <p className="invalid-text"> Taken! </p>
+                                        <p className="valid-text"> Available! </p>
+                                    </div>
+                                </div>
+
+
+
                                 <div className="reg-btn-footer">
                                     <button className="create-account-btn not-enough-info-btn"> Create New Account </button>
                                 </div>
