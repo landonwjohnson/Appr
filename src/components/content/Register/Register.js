@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './register.scss';
 import classnames from "classnames";
-import { register } from '../../../services/auth.services';
+import { register, login } from '../../../services/auth.services';
 
 class Register extends Component {
     constructor(props) {
@@ -101,10 +101,23 @@ class Register extends Component {
     handleButtonRegister() {
         const { firstName, lastName, email, password, username } = this.state;
         const reqBody = { firstName, lastName, email, password, username };
+        const creds = { username: email, password };
         register(reqBody)
             .then( res => {
-                if (res.status === 200) {
-                    
+                if (res.data.message === 'Registration was successful!') {
+                    login(creds)
+                        .then( res => {
+                            if (res.status === 200) {
+                                this.props.history.push(`/dashboard/${res.data.id}`)
+                            }
+                            else {
+                                alert(res.data);
+                            }
+                        })
+                        .catch(err => {throw err});
+                }
+                else {
+                    alert(res.data.message);
                 }
             })
             .catch(err => {throw err});
