@@ -39,9 +39,7 @@ class Login extends Component {
 						login(creds)
 							.then( res => {
 								if (res.status === 200) {
-									alert('login was successful!');
-									// this should work, but it returns that this.props.history is undefined.
-									// this.props.history.push(`/dashboard/${res.data.id}`)
+									this.props.history.push(`/dashboard/${res.data.id}`)
 								}
 							})
 					}
