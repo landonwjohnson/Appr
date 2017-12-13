@@ -33,7 +33,7 @@ class EditProfile extends Component {
                     </section> */}
                 </div>
               <div className="submitModal">
-                <button id="updateProfile">``
+                <button id="updateProfile">
                   Update Profile
                 </button>
               </div>
