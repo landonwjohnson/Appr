@@ -43,7 +43,7 @@ class Dashboard extends Component {
 				.then( res => {
 					if (res.data[0].id) {
 						const groupid = res.data[0].id;
-						this.props.history.push(`/group/${groupid}/dashboard`);
+						this.props.history.push(`/user/${userid}/group/${groupid}/dashboard`);
 					}
 					else {
 						alert(res.data.message);
@@ -58,7 +58,7 @@ class Dashboard extends Component {
 				.then( res => {
 					if (res.data[0].id) {
 						const projectid = res.data[0].id;
-						this.props.history.push(`/project/${projectid}/ideas`);
+						this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
 					}
 					else {
 						alert(res);
@@ -69,14 +69,14 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const groups = this.state.groups;
-		const projects = this.state.projects;
+		const userid = this.props.match.params.userid;
+		const { groups, projects } = this.state
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
 			return (
 				<li className="create-project-thumb">
-					<Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
-						<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
+					<Link to={`/user/${userid}/group/${group.id}/dashboard`} key={`group-${index}`}>
+						<div className="create-project-thumb-body">
 							<img src="https://cdn3.iconfinder.com/data/icons/blog-and-social-media-icons/512/Group_of_People-512.png" alt="add icon"/>
 						</div>
 						<div className="create-project-thumb-footer">
@@ -90,8 +90,8 @@ class Dashboard extends Component {
 			const index = projects.indexOf(project);
 			return (
 				<li className="create-project-thumb">
-					<Link to={`/project/${project.id}/ideas`} key={`project-${index}`}>
-						<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
+					<Link to={`/user/${userid}/project/${project.id}/ideas`} key={`project-${index}`}>
+						<div className="create-project-thumb-body">
 							<img src="https://cdn1.iconfinder.com/data/icons/creative-concept/174/CREATIVE_CONCEPT_Black-08-512.png" alt="add icon"/>
 						</div>
 						<div className="create-project-thumb-footer">
@@ -115,7 +115,7 @@ class Dashboard extends Component {
 									<img src={addIcon} alt="add icon"/>
 								</div>
 								<div className="create-project-thumb-footer">
-									<label>Create a Group</label>
+									<label> Create a Group </label>
 								</div>
 							</li>
 						</ul>
@@ -129,7 +129,7 @@ class Dashboard extends Component {
 									<img src={addIcon} alt="add icon"/>
 								</div>
 								<div className="create-project-thumb-footer">
-									<label>Create New Project</label>
+									<label> Create New Project </label>
 								</div>
 							</li>
 						</ul>
