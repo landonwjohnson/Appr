@@ -67,15 +67,15 @@ class Header extends Component {
     }
 
     componentWillMount(){
-        const useridForSideBar = 1;
-        // const useridForSideBar = this.props.match.params.userid;
+        const useridForSideBar = this.props.userid;
         findDashboardInfo(useridForSideBar)
             .then(res => {
+                const {projects, groups} = res.data;
                 if (res.status !== 200){
                     console.log(res);
                 }
                 else {
-                    this.setState(res.data)
+                    this.setState({projects, groups})
                 }
             })
             .catch(err => {throw err})

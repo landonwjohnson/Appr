@@ -7,19 +7,19 @@ feedbackMailer.post('/reportbug', (req, res) => {
 
    // create reusable transporter object using the default SMTP transport
    let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'landonnodemailer@gmail.com', // generated ethereal user
-        pass: '*******'  // generated ethereal password
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-});
+        service: 'gmail',
+        auth: {
+            user: 'landonnodemailer@gmail.com', // generated ethereal user
+            pass: '*******'  // generated ethereal password
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
 
     // setup email data with unicode symbols
     let mailOptions = {  
-        to: 'feedback73+edgeyp4nhpdpy3x39k8c@boards.trello.com', // list of receivers
+        to: 'feedback73+oin4osvzkn6zozxwteis@boards.trello.com', // list of receivers
         subject: `${req.body.problem} #User_Bugs`, // Subject line
         text: `###Message: 
 >${req.body.description}

@@ -30,6 +30,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
+		const userid = this.props.match.params.userid;
 		const groups = this.state.groups;
 		const projects = this.state.projects;
 		const displayGroups = groups.map( group => {
@@ -61,7 +62,7 @@ class Dashboard extends Component {
 
 		return (
 			<div>
-				<Header />
+				<Header userid={userid}/>
 				<div className="dashboard-container">
 					<div className="group-list-container">
 						<label className="dash-section-title">Groups</label>

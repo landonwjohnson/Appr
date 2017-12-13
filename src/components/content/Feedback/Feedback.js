@@ -17,7 +17,7 @@ class Feedback extends Component {
     handleSubmit(e){
         console.log(this.state.formSent);
         e.preventDefault()
-        fetch('reportbug', {
+        fetch('/api/mail/reportbug', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -30,13 +30,15 @@ class Feedback extends Component {
                 location: this.state.location
             })
         })
+         
         .then((response) => response.json())
         .then((responseJson) => {
             if (responseJson.success){
                 this.setState({formSent: true})
             }
             else this.setState({formSent: false})
-        })
+        }
+    )
         .catch((error) => {
             console.log(error);
         });
@@ -48,7 +50,7 @@ class Feedback extends Component {
         })
     }
   render() {
-      console.log(this.state)
+  
     return (
         <div className="modalStyle-inner">
         <div className="modal-account-settings-content">
