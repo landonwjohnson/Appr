@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'localhost:8080/api/project';
+const baseURL = '/api/project';
 
 function createProjectFeature(projectid, body) {
     return axios

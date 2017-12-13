@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
@@ -14,7 +13,7 @@ class Features extends Component {
       }
       this.handleAddField = this.handleAddField.bind(this);
       this.handleChangeField = this.handleChangeField.bind(this);
-      this.submitChangeField = this.submitChangeField.bind(this);
+      // this.submitChangeField = this.submitChangeField.bind(this);
       this.handleDeleteField = this.handleDeleteField.bind(this);
   }
 
@@ -43,8 +42,8 @@ componentWillMount() {
 }
 
 handleAddField(field) {
-  const projectid = this.props.match.params.projectid
-  let body;
+  const projectid = this.props.match.params.projectid || 1;
+  let body = {viewData: ''};
   const newState = this.state[field];
 
   if (field === 'features') {
@@ -70,22 +69,22 @@ handleChangeField(e, field, index) {
   this.setState({ [field]: newState });
 }
 
-submitChangeField(e, field, index) {
-  const key = e.target.name;
-  const projectid = this.props.match.params.projectid
-  const id = Number(e.target.id);
-  const body = this.state[field][index];
+// submitChangeField(e, field, index) {
+//   const key = e.target.name;
+//   const projectid = this.props.match.params.projectid
+//   const id = Number(e.target.id);
+//   const body = this.state[field][index];
 
-  if (field === 'features') {
-      updateProjectFeature(projectid, id, body)
-      .then(res => {
-          if (res.status !== 200) {
-              console.log(res);
-          }
-      })
-      .catch(err => {throw err});
-  }
-}
+//   if (field === 'features') {
+//       updateProjectFeature(projectid, id, body)
+//       .then(res => {
+//           if (res.status !== 200) {
+//               console.log(res);
+//           }
+//       })
+//       .catch(err => {throw err});
+//   }
+// }
 
 handleDeleteField(e, field, index) {
   const projectid = this.props.match.params.projectid
