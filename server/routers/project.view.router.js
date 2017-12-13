@@ -8,7 +8,7 @@ projectViewRouter.post('/:projectid/create/view', (req, res) => {
     const { name, imageUrl } = req.body;
     const db = getDb();
     db.create_project_view([ projectid, name, imageUrl ])
-        .then(promise => res.send())
+        .then(view => res.send(view))
         .catch(err => res.status(500).send(err));
 });
 
