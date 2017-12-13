@@ -34,7 +34,7 @@ projectIdeaRouter.get('/:projectid/idea/:ideaid', (req, res) => {
 projectIdeaRouter.put('/:projectid/update/idea/:ideaid', (req, res) => {
     const projectid = req.params.projectid;
     const ideaid = req.params.ideaid;
-    const { projectId, ideaData } = req.body;
+    const { ideaData } = req.body;
     const db = getDb();
     db.update_project_idea([ projectid, ideaid, ideaData ])
         .then(promise => res.send())
