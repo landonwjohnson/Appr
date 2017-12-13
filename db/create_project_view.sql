@@ -3,3 +3,8 @@ INSERT INTO project_view
     VALUES
         ($1, $2, $3)
 ;
+
+SELECT * FROM project_view
+    WHERE name = $2
+;
+

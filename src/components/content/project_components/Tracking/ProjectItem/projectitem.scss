@@ -71,21 +71,12 @@
         text-align: left;
     }
 
-    span{
+    svg{
+        display: block;
         position: relative;
         bottom: 3px;
-        background-image: url("../../../../../img/icons/trashcan-closed-icon.svg");
-        cursor: pointer;
-        opacity: 0.5;
-        background-position-x: 50%;
-        background-position-y: 50%;
-        width: 20px;
-        height: 20px;
-
-        &:hover{
-            background-image: url("../../../../../img/icons/trashcan-open-icon.svg");
-            opacity: 1;
-        }
+        width: 40px;
+        height: 40px;
     }
 
     // .dotmenu-closed{

@@ -66,6 +66,8 @@ class Header extends Component {
         this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
 
+    
+
     componentWillMount(){
         const useridForSideBar = this.props.userid;
         findDashboardInfo(useridForSideBar)

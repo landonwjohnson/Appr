@@ -42,6 +42,11 @@ class Feedback extends Component {
         .catch((error) => {
             console.log(error);
         });
+
+        
+        this.props.onCloseBtnClick();
+    
+
     }
 
     componentDidMount(){
