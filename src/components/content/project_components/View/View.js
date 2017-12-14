@@ -45,33 +45,42 @@ class View extends Component {
 
     handleAddViewButton() {
         const projectid = this.props.match.params.projectid || 1;
-        const body = {viewData: ''};
-        const newState = this.state.views;
-        newState.push(body);
-        this.setState({ views: newState });
+        const reqBody = {
+          name: '',
+          imageUrl:  ''
+        }
 
 
-        createProjectView( projectid, body )
+        createProjectView( projectid, reqBody )
             .then(res => {
                 if(res.status !== 200) {
                   console.log(res);
+                } else {
+                   const newState = this.state.views;
+                   newState.push(res.data[0]);
+                   this.setState({ views: newState });
                 }
             })
             .catch(err => {throw err});
     }
 
-    handleChangeView(e, index) {
+    handleChangeView(e, index, field) {
         const newState = this.state.views;
-        newState[index].view_data = e.target.value;
+        newState[index][field] = e.target.value;
         this.setState({ views: newState });
     }
 
     submitChangeView(e, index) {
+      debugger;
         const projectid = this.props.match.params.projectid;
         const viewid = Number(e.target.id);
-        const body = this.state.views[index].view_data;
+        const {name, image_url} = this.state.views[index];
+        const reqBody = {
+          name,
+          imageUrl:  image_url
+        }
 
-        updateProjectView(projectid, viewid, body)
+        updateProjectView(projectid, viewid, reqBody)
             .then(res => {
                 if(res.status !== 200) {
                     console.log(res);
@@ -81,7 +90,7 @@ class View extends Component {
     }
 
     handleDeleteViewButton(e, index) {
-        const projectid = this.props.match.params.projectid;
+        const projectid = Number(this.props.match.params.projectid);
         const viewid = Number(e.target.id);
         const newState = this.state.views;
         newState.splice(index, 1);
@@ -105,8 +114,8 @@ class View extends Component {
           <div className="view-item" key={`idea-${index}`}>
           <section>
             <label>{(index + 1) + '.'}</label>
-            <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index)} />
-            <input className="view-input-imgurl" type="text" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index)} />
+            <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index, "name")} />
+            <input className="view-input-imgurl" type="text" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index, "image_url")} />
           </section>
             <button  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
             <span className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</span> 

@@ -1,3 +1,5 @@
+@import '../../_colors.scss';
+
 .account-settings-container{
     display: flex;
     flex-direction: column;
@@ -6,7 +8,7 @@
 
 .profile-section-outter {
     height: 185px;
-    background: #EAEAEA;
+    background-color: $light-color;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,13 +56,13 @@
 .headline-30{
     font-size: 30px;
     text-align: left;
-    color: #95989A
+    color: $medium-color;
 }
 
 .headline-20{
     font-size: 20px;
     text-align: left;
-    color: #95989A;
+    color: $medium-color;
 }
 
 .headline-22{
