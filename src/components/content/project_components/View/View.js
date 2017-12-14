@@ -97,6 +97,7 @@ class View extends Component {
     }
 
   render() {
+    const { userid, projectid } = this.props.match.params;
     const views = this.state.views;
     const displayViews = views.map( view => {
         const index = views.indexOf(view);
@@ -117,7 +118,7 @@ class View extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar />
+          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           
           <div className="view-container">
             <div className="view-inner-con">

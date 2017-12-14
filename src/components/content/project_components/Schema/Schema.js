@@ -60,6 +60,7 @@ class Schema extends Component {
   }
 
   render() {
+    const { userid, projectid } = this.props.match.params;
     const displaySchemas = this.state.schemas.map( schema => {
         return(
           <div className="schema-item">
@@ -123,7 +124,7 @@ class Schema extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar />
+          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
             <div className="schema-container">
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>

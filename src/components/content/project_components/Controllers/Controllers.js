@@ -43,6 +43,7 @@ class Controllers extends Component {
   }
 
   render() {
+    const { userid, projectid } = this.props.match.params;
     const displayControllers = this.state.controllers.map(controller => {
         return(
             <div className="contro-item">
@@ -93,7 +94,7 @@ class Controllers extends Component {
     <div>
         <Header />
      <div className="main-fix">
-        <ProjectSetupSidebar />
+        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
         <div className="controllers-container">
             <div className="controllers-wrapper">
                 <div className="project-section-header">Controllers</div>

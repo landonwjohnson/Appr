@@ -166,6 +166,7 @@ class Ideas_Users extends Component {
     }
 
     render() {
+        const { userid, projectid } = this.props.match.params;
         const ideas = this.state.ideas;
         const userfields = this.state.userfields;
 
@@ -205,7 +206,7 @@ class Ideas_Users extends Component {
             <div>
                 <Header />
                 <div className="main-fix">
-                    <ProjectSetupSidebar />
+                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
                     <div className="ideasUsers-container">
                         <div className="ideasUsers-wrapper">
                             <div className="project-section-header">
