@@ -8,7 +8,7 @@ projectControllerRouter.post('/:projectid/create/controller', (req, res) => {
     const { whenData, doData, requireData } = req.body;
     const db = getDb();
     db.create_project_controller([ projectid, whenData, doData, requireData ])
-        .then(promise => res.send())
+        .then(controller => res.send(controller))
         .catch(err => res.status(500).send(err));
 });
 
