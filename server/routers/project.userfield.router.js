@@ -8,7 +8,7 @@ projectUserFieldRouter.post('/:projectid/create/userfield', (req, res) => {
     const { targetDemoData, skillData, descriptionData } = req.body;
     const db = getDb();
     db.create_project_userfield([ projectid, targetDemoData, skillData, descriptionData ])
-        .then(promise => res.send())
+        .then(userfield => res.send(userfield))
         .catch(err => res.status(500).send(err));
 });
 

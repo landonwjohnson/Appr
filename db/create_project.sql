@@ -4,5 +4,7 @@ INSERT INTO project (name, author_id, status_id)
 ;
 
 SELECT * FROM project
-    WHERE name = $1 AND status_id = 1
+    WHERE name = $1
+    AND status_id = 1
+    ORDER BY id
 ;

@@ -38,6 +38,7 @@ class Features extends Component {
 
 
   render() {
+    const { userid, projectid } = this.props.match.params;
     const displayFeatures = this.state.features.arr.map( feature => {
       return(
 
@@ -56,7 +57,7 @@ class Features extends Component {
       <div>
       <Header />
       <div className="main-fix">
-        <ProjectSetupSidebar />
+        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           <div className="features-container">
             <div className="container-wrapper">
                 <div className="project-section-header">
