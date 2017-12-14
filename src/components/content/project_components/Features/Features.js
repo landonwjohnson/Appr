@@ -47,7 +47,7 @@ class Features extends Component {
             <input placeholder={feature.name}/>
           </section>
           <button className="not-enough-info-btn">Save</button>
-          <span className="delete-x" onClick={this.removeFeatureItemHandler}>&times;</span> 
+          <button className="delete-x" onClick={this.removeFeatureItemHandler}>&times;</button> 
         </div>
 
       )
