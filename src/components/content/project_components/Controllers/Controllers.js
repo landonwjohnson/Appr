@@ -3,7 +3,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
-import { createProjectController, findProjectControllers } from '../../../../services/project.controller.services';
+import { createProjectController, findProjectControllers, deleteProjectController } from '../../../../services/project.controller.services';
 
 class Controllers extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class Controllers extends Component {
       this.state = {
           controllers: []
       };
-      this.addControllerItemHandler = this.addControllerItemHandler.bind(this);
-      this.removeControllerItemHandler = this.removeControllerItemHandler.bind(this);
+      this.handleAddController = this.handleAddController.bind(this);
+      this.handleDeleteController = this.handleDeleteController.bind(this);
   }
 
   componentWillMount() {
@@ -29,7 +29,7 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
 
-  addControllerItemHandler() {
+  handleAddController() {
     const projectid = this.props.match.params.projectid;
     const reqBody = { whenData: '', doData: '', requireData: '' };
     createProjectController(projectid, reqBody)
@@ -46,20 +46,37 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
 
-  removeControllerItemHandler(){
-      let ControllerList = this.state.controllers;
-      ControllerList.splice(1, 1);
-      this.setState({ arr: ControllerList})
+  handleChangeInput() {
+
+  }
+
+  handleDeleteController(index) {
+    const projectid = this.props.match.params.projectid;
+    const controllerid = this.state.controllers[index].id;
+    deleteProjectController(projectid, controllerid)
+        .then(res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                let newState = this.state.controllers;
+                newState.splice(index, 1);
+                this.setState({ controllers: newState });
+            }
+        })
+        .catch(err => {throw err});
   }
 
   render() {
     const { userid, projectid } = this.props.match.params;
-    const displayControllers = this.state.controllers.map(controller => {
+    const controllers = this.state.controllers;
+    const displayControllers = controllers.map(controller => {
+        const index = controllers.indexOf(controller);
         return (
-            <div className="contro-item">
+            <div className="contro-item" key={`controller-${index}`}>
                 <div className="contro-item-inner">
                     <div className="project-item-header">
-                        <span className="delete-item" onClick={this.removeControllerItemHandler}> </span>
+                        <span className="delete-item" onClick={() => this.handleDeleteController(index)}> </span>
                     </div>
                     <div className="contro-item-title">
                         <input type="text" placeholder="" />
@@ -99,7 +116,7 @@ class Controllers extends Component {
                         <div className="project-section-header"> Controllers </div>
                         <div className="controller-list-container">
                             {displayControllers}
-                            <button className="add-contro-item" onClick={this.addControllerItemHandler}>
+                            <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
                                     <div className="add-contro-item-body">
                                         <img src={addIcon} alt="Add New Controller"/>
