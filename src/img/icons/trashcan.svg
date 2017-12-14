@@ -1,0 +1,58 @@
+
+<svg version="1.1" class="trashcan" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 14 19"
+	 style="enable-background:new 0 0 14 19;" xml:space="preserve">
+<style type="text/css">
+	.trashcan {
+		fill: #9B9C9D;
+		cursor: pointer;
+	}
+
+	#bucket-layer{
+		transition: 0.2s ease-in-out;
+	}
+
+	#lid-layer{
+		transition: 0.2s ease-in-out;
+	}
+
+</style>
+<script type = "text/javascript">
+	//Listen for hover
+	document.querySelector('.trashcan').addEventListener('mouseover', openTrash);
+	document.querySelector('.trashcan').addEventListener('mouseleave', closeTrash);
+
+	function openTrash(e){
+		
+		document.querySelector('#lid-layer').style.transform = 'translate(-0.5px, 0.2px) rotate(-10deg)';
+		document.querySelector('.trashcan').style.fill = '#545454';
+	}
+
+	function closeTrash(e){
+		document.getElementById('lid-layer').style.transform = 'rotate(0deg) translateX(0px)';
+		document.querySelector('.trashcan').style.fill = '#9B9C9D';
+	}
+</script>
+<switch>
+	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
+		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
+		</i:pgfRef>
+	</foreignObject>
+	<g i:extraneous="self">
+		<g id="bucket-layer">
+			<g id="bucket">
+				<g>
+					<path class="st0" d="M1,5.3l1,13h10l1-13C13,5.3,1,5.3,1,5.3z M4.4,16.8H3.2v-10h1.2C4.4,6.8,4.4,16.8,4.4,16.8z M7.6,16.8H6.4
+						v-10h1.2C7.6,6.8,7.6,16.8,7.6,16.8z M10.8,16.8H9.6v-10h1.2V16.8z"/>
+				</g>
+			</g>
+		</g>
+		<g id="lid-layer">
+			
+			<g id="lid-closed">
+				<polygon class="st0" points="1,2.6 4.7,2.6 5.6,1.7 8.4,1.7 9.3,2.6 13,2.6 13,4.4 1,4.4 				"/>
+			</g>
+		</g>
+	</g>
+</switch>
+</svg>

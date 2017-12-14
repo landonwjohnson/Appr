@@ -10,7 +10,7 @@ feedbackMailer.post('/reportbug', (req, res) => {
         service: 'gmail',
         auth: {
             user: 'landonnodemailer@gmail.com', // generated ethereal user
-            pass: '*******'  // generated ethereal password
+            pass: '***'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
