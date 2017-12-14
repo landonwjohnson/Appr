@@ -8,7 +8,7 @@ projectIdeaRouter.post('/:projectid/create/idea', (req, res) => {
     const { ideaData } = req.body;
     const db = getDb();
     db.create_project_idea([ projectid, ideaData ])
-        .then(promise => res.send())
+        .then(idea => res.send(idea))
         .catch(err => res.status(500).send(err));
 });
 

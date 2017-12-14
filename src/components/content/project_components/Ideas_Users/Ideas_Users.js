@@ -65,31 +65,31 @@ class Ideas_Users extends Component {
 
     handleAddField(field) {
         const projectid = this.props.match.params.projectid
-        let body;
         const newState = this.state[field];
-
         if (field === 'ideas') {
-            body = {ideaData: ''};
-            newState.push(body);
-            this.setState({ ideas: newState });
-
-            createProjectIdea(projectid, body)
+            const reqBody = {ideaData: ''};
+            createProjectIdea(projectid, reqBody)
                 .then(res => {
                     if (res.status !== 200) {
                         console.log(res);
+                    }
+                    else {
+                        newState.push(res.data[0]);
+                        this.setState({ ideas: newState });
                     }
                 })
                 .catch(err => {throw err});
         }
         else if (field === 'userfields') {
-            body = { target_demo_data: '', skill_data: '', description_data: '' };
-            newState.push(body);
-            this.setState({ userfields: newState });
-
-            createProjectUserField(projectid, body)
+            const reqBody = { targetDemoData: '', skillData: '', descriptionData: '' };
+            createProjectUserField(projectid, reqBody)
                 .then(res => {
                     if (res.status !== 200) {
                         console.log(res);
+                    }
+                    else {
+                        newState.push(res.data[0]);
+                        this.setState({ userfields: newState });
                     }
                 })
                 .catch(err => {throw err});
@@ -108,10 +108,11 @@ class Ideas_Users extends Component {
         const key = e.target.name;
         const projectid = this.props.match.params.projectid
         const id = Number(e.target.id);
-        const body = this.state[field][index];
 
         if (field === 'ideas') {
-            updateProjectIdea(projectid, id, body)
+            const ideaData = this.state[field][index].idea_data;
+            const reqBody = { ideaData };
+            updateProjectIdea(projectid, id, reqBody)
             .then(res => {
                 if (res.status !== 200) {
                     console.log(res);
@@ -120,7 +121,13 @@ class Ideas_Users extends Component {
             .catch(err => {throw err});
         }
         else if (field === 'userfields') {
-            updateProjectUserField(projectid, id, body)
+            const { target_demo_data, skill_data, description_data } = this.state[field][index];
+            const reqBody = {
+                targetDemoData: target_demo_data,
+                skillData: skill_data,
+                descriptionData: description_data
+            };
+            updateProjectUserField(projectid, id, reqBody)
                 .then(res => {
                     if (res.status !== 200) {
                         console.log(res);
