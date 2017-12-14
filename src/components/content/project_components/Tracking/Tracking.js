@@ -57,6 +57,7 @@ class Tracking extends Component {
   }
   
   render() {
+    const { userid, projectid } = this.props.match.params;
     console.log(this.state.listName)
 
     const displayTrackerLists= this.state.lists.map( (list, index) => {
@@ -74,7 +75,7 @@ class Tracking extends Component {
       <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
         <Header />
         <div className="main-fix">
-        <ProjectSetupSidebar />
+        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
         <div className="tracking-container">
         <div className="project-header">
             <label>Tracker</label>
