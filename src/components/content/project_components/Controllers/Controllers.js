@@ -2,26 +2,31 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import addIcon from '../../../../img/icons/add-icon.svg';
-
 import './controllers.scss';
+import { findProjectControllers } from '../../../../services/project.controller.services';
 
 class Controllers extends Component {
-  constructor(props){
+  constructor(props) {
       super(props);
-      this.state={
+      this.state = {
           controllers: []
-      }
+      };
       this.addControllerItemHandler = this.addControllerItemHandler.bind(this);
       this.removeControllerItemHandler = this.removeControllerItemHandler.bind(this);
-
   }
 
-  componentWillMount(){
-
-  }
-
-  findControllers(){
-
+  componentWillMount() {
+      const projectid = this.props.match.params.projectid;
+      findProjectControllers(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                this.setState({ controllers: res.data });
+            }
+        })
+        .catch(err => {throw err});
   }
 
   addControllerItemHandler(){
