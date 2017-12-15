@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
+import classnames from "classnames";
+
 
 class Features extends Component {
   constructor(props) {
@@ -13,11 +15,32 @@ class Features extends Component {
                    label: 1,
                    name: 'Write use cases for your app'
                  }]
+        },
+
+        UI: {
+          saveBtn: false
         }
     }
     this.addFeatureItemHandler = this.addFeatureItemHandler.bind(this);
     this.removeFeatureItemHandler = this.removeFeatureItemHandler.bind(this);
+    this.handleSaveBtnUI = this.handleSaveBtnUI.bind(this);
   }
+
+  handleSaveBtnUI(e){
+    // var id = e.id;
+    console.log(this.state.UI.saveBtn)
+    console.log(e)
+    
+    if(e.value.length >= 1){
+      this.setState({ UI: { saveBtn: true  }})
+    }
+    else{
+      this.setState({ UI: { saveBtn: false }})
+    }
+    
+
+  }
+  
 
   addFeatureItemHandler(){
     let FeatureList = this.state.features.arr;
@@ -38,21 +61,28 @@ class Features extends Component {
 
 
   render() {
+    var saveBtnClass = classnames({
+      "input-complete-btn":  this.state.UI.saveBtn, 
+      "input-incomplete-btn" : true
+  })
+    console.log(this.state.features.arr.name)
     const displayFeatures = this.state.features.arr.map( feature => {
       return(
 
-        <div className="features-item">
+        <div className="features-item" >
           <section>
             <label>{feature.label + '.'}</label>
-            <input placeholder={feature.name}/>
+            <input placeholder={feature.name} id={feature.name.replace(/[^a-zA-Z]/g, '').toLowerCase() + ".feature"} onChange={(e) => this.handleSaveBtnUI(e.target)} />
           </section>
-          <button className="not-enough-info-btn">Save</button>
+          <button className={saveBtnClass}>Save</button>
           <button className="delete-x" onClick={this.removeFeatureItemHandler}>&times;</button> 
         </div>
 
       )
     })
     return (
+      
+      
       <div>
       <Header />
       <div className="main-fix">
