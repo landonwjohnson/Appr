@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 $primary: #616161;
 
 $secondary: #F48BA1;
@@ -14,23 +13,10 @@ $light-color: #E2E4E6;
 
 
 
-=======
-$primary: #145C9E;
-
-$secondary: rgb(22, 107, 181);
-
-$dark-color: #3a3a3a;
-
-$medium-color: #808080;
-
-$light-color: #E2E4E6;
-
->>>>>>> 2e2747093f00ec50b335f4191506d31c46097f7f
 @mixin darken-background($color, $factor: 20%) {
     background-color: darken($color, $factor);
 }
 
-<<<<<<< HEAD
 @mixin lighten-background($color, $factor: 20%){
     background-color: lighten($color, $factor);
 }
@@ -39,8 +25,6 @@ $light-color: #E2E4E6;
     color: darken($color, $factor);
 }
 
-=======
->>>>>>> 2e2747093f00ec50b335f4191506d31c46097f7f
 @mixin darken-left-border($color, $factor: 20%){
     border-left: darken($color, $factor) 1px solid;
 }
@@ -52,7 +36,6 @@ $border-radius: 5px;
 //     line-height: 1;
 //     min-height: 1em;
 //     min-width: 1em;
-<<<<<<< HEAD
 // }
 
 
@@ -104,6 +87,3 @@ $border-radius: 5px;
     $addBtn-color1: #5aac44;
     $addBtn-color2: #61bd4f;
     $addBtn-radius: 3px;
-=======
-// }
->>>>>>> 2e2747093f00ec50b335f4191506d31c46097f7f

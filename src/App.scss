@@ -34,9 +34,9 @@ a{
   // background-image: url('./img/backgrounds/HotSpringsUtah.jpg');
   background-size: cover;
   display: flex;
+  width: 100%;
   flex-direction: row;
   height: 100%;
-  background-image: url('./img/landing-slider/conferenceRoom.jpg');
   background-size: 100%;
   background-repeat: no-repeat; 
   
@@ -168,7 +168,7 @@ body {
 
 .input-incomplete-btn{
   color: #B0B0B0;
-  width: 8%;
+  width: 50px;
   height: 35px;
   font-size: 14px;
   border-radius: 0px 3px 3px 0px;
