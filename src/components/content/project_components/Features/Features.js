@@ -131,7 +131,7 @@ class Features extends Component {
       <div>
       <Header />
       <div className="main-fix">
-        <ProjectSetupSidebar />
+        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           <div className="features-container">
             <div className="container-wrapper">
                 <div className="project-section-header">

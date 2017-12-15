@@ -9,7 +9,6 @@
 .profile-section-outter {
     @include lighten-background($primary, 63%);
     height: 185px;
-    
     width: 100%;
     display: flex;
     justify-content: center;
