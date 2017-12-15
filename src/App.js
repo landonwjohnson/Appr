@@ -11,14 +11,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          {/* <Body /> */}
+          <Body />
 
-          //Landon Testing Stuff
+          {/* //Landon Testing Stuff
           <Endpoints />
           <Schema />
           <Tracking />
           <Features />
-          <Controllers />
+          <Controllers /> */}
       </div>
     );
   }
