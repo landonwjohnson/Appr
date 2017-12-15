@@ -34,6 +34,6 @@ export default (
             <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
             <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>
             <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
-            <Route component={ Tracking } path="/user/:userid/project/:projectid/tracking"/>
+            <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>
     </Switch>
 );

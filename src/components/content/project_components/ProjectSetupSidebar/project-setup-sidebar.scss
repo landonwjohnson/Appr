@@ -2,8 +2,8 @@
     min-width: 240px;
     
     
-    height: 100vh;
-  
+    height: calc(100vh - 50px);
+    
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@
         width: 100%;
         background: transparent;
         border: none;
-        // border-bottom: 1px dashed black;
+        border-bottom: 1px dashed black;
     }
     ::-webkit-input-placeholder {
         text-align: left;
@@ -71,6 +71,19 @@
         background: rgba(66, 133, 244, 0.25);
     }
 
+}
+
+.project-side-bar-footer{
+    display: block;
+    position: absolute;
+    top: calc(100% - 40px);
+    color: blue;
+
+    label{
+        padding-left: 24px;
+        color: #8C8984;
+        text-decoration: underline;
+    }
 }
 
 

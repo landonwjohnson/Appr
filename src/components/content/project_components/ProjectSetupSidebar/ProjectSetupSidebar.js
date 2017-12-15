@@ -37,19 +37,22 @@ export default class ProjectSetupSidebar extends Component {
         const { userid, projectid } = this.props;
         return (
             <div className="project-sidebar-container">
-            <div className="project-sidebar-header">
-                <input type="text" value={this.state.name} onChange={e => this.handleChangeName(e)} autoFocus/> 
+                <div className="project-sidebar-header">
+                    <input type="text" value={this.state.name} onChange={e => this.handleChangeName(e)} autoFocus/> 
+                </div>
+                <ul className="project-sidebar-inner">
+                    <Link to={`/user/${userid}/project/${projectid}/ideas`} className="psb-item"><li>Ideas & Users</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/features`} className="psb-item"><li >Features</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/views`}  className="psb-item"><li>Views</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/controllers`} className="psb-item"><li>Controllers</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/endpoints`} className="psb-item"><li>Endpoints</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/schema`} className="psb-item"><li >Schema</li></Link>
+                    <Link to={`/user/${userid}/project/${projectid}/tracker`} className="psb-item"><li >Tracker</li></Link>
+                </ul>
+                <div className="project-side-bar-footer">
+                    <label>Change Background</label>
+                </div>
             </div>
-            <ul className="project-sidebar-inner">
-                <Link to={`/user/${userid}/project/${projectid}/ideas`} className="psb-item"><li>Ideas & Users</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/features`} className="psb-item"><li >Features</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/views`}  className="psb-item"><li>Views</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/controllers`} className="psb-item"><li>Controllers</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/endpoints`} className="psb-item"><li>Endpoints</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/schema`} className="psb-item"><li >Schema</li></Link>
-                <Link to={`/user/${userid}/project/${projectid}/tracker`} className="psb-item"><li >Tracker</li></Link>
-            </ul>
-        </div>
         )
     }
 }
