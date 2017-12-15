@@ -3,7 +3,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
-import { createProjectController, findProjectControllers, deleteProjectController } from '../../../../services/project.controller.services';
+import { createProjectController, findProjectControllers, updateProjectController, deleteProjectController } from '../../../../services/project.controller.services';
 
 class Controllers extends Component {
   constructor(props) {
@@ -12,6 +12,8 @@ class Controllers extends Component {
           controllers: []
       };
       this.handleAddController = this.handleAddController.bind(this);
+      this.handleChangeInput = this.handleChangeInput.bind(this);
+      this.handleSaveChange = this.handleSaveChange.bind(this);
       this.handleDeleteController = this.handleDeleteController.bind(this);
   }
 
@@ -46,8 +48,27 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
 
-  handleChangeInput() {
+  handleChangeInput(e, index, field) {
+      const newState = this.state.controllers;
+      newState[index][field] = e.target.value;
+      this.setState({ controllers: newState });
+  }
 
+  handleSaveChange(e, index) {
+      const projectid = this.props.match.params.projectid;
+      const controllerid = e.target.id;
+      const reqBody = {
+          whenData: this.state.controllers[index].when_data,
+          doData: this.state.controllers[index].do_data,
+          requireData: this.state.controllers[index].require_data
+      };
+      updateProjectController(projectid, controllerid, reqBody)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+        })
+        .catch(err => {throw err});
   }
 
   handleDeleteController(index) {
@@ -85,19 +106,19 @@ class Controllers extends Component {
                         <div className="contro-row-container">
                             <label className="contro-row-name"> When </label>
                             <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" value={controller.when_data}/>
+                                <input className="contro-input-field" type="text" id={controller.id} value={controller.when_data} onChange={e => this.handleChangeInput(e, index, 'when_data')} onBlur={e => this.handleSaveChange(e, index)}/>
                             </div>
                         </div>
                         <div className="contro-row-container">
                             <label className="contro-row-name"> Do </label>
                             <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" value={controller.do_data}/>
+                                <input className="contro-input-field" type="text" id={controller.id} value={controller.do_data} onChange={e => this.handleChangeInput(e, index, 'do_data')} onBlur={e => this.handleSaveChange(e, index)}/>
                             </div>
                         </div>
                         <div className="contro-row-container">
                             <label className="contro-row-name"> Require </label>
                             <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" value={controller.require_data}/>
+                                <input className="contro-input-field" type="text" id={controller.id} value={controller.require_data} onChange={e => this.handleChangeInput(e, index, 'require_data')} onBlur={e => this.handleSaveChange(e, index)}/>
                             </div>
                         </div>
                     </div>
