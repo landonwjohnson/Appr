@@ -31,7 +31,7 @@ a{
 
 .main-fix{
   @include lighten-background($primary, 30%);
-  background-image: url('./img/backgrounds/HotSpringsUtah.jpg');
+  // background-image: url('./img/backgrounds/HotSpringsUtah.jpg');
   background-size: cover;
   display: flex;
   flex-direction: row;

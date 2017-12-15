@@ -23,17 +23,17 @@ export default (
 
         {/* Future Sub Routes */}
             <Route component={ Dashboard } path="/user/:userid/dashboard"/>
-            <Route component={ AccountSettings } path="/user/:userid/account-settings"/>
+            <Route component={ AccountSettings } path="/user/:userid/account/settings/:userid"/>
             {/* <Route component={ GroupDashboard } path="/user/:userid/group/:groupid/dashboard"/> */}
             {/* <Route component={ GroupSettings } path="/user/:userid/group/:groupid/settings"/> */}
 
         {/* Future Sub Routes In Wizard */}
             <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas"/>
-            <Route component={ Features } path="/project/:projectid/features"/>
-            <Route component={ View } path="/project/:projectid/views"/>
-            <Route component={ Controllers } path="/project/:projectid/controllers"/>
-            <Route component={ Schema } path="/project/:projectid/schema"/>
-            <Route component={ Endpoints } path="/project/:projectid/endpoints"/>
-            <Route component={ Tracking } path="/project/:projectid/tracking"/>
+            <Route component={ Features } path="/user/:userid/project/:projectid/features"/>
+            <Route component={ View } path="/user/:userid/project/:projectid/views"/>
+            <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
+            <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>
+            <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
+            <Route component={ Tracking } path="/user/:userid/project/:projectid/tracking"/>
     </Switch>
 );

@@ -3,7 +3,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
 import classnames from "classnames";
-import { findProjectFeatures, createProjectFeature, updateProjectFeature} from '../../../../services/project.feature.services';
+import {  createProjectFeature, updateProjectFeature, findProjectFeature, findProjectFeatures} from '../../../../services/project.feature.services';
 
 
 class Features extends Component {
@@ -47,6 +47,7 @@ class Features extends Component {
   }
 
   handleChangeFeature(e, index){
+    console.log('handleChangeFeature')
     const newState = this.state.features;
     newState[index].feature_data = e.target.value;
     this.setState({ features: newState})
@@ -80,6 +81,7 @@ class Features extends Component {
   }
 
   handleSubmitFeature(e, index){
+    console.log('handleSubmitFeature')
     const projectid = this.props.match.params.projectid;
     const featureid = e.target.id;
     const reqBody = { featureData: this.state.features[index].feature_data }
@@ -90,6 +92,7 @@ class Features extends Component {
         }
       })
       .catch(err => {throw err});
+      console.log(this.state.features)
   }
 
   removeFeatureItemHandler(){
@@ -101,6 +104,7 @@ class Features extends Component {
 
 
   render() {
+   
     const {userid, projectid } = this.props.match.params;
     var saveBtnClass = classnames({
       "input-complete-btn":  this.state.UI.saveBtn, 
@@ -115,7 +119,7 @@ class Features extends Component {
             <label>{(index + 1) + '.'}</label>
             <input value={feature.feature_data} onChange={(e) => this.handleChangeFeature(e, index)} />
           </section>
-          <button id={feature.id} className={saveBtnClass} onClick={this.handleAddFeature} onClick={e => this.handleSubmitFeature(index)}>Save</button>
+          <button id={feature.id} className={saveBtnClass}  onClick={(e) => this.handleSubmitFeature(e, index)}>Save</button>
           <button className="delete-x" onClick={this.removeFeatureItemHandler}>&times;</button> 
         </div>
 
