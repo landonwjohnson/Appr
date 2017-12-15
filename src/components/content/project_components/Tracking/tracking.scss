@@ -9,8 +9,6 @@
 }
 
 .project-header{
-    
-    
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -22,8 +20,6 @@
        font-weight: bold;
     }
 }
-
-
 
 .tracking-wrapper {
     position: relative;
@@ -39,19 +35,12 @@
         align-items: flex-start;
         white-space: nowrap;
         padding-left: 10px;
-          z-index: 0;
-          width: 100%;
-          overflow-x: auto;
-        // justify-content: flex-start;
-        // display: flex;
+        width: 100%;
+        overflow-x: auto;
         height: 82vh;
-        
-        // width: 98%;
         overflow-x: auto;
         overflow-y: hidden;
-        
         z-index: 0;
-
 
         &::-webkit-scrollbar {
             height: 15px;
@@ -82,8 +71,6 @@
     }
 }
 
-
-
 .add-list-wrapper{
     display: inline-flex;
     max-width: 100%;
@@ -91,11 +78,8 @@
     white-space: nowrap;
     margin-left: 5px;
     padding-right: 50px;
-    // height: 80vh;
-    // margin-bottom: auto;
-    
-
 }
+
 .add-list--before{
     display:block;
     padding-bottom: 5px;

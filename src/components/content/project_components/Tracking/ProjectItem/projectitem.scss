@@ -9,17 +9,6 @@
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 0px;
-    
-    
-   
-    
-
- 
- 
-    // height: 80vh;
-    // margin-bottom: auto;
-    
-
 }
 .project-item-block{
     position: relative;
@@ -32,24 +21,15 @@
     
 }
 
-.prjt-item-inner{
-    
-    // padding: 10px;
-    
-}
-
 .prjt-item-header{
- 
     display: flex;
     justify-content: space-between;
     height: 30px;
     max-width: 100%;
     position: relative;
-    // border: 1px solid black;
     z-index: 0;
     padding-left: 10px;
     padding-right: 10px;
-   
 
     input{
         max-width: 90%;
@@ -60,9 +40,7 @@
         background: transparent;
         border: none;
         outline: none;
-        color: #333;
-
-       
+        color: #333;  
     }
 
     ::-webkit-input-placeholder {
@@ -78,33 +56,10 @@
         width: 40px;
         height: 40px;
     }
-
-    // .dotmenu-closed{
-    //     background-image: url("../../../../../img/icons/dot-menu.svg");
-    //     cursor: pointer;
-    //     background-position-x: 50%;
-    //     background-position-y: 50%;
-    //     width: 20px;
-    //     height: 20px;
-    // }
-
-    // .dotmenu--open{
-    //     display: block;
-    //     position: absolute;
-    //     left: 90%;
-    //     background-image: none;
-    //     cursor: pointer;
-    //     width: 250px;
-    //     height: 250px;
-    //     background: blue;
-    //     z-index: 1000;
-    // }
-
    
 }
 
 .prjt-item-body{
-  
 
     ul{
         overflow-y: auto;
@@ -195,7 +150,7 @@
             display: none;
             transition: 0.2s ease-in-out;
         }
-        transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
     }
 
     .add-task-show{
@@ -224,8 +179,6 @@
             resize: none;
             border-radius: 4px;
             border: none;
-            // margin-left: 10px;
-            // margin-right: 10px;
             outline: none;
             width: 100%;
             height: 54px;
@@ -251,11 +204,6 @@
        
     }
 }
-
-
-
-
-
 
 .show-text {
     
@@ -284,73 +232,3 @@
     margin-top: 0px;
    
 }
-
-
-
-
-// .pop-over-menu{
-    
-//     position: absolute;
-//     background: white;
-//     width: 250px;
-//     max-height: 100%;
-//     z-index: 10;
-
-//     span{
-//         margin: 0px;
-//         padding: 0px;
-//     }
-
-//     .pop-over-menu-wrapper{
-//         display: flex;
-//         flex-direction: column;
-//         z-index: 10;
-
-//         .menu-header{
-//             height: 35px;
-//             display: flex;
-//             justify-content: space-between;
-//             align-items: center;
-//             font-size: 15px;
-//             padding-left: 10px;
-//             padding-right: 10px;
-//             border-bottom: 1px solid #838c91;
-//             color: #838c91;
-
-//             .menu-placeholder{
-//                 display: block;
-//                 height: 15px;
-//                 width: 15px;
-//                 background: transparent;
-//             }
-            
-//             .menu-title{
-//                font-size: 12px;
-//             }
-        
-//             .delete-x{                
-//                 font-size: 20px;
-//             }
-//         }
-        
-//         ul{
-            
-//             display: flex;
-//             flex-direction: column;
-//             margin: 0;
-//             padding: 0;
-//         }
-
-//         li{
-//             padding-left: 10px;
-//             padding-right: 10px;
-//             line-height: 30px;
-//             list-style: none;
-//             font-size: 15px;
-//             text-align: left;
-//             font-weight: 600;
-//         }
-        
-//     }
-
-// }
