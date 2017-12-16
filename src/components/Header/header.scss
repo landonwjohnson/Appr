@@ -290,11 +290,11 @@
         
 
         .bread-top {
+          @include lighten-background($primary, 20%);
           position: relative;
           transform: rotate(45deg);
           width: 24px;
           height: 2px;
-          background-color: #ACACAC;
           z-index: 0;
           margin-bottom: 0px;
           top: 2px;
@@ -302,12 +302,11 @@
         }
     
         .bread-bottom{
-          
+          @include lighten-background($primary, 20%);
           position: relative;
           transform: rotate(-45deg);
           width: 24px;
           height: 2px;
-          background-color: #ACACAC;
           z-index: 1;
           transition: 0.1s ease-in-out;
         }

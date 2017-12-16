@@ -7,6 +7,7 @@ import ChangePassword from './modals/ChangePassword'
 import ChangeAvatar from './modals/ChangeAvatar';
 import Header from '../../Header/Header';
 import Modal from 'react-modal';
+import { findUser } from '../../../services/account.services';
 
 
 // const editProfileStyles = {
@@ -35,7 +36,9 @@ const ModalBox = {
     bottom: "0",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     overflow: "hidden",
-    width: "100%"
+    width: "100%",
+    zIndex: "5",
+    
   },
   content : {
     borderRadius: "4px",
@@ -62,6 +65,7 @@ class AccountSettings extends Component {
         lastName: 'Johnson',
         username: 'landonwjohnson',
         email: 'landonwjohnson@gmail.com',
+        password: 'blee blee blop',
         avatar: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg'
       }
     }
@@ -82,6 +86,21 @@ class AccountSettings extends Component {
       this.handleUserNameChange = this.handleUserNameChange.bind(this);
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handleAvatarChange = this.handleAvatarChange.bind(this);
+  }
+
+  componentWillMount(){
+    const userid = this.props.match.params.userid;
+    findUser(userid)
+      .then( res => {
+        const {firstName, lastName, email, password, username} = res.data;
+        if (res.status !== 200){
+          console.log(res);
+        }
+        else {
+          this.setState({userInfo: {firstName, lastName, email, password, username}})
+        }
+      })
+      .catch(err => {throw err})
   }
 
   //Modal Methods
@@ -205,6 +224,8 @@ class AccountSettings extends Component {
 
   
   render() {
+    const {firstName, lastName, email, password, username} = this.state.userInfo;
+    
 
     
     
@@ -216,7 +237,11 @@ class AccountSettings extends Component {
           <div className="profile-section-outter">
               <div className="profile-section-inner">
               <div className="wrapper">
-                  <div className="avatar-initial" onClick={this.openAvatarModal} style={{backgroundImage: `url(${this.state.userInfo.avatar})`}} >
+                  <div className="change-initial" onClick={this.openAvatarModal}>  
+                    <div>Change</div>
+                  </div>
+                  <div className="avatar-initial"  style={{backgroundImage: `url(${this.state.userInfo.avatar})`}} >
+                  
                   <label>{this.handleInitials()}</label>
                   </div>
                   <div className="name-username-edit-con">

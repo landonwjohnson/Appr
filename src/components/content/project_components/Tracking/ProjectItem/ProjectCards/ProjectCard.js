@@ -55,7 +55,7 @@ class ProjectCard extends Component {
     return (
 
      
-      <div >
+      <div id={this.props.taskName.replace(/[^a-zA-Z]/g, '').toLowerCase() + ".task"} >
             <li onClick={this.openCardView}><label>{this.props.taskName}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
             

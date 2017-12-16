@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Login from '../Login/Login';
 import LandingSlider from '../Landing-Slider/Landing-Slider';
-import Header from '../../Header/Header';
 import './home.scss';
 
 
