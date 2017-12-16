@@ -10,10 +10,6 @@ export default class ProjectSetupSidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            author_id: 2,
-            id: 1,
-            name: "Defeat the Empire",
-            status_id: 1,
             UI: {backgroundMenu: false}
         };
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -56,31 +52,21 @@ export default class ProjectSetupSidebar extends Component {
         let projectHeaderClass = classnames({
             "project-sidebar-header": this.state.UI.backgroundMenu,
             "project-background-header": this.state.UI.backgroundMenu
-           
-            
-            
         })
 
         let projectListClass = classnames({
             "nav-list": this.state.UI.backgroundMenu,
             "background-list": this.state.UI.backgroundMenu
-            
         })
 
         let projectFooterClass = classnames({
             "project-sidebar-footer": this.state.UI.backgroundMenu,
             "project-background-footer": this.state.UI.backgroundMenu
-            
-  
         })
-
+        
         const { userid, projectid } = this.props;
         return (
             <div className="project-sidebar-container">
-                 {/* <div className="project-sidebar-header" style={{'display': 'none'}}>
-                     <label> Back </label>
-                     <input type="text" value={this.state.name} onChange={e => this.handleChangeName(e)} autoFocus/> 
-                 </div> */}
                  <form>
                 <div className={`project-sidebar-header ${projectHeaderClass}`}>
                     <input className="rename-project" type="text" value={this.state.name} onChange={e => this.handleChangeName(e)} autoFocus /> 
