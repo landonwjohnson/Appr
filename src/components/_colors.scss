@@ -19,6 +19,7 @@ $light-color: #E2E4E6;
 
 @mixin lighten-background($color, $factor: 20%){
     background-color: lighten($color, $factor);
+   
 }
 
 @mixin darken-color($color, $factor: 20%){

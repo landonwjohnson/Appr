@@ -140,6 +140,7 @@
     top: 0px;
     animation: curtains-on 0.5s forwards;
     overflow: hidden;
+    
   }
 
   .curtain--off {
@@ -151,6 +152,7 @@
     z-index: 0;
     opacity: 0;
     animation: curtains-on 0.5s backwards;
+    
   }
 
   @keyframes curtains-on {

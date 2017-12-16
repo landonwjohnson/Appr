@@ -23,6 +23,7 @@ body {
   width: 100%;
   margin-top: 50px;
   color: white;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.20);
 }
 
 a{
@@ -30,8 +31,8 @@ a{
 }
 
 .main-fix{
-  @include lighten-background($primary, 30%);
-  // background-image: url('./img/backgrounds/HotSpringsUtah.jpg');
+  @include darken-background($primary, 10%);
+  background-image: url('./img/backgrounds/Hot-Springs-Utah.jpg');
   background-size: cover;
   display: flex;
   width: 100%;
@@ -167,27 +168,16 @@ body {
 }
 
 .input-incomplete-btn{
-  color: #B0B0B0;
+  color: white;
   width: 50px;
   height: 35px;
   font-size: 14px;
+  background: white;
   border-radius: 0px 3px 3px 0px;
   border: 1px #CCC solid;
   border-left: none;
   font-weight: bold;
   outline: none;
-
-  &:hover{
-    // color: white;
-    // height: 35px;
-    // font-size: 14px;
-    // border-radius: 0px 3px 3px 0px;
-    // border: 1px #CCC solid;
-    // background: #0079BF;
-    // border-left: none;
-    // outline: none;
-    // transition: 0.2s ease-in-out;
-  }
 }
 
 .input-complete-btn{

@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    max-height: 100%;
+    height: calc(100vh -50px);
     overflow-x: hidden; 
     background-color: rgba(0,0,0,0.4);  
 }
@@ -37,7 +37,7 @@
         padding-left: 10px;
         width: 100%;
         overflow-x: auto;
-        height: 82vh;
+        height: calc(100vh - 150px);
         overflow-x: auto;
         overflow-y: hidden;
         z-index: 0;
