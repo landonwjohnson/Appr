@@ -2,158 +2,138 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
-import { getUId } from '../../../../utils/uid.utils';
-import { createProjectFeature, findProjectFeatures, updateProjectFeature, deleteProjectFeature, findProjectFeature } from '../../../../services/project.feature.services';
+import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
 
 class Features extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
-        features: []
-      }
-      this.handleAddField = this.handleAddField.bind(this);
-      this.handleChangeField = this.handleChangeField.bind(this);
-      // this.submitChangeField = this.submitChangeField.bind(this);
-      this.handleDeleteField = this.handleDeleteField.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            features: []
+        };
+        this.handleAddFeature = this.handleAddFeature.bind(this);
+        this.handleChangeFeature = this.handleChangeFeature.bind(this);
+        this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
+        this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
+    }
 
-componentWillMount() {
-  const projectid = this.props.match.params.projectid
-  const featureExamples = [
-    {feature_data: 'example: Force Sensitivity'},
-    {feature_data: 'example: Galactic Security'}
-  ];
+    componentWillMount() {
+        const featureExamples = [
+            {feature_data: "e.g. A user can click a button"},
+            {feature_data: "e.g. A user can create an account"}
+        ];
+        const projectid = this.props.match.params.projectid;
+        findProjectFeatures(projectid)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+                else {
+                    if (res.data.length === 0) {
+                        this.setState({ features: featureExamples });
+                    }
+                    else {
+                        this.setState({ features: res.data });
+                    }
+                }
+            })
+            .catch(err => {throw err});
+    }
 
-  findProjectFeatures(projectid)
-    .then( res => {
-      if(res.status !== 200) {
-        console.log(res);
-      }
-      else {
-        if(res.data.length > 0) {
-          this.setState({ features: res.data });
-        }
-        else {
-          this.setState({ features: featureExamples })
-        }
-      }
-    })
-    .catch(err => {throw err});
-}
+    handleAddFeature() {
+        const projectid = this.props.match.params.projectid;
+        const reqBody = { featureData: '' };
+        createProjectFeature(projectid, reqBody)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+                else {
+                    const newState = this.state.features;
+                    newState.push(res.data[0]);
+                    this.setState({ features: newState });
+                }
+            })
+            .catch(err => {throw err});
+    }
 
-handleAddField(field) {
-  const projectid = this.props.match.params.projectid || 1;
-  let body = {viewData: ''};
-  const newState = this.state[field];
+    handleChangeFeature(e, index) {
+        const newState = this.state.features;
+        newState[index].feature_data = e.target.value;
+        this.setState({ features: newState });
+    }
 
-  if (field === 'features') {
-    body = {featureData: ''};
-    newState.push(body);
-    this.setState({ features: newState });
+    handleSubmitFeature(index) {
+        const projectid = this.props.match.params.projectid;
+        const { id, feature_data } = this.state.features[index];
+        const reqBody = { featureData: feature_data };
+        updateProjectFeature(projectid, id, reqBody)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+            })
+            .catch(err => {throw err});
+    }
 
-    createProjectFeature(projectid, body)
-        .then(res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-        })
-        .catch(err => {throw err});
-  }
-}
+    handleDeleteFeature(index) {
+        const projectid = this.props.match.params.projectid;
+        const featureid = this.state.features[index].id;
+        deleteProjectFeature(projectid, featureid)
+            .then( res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    const newState = this.state.features;
+                    newState.splice(index, 1);
+                    this.setState({ features: newState });
+                }
+            })
+            .catch(err => {throw err});
+    }
 
-handleChangeField(e, field, index) {
-  const key = e.target.name;
-  const value = e.target.value;
-  const newState = this.state[field];
-  newState[index][key] = value;
-  this.setState({ [field]: newState });
-}
-
-// submitChangeField(e, field, index) {
-//   const key = e.target.name;
-//   const projectid = this.props.match.params.projectid
-//   const id = Number(e.target.id);
-//   const body = this.state[field][index];
-
-//   if (field === 'features') {
-//       updateProjectFeature(projectid, id, body)
-//       .then(res => {
-//           if (res.status !== 200) {
-//               console.log(res);
-//           }
-//       })
-//       .catch(err => {throw err});
-//   }
-// }
-
-handleDeleteField(e, field, index) {
-  const projectid = this.props.match.params.projectid
-  const id = Number(e.target.id);
-  const newState = this.state[field];
-  newState.splice(index, 1);
-  this.setState({ [field]: newState });
-
-  if (field === 'features') {
-      deleteProjectFeature(projectid, id)
-          .then(res => {
-              if (res.status !== 200) {
-                  console.log(res);
-              }
-          })
-          .catch(err => {throw err});
-  }
-}
-
-  render() {
-    const { userid, projectid } = this.props.match.params;
-    const displayFeatures = this.state.features.arr.map( feature => {
-      return(
-
-    const displayFeatures = features.map( feature => {
-      const field = 'features';
-      const index = features.indexOf(feature);
-      return(
-          <div className="features-item" key={`feature-${index}`}>
-              <section>
-                  <label>{(index + 1) + '.'}</label>
-                  <input id={feature.id} name="feature_data" value={feature.feature_data} onChange={e => this.handleChangeField(e, field, index)}/>
-              </section>
-              <button className="not-enough-info-btn" id={feature.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
-              <span className="delete-x" id={feature.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
-          </div>
-      );
-  });
-
-    return (
-      <div>
-      <Header />
-      <div className="main-fix">
-        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
-          <div className="features-container">
-            <div className="container-wrapper">
-                <div className="project-section-header">
-                  <label>Features</label> 
+    render() {
+        const { userid, projectid } = this.props.match.params;
+        const features = this.state.features;
+        const displayFeatures = features.map( feature => {
+            const index = features.indexOf(feature);
+            return (
+                <div className="features-item">
+                    <section>
+                        <label>{(index + 1) + '.'}</label>
+                        <input value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
+                    </section>
+                    <button className="not-enough-info-btn" onClick={() => this.handleSubmitFeature(index)}> Save </button>
+                    <button className="delete-x" onClick={() => this.handleDeleteFeature(index)}> &times; </button> 
                 </div>
-                    <div className="features-area drop-shadow">
-                      <div className="features-wrapper">
-                        <div className="features-list">
-
-                          {displayFeatures}
-
+            );
+        });
+        return (
+            <div>
+                <Header />
+                <div className="main-fix">
+                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+                    <div className="features-container">
+                        <div className="container-wrapper">
+                            <div className="project-section-header">
+                                <label>Features</label>
+                            </div>
+                                <div className="features-area drop-shadow">
+                                    <div className="features-wrapper">
+                                        <div className="features-list">
+                                        {displayFeatures}
+                                        </div>
+                                        <div className="features-footer">
+                                        <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="features-footer">
-                              <button className="add-button" onClick={() => this.handleAddField('features')}> <span/>  Add Feature </button>
-                        </div>
-                      </div>
                     </div>
-
-                
+                </div>
             </div>
-         </div>
-      </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Features;
