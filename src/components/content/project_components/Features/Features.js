@@ -3,6 +3,7 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
 import classnames from "classnames";
+import FeatureItem from "./FeatureItem/FeatureItem";
 import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
 
 class Features extends Component {
@@ -124,14 +125,7 @@ class Features extends Component {
             const index = features.indexOf(feature);
             
             return (
-                <div className="features-item">
-                    <section>
-                        <label>{(index + 1) + '.'}</label>
-                        <input value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
-                    </section>
-                    <button className={saveBtnClass} onClick={() => this.handleSubmitFeature(index)}> Save </button>
-                    <button className="delete-x" onClick={() => this.handleDeleteFeature(index)}> &times; </button> 
-                </div>
+              <FeatureItem index={index} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
             );
         });
         return (
