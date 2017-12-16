@@ -151,14 +151,7 @@ class Controllers extends Component {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-      </div>
-     </div>
-     <div className="blur-overlay"></div>
-    </div>
-=======
         </div>
->>>>>>> d1df249ca3faec5b23743e00123fa8080c573299
     );
   }
 }
