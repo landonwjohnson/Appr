@@ -3,160 +3,165 @@ import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
 import classnames from "classnames";
-import {  createProjectFeature, updateProjectFeature, findProjectFeature, findProjectFeatures} from '../../../../services/project.feature.services';
-
+import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
 
 class Features extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
-        features: [],
-        UI: {
-          saveBtn: false
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            features: [],
+            UI: []
+        };
+        this.handleAddFeature = this.handleAddFeature.bind(this);
+        this.handleChangeFeature = this.handleChangeFeature.bind(this);
+        this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
+        this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
     }
-    this.handleAddFeature = this.handleAddFeature.bind(this);
-    this.removeFeatureItemHandler = this.removeFeatureItemHandler.bind(this);
-    this.handleChangeFeature = this.handleChangeFeature.bind(this);
-    this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
-  }
 
-  componentWillMount(){
+    componentWillMount() {
+        const featureExamples = [
+            {feature_data: "e.g. A user can click a button"},
+            {feature_data: "e.g. A user can create an account"}
+        ];
+        const projectid = this.props.match.params.projectid;
+        findProjectFeatures(projectid)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+                else {
+                    if (res.data.length === 0) {
+                        this.setState({ features: featureExamples });
+                    }
+                    else {
+                        this.setState({ features: res.data });
 
-    const featureExamples = [
-      {feature: "What are some use cases for your app?"}
-    ];
-    const projectid = this.props.match.params.projectid;
-    findProjectFeatures(projectid)
-      .then(res => {
-        if(res.status !==200){
-          console.log(res)
+                        this.state.features.map(feature => {
+                          const newUIState = this.state.UI;
+                          newUIState.push( {saveBtn: false} );
+                          this.setState({ UI: newUIState });
+                        });
+                    }
+                }
+            })
+            .catch(err => {throw err});
+    }
+
+    handleAddFeature() {
+        const projectid = this.props.match.params.projectid;
+        const reqBody = { featureData: '' };
+        createProjectFeature(projectid, reqBody)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
+                else {
+                    const newState = this.state.features;
+                    newState.push(res.data[0]);
+                    this.setState({ features: newState });
+                }
+            })
+            .catch(err => {throw err});
+    }
+
+    handleChangeFeature(e, index) {
+        const newState = this.state.features;
+        newState[index].feature_data = e.target.value;
+
+        this.setState({ features: newState });
+        if (e.target.value.length >= 1) {
+          const newState = this.state.UI;
+          newState[index].saveBtn = true;
+
+          this.setState({ UI: newState });
         }
         else {
-          if(res.data.length === 0){
-            this.setState({ features: featureExamples });
-            this.setState({
-              features: res.data
+          const newState = this.state.UI;
+          newState[index].saveBtn = false;
+          this.setState({ UI:  newState });
+        }
+    }
+
+    handleSubmitFeature(index) {
+        const projectid = this.props.match.params.projectid;
+        const { id, feature_data } = this.state.features[index];
+        const reqBody = { featureData: feature_data };
+        updateProjectFeature(projectid, id, reqBody)
+            .then( res => {
+                if (res.status !== 200) {
+                    alert(res);
+                }
             })
-          }else{
-            this.setState({features: res.data });
-          } 
-        }
-      })
-      .catch(err => {throw err});
-  }
-
-  handleChangeFeature(e, index){
-    console.log('handleChangeFeature')
-    const newState = this.state.features;
-    newState[index].feature_data = e.target.value;
-    this.setState({ features: newState})
-
-
-    updateProjectFeature()
-    if(e.target.value.length >= 1){
-      this.setState({ UI: { saveBtn: true  }})
+            .catch(err => {throw err});
     }
-    else{
-      this.setState({ UI: { saveBtn: false }})
+
+    handleDeleteFeature(index) {
+        const projectid = this.props.match.params.projectid;
+        const featureid = this.state.features[index].id;
+        deleteProjectFeature(projectid, featureid)
+            .then( res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    const newState = this.state.features;
+                    newState.splice(index, 1);
+                    this.setState({ features: newState });
+                }
+            })
+            .catch(err => {throw err});
     }
-  }
-  
-
-  handleAddFeature(){
-    const projectid = this.props.match.params.projectid;
-    const reqBody = {featureData: ''}
-    createProjectFeature(projectid, reqBody)
-      .then(res => {
-        if (res.status !== 200){
-          alert(res);
-        }
-        else{
-            const newState = this.state.features;
-            newState.push(res.data[0])
-            this.setState({features: newState});
-        }
-      })
-      .catch( err => {throw err} );
-  }
-
-  handleSubmitFeature(e, index){
-    console.log('handleSubmitFeature')
-    const projectid = this.props.match.params.projectid;
-    const featureid = e.target.id;
-    const reqBody = { featureData: this.state.features[index].feature_data }
-    updateProjectFeature(projectid, featureid, reqBody)
-      .then( res => {
-        if (res.status !== 200){
-            alert(res);
-        }
-      })
-      .catch(err => {throw err});
-      console.log(this.state.features)
-  }
-
-  removeFeatureItemHandler(){
-    let FeatureList = this.state.features;
-    FeatureList.splice(1,1);
-    this.setState({FeatureList})
-  }
 
 
-
-  render() {
-   
-    const {userid, projectid } = this.props.match.params;
-    var saveBtnClass = classnames({
-      "input-complete-btn":  this.state.UI.saveBtn, 
-      "input-incomplete-btn" : true
-    })
-    const features = this.state.features;
-    const displayFeatures = this.state.features.map( feature => {
-      const index = features.indexOf(feature);
-      return(
-        <div className="features-item" >
-          <section>
-            <label>{(index + 1) + '.'}</label>
-            <input value={feature.feature_data} onChange={(e) => this.handleChangeFeature(e, index)} />
-          </section>
-          <button id={feature.id} className={saveBtnClass}  onClick={(e) => this.handleSubmitFeature(e, index)}>Save</button>
-          <button className="delete-x" onClick={this.removeFeatureItemHandler}>&times;</button> 
-        </div>
-
-      )
-    })
-    return (
-      
-      
-      <div>
-      <Header />
-      <div className="main-fix">
-        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
-          <div className="features-container">
-            <div className="container-wrapper">
-                <div className="project-section-header">
-                  <label>Features</label> 
+    render() {
+        const { userid, projectid } = this.props.match.params;
+        let saveBtnClass = classnames({
+          "input-complete-btn":  true, 
+          "input-incomplete-btn" : false
+        })
+        const features = this.state.features;
+        const displayFeatures = features.map( feature => {
+            const index = features.indexOf(feature);
+            
+            return (
+                <div className="features-item">
+                    <section>
+                        <label>{(index + 1) + '.'}</label>
+                        <input value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
+                    </section>
+                    <button className={saveBtnClass} onClick={() => this.handleSubmitFeature(index)}> Save </button>
+                    <button className="delete-x" onClick={() => this.handleDeleteFeature(index)}> &times; </button> 
                 </div>
-                    <div className="features-area drop-shadow">
-                      <div className="features-wrapper">
-                        <div className="features-list">
+            );
+        });
+        return (
+            <div>
+                <Header />
+                <div className="main-fix">
+                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+                    <div className="features-container">
+                        <div className="container-wrapper">
+                            <div className="project-section-header">
+                                <label> Features </label>
+                            </div>
+                                <div className="features-area drop-shadow">
+                                    <div className="features-wrapper">
+                                        <div className="features-list">
 
-                          {displayFeatures}
+                                          {displayFeatures}
 
+                                        </div>
+                                        <div className="features-footer">
+                                        <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="features-footer">
-                              <button className="add-button" onClick={this.addFeatureItemHandler}> <span/>  Add Feature </button>
-                        </div>
-                      </div>
                     </div>
-
-                
+                </div>
             </div>
-         </div>
-      </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Features;
