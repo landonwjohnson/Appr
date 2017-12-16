@@ -42,10 +42,21 @@ a{
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100vw;
+  z-index: 5;
+  position: absolute;
+}
+
+.blur-overlay {
+  width: 100vw;
+  height: 100vh;
+  filter: blur(8px);
   background-image: url('./img/landing-slider/conferenceRoom.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat; 
-  
+  background-size: 200%;
+  background-position: 40%, 30%;
+  background-repeat: no-repeat;
+  z-index: -1; 
+  position: absolute;
 }
 
 body {

@@ -159,14 +159,13 @@ class Header extends Component {
           <div className={boardMenuClass}>
           
             <div className="boards-main-container">
-            <div className="board-menu-header">
-            <div className="back-con" onClick={this.closeMenus}>
-                <div className="back-icon"> </div>
-                <div className="board-text">Hide</div>
-            </div>
+                <div className="board-menu-header">
+                    <div className="back-con" onClick={this.closeMenus}>
+                        <div className="back-icon"> </div>
+                        <div className="back-text">Hide</div>
+                    </div>
+                </div>
 
-                  
-            </div>
                 <div className="v2 recent-boards-con">
                     <div className="text-12">RECENT PROJECTS</div>
                         <div className="board-menu-item">
@@ -185,8 +184,8 @@ class Header extends Component {
                             Placeholder
                         </div>
                     </div>
-               
                 </div>
+
                 <div className="personal-boards-con">
                     <div className="text-12">PERSONAL PROJECTS</div>
                         
