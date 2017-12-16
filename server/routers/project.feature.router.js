@@ -4,11 +4,11 @@ const getDb = require('../database/bootstrap.database');
 const projectFeatureRouter = express.Router();
 
 projectFeatureRouter.post('/:projectid/create/feature', (req, res) => {
-    const projectid = req.params.projectid
+    const projectid = req.params.projectid;
     const { featureData } = req.body;
     const db = getDb();
-    db.create_project_feature([ projectid, featureData] )
-        .then(promise => res.send())
+    db.create_project_feature([ projectid, featureData ] )
+        .then(feature => res.send(feature))
         .catch(err => res.status(500).send(err));
 });
 
