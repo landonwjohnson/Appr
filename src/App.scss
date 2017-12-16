@@ -31,15 +31,12 @@ a{
 }
 
 .main-fix{
-  @include darken-background($primary, 10%);
-  background-image: url('./img/backgrounds/Hot-Springs-Utah.jpg');
-  background-size: cover;
+  @include lighten-background($primary, 30%);
   display: flex;
   width: 100%;
   flex-direction: row;
   height: 100%;
-  background-size: 100%;
-  background-repeat: no-repeat; 
+
   
 }
 
