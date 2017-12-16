@@ -5,11 +5,12 @@ import './tracker.scss';
 
 class Tracker extends Component {
   render() {
+    const { userid, projectid } = this.props.match.params;
     return (
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar />
+          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           <div className="tracker-container">
             <div className="tracker-wrapper">
               <div className="project-section-header">Tracker</div>

@@ -60,6 +60,7 @@ class Schema extends Component {
   }
 
   render() {
+    const { userid, projectid } = this.props.match.params;
     const displaySchemas = this.state.schemas.map( schema => {
         return(
           <div className="schema-item">
@@ -71,7 +72,7 @@ class Schema extends Component {
             </div>
                 <div className="column-item">
                   <div className="column-fields-wrapper">
-                    <input className="column-input-text md-input" type ="text" placeholder="column name" />
+                    <input className="column-input-text md-input" type ="text" placeholder="Column Name" />
                     <select className="column-input-select sm-input" required placeholder="type">
                       <option value="">type </option>
                       <option value="">DATE</option>
@@ -81,7 +82,7 @@ class Schema extends Component {
                       <option value="">CHAR</option>
                     </select>
                               
-                    <input className="schema-column-text sm-input" type ="text" placeholder="size" />
+                    <input className="schema-column-text sm-input" type ="text" placeholder="Size" />
                   </div>
                     <div className="column-checkbox-wrapper">
                           <div className="column-checkbox">
@@ -123,7 +124,7 @@ class Schema extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar />
+          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
             <div className="schema-container">
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>

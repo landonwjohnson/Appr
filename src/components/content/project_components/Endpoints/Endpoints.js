@@ -74,7 +74,7 @@ class Endpoints extends Component {
   }
 
   render() {
-
+    const { userid, projectid } = this.props.match.params;
     const displayEndpoints = this.state.endpoints.arr.map( endpoint => {
       return(
         <div className="endpoint-item">
@@ -151,7 +151,7 @@ class Endpoints extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar />
+          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           <div className="endpoints-container">
           
           <div className="endpoints-wrapper">

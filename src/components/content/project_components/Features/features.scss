@@ -1,5 +1,8 @@
+@import '../../../_colors.scss';
+
 .features-container {
     width: 100%;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .container-wrapper {
@@ -11,12 +14,13 @@
 }
 
 .features-area {
-    background: white;
+    background: $light-color;
     width: 700px;
     max-height: 100%;
     display: flex;
     flex-direction: column;
     margin: 20px;
+    border-radius: 5px;
 
     .features-wrapper {
         padding: 20px;
@@ -53,9 +57,11 @@
         button{
             margin-left: 10px;
             margin-right: 10px;
-            border-radius: 0px;
+            border-radius: 4px;
             height: 30px;
-            font-size: 15px;
+            font-size: 14px;
+            background-color: $medium-color;
+            color: white;
         }
     }
 
@@ -63,6 +69,9 @@
         button{
             margin-left: 26.5px;
             max-width: 100%;
+            background-color: $secondary;
+            color: white;
+            border: none;
         }
     }
 }

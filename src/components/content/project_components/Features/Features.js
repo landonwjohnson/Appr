@@ -105,7 +105,9 @@ handleDeleteField(e, field, index) {
 }
 
   render() {
-    const features = this.state.features;
+    const { userid, projectid } = this.props.match.params;
+    const displayFeatures = this.state.features.arr.map( feature => {
+      return(
 
     const displayFeatures = features.map( feature => {
       const field = 'features';
@@ -126,7 +128,7 @@ handleDeleteField(e, field, index) {
       <div>
       <Header />
       <div className="main-fix">
-        <ProjectSetupSidebar />
+        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
           <div className="features-container">
             <div className="container-wrapper">
                 <div className="project-section-header">
