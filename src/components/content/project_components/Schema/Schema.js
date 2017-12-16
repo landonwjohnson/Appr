@@ -86,27 +86,27 @@ class Schema extends Component {
                   </div>
                     <div className="column-checkbox-wrapper">
                           <div className="column-checkbox">
-                            <label> pk </label>
+                            <label> Primary Key </label>
                             <input type="checkbox" />
                           </div>
 
                           <div className="column-checkbox">
-                            <label> fk </label>
+                            <label> Foreign Key </label>
                             <input type="checkbox" />
                           </div>
 
                           <div className="column-checkbox">
-                            <label> ai </label>
+                            <label> Auto Increment </label>
                             <input type="checkbox" />
                           </div>
 
                           <div className="column-checkbox">
-                            <label> nn </label>
+                            <label> Not Null </label>
                             <input type="checkbox" />
                           </div>
 
                       <div className="column-checkbox">
-                        <label> ur </label>
+                        <label>  Unique Key </label>
                         <input type="checkbox" />
                       </div>
                     </div>
