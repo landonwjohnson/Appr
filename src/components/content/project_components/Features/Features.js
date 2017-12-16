@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
-import classnames from "classnames";
 import FeatureItem from "./FeatureItem/FeatureItem";
 import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
 
@@ -10,8 +9,7 @@ class Features extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            features: [],
-            UI: []
+            features: []
         };
         this.handleAddFeature = this.handleAddFeature.bind(this);
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
@@ -36,12 +34,6 @@ class Features extends Component {
                     }
                     else {
                         this.setState({ features: res.data });
-
-                        this.state.features.map(feature => {
-                          const newUIState = this.state.UI;
-                          newUIState.push( {saveBtn: false} );
-                          this.setState({ UI: newUIState });
-                        });
                     }
                 }
             })
@@ -68,19 +60,7 @@ class Features extends Component {
     handleChangeFeature(e, index) {
         const newState = this.state.features;
         newState[index].feature_data = e.target.value;
-
         this.setState({ features: newState });
-        if (e.target.value.length >= 1) {
-          const newState = this.state.UI;
-          newState[index].saveBtn = true;
-
-          this.setState({ UI: newState });
-        }
-        else {
-          const newState = this.state.UI;
-          newState[index].saveBtn = false;
-          this.setState({ UI:  newState });
-        }
     }
 
     handleSubmitFeature(index) {
@@ -116,16 +96,12 @@ class Features extends Component {
 
     render() {
         const { userid, projectid } = this.props.match.params;
-        let saveBtnClass = classnames({
-          "input-complete-btn":  true, 
-          "input-incomplete-btn" : false
-        })
         const features = this.state.features;
         const displayFeatures = features.map( feature => {
             const index = features.indexOf(feature);
-            
+            const id = feature.id;
             return (
-              <FeatureItem index={index} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
+              <FeatureItem index={index} projectid={projectid} id={id} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
             );
         });
         return (
