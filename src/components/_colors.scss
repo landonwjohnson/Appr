@@ -1,16 +1,29 @@
 
-$primary: #145C9E;
+$primary: #616161;
 
-$secondary: rgb(22, 107, 181);
+$secondary: #F48BA1;
 
-$dark-color: #3a3a3a;
+$dark-color: #F6AACA;
 
-$medium-color: #808080;
+
+
+$medium-color: #EFD6E5;
 
 $light-color: #E2E4E6;
 
+
+
 @mixin darken-background($color, $factor: 20%) {
     background-color: darken($color, $factor);
+}
+
+@mixin lighten-background($color, $factor: 20%){
+    background-color: lighten($color, $factor);
+   
+}
+
+@mixin darken-color($color, $factor: 20%){
+    color: darken($color, $factor);
 }
 
 @mixin darken-left-border($color, $factor: 20%){
@@ -25,3 +38,53 @@ $border-radius: 5px;
 //     min-height: 1em;
 //     min-width: 1em;
 // }
+
+
+
+
+// $primary: #A894CD;
+
+// $secondary: #F48BA1;
+
+// $dark-color: #F6AACA;
+
+// $medium-color: #EFD6E5;
+
+// $light-color: #FCEEF5;
+
+// @mixin darken-background($color, $factor: 20%) {
+//     background-color: darken($color, $factor);
+// }
+
+// @mixin darken-left-border($color, $factor: 20%){
+//     border-left: darken($color, $factor) 1px solid;
+// }
+
+// $border-radius: 5px;
+
+// // %some-thing {
+// //     text-transform: initial;
+// //     line-height: 1;
+// //     min-height: 1em;
+// //     min-width: 1em;
+// // }
+
+
+
+
+
+@mixin addBtn (){
+    border-radius: $addBtn-radius;
+    border: none;
+    background: $addBtn-color1;
+    box-shadow: 0 1px 0 #539A40;
+    // background: linear-gradient(to bottom, $addBtn-color2 0, $addBtn-color1 100%);
+    // box-shadow: 0 2px 0 #3f6f21;
+    font-weight: bold;
+
+}
+
+//Add Btn Button variables
+    $addBtn-color1: #5aac44;
+    $addBtn-color2: #61bd4f;
+    $addBtn-radius: 3px;

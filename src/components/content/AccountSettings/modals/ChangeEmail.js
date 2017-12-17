@@ -22,7 +22,7 @@ class ChangeEmail extends Component {
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">
-                        <input className="modal-form" type="email" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30}/>
+                        <input className="modal-form" type="email" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30} required/>
                     </section>
                 </div>
                 <div className="submitModal">

@@ -5,9 +5,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: rgba(0,0,0,0.3);
-
-
+    height: calc(100vh - 50px);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .schema-wrapper{
@@ -150,16 +149,6 @@
     
   
 }
-
-// select:required:invalid {
-//     color: gray;
-//   }
-//   option[value=""][disabled] {
-//     display: none;
-//   }
-//   option {
-//     color: black;
-//   }
 
 
 .sm-input {

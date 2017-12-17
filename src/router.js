@@ -13,7 +13,6 @@ import Controllers from './components/content/project_components/Controllers/Con
 import View from './components/content/project_components/View/View';
 import Schema from './components/content/project_components/Schema/Schema'
 import Endpoints from './components/content/project_components/Endpoints/Endpoints';
-import Tracker from './components/content/project_components/Tracker/Tracker';
 import Tracking from './components/content/project_components/Tracking/Tracking';
 
 export default (
@@ -35,7 +34,6 @@ export default (
             <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
             <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>
             <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
-            <Route component={ Tracker } path="/user/:userid/project/:projectid/tracker"/>
-            <Route component={ Tracking } path="/user/:userid/project/:projectid/tracking"/>
+            <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>
     </Switch>
 );
