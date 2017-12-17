@@ -210,33 +210,12 @@ class Header extends Component {
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <div className="v2 recent-boards-con">
-                    <div className="text-12">RECENT PROJECTS</div>
-                        <div className="board-menu-item">
-                            <div className="board-item-thumbnail">
-
-                            </div>
-                            <div className="board-item-name">
-                                Placeholder
-                            </div>
-                        </div>
-                    <div className="board-menu-item">
-                        <div className="board-item-thumbnail">
-
-                        </div>
-                        <div className="board-item-name">
-                            Placeholder
-                        </div>
-                    </div>
-=======
                   
             </div>
                 <div className="recent-boards-con">
                     <div className="text-12">GROUP PROJECTS</div>
                     {displayGroups}
                
->>>>>>> 66491dcf8fce9c475fd0f7ea7d4ccd6c535dee16
                 </div>
 
                 <div className="personal-boards-con">
@@ -254,19 +233,18 @@ class Header extends Component {
                         </Link>
                 </div>
             </div>
-          </div>
+          
           <div className="header-container">
                 <div className="nav-bar">
                     <div className="board-con" href="#" onClick={this.handleBoardMenuClick} >
-                    <div className="board-icon"><img src={BoardsIcon} /></div>
-                    
-                    <div className="board-text">Projects</div>
+                        <div className="board-icon"><img src={BoardsIcon} /></div>
+                        
+                        <div className="board-text">Projects</div>
                     </div>
                     <div>
                         <div className="logo"></div>
                     </div>
-                <div className="user-con">
-                 
+                    <div className="user-con">
                         <div className="avatar"> <label>{userInitials}</label> </div>
                         <div className="hello-user">Hello {this.state.userInfo.name}!</div>
                         <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
@@ -278,7 +256,7 @@ class Header extends Component {
                                 </div>
                             </div> 
                         </div>    
-                </div>
+                    </div>
                 </div>
                 
         </div>
@@ -305,8 +283,8 @@ class Header extends Component {
               isOpen ={this.state.feedbackModalOpen} 
               onRequestClose={this.closeFeedbackModal}
               className="modal-account-settings-content"
-              style={ModalBox}
-        >
+              style={ModalBox}>
+
               <Feedback onCloseBtnClick={this.closeFeedbackModal} />
         </Modal>
       </div>
