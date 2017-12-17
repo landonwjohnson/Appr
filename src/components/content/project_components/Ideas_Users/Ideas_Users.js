@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
@@ -206,7 +206,7 @@ class Ideas_Users extends Component {
             <div>
                 <Header />
                 <div className="main-fix">
-                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+                    <ProjectSidebar userid={userid} projectid={projectid}/>
                     <div className="ideasUsers-container">
                         <div className="ideasUsers-wrapper">
                             <div className="project-section-header">

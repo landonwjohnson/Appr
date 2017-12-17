@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './schema.scss';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
 
 
@@ -124,7 +124,7 @@ class Schema extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+          <ProjectSidebar userid={userid} projectid={projectid}/>
             <div className="schema-container">
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
 import FeatureItem from "./FeatureItem/FeatureItem";
@@ -118,7 +118,7 @@ class Features extends Component {
             <div>
                 <Header />
                 <div className="main-fix">
-                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+                    <ProjectSidebar userid={userid} projectid={projectid}/>
                     <div className="features-container">
                         <div className="container-wrapper">
                             <div className="project-section-header">

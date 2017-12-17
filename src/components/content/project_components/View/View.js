@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../../Header/Header';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import { getUId } from '../../../../utils/uid.utils';
 import { createProjectView, findProjectViews, findProjectView, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
 import './view.scss';
@@ -127,7 +127,7 @@ class View extends Component {
       <div>
       <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+          <ProjectSidebar userid={userid} projectid={projectid}/>
           
           <div className="view-container">
             <div className="view-inner-con">

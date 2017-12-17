@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import Header from '../../../Header/Header';
 import ProjectItem from './ProjectItem/ProjectItem';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import classnames from "classnames";
 
 
@@ -75,7 +75,7 @@ class Tracking extends Component {
       <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
         <Header />
         <div className="main-fix">
-        <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+        <ProjectSidebar userid={userid} projectid={projectid}/>
         <div className="tracking-container">
         <div className="project-header">
             <label>Tracker</label>
