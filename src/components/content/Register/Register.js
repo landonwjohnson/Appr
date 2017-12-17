@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './register.scss';
 import classnames from "classnames";
 import { register, login } from '../../../services/auth.services';
+import { findUsername } from '../../../services/account.services';
+import { checkStrengthOf } from '../../../utils/auth.utils';
 
 class Register extends Component {
     constructor(props) {
@@ -21,8 +23,9 @@ class Register extends Component {
             showEmailSuccess: false,
             showPasswordFail: false,
             showPasswordSuccess: false,
+            showUsernameFail: false,
+            showUsernameSuccess: false
         };
-        this.handleChangeInput = this.handleChangeInput.bind(this);
         this.handleFailedFirstName = this.handleFailedFirstName.bind(this);
         this.handleSuccessFirstName = this.handleSuccessFirstName.bind(this);
         this.handleFailedLastName = this.handleFailedLastName.bind(this);
@@ -31,21 +34,14 @@ class Register extends Component {
         this.handleSuccessEmail = this.handleSuccessEmail.bind(this);
         this.handleFailedPassword = this.handleFailedPassword.bind(this);
         this.handleSuccessPassword = this.handleSuccessPassword.bind(this);
+        this.handleChangeInput = this.handleChangeInput.bind(this);
         this.handleButtonRegister = this.handleButtonRegister.bind(this);
-    }
-
-    handleChangeInput(e) {
-        const key = e.target.name;
-        const value = e.target.value;
-        let newState = this.state[key];
-        newState = value;
-        this.setState({ [key]: newState });
     }
 
     handleFailedFirstName() {
         this.setState({
-            showFirstNameSuccess: false,
-            showFirstNameFail: true
+            showFirstNameFail: true,
+            showFirstNameSuccess: false
         });
     }
 
@@ -58,8 +54,8 @@ class Register extends Component {
 
     handleFailedLastName() {
         this.setState({
-            showLastNameSuccess: false,
-            showLastNameFail: true
+            showLastNameFail: true,
+            showLastNameSuccess: false
         });
     }
 
@@ -72,8 +68,8 @@ class Register extends Component {
 
     handleFailedEmail() {
         this.setState({
-            showEmailSuccess: false,
-            showEmailFail: true
+            showEmailFail: true,
+            showEmailSuccess: false
         });
     }
 
@@ -86,8 +82,8 @@ class Register extends Component {
 
     handleFailedPassword() {
         this.setState({
-            showPasswordSuccess: false,
-            showPasswordFail: true
+            showPasswordFail: true,
+            showPasswordSuccess: false
         });
     }
 
@@ -96,6 +92,78 @@ class Register extends Component {
             showPasswordFail: false,
             showPasswordSuccess: true
         });
+    }
+
+    handleFailedUsername() {
+        this.setState({
+            showUsernameFail: true,
+            showUsernameSuccess: false
+        });
+    }
+
+    handleSuccessUsername() {
+        this.setState({
+            showUsernameFail: false,
+            showUsernameSuccess: true
+        });
+    }
+
+    handleChangeInput(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+        let newState = this.state[key];
+        newState = value;
+        this.setState({ [key]: newState });
+        switch (key) {
+            case 'firstName':
+                value.length === 0 ? this.handleFailedFirstName() : this.handleSuccessFirstName();
+                break;
+            case 'lastName':
+                value.length === 0 ? this.handleFailedLastName() : this.handleSuccessLastName();
+                break;
+            case 'email':
+                if (value.length > 0) {
+                    !value.includes('@') || value[value.length - 4] !== '.' ? this.handleFailedEmail() : this.handleSuccessEmail();
+                }
+                else {
+                    this.setState({
+                        showEmailFail: false,
+                        showEmailSuccess: false
+                    });
+                }
+                break;
+            case 'password':
+                if (value.length > 0) {
+                    const strongPass = checkStrengthOf(value);
+                    strongPass === false ? this.handleFailedPassword() : this.handleSuccessPassword();
+                }
+                else {
+                    this.setState({
+                        showPasswordFail: false,
+                        showPasswordSuccess: false
+                    });
+                }
+                break;
+            case 'username':
+                if (value.length > 0) {
+                    this.handleSuccessUsername();
+                    const reqBody = { username: value };
+                    findUsername(reqBody)
+                        .then( res => {
+                            res.status !== 200 ? console.log(res) : this.handleFailedUsername();
+                        })
+                        .catch(err => {throw err});
+                }
+                else {
+                    this.setState({
+                        showUsernameFail: false,
+                        showUsernameSuccess: false
+                    });
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     handleButtonRegister() {
@@ -124,6 +192,16 @@ class Register extends Component {
     }
 
     render() {
+        const { showFirstNameSuccess, showLastNameSuccess, showEmailSuccess, showPasswordSuccess, showUsernameSuccess } = this.state;
+        let registerBtn = <div/>
+        
+        if (showFirstNameSuccess === true && showLastNameSuccess === true && showEmailSuccess === true && showPasswordSuccess === true && showUsernameSuccess === true) {
+            registerBtn = <button className="create-account-btn not-enough-info-btn" onClick={this.handleButtonRegister}> Create New Account </button>
+        }
+        else {
+            registerBtn = <button className="create-account-btn not-enough-info-btn"> Fill out all fields </button>
+        }
+
         let failFirstNameClass = classnames({
             "reg-firstName": true,
             "reg-firstName--fail": this.state.showFirstNameFail
@@ -162,6 +240,16 @@ class Register extends Component {
         let successPasswordClass = classnames({
             "reg-field": true,
             "reg-field--success": this.state.showPasswordSuccess
+        });
+
+        let failUsernameClass = classnames({
+            "reg-field": true,
+            "reg-field--fail": this.state.showUsernameFail
+        });
+
+        let successUsernameClass = classnames({
+            "reg-field": true,
+            "reg-field--success": this.state.showUsernameSuccess
         });
 
         return (
@@ -207,10 +295,7 @@ class Register extends Component {
                                         <p className="valid-text"> Ready to go! </p>
                                     </div>
                                 </div>
-                                
-
-
-                                <div className="username-wrapper">
+                                <div className={`${successUsernameClass} ${failUsernameClass}`}>
                                     <label className="input-tag"> Create a Username </label>
                                     <input className="input-solo" type="text" name="username" placeholder="e.g. radar_tech_matt548" onChange={e => this.handleChangeInput(e)}/>
                                     <div className="reg-info">
@@ -218,35 +303,12 @@ class Register extends Component {
                                         <p className="valid-text"> Available! </p>
                                     </div>
                                 </div>
-
-
-
                                 <div className="reg-btn-footer">
-                                    <button className="create-account-btn not-enough-info-btn" onClick={this.handleButtonRegister}> Create New Account </button>
+                                    {registerBtn}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <section>
-                        <button className="pass" onClick={this.handleSuccessLastName}>Pass LastName</button>
-                        <button className="fail" onClick={this.handleFailedLastName}>Fail Lastname</button>
-                    </section>
-
-                    <section>
-                        <button className="pass" onClick={this.handleSuccessFirstName}>Pass FirstName</button>
-                        <button className="fail" onClick={this.handleFailedFirstName}>Fail FirstName</button>
-                    </section>
-                    
-
-                    <section>
-                        <button className="pass" onClick={this.handleSuccessEmail}>Pass Email</button>
-                        <button className="fail" onClick={this.handleFailedEmail}>Fail Email</button>
-                    </section>
-
-                    <section>
-                        <button className="pass" onClick={this.handleSuccessPassword}>Pass Password</button>
-                        <button className="fail" onClick={this.handleFailedPassword}>Fail Password</button>
-                    </section> */}
                 </div>
             </div>
         );
