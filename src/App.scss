@@ -35,9 +35,22 @@ a{
   display: flex;
   width: 100%;
   flex-direction: row;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
+  z-index: 5;
+  position: absolute;
+}
 
-  
+.blur-overlay {
+  width: 100vw;
+  height: 100vh;
+  filter: blur(8px);
+  background-image: url('./img/landing-slider/conferenceRoom.jpg');
+  background-size: 200%;
+  background-position: 40%, 30%;
+  background-repeat: no-repeat;
+  z-index: 0; 
+  position: absolute;
 }
 
 body {
