@@ -17,6 +17,14 @@ class Features extends Component {
         this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
     }
 
+    scrollToBottom = () => {
+        this.listEnd.scrollIntoView({ behavior: "smooth" });
+    }
+      
+    componentDidUpdate() {
+    this.scrollToBottom();
+    }
+
     componentWillMount() {
         const featureExamples = [
             {feature_data: "e.g. A user can click a button"},
@@ -52,6 +60,7 @@ class Features extends Component {
                     const newState = this.state.features;
                     newState.push(res.data[0]);
                     this.setState({ features: newState });
+                    this.scrollToBottom();
                 }
             })
             .catch(err => {throw err});
@@ -94,7 +103,11 @@ class Features extends Component {
     }
 
 
+
+
     render() {
+
+
         const { userid, projectid } = this.props.match.params;
         const features = this.state.features;
         const displayFeatures = features.map( feature => {
@@ -121,9 +134,10 @@ class Features extends Component {
                                           {displayFeatures}
 
                                         </div>
-                                        <div className="features-footer">
+                                        <div className="features-footer" ref={(el) => { this.listEnd = el; }}>
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
                                     </div>
+                                
                                 </div>
                             </div>
                         </div>
