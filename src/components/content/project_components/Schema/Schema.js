@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
+import { } from '../../../../services/project.schema.services';
 
 
 class Schema extends Component {
@@ -115,11 +116,12 @@ class Schema extends Component {
                     </div>
                 </div>     
             <div className="column-item-footer">
-              <button className="add-button"> <span/> Add Column </button>
+              <button className="add-button" > <span/> Add Column </button>
             </div>
           </div>
         )
     })
+
     return (
       <div>
       <Header />
