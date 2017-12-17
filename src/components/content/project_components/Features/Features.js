@@ -20,10 +20,6 @@ class Features extends Component {
     scrollToBottom = () => {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
-      
-    componentDidUpdate() {
-    this.scrollToBottom();
-    }
 
     componentWillMount() {
         const featureExamples = [
@@ -83,6 +79,7 @@ class Features extends Component {
                 }
             })
             .catch(err => {throw err});
+           
     }
 
     handleDeleteFeature(index) {
