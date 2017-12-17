@@ -70,7 +70,7 @@ class Login extends Component {
 										<img src={UsernameIcon} alt="username icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="text" name="username" placeholder="Username" onChange={e => this.handleInputChange(e)}/>
+								<input className="usr-pswd-input" type="text" name="username" placeholder="Email" onChange={e => this.handleInputChange(e)}/>
 							</div>
 							<div className="usr-pswd-row">
 								<div className="lgn-icon-con">
