@@ -107,8 +107,8 @@ class Dashboard extends Component {
 							<label className="dash-section-title">Group Projects</label>
 							<ul className="projects-list">
 								{displayProjects}
-								<li className="create-project-thumb">
-									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}></div>
+								<li className="create-project-thumb" onClick={() => this.handleCreateButton('group')}>
+									<div className="create-project-thumb-body"></div>
 									<div className="create-project-thumb-footer">
 										<label> Create New Project </label>
 									</div>
@@ -119,8 +119,8 @@ class Dashboard extends Component {
 						<label className="dash-section-title">Personal Projects</label>
 						<ul className="projects-list">
 							{displayProjects}
-							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}></div>
+							<li className="create-project-thumb" onClick={() => this.handleCreateButton('project')}>
+								<div className="create-project-thumb-body"></div>
 								<div className="create-project-thumb-footer">
 									<label> Create New Project </label>
 								</div>
