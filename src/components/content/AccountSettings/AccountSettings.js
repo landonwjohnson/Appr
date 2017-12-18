@@ -88,21 +88,6 @@ class AccountSettings extends Component {
       this.handleAvatarChange = this.handleAvatarChange.bind(this);
   }
 
-  componentWillMount(){
-    const userid = this.props.match.params.userid;
-    findUser(userid)
-      .then( res => {
-        const {firstName, lastName, email, password, username} = res.data;
-        if (res.status !== 200){
-          console.log(res);
-        }
-        else {
-          this.setState({userInfo: {firstName, lastName, email, password, username}})
-        }
-      })
-      .catch(err => {throw err})
-  }
-
   //Modal Methods
     closeModal() {
       this.setState({modalIsOpen: false});

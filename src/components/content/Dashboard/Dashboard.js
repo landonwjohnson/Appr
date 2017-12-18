@@ -74,11 +74,9 @@ class Dashboard extends Component {
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
 			return (
-				<li className="create-project-thumb">
+				<li className="project-thumb">
 					<Link to={`/user/${userid}/group/${group.id}/dashboard`} key={`group-${index}`}>
-						<div className="create-project-thumb-body">
-							<img src="https://cdn3.iconfinder.com/data/icons/blog-and-social-media-icons/512/Group_of_People-512.png" alt="add icon"/>
-						</div>
+						<div className="create-project-thumb-body"></div>
 						<div className="create-project-thumb-footer">
 							<label>{group.name}</label>
 						</div>
@@ -89,16 +87,15 @@ class Dashboard extends Component {
 		const displayProjects = projects.map( project => {
 			const index = projects.indexOf(project);
 			return (
-				<li className="create-project-thumb">
-					<Link to={`/user/${userid}/project/${project.id}/ideas`} key={`project-${index}`}>
-						<div className="create-project-thumb-body">
-							<img src="https://cdn1.iconfinder.com/data/icons/creative-concept/174/CREATIVE_CONCEPT_Black-08-512.png" alt="add icon"/>
-						</div>
-						<div className="create-project-thumb-footer">
-							<label>{project.name}</label>
-						</div>
-					</Link>
-				</li>
+				<Link to={`/user/${userid}/project/${project.id}/ideas`} key={`project-${index}`}>
+					<li className="project-thumb">
+							<div className="project-thumb-body">
+							</div>
+							<div className="project-thumb-footer">
+								<label>{project.name}</label>
+							</div>		
+					</li>
+				</Link>
 			);
 		});
 
@@ -107,27 +104,23 @@ class Dashboard extends Component {
 				<Header userid={userid}/>
 				<div className="dashboard-container">
 					<div className="group-list-container">
-						<label className="dash-section-title">Groups</label>
-						<ul className="groups-list">
-							{displayGroups}
-							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
-									<img src={addIcon} alt="add icon"/>
-								</div>
-								<div className="create-project-thumb-footer">
-									<label> Create a Group </label>
-								</div>
-							</li>
-						</ul>
+							<label className="dash-section-title">Group Projects</label>
+							<ul className="projects-list">
+								{displayProjects}
+								<li className="create-project-thumb">
+									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}></div>
+									<div className="create-project-thumb-footer">
+										<label> Create New Project </label>
+									</div>
+								</li>
+							</ul>
 					</div>
 					<div className="personal-list-container">
 						<label className="dash-section-title">Personal Projects</label>
 						<ul className="projects-list">
 							{displayProjects}
 							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
-									<img src={addIcon} alt="add icon"/>
-								</div>
+								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}></div>
 								<div className="create-project-thumb-footer">
 									<label> Create New Project </label>
 								</div>
