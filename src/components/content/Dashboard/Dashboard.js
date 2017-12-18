@@ -23,12 +23,7 @@ class Dashboard extends Component {
 		const userid = this.props.match.params.userid;
 		findDashboardInfo(userid)
 			.then( res => {
-				if (res.status !== 200) {
-                    console.log(res);
-				}
-				else {
-					this.setState(res.data);
-				}
+				res.status !== 200 ? console.log(res) : this.setState(res.data);
 			})
 			.catch(err => {throw err});
 	}
@@ -74,15 +69,11 @@ class Dashboard extends Component {
 		const { groups, projects } = this.state
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
-			return (
-				<DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
-			);
+			return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
 		});
 		const displayProjects = projects.map( project => {
 			const index = projects.indexOf(project);
-			return (
-				<DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name}/>
-			);
+			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name}/>
 		});
 
 		return (
