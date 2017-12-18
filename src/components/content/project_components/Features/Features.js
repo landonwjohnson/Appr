@@ -138,6 +138,7 @@ class Features extends Component {
                                 </div>
                             </div>
                         </div>
+                        {/* <div className="blur-overlay"></div> */}
                     </div>
                 </div>
             </div>
