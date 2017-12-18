@@ -31,7 +31,7 @@ a{
 }
 
 .main-fix{
-  @include lighten-background($primary, 30%);
+  // @include lighten-background($primary, 30%);
   display: flex;
   width: 100%;
   flex-direction: row;
