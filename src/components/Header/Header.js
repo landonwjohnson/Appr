@@ -134,6 +134,7 @@ class Header extends Component {
     }
     
   render(){
+      const userid = this.props.userid;
       const groups = this.state.groups;
       const projects = this.state.projects;
       const displayGroups = groups.map( group => {
@@ -179,11 +180,6 @@ class Header extends Component {
         "board-menu-container": true
     })
 
-    let showHeaderClass = classnames({
-        "header-parent--hide": this.state.showHeader,
-        "header-parent": true
-    })
-
     let handleCurtain= classnames({
         "curtain--off": this.state.showCurtain,
         "curtain--on": true
@@ -194,31 +190,27 @@ class Header extends Component {
         "bread-menu-toggle-after": this.state.breadToX
     })
    
-    
-
-  
     return (
       <div className="header-parent">
-      
           <div className={boardMenuClass}>
-          
             <div className="boards-main-container">
             <div className="board-menu-header">
             <div className="back-con" onClick={this.closeMenus}>
                 <div className="back-icon"> </div>
                 <div className="board-text">Hide</div>
-            </div>
-
-                  
+            </div> 
             </div>
                 <div className="recent-boards-con">
                     <div className="text-12">GROUP PROJECTS</div>
+
                     {displayGroups}
                
                 </div>
                 <div className="personal-boards-con">
                     <div className="text-12">PERSONAL PROJECTS</div>
+
                         {displayProjects}
+
                         <Link to="/ideas" onClick={this.closeMenus}>
                             <div className="create-board-item">
                                 <div className="create-board-thumbnail">
@@ -263,7 +255,7 @@ class Header extends Component {
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
+                    <Link to={`/user/${userid}/account/settings/${userid}`} onClick={this.closeMenus}><li>Settings</li></Link>
                     <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>

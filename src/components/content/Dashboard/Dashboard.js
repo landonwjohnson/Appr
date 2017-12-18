@@ -74,14 +74,16 @@ class Dashboard extends Component {
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
 			return (
-				<li className="project-thumb">
-					<Link to={`/user/${userid}/group/${group.id}/dashboard`} key={`group-${index}`}>
-						<div className="create-project-thumb-body"></div>
-						<div className="create-project-thumb-footer">
-							<label>{group.name}</label>
-						</div>
-					</Link>
-				</li>
+				<Link to={`/user/${userid}/group/${group.id}/dashboard`} key={`group-${index}`}>
+					<li className="project-thumb">
+						
+							<div className="create-project-thumb-body"></div>
+							<div className="create-project-thumb-footer">
+								<label>{group.name}</label>
+							</div>
+						
+					</li>
+			  </Link>
 			);
 		});
 		const displayProjects = projects.map( project => {
@@ -106,7 +108,7 @@ class Dashboard extends Component {
 					<div className="group-list-container">
 							<label className="dash-section-title">Group Projects</label>
 							<ul className="projects-list">
-								{displayProjects}
+								{displayGroups}
 								<li className="create-project-thumb" onClick={() => this.handleCreateButton('group')}>
 									<div className="create-project-thumb-body"></div>
 									<div className="create-project-thumb-footer">
