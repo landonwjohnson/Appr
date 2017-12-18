@@ -90,7 +90,7 @@ class Dashboard extends Component {
 				<Header userid={userid}/>
 				<div className="dashboard-container">
 					<div className="group-list-container">
-						<label className="dash-section-title">Groups</label>
+						<label className="dash-section-title"> Groups </label>
 						<ul className="projects-list">
 
 							{displayGroups}
@@ -100,13 +100,13 @@ class Dashboard extends Component {
 									<img src={addIcon} alt="add icon"/>
 								</div>
 								<div className="create-project-thumb-footer">
-									<label> Create a Group </label>
+									<label> Create New Group </label>
 								</div>
 							</li>
 						</ul>
 					</div>
 					<div className="personal-list-container">
-						<label className="dash-section-title">Personal Projects</label>
+						<label className="dash-section-title"> Projects </label>
 						<ul className="projects-list">
 
 							{displayProjects}
