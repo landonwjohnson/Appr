@@ -22,7 +22,9 @@ class Tracking extends Component {
             this.removeTrackerListHandle = this.removeTrackerListHandle.bind(this);
         }
 
-
+      scrollToBottom = () => {
+        this.listEnd.scrollIntoView({ behavior: "smooth" });
+    }
 
   //Add List Button methods
   openListToggle(e){
@@ -47,6 +49,8 @@ class Tracking extends Component {
       trackerLists: TrackingList,
       listName: '',
     })
+
+    this.scrollToBottom();
   }
 
   removeTrackerListHandle(){
@@ -87,7 +91,7 @@ class Tracking extends Component {
                 <div className="project-items-container" id="project">
                     {displayTrackerLists}
         
-                    <div className="add-list-wrapper" >
+                    <div className="add-list-wrapper" ref={(el) => { this.listEnd = el; }}>
                           <div className={addListToggleClass} onFocus={this.openListToggle}>
                             <div className="add-list-content">
                               <input placeholder="Add a list..." value={this.state.listName} onChange={ (e) => this.setState({
