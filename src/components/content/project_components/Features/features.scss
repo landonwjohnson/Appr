@@ -2,9 +2,12 @@
 
 .features-container {
     width: 100%;
-    background-color: rgba(0,0,0,0.5);
     height: calc(100vh - 50px);
     overflow-y: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
 
     
     &::-webkit-scrollbar {

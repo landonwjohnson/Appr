@@ -97,6 +97,12 @@
         background-size: 100%;
         background-position: 50% 50%;
         border-radius: 10px; 
+        cursor: pointer;
+        user-select: none;
+
+        &:active{
+            border: 1px solid rgba(0, 0, 0, 0.23);
+        }
     }
 
     .background-box{
@@ -109,12 +115,12 @@
         width:80%;
         background-size: 100%;
         background-position: 50% 50%;
-        border-radius: 10px;        
+        border-radius: 10px;    
+        user-select: none;    
         cursor: pointer;
 
         .attribution{
             opacity: 0;
-            user-select: none;
             transition: 0.2s ease-in-out;
         }
 

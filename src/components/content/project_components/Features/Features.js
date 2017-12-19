@@ -103,7 +103,7 @@ class Features extends Component {
 
 
     render() {
-
+        console.log(this.props.background);
 
         const { userid, projectid } = this.props.match.params;
         const features = this.state.features;
@@ -117,8 +117,13 @@ class Features extends Component {
         return (
                 <div className="main-fix">
                     <ProjectSidebar userid={userid} projectid={projectid} handleProjectBackground={this.props.handleProjectBackground} background={this.props.background}/>
-                    <div className="features-container" style={{backgroundImage: `url(${this.props.background})`}}>
+                    <div className="blur-overlay" style ={ { backgroundImage: `url(${this.props.background})` } } />
+
+                    <div className="features-container" >
+
+                        
                         <div className="container-wrapper">
+
                             <div className="project-section-header">
                                 <label> Features </label>
                             </div>
@@ -135,9 +140,11 @@ class Features extends Component {
                                 
                                 </div>
                             </div>
+                            {/* <div className="blur-overlay" style={{backgroundImage: `url(${this.props.background})`}}></div>   */}
                         </div>
-                        {/* <div className="blur-overlay"></div> */}
+
                     </div>
+
                 </div>
 
         );

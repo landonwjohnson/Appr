@@ -5,6 +5,7 @@ import './body.scss';
 import Header from '../Header/Header';
 import ProjectSideBar from '../content/project_components/ProjectSetupSidebar/ProjectSidebar'
 
+//For Router
 import Home from '../content/Home/Home';
 import Register from '../content/Register/Register';
 import Login from '../content/Login/Login';
@@ -23,19 +24,22 @@ export default class Body extends Component {
     super(props);
     this.state ={
       userInfo:{
-        avatar: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg',
+        avatar: '',
       },
       projectInfo:{
-        background: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg'
+        background: ' '
       }
     }
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
 
   handleProjectBackground(e){
+    
     console.log(e)
     let newBackground = e;
     this.setState({projectInfo: {background: newBackground}})
+
+    console.log(this.state.projectInfo.background)
   }
 
   render() {
