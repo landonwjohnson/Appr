@@ -67,16 +67,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: contain;
-    background: lightgrey;
+    background: #D6DADC;
+    background-size: cover;
+    mix-blend-mode: multiply;
     width: 30px;
     height: 30px;
     border-radius: 100px;
-
-    img{
-      width: 30px;
-      height: 30px;
-    }
   }
   
   .hello-user {

@@ -147,11 +147,11 @@ class Header extends Component {
     }
 
     toggleHeader(){
-        if (this.props.location === '/'){
-            this.setState({UI: {hideHeader: true}})
+        if (window.location.pathname.match(/user/)){
+            this.setState({UI: {hideHeader: false}})
           }
         else {
-              this.setState({UI: {hideHeader: false}})
+              this.setState({UI: {hideHeader: true}})
         }
     }
     
@@ -263,7 +263,7 @@ class Header extends Component {
                     </div>
                 <div className="user-con">
                  
-                        <div className="avatar"> <label>{userInitials}</label> </div>
+                        <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{userInitials}</label> </div>
                         <div className="hello-user">Hello {this.state.userInfo.name}!</div>
                         <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
                         <div className="bread-container" onClick={this.handleRightMenuClick}>

@@ -66,7 +66,7 @@ class AccountSettings extends Component {
         username: 'landonwjohnson',
         email: 'landonwjohnson@gmail.com',
         password: 'blee blee blop',
-        avatar: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg'
+        avatar: ''
       }
     }
 
@@ -190,7 +190,7 @@ class AccountSettings extends Component {
 
     handleInitials(e){
       let userInitials;
-      if(this.state.userInfo.avatar !== ''){
+      if(this.props.userInfo.avatar !== ''){
         userInitials = '';
       }
       else{
@@ -209,6 +209,7 @@ class AccountSettings extends Component {
 
   
   render() {
+    console.log(this.props)
     return (
       <div className="account-settings-container">
           <div className="profile-section-outter">
@@ -217,7 +218,7 @@ class AccountSettings extends Component {
                   <div className="change-initial" onClick={this.openAvatarModal}>  
                     <div>Change</div>
                   </div>
-                  <div className="avatar-initial"  style={{backgroundImage: `url(${this.state.userInfo.avatar})`}} >
+                  <div className="avatar-initial"  style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} >
                   
                   <label>{this.handleInitials()}</label>
                   </div>
