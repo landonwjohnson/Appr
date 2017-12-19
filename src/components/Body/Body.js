@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './body.scss';
 import Header from '../Header/Header';
+import ProjectSideBar from '../content/project_components/ProjectSetupSidebar/ProjectSidebar'
 
 import Home from '../content/Home/Home';
 import Register from '../content/Register/Register';
@@ -25,10 +26,18 @@ export default class Body extends Component {
         avatar: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg',
       },
       projectInfo:{
-        background: 'background text'
+        background: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/15dfff38189369.5758507c3dcc1.jpg'
       }
     }
+    this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
+
+  handleProjectBackground(e){
+    console.log(e)
+    let newBackground = e;
+    this.setState({projectInfo: {background: newBackground}})
+  }
+
   render() {
     return (
       <div className="body-container">
@@ -45,7 +54,9 @@ export default class Body extends Component {
                     <AccountSettings userInfo={this.state.userInfo}  {...props} />
                 )}/>
                 <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas"/>
-                <Route component={ Features } path="/user/:userid/project/:projectid/features"/>
+                <Route path="/user/:userid/project/:projectid/features" render={(props) => (
+                    <Features background={this.state.projectInfo.background} handleProjectBackground={this.handleProjectBackground}  {...props} />
+                )}/>
                 <Route component={ View } path="/user/:userid/project/:projectid/views"/>
                 <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
                 <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>

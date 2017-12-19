@@ -44,7 +44,7 @@ export default class ProjectSidebar extends Component {
                     <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>
                 <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
-                    <BackgroundMenu toggleProjectMenu={this.toggleProjectMenu} />
+                    <BackgroundMenu handleProjectBackground={this.props.handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
                 </div>
             </div>
         )

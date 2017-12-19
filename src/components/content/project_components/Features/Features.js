@@ -116,8 +116,8 @@ class Features extends Component {
         });
         return (
                 <div className="main-fix">
-                    <ProjectSidebar userid={userid} projectid={projectid}/>
-                    <div className="features-container">
+                    <ProjectSidebar userid={userid} projectid={projectid} handleProjectBackground={this.props.handleProjectBackground} background={this.props.background}/>
+                    <div className="features-container" style={{backgroundImage: `url(${this.props.background})`}}>
                         <div className="container-wrapper">
                             <div className="project-section-header">
                                 <label> Features </label>
