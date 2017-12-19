@@ -18,7 +18,6 @@ export default class ProjectSidebar extends Component {
     }
 
     toggleProjectMenu(){
-        console.log('UI Test')
         if(this.state.UI.hideProjectMenu === false){
             this.setState({ UI: { hideProjectMenu: true, hideBackgroundMenu: false } })
         }

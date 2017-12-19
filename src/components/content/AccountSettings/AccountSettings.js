@@ -209,15 +209,7 @@ class AccountSettings extends Component {
 
   
   render() {
-    const {firstName, lastName, email, password, username} = this.state.userInfo;
-    
-
-    
-    
     return (
-
-      <div>
-      <Header />
       <div className="account-settings-container">
           <div className="profile-section-outter">
               <div className="profile-section-inner">
@@ -293,7 +285,6 @@ class AccountSettings extends Component {
           >
               <ChangeAvatar userInfo={this.state.userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={this.handleAvatarChange} showAvatarFail={this.showAvatarFail}/>
           </Modal>
-      </div>
       </div>
     );
   }

@@ -76,8 +76,6 @@ class Tracking extends Component {
         "add-list--before" : true
     })
     return (
-      <div style={{"background": "grey", "height": "100vh", "overflow-y": "hidden"}}>
-        <Header />
         <div className="main-fix">
         <ProjectSidebar userid={userid} projectid={projectid}/>
         <div className="tracking-container">
@@ -104,17 +102,11 @@ class Tracking extends Component {
                             </div>
                           </div>
                       </div>
-                </div>
-
-            
-
-             
-          </div>
-        
-          
+                </div>             
+          </div>   
        </div>
       </div>
-      </div>
+
     );
   }
 }

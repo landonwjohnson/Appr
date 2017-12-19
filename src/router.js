@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import AccountSettings from './components/content/AccountSettings/AccountSettings';
 // import GroupDashboard from 'UNDEFINED PATH';
 // import GroupSettings from 'UNDEFINED PATH';
@@ -16,6 +16,7 @@ import Endpoints from './components/content/project_components/Endpoints/Endpoin
 import Tracking from './components/content/project_components/Tracking/Tracking';
 
 export default (
+
     <Switch>
         <Route component={ Home } exact path="/"/>
         <Route component={ Register } path="/register"/>
@@ -23,7 +24,9 @@ export default (
 
         {/* Future Sub Routes */}
             <Route component={ Dashboard } path="/user/:userid/dashboard"/>
-            <Route component={ AccountSettings } path="/user/:userid/account/settings/:userid"/>
+            <Route path="/user/:userid/account/settings/:userid" render={(props) => (
+                <AccountSettings  {...props} />
+            )}/>
             {/* <Route component={ GroupDashboard } path="/user/:userid/group/:groupid/dashboard"/> */}
             {/* <Route component={ GroupSettings } path="/user/:userid/group/:groupid/settings"/> */}
 
@@ -36,4 +39,5 @@ export default (
             <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
             <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>
     </Switch>
+
 );

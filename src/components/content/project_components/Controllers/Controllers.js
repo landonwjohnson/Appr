@@ -128,8 +128,6 @@ class Controllers extends Component {
     });
     
     return (
-        <div>
-            <Header />
             <div className="main-fix">
                 <ProjectSidebar userid={userid} projectid={projectid}/>
                 <div className="controllers-container">
@@ -151,7 +149,6 @@ class Controllers extends Component {
                     </div>
                 </div>
             </div>
-        </div>
     );
   }
 }

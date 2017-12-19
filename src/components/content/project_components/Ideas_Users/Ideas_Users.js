@@ -203,8 +203,6 @@ class Ideas_Users extends Component {
         });
 
         return (
-            <div>
-                <Header />
                 <div className="main-fix">
                     <ProjectSidebar userid={userid} projectid={projectid}/>
                     <div className="ideasUsers-container">
@@ -237,7 +235,6 @@ class Ideas_Users extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         );
     }
 }

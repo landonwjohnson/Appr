@@ -148,8 +148,6 @@ class Endpoints extends Component {
       )
     })
     return (
-      <div>
-      <Header />
         <div className="main-fix">
           <ProjectSidebar userid={userid} projectid={projectid}/>
           <div className="endpoints-container">
@@ -171,7 +169,6 @@ class Endpoints extends Component {
           </div>
           </div>  
           </div>
-        </div>
     );
   }
 }

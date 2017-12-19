@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import AlertIcon from '../../img/icons/Bell-02.svg';
 import BoardsIcon from '../../img/icons/boards.svg';
@@ -10,6 +8,8 @@ import Feedback from '../content/Feedback/Feedback'
 import './header.scss';
 import './board-menu.scss';
 import { findDashboardInfo } from '../../services/dashboard.services';
+import { createGroup } from '../../services/group.services';
+import { createProject } from '../../services/project.services';
 
 
 const ModalBox = {
@@ -42,6 +42,7 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state ={
+            location: '',
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
@@ -50,26 +51,36 @@ class Header extends Component {
             feedbackModalOpen: false,
             groups: [],
             projects: [],
-            
+            UI: {
+                hideHeader: true
+            },
             userInfo: {
                 name: 'Landon',
                 username: 'landonwjohnson',
                 email: 'landonwjohnson@gmail.com'
             }
-         
-            
         }
-        this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
-        this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
-        this.closeMenus = this.closeMenus.bind(this);
-        this.openFeedbackModal = this.openFeedbackModal.bind(this);
-        this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
+
+
+        //UI
+            this.toggleHeader = this.toggleHeader.bind(this);
+            this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
+            this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
+            this.closeMenus = this.closeMenus.bind(this);
+            this.openFeedbackModal = this.openFeedbackModal.bind(this);
+            this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
+
+    componentDidMount(){
+        this.toggleHeader();
+    }
+
 
     
 
     componentWillMount(){
-        const useridForSideBar = this.props.userid;
+        
+        const useridForSideBar = '7';
         findDashboardInfo(useridForSideBar)
             .then(res => {
                 const {projects, groups} = res.data;
@@ -88,8 +99,7 @@ class Header extends Component {
         this.setState({boardMenuOpen: true})
         this.setState({showCurtain: true})
         this.setState({rightMenuOpen: true})
-        this.setState({feedbackModalOpen: true})
-        
+        this.setState({feedbackModalOpen: true})  
     }
       
       
@@ -128,12 +138,25 @@ class Header extends Component {
     }
 
     closeMenus(){
-        this.setState({boardMenuOpen: true})
-        this.setState({showCurtain: true})
-        this.setState({rightMenuOpen: true})
+        this.setState({
+                boardMenuOpen: true,
+                showCurtain: true,
+                rightMenuOpen: true,
+                breadToX: false
+            })
+    }
+
+    toggleHeader(){
+        if (this.props.location === '/'){
+            this.setState({UI: {hideHeader: true}})
+          }
+        else {
+              this.setState({UI: {hideHeader: false}})
+        }
     }
     
   render(){
+      console.log(this.state.location)
       const userid = this.props.userid;
       const groups = this.state.groups;
       const projects = this.state.projects;
@@ -168,8 +191,11 @@ class Header extends Component {
             </Link>
         )
     })
-
     const userInitials = this.state.userInfo.name.charAt(0);
+    const headerClass = classnames({
+        displayHeader: false,
+        hideHeader: this.state.UI.hideHeader
+      })
     let rightMenuClass = classnames({
         "right-menu-container--hide": this.state.rightMenuOpen,
         "right-menu-container": true
@@ -191,7 +217,8 @@ class Header extends Component {
     })
    
     return (
-      <div className="header-parent">
+ 
+      <div className={headerClass}>
           <div className={boardMenuClass}>
             <div className="boards-main-container">
             <div className="board-menu-header">

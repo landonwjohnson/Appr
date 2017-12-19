@@ -121,8 +121,6 @@ class Schema extends Component {
         )
     })
     return (
-      <div>
-      <Header />
         <div className="main-fix">
           <ProjectSidebar userid={userid} projectid={projectid}/>
             <div className="schema-container">
@@ -135,7 +133,6 @@ class Schema extends Component {
               </div>
             </div>
           </div>
-      </div>
     );
   }
 }

@@ -124,8 +124,6 @@ class View extends Component {
     });
 
     return (
-      <div>
-      <Header />
         <div className="main-fix">
           <ProjectSidebar userid={userid} projectid={projectid}/>
           
@@ -147,7 +145,6 @@ class View extends Component {
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }

@@ -1,12 +1,11 @@
 @import '../_colors.scss';
 
-.header-parent{
-
-  
+.hideHeader{
+  display:none;
 }
 
 .header-parent--hide{
-  display:none;
+ 
 }
 
 .header-container {
@@ -68,6 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: contain;
     background: lightgrey;
     width: 30px;
     height: 30px;
@@ -315,6 +315,8 @@
   }
 
   
+
+  
   
   
    
@@ -339,50 +341,7 @@
 
 
 
-  // animated x
 
-  // #bread-menu-toggle, #bread-menu-toggle .bread-top, #bread-menu-toggle .bread-bottom {
-  //   transition: all 0.5s ease-in-out;
-  // } 
-
-  // #bread-menu-toggle .bread-bottom {
-  //   display: block;
-  //   bottom: 3px;
-  //   width: 24px;
-  //   height: 2px;
-  //   background-color: #fff;
-  //   position: relative;
-  //   z-index: 8;
-  // }
-
-  // #bread-menu-toggle .bread-top {
-  //   display: block;
-    
-  //    width: 24px;
-  //    height: 2px;
-  //    background-color: #fff;
-  //    position: relative;
-  //    z-index: 9;
-  //  }
-  
-  // #bread-menu-toggle.active .bread-top  {
-  //   position: relative;
-  // }
-  
-  // #bread-menu-toggle.active .bread-bottom {
-  //   top: 0;
-  // }
-  
-  // #bread-menu-toggle.active .bread-top {
-    
-  //   transform: rotate(45deg);
-  // }
-  
-  // #bread-menu-toggle.active .bread-bottom {
-   
-  //   transform: rotate(-45deg)
-  // }
-  
 
 
 

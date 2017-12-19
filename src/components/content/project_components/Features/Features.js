@@ -115,8 +115,6 @@ class Features extends Component {
             );
         });
         return (
-            <div>
-                <Header />
                 <div className="main-fix">
                     <ProjectSidebar userid={userid} projectid={projectid}/>
                     <div className="features-container">
@@ -141,7 +139,7 @@ class Features extends Component {
                         {/* <div className="blur-overlay"></div> */}
                     </div>
                 </div>
-            </div>
+
         );
     }
 }
