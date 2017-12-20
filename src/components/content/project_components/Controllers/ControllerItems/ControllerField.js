@@ -7,7 +7,7 @@ class ControllerField extends Component {
     }
 
     render() {
-        const { index, controllerid } = this.props;
+        const { index, controllerid, whenData } = this.props;
         return(
             <div className="contro-item">
             <div className="contro-item-inner">
@@ -21,7 +21,7 @@ class ControllerField extends Component {
                     <div className="contro-row-container">
                         <label className="contro-row-name"> When </label>
                         <div className="contro-input-row">
-                            <input className="contro-input-field" type="text" id={controllerid} value={controller.when_data} onChange={e => this.handleChangeInput(e, index, 'when_data')} onBlur={e => this.handleSaveChange(e, index)}/>
+                            <input className="contro-input-field" type="text" id={controllerid} value={whenData} onChange={e => this.handleChangeInput(e, index, 'when_data')} onBlur={e => this.handleSaveChange(e, index)}/>
                         </div>
                     </div>
                     <div className="contro-row-container">
