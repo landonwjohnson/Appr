@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import classnames from "classnames";
 
 
@@ -75,8 +74,6 @@ class Tracking extends Component {
         "add-list--before" : true
     })
     return (
-        <div className="main-fix">
-        <ProjectSidebar userid={userid} projectid={projectid}/>
         <div className="tracking-container">
         <div className="project-header">
             <label>Tracker</label>
@@ -104,8 +101,6 @@ class Tracking extends Component {
                 </div>             
           </div>   
        </div>
-      </div>
-
     );
   }
 }

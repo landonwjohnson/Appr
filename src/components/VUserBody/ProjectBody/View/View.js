@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import { getUId } from '../../../../utils/uid.utils';
 import { createProjectView, findProjectViews, findProjectView, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
 import './view.scss';
@@ -123,9 +122,6 @@ class View extends Component {
     });
 
     return (
-        <div className="main-fix">
-          <ProjectSidebar userid={userid} projectid={projectid}/>
-          
           <div className="view-container">
             <div className="view-inner-con">
               <div className="project-section-header">
@@ -143,7 +139,6 @@ class View extends Component {
               </div>
           </div>
         </div>
-      </div>
     );
   }
 }

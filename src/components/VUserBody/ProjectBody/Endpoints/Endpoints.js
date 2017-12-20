@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar'
 import './endpoints.scss';
 
 class Endpoints extends Component {
@@ -147,8 +146,6 @@ class Endpoints extends Component {
       )
     })
     return (
-        <div className="main-fix">
-          <ProjectSidebar userid={userid} projectid={projectid}/>
           <div className="endpoints-container">
           
           <div className="endpoints-wrapper">
@@ -167,7 +164,7 @@ class Endpoints extends Component {
             </div>
           </div>
           </div>  
-          </div>
+       
     );
   }
 }

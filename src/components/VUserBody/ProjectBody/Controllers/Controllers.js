@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
 import { createProjectController, findProjectControllers, updateProjectController, deleteProjectController } from '../../../../services/project.controller.services';
@@ -127,8 +126,6 @@ class Controllers extends Component {
     });
     
     return (
-            <div className="main-fix">
-                <ProjectSidebar userid={userid} projectid={projectid}/>
                 <div className="controllers-container">
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
@@ -147,7 +144,6 @@ class Controllers extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
     );
   }
 }

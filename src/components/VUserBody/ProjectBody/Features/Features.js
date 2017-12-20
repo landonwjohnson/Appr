@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import './features.scss';
 import FeatureItem from "./FeatureItem/FeatureItem";
 import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
@@ -113,11 +112,7 @@ class Features extends Component {
               <FeatureItem index={index} projectid={projectid} id={id} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
             );
         });
-        return (
-                <div className="main-fix">
-                    <ProjectSidebar userid={userid} projectid={projectid} handleProjectBackground={this.props.handleProjectBackground} background={this.props.background}/>
-                    <div className="blur-overlay" style ={ { backgroundImage: `url(${this.props.background})` } } />
-
+        return (  
                     <div className="features-container" >
 
                         
@@ -139,13 +134,8 @@ class Features extends Component {
                                 
                                 </div>
                             </div>
-                            {/* <div className="blur-overlay" style={{backgroundImage: `url(${this.props.background})`}}></div>   */}
                         </div>
-
                     </div>
-
-                </div>
-
         );
     }
 }

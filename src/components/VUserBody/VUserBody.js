@@ -13,7 +13,7 @@ class VUserBody extends Component {
         avatar: '',
       },
       projectInfo:{
-        background: ' '
+        background: 't'
       }
     }
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
@@ -29,15 +29,15 @@ class VUserBody extends Component {
 
   render() {
     return (
-      <div className="body-container">
+      <div className="vuser">
         <Header userInfo={this.state.userInfo} />
         <div>
             <Switch>
-                <Route path="/user/:userid/" exact render={(props) => (
+                <Route path="/user/:userid/info" render={(props) => (
                     <InfoBody userInfo={this.state.userInfo}  {...props}/>
                 )} />
-                <Route path="/user/:userid/project/:projectid" exact render={(props) => (
-                    <ProjectBody projectInfo={this.state.projectInfo} {...props} />
+                <Route component={ProjectBody} path="/user/:userid/project/:projectid" render={(props) => (
+                    <ProjectBody background={this.state.projectInfo.background} {...props} />
                 )} />
             </Switch>
         </div>

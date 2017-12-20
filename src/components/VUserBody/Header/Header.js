@@ -282,7 +282,7 @@ class Header extends Component {
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <Link to={`/user/${userid}/account/settings/${userid}`} onClick={this.closeMenus}><li>Settings</li></Link>
+                    <Link to={`/user/${userid}/info/account/settings/${userid}`} onClick={this.closeMenus}><li>Settings</li></Link>
                     <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>

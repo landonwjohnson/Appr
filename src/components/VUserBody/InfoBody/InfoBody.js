@@ -9,9 +9,10 @@ class InfoBody extends Component {
       const { userInfo, projectInfo } = this.props;
     return (
       <div> 
+        <h1> Boo </h1>
           <Switch>
-          <Route component={ Dashboard } path="/user/:userid/dashboard"/>
-          <Route path="/user/:userid/account/settings/:userid" render={(props) => (
+          <Route component={ Dashboard } path="/user/:userid/info/dashboard"/>
+          <Route path="/user/:userid/info/account/settings/:userid" render={(props) => (
                 <AccountSettings userInfo={userInfo}  {...props} />
           )}/>
           </Switch>

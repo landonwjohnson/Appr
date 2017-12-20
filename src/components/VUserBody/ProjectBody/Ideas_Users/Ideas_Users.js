@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import './idea_users.scss';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
 import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
@@ -169,8 +168,6 @@ class Ideas_Users extends Component {
         });
 
         return (
-                <div className="main-fix">
-                    <ProjectSidebar userid={userid} projectid={projectid}/>
                     <div className="ideasUsers-container">
                         <div className="ideasUsers-wrapper">
                             <div className="project-section-header">
@@ -200,7 +197,6 @@ class Ideas_Users extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
         );
     }
 }

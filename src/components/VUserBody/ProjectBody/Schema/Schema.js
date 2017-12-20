@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './schema.scss';
-import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 
 class Schema extends Component {
   constructor(props){
@@ -119,15 +118,12 @@ class Schema extends Component {
         )
     })
     return (
-        <div className="main-fix">
-          <ProjectSidebar userid={userid} projectid={projectid}/>
-            <div className="schema-container">
-              <div className="schema-wrapper">
-                <div className="project-section-header">Schema</div>
-                <div className="table-list-container">
-                    {displaySchemas}
-                  <button className="add-table" onClick={this.addSchemaItemHandler}> Add Table </button>
-                </div>
+          <div className="schema-container">
+            <div className="schema-wrapper">
+              <div className="project-section-header">Schema</div>
+              <div className="table-list-container">
+                  {displaySchemas}
+                <button className="add-table" onClick={this.addSchemaItemHandler}> Add Table </button>
               </div>
             </div>
           </div>
