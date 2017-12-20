@@ -46,7 +46,6 @@ export default class Body extends Component {
     return (
       <div className="body-container">
         <Header userInfo={this.state.userInfo} />
-
         <Switch>
             <Route component={ Home } exact path="/"/>
             <Route component={ Register } path="/register"/>
