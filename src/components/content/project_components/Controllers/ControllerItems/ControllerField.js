@@ -7,7 +7,7 @@ class ControllerField extends Component {
     }
 
     render() {
-        const { index, controllerid, whenData. doData } = this.props;
+        const { index, controllerid, whenData, doData, requireData } = this.props;
         return(
             <div className="contro-item">
             <div className="contro-item-inner">
@@ -33,7 +33,7 @@ class ControllerField extends Component {
                     <div className="contro-row-container">
                         <label className="contro-row-name"> Require </label>
                         <div className="contro-input-row">
-                            <input className="contro-input-field" type="text" id={controllerid} value={controller.require_data} onChange={e => this.handleChangeInput(e, index, 'require_data')} onBlur={e => this.handleSaveChange(e, index)}/>
+                            <input className="contro-input-field" type="text" id={controllerid} value={requireData} onChange={e => this.handleChangeInput(e, index, 'require_data')} onBlur={e => this.handleSaveChange(e, index)}/>
                         </div>
                     </div>
                 </div>
