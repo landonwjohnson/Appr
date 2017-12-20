@@ -7,8 +7,9 @@ class ControllerField extends Component {
     }
 
     render() {
+        const { index } = this.props;
         return(
-            <div className="contro-item" key={`controller-${index}`}>
+            <div className="contro-item">
             <div className="contro-item-inner">
                 <div className="project-item-header">
                     <span className="delete-item" onClick={() => this.handleDeleteController(index)}> </span>

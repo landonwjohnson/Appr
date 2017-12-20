@@ -94,7 +94,7 @@ class Controllers extends Component {
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerField />
+        return <ControllerField key={index} />
     });
     
     return (
