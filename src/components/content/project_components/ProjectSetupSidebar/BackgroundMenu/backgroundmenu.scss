@@ -100,6 +100,11 @@
         cursor: pointer;
         user-select: none;
 
+        label{
+            user-select: none;
+            cursor: pointer;
+        }
+
         &:active{
             border: 1px solid rgba(0, 0, 0, 0.23);
         }
@@ -145,6 +150,10 @@
                     }
                 }
             }
+        }
+
+        &:active{
+            border: 1px solid rgba(0, 0, 0, 0.23);
         }
     }
 }
