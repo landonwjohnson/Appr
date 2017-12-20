@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './dashboard.scss';
 import './dashboard-projects.scss';
 import addIcon from '../../../img/icons/add-icon.svg';
@@ -7,6 +6,8 @@ import Header from '../../Header/Header';
 import { findDashboardInfo } from '../../../services/dashboard.services';
 import { createGroup } from '../../../services/group.services';
 import { createProject } from '../../../services/project.services';
+import DashGroup from './DashItems/DashGroup';
+import DashProject from './DashItems/DashProject';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -22,12 +23,7 @@ class Dashboard extends Component {
 		const userid = this.props.match.params.userid;
 		findDashboardInfo(userid)
 			.then( res => {
-				if (res.status !== 200) {
-                    console.log(res);
-				}
-				else {
-					this.setState(res.data);
-				}
+				res.status !== 200 ? console.log(res) : this.setState(res.data);
 			})
 			.catch(err => {throw err});
 	}
@@ -73,33 +69,11 @@ class Dashboard extends Component {
 		const { groups, projects } = this.state
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
-			return (
-				<li className="create-project-thumb">
-					<Link to={`/user/${userid}/group/${group.id}/dashboard`} key={`group-${index}`}>
-						<div className="create-project-thumb-body">
-							<img src="https://cdn3.iconfinder.com/data/icons/blog-and-social-media-icons/512/Group_of_People-512.png" alt="add icon"/>
-						</div>
-						<div className="create-project-thumb-footer">
-							<label>{group.name}</label>
-						</div>
-					</Link>
-				</li>
-			);
+			return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
 		});
 		const displayProjects = projects.map( project => {
 			const index = projects.indexOf(project);
-			return (
-				<li className="create-project-thumb">
-					<Link to={`/user/${userid}/project/${project.id}/ideas`} key={`project-${index}`}>
-						<div className="create-project-thumb-body">
-							<img src="https://cdn1.iconfinder.com/data/icons/creative-concept/174/CREATIVE_CONCEPT_Black-08-512.png" alt="add icon"/>
-						</div>
-						<div className="create-project-thumb-footer">
-							<label>{project.name}</label>
-						</div>
-					</Link>
-				</li>
-			);
+			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name}/>
 		});
 
 		return (
@@ -107,23 +81,27 @@ class Dashboard extends Component {
 				<Header userid={userid}/>
 				<div className="dashboard-container">
 					<div className="group-list-container">
-						<label className="dash-section-title">Groups</label>
-						<ul className="groups-list">
+						<label className="dash-section-title"> Groups </label>
+						<ul className="projects-list">
+
 							{displayGroups}
+
 							<li className="create-project-thumb">
 								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
 									<img src={addIcon} alt="add icon"/>
 								</div>
 								<div className="create-project-thumb-footer">
-									<label> Create a Group </label>
+									<label> Create New Group </label>
 								</div>
 							</li>
 						</ul>
 					</div>
 					<div className="personal-list-container">
-						<label className="dash-section-title">Personal Projects</label>
+						<label className="dash-section-title"> Projects </label>
 						<ul className="projects-list">
+
 							{displayProjects}
+
 							<li className="create-project-thumb">
 								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
 									<img src={addIcon} alt="add icon"/>
