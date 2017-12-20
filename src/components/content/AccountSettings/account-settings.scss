@@ -131,9 +131,10 @@
 }
 
 .headline-30{
+    @include darken-color($primary, 10%);
     font-size: 30px;
     text-align: left;
-    color: $medium-color;
+    
 }
 
 .headline-20{
