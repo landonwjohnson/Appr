@@ -1,15 +1,15 @@
 
 
 import React, { Component } from 'react';
-import UserAvatar from '../../img/placeholders/Landon-Thumb-Grey.jpg';
 import AlertIcon from '../../img/icons/Bell-02.svg';
 import BoardsIcon from '../../img/icons/boards.svg';
 import classnames from 'classnames';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
 import Feedback from '../content/Feedback/Feedback'
 import './header.scss';
 import './board-menu.scss';
+import { findDashboardInfo } from '../../services/dashboard.services';
 
 
 const ModalBox = {
@@ -48,6 +48,8 @@ class Header extends Component {
             showHeader: false,
             showCurtain: true,
             feedbackModalOpen: false,
+            groups: [],
+            projects: [],
             
             userInfo: {
                 name: 'Landon',
@@ -59,10 +61,26 @@ class Header extends Component {
         }
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
-        this.handleHeader = this.handleHeader.bind(this);
         this.closeMenus = this.closeMenus.bind(this);
         this.openFeedbackModal = this.openFeedbackModal.bind(this);
         this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
+    }
+
+    
+
+    componentWillMount(){
+        const useridForSideBar = this.props.userid;
+        findDashboardInfo(useridForSideBar)
+            .then(res => {
+                const {projects, groups} = res.data;
+                if (res.status !== 200){
+                    console.log(res);
+                }
+                else {
+                    this.setState({projects, groups})
+                }
+            })
+            .catch(err => {throw err})
     }
 
     openFeedbackModal(){
@@ -99,22 +117,15 @@ class Header extends Component {
         if(this.state.boardMenuOpen){
             this.setState({boardMenuOpen: false})
             this.setState({showCurtain: false})
+            this.setState({breadToX: false})
+            this.setState({rightMenuOpen:true})
+       
         }
         else {
             this.setState({boardMenuOpen: true})
             this.setState({showCurtain: true})
         }
     }
-    
-    handleHeader(){
-        if(this.state.showHeader){
-            this.setState({showHeader: false})
-        }
-        else {
-            this.setState({showHeader: true})
-        }
-    }
-
 
     closeMenus(){
         this.setState({boardMenuOpen: true})
@@ -123,6 +134,39 @@ class Header extends Component {
     }
     
   render(){
+      const groups = this.state.groups;
+      const projects = this.state.projects;
+      const displayGroups = groups.map( group => {
+          const index = groups.indexOf(group);
+          return (
+              <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
+                    <div className="board-menu-item">
+                    <div className="board-item-thumbnail">
+
+                    </div>
+                    <div className="board-item-name">
+                        {group.name}
+                    </div>
+                </div>
+              </Link>
+          )
+      })
+
+      const displayProjects = projects.map( project => {
+        const index = projects.indexOf(project);
+        return (
+            <Link to={`/group-dashboard/${project.id}`} key={`project-${index}`}>
+                  <div className="board-menu-item">
+                  <div className="board-item-thumbnail">
+
+                  </div>
+                  <div className="board-item-name">
+                      {project.name}
+                  </div>
+              </div>
+            </Link>
+        )
+    })
 
     const userInitials = this.state.userInfo.name.charAt(0);
     let rightMenuClass = classnames({
@@ -159,37 +203,24 @@ class Header extends Component {
           <div className={boardMenuClass}>
           
             <div className="boards-main-container">
-            <div className="board-menu-header">
-            <div className="back-con" onClick={this.closeMenus}>
-                <div className="back-icon"> </div>
-                <div className="board-text">Hide</div>
-            </div>
+                <div className="board-menu-header">
+                    <div className="back-con" onClick={this.closeMenus}>
+                        <div className="back-icon"> </div>
+                        <div className="back-text">Hide</div>
+                    </div>
+                </div>
 
                   
             </div>
-                <div className="v2 recent-boards-con">
-                    <div className="text-12">RECENT PROJECTS</div>
-                        <div className="board-menu-item">
-                            <div className="board-item-thumbnail">
-
-                            </div>
-                            <div className="board-item-name">
-                                Placeholder
-                            </div>
-                        </div>
-                    <div className="board-menu-item">
-                        <div className="board-item-thumbnail">
-
-                        </div>
-                        <div className="board-item-name">
-                            Placeholder
-                        </div>
-                    </div>
+                <div className="recent-boards-con">
+                    <div className="text-12">GROUP PROJECTS</div>
+                    {displayGroups}
                
                 </div>
+
                 <div className="personal-boards-con">
                     <div className="text-12">PERSONAL PROJECTS</div>
-                        
+                        {displayProjects}
                         <Link to="/ideas" onClick={this.closeMenus}>
                             <div className="create-board-item">
                                 <div className="create-board-thumbnail">
@@ -202,19 +233,18 @@ class Header extends Component {
                         </Link>
                 </div>
             </div>
-          </div>
+          
           <div className="header-container">
                 <div className="nav-bar">
                     <div className="board-con" href="#" onClick={this.handleBoardMenuClick} >
-                    <div className="board-icon"><img src={BoardsIcon} /></div>
-                    
-                    <div className="board-text">Projects</div>
+                        <div className="board-icon"><img src={BoardsIcon} /></div>
+                        
+                        <div className="board-text">Projects</div>
                     </div>
                     <div>
                         <div className="logo"></div>
                     </div>
-                <div className="user-con">
-                 
+                    <div className="user-con">
                         <div className="avatar"> <label>{userInitials}</label> </div>
                         <div className="hello-user">Hello {this.state.userInfo.name}!</div>
                         <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
@@ -226,7 +256,7 @@ class Header extends Component {
                                 </div>
                             </div> 
                         </div>    
-                </div>
+                    </div>
                 </div>
                 
         </div>
@@ -253,8 +283,8 @@ class Header extends Component {
               isOpen ={this.state.feedbackModalOpen} 
               onRequestClose={this.closeFeedbackModal}
               className="modal-account-settings-content"
-              style={ModalBox}
-        >
+              style={ModalBox}>
+
               <Feedback onCloseBtnClick={this.closeFeedbackModal} />
         </Modal>
       </div>

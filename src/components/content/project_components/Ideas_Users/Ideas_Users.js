@@ -5,6 +5,8 @@ import Header from '../../../Header/Header';
 import './idea_users.scss';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
 import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
+import IdeaField from './Fields/IdeaField';
+import UserField from './Fields/Userfield';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -36,12 +38,7 @@ class Ideas_Users extends Component {
                     console.log(res);
                 }
                 else {
-                    if (res.data.length > 0) {
-                        this.setState({ ideas: res.data });
-                    }
-                    else {
-                        this.setState({ ideas: ideaExamples });
-                    }
+                    res.data.length > 0 ? this.setState({ ideas: res.data }) : this.setState({ ideas: ideaExamples });
                 }
             })
             .catch(err => {throw err});
@@ -52,12 +49,7 @@ class Ideas_Users extends Component {
                     console.log(res);
                 }
                 else {
-                    if (res.data.length > 0) {
-                        this.setState({ userfields: res.data });
-                    }
-                    else {
-                        this.setState({ userfields: userfieldExamples });
-                    }
+                    res.data.length > 0 ? this.setState({ userfields: res.data }) : this.setState({ userfields: userfieldExamples });
                 }
             })
             .catch(err => {throw err});
@@ -107,7 +99,7 @@ class Ideas_Users extends Component {
     submitChangeField(e, field, index) {
         const key = e.target.name;
         const projectid = this.props.match.params.projectid
-        const id = Number(e.target.id);
+        const id = e.target.id;
 
         if (field === 'ideas') {
             const ideaData = this.state[field][index].idea_data;
@@ -169,37 +161,13 @@ class Ideas_Users extends Component {
         const { userid, projectid } = this.props.match.params;
         const ideas = this.state.ideas;
         const userfields = this.state.userfields;
-
         const displayIdeas = ideas.map( idea => {
-            const field = 'ideas';
             const index = ideas.indexOf(idea);
-            return (
-                <div className="ideas-item" key={`idea-${index}`}>
-                    <section>
-                        <label>{(index + 1) + '.'}</label>
-                        <input id={idea.id} name="idea_data" value={idea.idea_data} onChange={e => this.handleChangeField(e, field, index)}/>
-                    </section>
-                    <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
-                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
-                </div>
-            );
+            return <IdeaField key={`idea-${index}`} index={index} ideaid={idea.id} ideaData={idea.idea_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
         });
-
         const displayUsers = userfields.map( userfield => {
-            const field = 'userfields';
             const index = userfields.indexOf(userfield);
-            return (
-                <div className="users-item" key={`userfield-${index}`}>
-                    <section>
-                        <label>{(index + 1) + '.'}</label>
-                        <input id={userfield.id} name="target_demo_data" value={userfield.target_demo_data} onChange={e => this.handleChangeField(e, field, index)}/>
-                        <input id={userfield.id} name="skill_data" value={userfield.skill_data} onChange={e => this.handleChangeField(e, field, index)}/>
-                        <input id={userfield.id} name="description_data" value={userfield.description_data} onChange={e => this.handleChangeField(e, field, index)}/>
-                    </section>
-                    <button className="not-enough-info-btn" id={userfield.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
-                    <span className="delete-x" id={userfield.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
-                </div>
-            );
+            return <UserField index={index} userfieldid={userfield.id} targetDemoData={userfield.target_demo_data} skillData={userfield.skill_data} descriptionData={userfield.description_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
         });
 
         return (
@@ -237,6 +205,7 @@ class Ideas_Users extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="blur-overlay"></div>
             </div>
         );
     }

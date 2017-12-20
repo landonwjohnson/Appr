@@ -11,12 +11,14 @@ const projectViewRouter = require('./project.view.router');
 const projectControllerRouter = require('./project.controller.router');
 const projectEndpointRouter = require('./project.endpoint.router');
 const projectSchemaRouter = require('./project.schema.router');
+const feedbackMailerTestRouter = require('./feedbackMailerTest');
 
 function delegateRoutesFor(app) {
     app.use('/api/auth', authRouter);
     app.use('/api/account', accountRouter);
     app.use('/api/dashboard', dashboardRouter);
     app.use('/api/group', groupRouter);
+    app.use('/api/mail', feedbackMailerTestRouter);
 
     app.use('/api/project', 
         projectRouter,

@@ -76,7 +76,7 @@ removeTaskItemHandler(){
     })
     return (
     
-      <div className="project-item">
+      <div className="project-item" id={this.props.listName.replace(/[^a-zA-Z]/g, '').toLowerCase() + ".list"}>
             <div className="project-item-block">
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 

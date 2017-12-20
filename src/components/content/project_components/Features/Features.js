@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
+import FeatureItem from "./FeatureItem/FeatureItem";
 import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
 
 class Features extends Component {
@@ -92,20 +93,15 @@ class Features extends Component {
             .catch(err => {throw err});
     }
 
+
     render() {
         const { userid, projectid } = this.props.match.params;
         const features = this.state.features;
         const displayFeatures = features.map( feature => {
             const index = features.indexOf(feature);
+            const id = feature.id;
             return (
-                <div className="features-item">
-                    <section>
-                        <label>{(index + 1) + '.'}</label>
-                        <input value={feature.feature_data} onChange={e => this.handleChangeFeature(e, index)}/>
-                    </section>
-                    <button className="not-enough-info-btn" onClick={() => this.handleSubmitFeature(index)}> Save </button>
-                    <button className="delete-x" onClick={() => this.handleDeleteFeature(index)}> &times; </button> 
-                </div>
+              <FeatureItem index={index} projectid={projectid} id={id} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
             );
         });
         return (
@@ -116,12 +112,14 @@ class Features extends Component {
                     <div className="features-container">
                         <div className="container-wrapper">
                             <div className="project-section-header">
-                                <label>Features</label>
+                                <label> Features </label>
                             </div>
                                 <div className="features-area drop-shadow">
                                     <div className="features-wrapper">
                                         <div className="features-list">
-                                        {displayFeatures}
+
+                                          {displayFeatures}
+
                                         </div>
                                         <div className="features-footer">
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
@@ -131,6 +129,7 @@ class Features extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="blur-overlay"></div>
             </div>
         );
     }
