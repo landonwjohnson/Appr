@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Body from './components/Body/Body';
-import Header from './/components/Header/Header';
+import AuthBody from './components/AuthBody/AuthBody';
+import VUserBody from './components/VUserBody/VUserBody';
+
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      location: ''
+   
     }
   }
   render() {
     return (
       <div className="App">
-          <Body location={this.state.location} />
+          {/* <AuthBody /> */}
+          <VUserBody />
       </div>
     );
   }
