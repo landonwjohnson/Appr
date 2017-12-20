@@ -94,7 +94,7 @@ class Controllers extends Component {
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerField key={index} controllerid={controller.id} whenData={controller.when_data}/>
+        return <ControllerField key={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data}/>
     });
     
     return (
