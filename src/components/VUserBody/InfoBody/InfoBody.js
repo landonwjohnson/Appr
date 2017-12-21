@@ -6,14 +6,14 @@ import AccountSettings from './AccountSettings/AccountSettings';
 
 class InfoBody extends Component {
   render() {
-      const { userInfo, projectInfo } = this.props;
+      const { userInfo, handleFirstNameChange, handleLastNameChange, handleEmailChange, handleAvatarChange  } = this.props;
     return (
        <div>
          
         <Switch>
             <Route component={ Dashboard }  path="/user/:userid/dashboard"/>
             <Route path="/user/:userid/account/settings/:userid" render={(props) => (
-                  <AccountSettings userInfo={userInfo}  {...props} />
+                  <AccountSettings userInfo={userInfo} handleFirstNameChange={handleFirstNameChange} handleLastNameChange={handleLastNameChange} handleEmail={handleEmailChange} handleAvatarChange={handleAvatarChange}  {...props} />
             )}/>
         
         </Switch>

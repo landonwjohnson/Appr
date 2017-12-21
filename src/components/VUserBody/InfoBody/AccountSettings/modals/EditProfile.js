@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './modals.scss'
 import PropTypes from 'prop-types';
 
 class EditProfile extends Component {
     
     render() {
+      const { userInfo, handleFirstNameChange, handleLastNameChange } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
@@ -19,12 +19,12 @@ class EditProfile extends Component {
                   
                   <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={this.props.userInfo.firstName} onChange={ (e) => {this.props.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                      <input className="modal-form" placeholder={userInfo.firstName} onChange={ (e) => {handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
                     </section>
                   
                   <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={this.props.userInfo.lastName} onChange={ (e) => {this.props.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" placeholder={userInfo.lastName} onChange={ (e) => {handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
                   {/* <label className="modal-input-tag">Username</label>

@@ -54,17 +54,8 @@ class Header extends Component {
             projects: [],
             UI: {
                 hideHeader: false
-            },
-            userInfo: {
-                name: 'Landon',
-                username: 'landonwjohnson',
-                email: 'landonwjohnson@gmail.com'
             }
         }
-
-
-        //UI
-            // this.toggleHeader = this.toggleHeader.bind(this);
             this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
             this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
             this.closeMenus = this.closeMenus.bind(this);
@@ -72,28 +63,20 @@ class Header extends Component {
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
 
-    // componentDidMount(){
-    //     this.toggleHeader();
-    // }
-
-
-    
-
-    // componentWillMount(){
-        
-    //     const useridForSideBar = '7';
-    //     findDashboardInfo(useridForSideBar)
-    //         .then(res => {
-    //             const {projects, groups} = res.data;
-    //             if (res.status !== 200){
-    //                 console.log(res);
-    //             }
-    //             else {
-    //                 this.setState({projects, groups})
-    //             }
-    //         })
-    //         .catch(err => {throw err})
-    // }
+    componentWillMount(){
+        const useridForSideBar = '7';
+        findDashboardInfo(useridForSideBar)
+            .then(res => {
+                const {projects, groups} = res.data;
+                if (res.status !== 200){
+                    console.log(res);
+                }
+                else {
+                    this.setState({projects, groups})
+                }
+            })
+            .catch(err => {throw err})
+    }
 
     openFeedbackModal(){
         this.setState({breadToX: false})
@@ -146,17 +129,9 @@ class Header extends Component {
                 breadToX: false
             })
     }
-
-    // toggleHeader(){
-    //     if (window.location.pathname.match(/user/)){
-    //         this.setState({UI: {hideHeader: false}})
-    //       }
-    //     else {
-    //           this.setState({UI: {hideHeader: true}})
-    //     }
-    // }
     
   render(){
+      const { userInfo } = this.props;
       console.log(this.state.location)
       const userid = this.props.userid;
       const groups = this.state.groups;
@@ -192,7 +167,7 @@ class Header extends Component {
             </Link>
         )
     })
-    const userInitials = this.state.userInfo.name.charAt(0);
+    const userInitials = userInfo.firstName.charAt(0);
     const headerClass = classnames({
         displayHeader: false,
         hideHeader: this.state.UI.hideHeader
@@ -265,8 +240,7 @@ class Header extends Component {
                 <div className="user-con">
                  
                         <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{userInitials}</label> </div>
-                        <div className="hello-user">Hello {this.state.userInfo.name}!</div>
-                        <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
+                        <div className="hello-user">Hello {userInfo.firstName}!</div>
                         <div className="bread-container" onClick={this.handleRightMenuClick}>
                             <div className={breadMenuTransform} href="#" >
                                 <div className="bread-menu">

@@ -55,7 +55,7 @@
   }
   
   .user-con {
-    width: 260px;
+    min-width: 260px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -66,10 +66,13 @@
     justify-content: center;
     align-items: center;
     background: #D6DADC;
+    background-position: 50% 50%;
     background-size: cover;
     mix-blend-mode: multiply;
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
     border-radius: 100px;
   }
   
@@ -80,6 +83,8 @@
     color: white;
     font-family: sans-serif;
     white-space: nowrap;
+    overflow: hidden;
+    margin-right: 20px;
   }
   
   .alert-icon{
@@ -108,7 +113,6 @@
       border-top: 0px solid transparent;
       position: relative;
       z-index: 1;
-      
       transition: 0.1s ease-in-out;
 
       .right-menu-inner {
@@ -116,13 +120,9 @@
         flex-direction: column;
         background: white;
         width: 100%;
-        // border: 1px solid black;
         height: 100%;
         position: relative;
         z-index: 1;
-       
-       
-        
         transition: 0.1s ease-in-out;
     
         ul {
