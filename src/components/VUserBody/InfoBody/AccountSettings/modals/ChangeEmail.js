@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class ChangeEmail extends Component {
     
     render() {
+        const { handleEmailChange } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
@@ -22,7 +23,7 @@ class ChangeEmail extends Component {
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">
-                        <input className="modal-form" type="email" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30} required/>
+                        <input className="modal-form" type="email" autoFocus onChange={(e) => {handleEmailChange(e.target.value)}} maxLength={30} required/>
                     </section>
                 </div>
                 <div className="submitModal">
