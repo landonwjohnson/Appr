@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: calc(100vh - 50px);
     // border: 1px solid black;
   }
     
@@ -12,11 +13,10 @@
       display: flex;
       flex-direction: column;
       width: 90%;
-      height: 100%;
-      // background: blue;
+      max-height: 100%;
       -webkit-box-direction: normal;
       margin-top: 40px;
-      // border: 1px solid red;
+
     }
 
     .group-list-container{
@@ -24,11 +24,9 @@
       flex-direction: column;
       width: 90%;
       max-height: 100%;
-      // background: blue;
       -webkit-box-direction: normal;
       margin-top: 40px;
-      margin-bottom: 40px;
-      // border: 1px solid red;
+
 
       ul{
         padding: 0px;

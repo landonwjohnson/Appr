@@ -14,20 +14,23 @@ import Tracking from './Tracking/Tracking';
 class ProjectBody extends Component {
   render() {
     console.log(this.props)
-    const { projectInfo } = this.props;
+    const { projectInfo, handleProjectBackground } = this.props;
 
     let blurOverlay ={
-      'height': '100%',
-      'width':  '100%',
-      'position': 'absolute',
-      'zIndex': '0',
-      'backgroundImage': `url(${projectInfo.background})`,
-      'filter': 'blur(7px)'
+      height: 'calc(100vh - 50px)',
+      width:  '100%',
+      position: 'absolute',
+      zIndex: '0',
+      backgroundImage: `url(${projectInfo.background})`,
+      filter: 'blur(7px)',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      transition: '0.2s ease-in-out'
     }
 
     return (
       <div style={{'display': 'flex'}}>
-        <ProjectSidebar />
+        <ProjectSidebar handleProjectBackground={handleProjectBackground} />
         <div style={blurOverlay} />
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>

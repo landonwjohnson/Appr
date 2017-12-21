@@ -15,6 +15,7 @@ export default class BackgroundMenu extends Component {
 
 
     render() {
+        const { handleProjectBackground } = this.props;
         return (
             <div>
                  <form>
@@ -23,9 +24,9 @@ export default class BackgroundMenu extends Component {
                     </div>
                     
                     <ul className='background-list'>
-                            <li className="no-background-box" onClick={(e) => this.props.handleProjectBackground('')}>  <label>No Background</label>  </li>
-                            <li className="background-box" onClick={(e) => this.props.handleProjectBackground(HotSpringsUtah)} style ={ { backgroundImage: `url(${HotSpringsUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
-                            <li className="background-box" onClick={(e) => this.props.handleProjectBackground(ThistleHouseUtah)} style ={ { backgroundImage: `url(${ThistleHouseUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
+                            <li className="no-background-box" onClick={(e) => handleProjectBackground('')}>  <label>No Background</label>  </li>
+                            <li className="background-box" onClick={(e) => handleProjectBackground(HotSpringsUtah)} style ={ { backgroundImage: `url(${HotSpringsUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
+                            <li className="background-box" onClick={(e) => handleProjectBackground(ThistleHouseUtah)} style ={ { backgroundImage: `url(${ThistleHouseUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
                     </ul>
 
                     <div className='project-background-footer'>

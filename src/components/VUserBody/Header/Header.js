@@ -22,7 +22,8 @@ const ModalBox = {
         bottom: "0",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
-        width: "100%"
+        width: "100%",
+        zIndex: '5'
       },
       content : {
         borderRadius: "4px",

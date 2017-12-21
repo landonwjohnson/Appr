@@ -12,7 +12,7 @@ class VUserBody extends Component {
         avatar: '',
       },
       projectInfo:{
-        background: 'https://images.pexels.com/photos/370799/pexels-photo-370799.jpeg?h=350&auto=compress&cs=tinysrgb'
+        background: ''
       }
     }
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
