@@ -13,14 +13,16 @@ import Tracking from './Tracking/Tracking';
 
 class ProjectBody extends Component {
   render() {
-    const { background } = this.props;
+    console.log(this.props)
+    const { projectInfo } = this.props;
 
     let blurOverlay ={
       'height': '100%',
       'width':  '100%',
       'position': 'absolute',
-      'zIndex': 0,
-      'background_image': `${background}`
+      'zIndex': '0',
+      'backgroundImage': `url(${projectInfo.background})`,
+      'filter': 'blur(7px)'
     }
 
     return (
