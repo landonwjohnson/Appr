@@ -39,7 +39,9 @@ export default class ProjectSidebar extends Component {
         
         const { userid, projectid } = this.props;
         return (
-            <div className="project-sidebar-container">
+
+            
+            <div className="project-sidebar">
                 <div className={`${navMenuClass}`}>
                     <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>

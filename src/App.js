@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.scss';
-import AuthBody from './components/AuthBody/AuthBody';
+import { Route } from 'react-router-dom';
+import Register from './components/AuthBody/Register/Register';
+import Login from './components/AuthBody/Login/Login';
 import VUserBody from './components/VUserBody/VUserBody';
+import Home from './components/AuthBody/Home/Home';
 
 class App extends Component {
   constructor(){
@@ -13,8 +16,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          {/* <AuthBody /> */}
-          <VUserBody />
+          <Route component={ Home } path="/" exact />
+          <Route component={ Register }  path="/register" />
+          <Route component={ Login }  path="/login"/>
+          <Route component={ VUserBody } path="/user/:userid/"/>
       </div>
     );
   }

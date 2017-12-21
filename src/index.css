@@ -1,7 +1,10 @@
 body {
+  height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: acumin-pro, "Helvetica Neue", Helvetica, Arial; 
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
 }
 
 .ReactModal_Body--open, .ReactModal_Content-after-open {

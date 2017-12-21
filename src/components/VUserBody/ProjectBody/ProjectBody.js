@@ -9,27 +9,31 @@ import Schema from './Schema/Schema';
 import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 
+
+
 class ProjectBody extends Component {
   render() {
     const { background } = this.props;
+
+    let blurOverlay ={
+      'height': '100%',
+      'width':  '100%',
+      'position': 'absolute',
+      'zIndex': 0,
+      'background_image': `${background}`
+    }
+
     return (
-      <div className="project-view">
+      <div style={{'display': 'flex'}}>
         <ProjectSidebar />
-        <div className="blur-overlay" style={ { backgroundImage: `url(${background})` } } />
-        
-       
-          <Switch>
-              <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas"/>
-              <Route path="/user/:userid/project/:projectid/features"  render={(props) => (
-                <Features  {...props} />
-            )}/>
-                <Route component={ View } path="/user/:userid/project/:projectid/views"/>
-                <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
-                <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>
-                <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
-                <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/> 
-         </Switch>
-        
+        <div style={blurOverlay} />
+              <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
+              <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
+              <Route component={ View } path="/user/:userid/project/:projectid/views" />
+              <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers" />
+              <Route component={ Schema } path="/user/:userid/project/:projectid/schema" />
+              <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints" />
+              <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>   
       </div>
     );
   }
