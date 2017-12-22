@@ -148,7 +148,8 @@
     text-align: left;
     margin: none;
     max-width: 100%;
-    // border: 1px solid black;
+    cursor: pointer;
+    user-select: none;
 }
 
 .text-9{
@@ -191,6 +192,8 @@
     height: 32px;
     width: 120px;
     background: #E2E4E6;
+    cursor: pointer;
+    user-select: none;
 }
 
 .name-username-edit-con {

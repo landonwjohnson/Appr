@@ -14,32 +14,27 @@ class AccountSettings extends Component {
   constructor(){
     super()
     this.state={
-      modalIsOpen: false,
+      profileModalOpen: false,
       emailModalOpen: false,
       passwordModalOpen: false,
       avatarModalOpen: false,
-
-      userInfo: {
-        firstName: 'Landon',
-        lastName: 'Johnson',
-        username: 'landonwjohnson',
-        email: 'landonwjohnson@gmail.com',
-        password: 'blee blee blop',
-        avatar: ''
-      }
     }
-      this.openModal = this.openModal.bind(this);
+    //UI Modals
+      this.openProfileModal = this.openProfileModal.bind(this);
       this.openEmailModal = this.openEmailModal.bind(this);
       this.openPasswordModal = this.openPasswordModal.bind(this);
       this.openAvatarModal = this.openAvatarModal.bind(this);
-      this.closeModal = this.closeModal.bind(this);
+      this.closeProfileModal = this.closeProfileModal.bind(this);
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
+
+      this.handleInitials = this.handleInitials.bind(this);
   }
 
-    closeModal() {
-      this.setState({modalIsOpen: false});
+  //UI Modals
+    closeProfileModal() {
+      this.setState({profileModalOpen: false});
     }
 
     closeEmailModal(){
@@ -54,8 +49,8 @@ class AccountSettings extends Component {
       this.setState({avatarModalOpen: false})
     }
 
-    openModal() {
-      this.setState({modalIsOpen: true});
+    openProfileModal() {
+      this.setState({profileModalOpen: true});
     }
 
     openEmailModal(){
@@ -69,10 +64,72 @@ class AccountSettings extends Component {
     openAvatarModal(){
       this.setState({avatarModalOpen: true})
     }
+
+
+  //Handle userInfoLocal
+
+
+
+
+    // handleUserNameChange(e){
+    //   let newUserName = e;
+    //   this.setState({
+    //       userInfo: {
+    //         initial: this.state.initial,
+    //         firstName: this.state.userInfo.firstName,
+    //         lastName: this.state.userInfo.lastName,
+    //         username: newUserName,
+    //         email: this.state.userInfo.email,
+    //         avatar: this.state.userInfo.avatar
+    //       }
+    //     })
+    // }
+
+    handleEmailChange(e){
+      let newEmail = e.toLowerCase();
+      this.setState({
+          userInfo: {
+            initial: this.state.initial,
+            firstName: this.state.userInfo.firstName,
+            lastName: this.state.userInfo.lastName,
+            username: this.state.userInfo.username,
+            email: newEmail,
+            avatar: this.state.userInfo.avatar
+          }
+        })
+      
+    }
+
+    handleAvatarChange(e){
+      let newAvatar = e.trim();
+      this.setState({
+          userInfo: {
+            initial: this.state.initial,
+            firstName: this.state.userInfo.firstName,
+            lastName: this.state.userInfo.lastName,
+            username: this.state.userInfo.username,
+            email: this.state.userInfo.email,
+            avatar: newAvatar
+          }
+        })
+    }
+
+    handleInitials(e){
+      let userInitials;
+      if(this.props.userInfo.avatar !== ''){
+        userInitials = '';
+      }
+      else{
+        userInitials = this.props.userInfo.firstName.charAt(0).toUpperCase();
+      }
+  
+      return userInitials
+    }
   
   render() {
-    const { handleFirstNameChange, handleLastNameChange, handleEmailChange, handleAvatarChange, userInfo } = this.props;
-    console.log(this.props)
+   
+    const { userInfo, handleNameSubmit } = this.props;
+    console.log(this.state)
     return (
       <div className="account-settings-container">
           <div className="profile-section-outter">
@@ -83,14 +140,14 @@ class AccountSettings extends Component {
                   </div>
                   <div className="avatar-initial"  style={{backgroundImage: `url(${userInfo.avatar})`}} >
                   
-                  <label>{userInfo.initial}</label>
+                  <label>{userInfo.firstName.charAt(0).toUpperCase()}</label>
                   </div>
                   <div className="name-username-edit-con">
                     <div className="name-and-username">
-                        <div className="headline-22" onClick={this.openModal}>{userInfo.firstName} {userInfo.lastName} </div>
+                        <div className="headline-22" onClick={this.openProfileModal}>{userInfo.firstName} {userInfo.lastName} </div>
                         <div className="text-9">@{userInfo.username}</div>
                     </div>
-                    <div className="edit-profile-btn" onClick={this.openModal}>
+                    <div className="edit-profile-btn" onClick={this.openProfileModal}>
                       <div className="button-icon"><img src={editIcon} alt="edit profile"/></div>
                       Edit Profile
                       </div>
@@ -115,12 +172,12 @@ class AccountSettings extends Component {
 
 
           <Modal 
-              isOpen ={this.state.modalIsOpen} 
-              onRequestClose={this.closeModal}
+              isOpen ={this.state.profileModalOpen} 
+              onRequestClose={this.closeProfileModal}
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <EditProfile userInfo={userInfo} onCloseBtnClick={this.closeModal} handleFirstNameChange={handleFirstNameChange} handleLastNameChange={handleLastNameChange} />
+              <EditProfile userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} handleFirstNameChange={this.handleFirstNameChange} handleLastNameChange={this.handleLastNameChange} />
           </Modal>
 
           <Modal 
@@ -129,7 +186,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailChange={handleEmailChange}/>
+              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailChange={this.handleEmailChange}/>
           </Modal>
 
           <Modal 
@@ -147,7 +204,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={handleAvatarChange} showAvatarFail={this.showAvatarFail}/>
+              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={this.handleAvatarChange} showAvatarFail={this.showAvatarFail}/>
           </Modal>
       </div>
     );

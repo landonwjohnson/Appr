@@ -1,15 +1,10 @@
 @import './components/_colors.scss';
 
-
-
-
 .App {
   text-align: center;
   height: 100vh;
   width: 100%;
-  overflow-y: none;
-  
- 
+  overflow-y: none; 
 }
 
 .project-section-header{
@@ -25,23 +20,6 @@
 a{
   text-decoration: none;
 }
-
-// .main-fix{
-//   @include lighten-background($primary, 30%);
-//   display: flex;
-//   width: 100%;
-//   flex-direction: row;
-//   height: 100%;
-//   overflow-y: none;
-
-  
-// }
-
-
-
-
-
-
 
 .home-container{
   display: flex;
@@ -219,30 +197,7 @@ a{
     border: #FF3560 solid 1px !important;
   }
   
-
 }
-
-
-
-
-
-// .project-section-header-test{
-//   font-size: 32px;
-//   padding-bottom: 10px;
-//   width: 90%;
-//   padding-top: 20px;
-
-//   text-align: left;
-//   border-bottom: 1px solid #DCDCDC;
-//   color: #292929;
-//   margin-left: 50px;
-//   margin-right: 50px;
-
-//   ul{
-//     font-size: 12px;
-//     margin-top: 10px;
-//   }
-// }
 
 
 .v2 {

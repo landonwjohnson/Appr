@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ChangeEmail extends Component {
     
     render() {
-        const { handleEmailChange } = this.props;
+        const { handleEmailChange, userInfo } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
@@ -19,7 +19,7 @@ class ChangeEmail extends Component {
                     
                     <label className="modal-input-tag">Current Email</label>
                     <section className="modal-row">
-                        <label className="current-email">{this.props.userInfo.email}</label>
+                        <label className="current-email">{userInfo.email}</label>
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">
