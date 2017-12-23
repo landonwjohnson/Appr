@@ -85,20 +85,7 @@ class AccountSettings extends Component {
     //     })
     // }
 
-    handleEmailChange(e){
-      let newEmail = e.toLowerCase();
-      this.setState({
-          userInfo: {
-            initial: this.state.initial,
-            firstName: this.state.userInfo.firstName,
-            lastName: this.state.userInfo.lastName,
-            username: this.state.userInfo.username,
-            email: newEmail,
-            avatar: this.state.userInfo.avatar
-          }
-        })
-      
-    }
+
 
     handleAvatarChange(e){
       let newAvatar = e.trim();
@@ -128,7 +115,7 @@ class AccountSettings extends Component {
   
   render() {
    
-    const { userInfo, handleNameSubmit } = this.props;
+    const { userInfo, handleNameSubmit, handleEmailSubmit } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -186,7 +173,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailChange={this.handleEmailChange}/>
+              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailSubmit={handleEmailSubmit}/>
           </Modal>
 
           <Modal 

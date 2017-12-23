@@ -12,8 +12,8 @@ class VUserBody extends Component {
         firstName: 'Landon',
         lastName: 'Johnson',
         username: 'landomon',
-        email: '',
-        avatar: '',
+        email: 'landonwjohnson@gmail.com',
+        avatar: 'https://mir-s3-cdn-cf.behance.net/user/138/723b4f10146703.562fb8014adc6.png',
       },
       projectInfo:{
         background: ''
@@ -22,6 +22,7 @@ class VUserBody extends Component {
 
     //AccountSettings
       this.handleNameSubmit = this.handleNameSubmit.bind(this);
+      this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
 
     //Project
       this.handleProjectBackground = this.handleProjectBackground.bind(this);
@@ -32,7 +33,22 @@ class VUserBody extends Component {
       this.setState({
         userInfo: {
           firstName: newFirst,
-          lastName: newLast
+          lastName: newLast,
+          username: this.state.userInfo.username,
+          email: this.state.userInfo.email,
+          avatar: this.state.userInfo.avatar
+        }
+      })
+    }
+
+    handleEmailSubmit(newEmail){
+      this.setState({
+        userInfo: {
+          firstName: this.state.userInfo.firstName,
+          lastName: this.state.userInfo.lastName,
+          username: this.state.userInfo.username,
+          email: newEmail,
+          avatar: this.state.userInfo.avatar
         }
       })
     }
@@ -109,22 +125,6 @@ class VUserBody extends Component {
   //     })
   // }
 
-  handleUserName(){
-    let userName = this.state.userInfo.email;
-    let getPosition = this.state.userInfo.email.indexOf("@");
-    let result = userName.slice(0, getPosition);
-    this.setState({
-      userInfo: {
-        initial: this.state.initial,
-        firstName: this.state.userInfo.firstName,
-        lastName: this.state.userInfo.lastName,
-        username: result,
-        email: this.state.userInfo.email,
-        avatar: this.state.avatar
-      }
-    })
-  }
-
   //Project
   handleProjectBackground(e){
     let newBackground = e;
@@ -139,7 +139,7 @@ class VUserBody extends Component {
         <Header userInfo={userInfo} />
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} {...props}/>)} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
                 <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} />
