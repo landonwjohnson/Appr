@@ -23,6 +23,7 @@ class VUserBody extends Component {
     //AccountSettings
       this.handleNameSubmit = this.handleNameSubmit.bind(this);
       this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
+      this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
 
     //Project
       this.handleProjectBackground = this.handleProjectBackground.bind(this);
@@ -53,77 +54,17 @@ class VUserBody extends Component {
       })
     }
 
-  // handleFirstNameChange(e){
-  //   let newFirstName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
-  //   let newInitial = this.state.userInfo.firstName.charAt(0).toUpperCase();
-  //   this.setState({
-  //       userInfo: {
-  //         initial: newInitial,
-  //         firstName: newFirstName,
-  //         lastName: this.state.userInfo.lastName,
-  //         username: this.state.userInfo.username,
-  //         email: this.state.userInfo.email,
-  //         avatar: this.state.userInfo.avatar
-  //       }
-  //     })
-  // }
-
-  // handleLastNameChange(e){
-  //   let newLastName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();;
-  //   this.setState({
-  //       userInfo: {
-  //         initial: this.state.initial,
-  //         firstName: this.state.userInfo.firstName,
-  //         lastName: newLastName,
-  //         username: this.state.userInfo.username,
-  //         email: this.state.userInfo.email,
-  //         avatar: this.state.userInfo.avatar
-  //       }
-  //     })
-  // }
-
-  // handleUserNameChange(e){
-  //   let newUserName = e;
-  //   this.setState({
-  //       userInfo: {
-  //         initial: this.state.initial,
-  //         firstName: this.state.userInfo.firstName,
-  //         lastName: this.state.userInfo.lastName,
-  //         username: newUserName,
-  //         email: this.state.userInfo.email,
-  //         avatar: this.state.userInfo.avatar
-  //       }
-  //     })
-  // }
-
-  // handleEmailChange(e){
-  //   let newEmail = e.toLowerCase();
-  //   this.setState({
-  //       userInfo: {
-  //         initial: this.state.initial,
-  //         firstName: this.state.userInfo.firstName,
-  //         lastName: this.state.userInfo.lastName,
-  //         username: this.state.userInfo.username,
-  //         email: newEmail,
-  //         avatar: this.state.userInfo.avatar
-  //       }
-  //     })
-     
-  // }
-
-  // handleAvatarChange(e){
-  //   let newAvatar = e.trim();
-  //   this.setState({
-  //       userInfo: {
-  //         initial: this.state.initial,
-  //         firstName: this.state.userInfo.firstName,
-  //         lastName: this.state.userInfo.lastName,
-  //         username: this.state.userInfo.username,
-  //         email: this.state.userInfo.email,
-  //         avatar: newAvatar
-  //       }
-  //     })
-  // }
+    handleAvatarSubmit(newAvatar){
+      this.setState({
+        userInfo: {
+          firstName: this.state.userInfo.firstName,
+          lastName: this.state.userInfo.lastName,
+          username: this.state.userInfo.username,
+          email: this.state.userInfo.username,
+          avatar: newAvatar
+        }
+      })
+    }
 
   //Project
   handleProjectBackground(e){
@@ -139,7 +80,7 @@ class VUserBody extends Component {
         <Header userInfo={userInfo} />
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} {...props}/>)} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
                 <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} />

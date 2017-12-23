@@ -4,7 +4,7 @@ import './account-settings.scss';
 import EditProfile from './modals/EditProfile';
 import ChangeEmail from './modals/ChangeEmail';
 import ChangePassword from './modals/ChangePassword'
-import ChangeAvatar from './modals/ChangeAvatar';
+import ChangeAvatar from './modals/ChangeAvatar/ChangeAvatar';
 import Modal from 'react-modal';
 import { ModalBox } from './accountsettingsStyled';
 import { findUser } from '../../../../services/account.services';
@@ -64,42 +64,6 @@ class AccountSettings extends Component {
       this.setState({avatarModalOpen: true})
     }
 
-
-  //Handle userInfoLocal
-
-
-
-
-    // handleUserNameChange(e){
-    //   let newUserName = e;
-    //   this.setState({
-    //       userInfo: {
-    //         initial: this.state.initial,
-    //         firstName: this.state.userInfo.firstName,
-    //         lastName: this.state.userInfo.lastName,
-    //         username: newUserName,
-    //         email: this.state.userInfo.email,
-    //         avatar: this.state.userInfo.avatar
-    //       }
-    //     })
-    // }
-
-
-
-    handleAvatarChange(e){
-      let newAvatar = e.trim();
-      this.setState({
-          userInfo: {
-            initial: this.state.initial,
-            firstName: this.state.userInfo.firstName,
-            lastName: this.state.userInfo.lastName,
-            username: this.state.userInfo.username,
-            email: this.state.userInfo.email,
-            avatar: newAvatar
-          }
-        })
-    }
-
     handleInitials(e){
       let userInitials;
       if(this.props.userInfo.avatar !== ''){
@@ -114,7 +78,7 @@ class AccountSettings extends Component {
   
   render() {
    
-    const { userInfo, handleNameSubmit, handleEmailSubmit } = this.props;
+    const { userInfo, handleNameSubmit, handleEmailSubmit, handleAvatarSubmit } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -190,7 +154,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={this.handleAvatarChange} showAvatarFail={this.showAvatarFail}/>
+              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarSubmit={handleAvatarSubmit} showAvatarFail={this.showAvatarFail}/>
           </Modal>
       </div>
     );
