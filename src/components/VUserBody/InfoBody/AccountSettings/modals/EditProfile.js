@@ -8,10 +8,11 @@ class EditProfile extends Component {
     this.state={
       firstName: this.props.userInfo.firstName,
       lastName: this.props.userInfo.lastName,
+      username: this.props.userInfo.username
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
-
+    this.handleUserNameChange = this.handleUserNameChange.bind(this);
   }
 
   handleFirstNameChange(e){
@@ -25,6 +26,13 @@ class EditProfile extends Component {
     let newLastName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();;
     this.setState({
           lastName: newLastName
+      })
+  }
+
+  handleUserNameChange(e){
+    let newUsername = e.toLowerCase();
+    this.setState({
+          username: newUsername
       })
   }
     
@@ -52,13 +60,13 @@ class EditProfile extends Component {
                       <input className="modal-form" placeholder={userInfo.lastName} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
-                  {/* <label className="modal-input-tag">Username</label>
+                  <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={this.props.userInfo.username} onChange={ (e) => {this.props.handleUserNameChange(e.target.value)}} maxLength="18"/>
-                    </section> */}
+                      <input className="modal-form" placeholder={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
+                    </section>
                 </div>
               <div className="submitModal">
-                <button id="updateProfile" onClick={(e) => {handleNameSubmit(this.state.firstName, this.state.lastName)}}>
+                <button id="updateProfile" onClick={(e) => {handleNameSubmit(this.state.firstName, this.state.lastName, this.state.username)}}>
                   Update Profile
                 </button>
               </div>

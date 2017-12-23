@@ -5,7 +5,6 @@ import EditProfile from './modals/EditProfile';
 import ChangeEmail from './modals/ChangeEmail';
 import ChangePassword from './modals/ChangePassword'
 import ChangeAvatar from './modals/ChangeAvatar';
-import Header from '../../Header/Header';
 import Modal from 'react-modal';
 import { ModalBox } from './accountsettingsStyled';
 import { findUser } from '../../../../services/account.services';

@@ -29,12 +29,12 @@ class VUserBody extends Component {
   }
 
   //Submit Account Settings Info
-    handleNameSubmit(newFirst, newLast){
+    handleNameSubmit(newFirst, newLast, newUserName){
       this.setState({
         userInfo: {
           firstName: newFirst,
           lastName: newLast,
-          username: this.state.userInfo.username,
+          username: newUserName,
           email: this.state.userInfo.email,
           avatar: this.state.userInfo.avatar
         }
