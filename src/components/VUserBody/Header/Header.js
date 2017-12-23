@@ -131,7 +131,7 @@ class Header extends Component {
     }
     
   render(){
-      const { userInfo } = this.props;
+      const { userInfo, handleInitials } = this.props;
       console.log(this.state.location)
       const userid = this.props.userid;
       const groups = this.state.groups;
@@ -239,7 +239,7 @@ class Header extends Component {
                     </div>
                 <div className="user-con">
                  
-                        <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{userInitials}</label> </div>
+                        <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
                         <div className="hello-user">Hello {userInfo.firstName}!</div>
                         <div className="bread-container" onClick={this.handleRightMenuClick}>
                             <div className={breadMenuTransform} href="#" >

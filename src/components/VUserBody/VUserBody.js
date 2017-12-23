@@ -27,6 +27,9 @@ class VUserBody extends Component {
 
     //Project
       this.handleProjectBackground = this.handleProjectBackground.bind(this);
+
+    //UI
+      this.handleInitials = this.handleInitials.bind(this);
   }
 
   //Submit Account Settings Info
@@ -67,20 +70,32 @@ class VUserBody extends Component {
     }
 
   //Project
-  handleProjectBackground(e){
-    let newBackground = e;
-    this.setState({projectInfo: {background: newBackground}})
-  }
+    handleProjectBackground(e){
+      let newBackground = e;
+      this.setState({projectInfo: {background: newBackground}})
+    }
+
+  //UI
+    handleInitials(e){
+      let userInitials = e;
+      if(this.state.userInfo.avatar !== ''){
+        userInitials = '';
+      }
+      else{
+        userInitials = this.state.userInfo.firstName.charAt(0).toUpperCase();
+      }
+      return userInitials
+    }
 
   render() {
  
     const {userInfo, projectInfo} = this.state;
     return (
       <div>
-        <Header userInfo={userInfo} />
+        <Header userInfo={userInfo} handleInitials={this.handleInitials}/>
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} {...props}/>)} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
                 <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} />

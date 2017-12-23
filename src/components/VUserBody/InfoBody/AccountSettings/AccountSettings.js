@@ -27,8 +27,6 @@ class AccountSettings extends Component {
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
-
-      this.handleInitials = this.handleInitials.bind(this);
   }
 
   //UI Modals
@@ -64,21 +62,10 @@ class AccountSettings extends Component {
       this.setState({avatarModalOpen: true})
     }
 
-    handleInitials(e){
-      let userInitials;
-      if(this.props.userInfo.avatar !== ''){
-        userInitials = '';
-      }
-      else{
-        userInitials = this.props.userInfo.firstName.charAt(0).toUpperCase();
-      }
-  
-      return userInitials
-    }
+
   
   render() {
-   
-    const { userInfo, handleNameSubmit, handleEmailSubmit, handleAvatarSubmit } = this.props;
+    const { userInfo, handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -90,7 +77,8 @@ class AccountSettings extends Component {
                   </div>
                   <div className="avatar-initial"  style={{backgroundImage: `url(${userInfo.avatar})`}} >
                   
-                  <label>{userInfo.firstName.charAt(0).toUpperCase()}</label>
+                  {/* <label>{userInfo.firstName.charAt(0).toUpperCase()}</label> */}
+                  <label>{handleInitials(userInfo.avatar)}</label>
                   </div>
                   <div className="name-username-edit-con">
                     <div className="name-and-username">
@@ -116,10 +104,6 @@ class AccountSettings extends Component {
 
           
           </div>
-
-
-
-
 
           <Modal 
               isOpen ={this.state.profileModalOpen} 
