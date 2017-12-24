@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
-import HotSpringsUtah from '../../../../../img/backgrounds/Hot-Springs-Utah.jpg';
-import ThistleHouseUtah from '../../../../../img/backgrounds/Thistle-House-Utah.jpg';
+import HotSpringsUtah from '../../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
+import ThistleHouseUtah from '../../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
 
 export default class BackgroundMenu extends Component {
     constructor(props) {
