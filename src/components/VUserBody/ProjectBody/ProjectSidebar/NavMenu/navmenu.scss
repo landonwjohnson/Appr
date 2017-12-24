@@ -58,6 +58,7 @@
 
 
     .nav-item {
+        border-left: 10px solid transparent;
         padding-left: 24px;
         width: 216px;
         line-height: 40px;
@@ -97,3 +98,12 @@
         }
     }
 
+
+    .nav-item--active{
+        transition: 0.2s ease-in-out;
+        border-left: 10px solid #4285f4;
+        li{
+            color: #4285f4;
+            font-weight: 500;
+        }
+    }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
@@ -48,13 +48,14 @@ export default class ProjectSetupSidebar extends Component {
                 </div>
                 
                 <ul className={'nav-list'} >
-                    <Link to={`/user/${userid}/project/${projectid}/ideas`} className="nav-item"><li>Ideas & Users</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/features`} className="nav-item"><li >Features</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/views`}  className="nav-item"><li>Views</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/controllers`} className="nav-item"><li>Controllers</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/endpoints`} className="nav-item"><li>Endpoints</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/schema`} className="nav-item"><li >Schema</li></Link>
-                    <Link to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></Link>
+
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/ideas`} className="nav-item"><li>Ideas & Users</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/features`} className="nav-item"><li >Features</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/views`}  className="nav-item"><li>Views</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/controllers`} className="nav-item"><li>Controllers</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/endpoints`} className="nav-item"><li>Endpoints</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/schema`} className="nav-item"><li >Schema</li></NavLink>
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></NavLink>
                 </ul>
 
                 <div className='project-sidebar-footer'>
