@@ -7,7 +7,7 @@
 }
 
 .profile-section-outter {
-    @include lighten-background($primary, 63%);
+    @include lighten-background($primary, 60%);
     height: 185px;
     width: 100%;
     display: flex;
@@ -22,6 +22,7 @@
     display: flex;
     width: 55%;
     height: 85px;
+    z-index: 1;
 
     .wrapper{
         display: flex;

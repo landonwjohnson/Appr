@@ -19,6 +19,8 @@ const ModalBox = {
       left: "50%",
       right: "50%",
       bottom: "50%",
+      transition: "0.2s ease-in-out",
+      zIndex: "6",
     }
   };
 

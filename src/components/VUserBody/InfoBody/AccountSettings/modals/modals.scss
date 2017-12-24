@@ -2,7 +2,7 @@
 
     .modal-account-settings-content{
         
-        max-width: 390px;
+        max-width: 500px;
         padding-left: 20px;
         padding-right: 20px;
         border: none;
@@ -10,7 +10,6 @@
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
         animation-name: modalopen;
         animation-duration: 0.3s;
-        transition: 0.2s ease-in-out;
         z-index: 4;
         border-radius: 5px;
        
@@ -71,13 +70,7 @@
         transition: 0.2s ease-in-out;
       }
     
-      .modal-header-placeholder{
-        width: 33px;
-        height: 33px;
-        background: transparent;
-        transition: 0.2s ease-in-out;
-    
-      }
+
       .modal-header h2, .modal-footer h3{
         margin: 0;
         transition: 0.2s ease-in-out;
@@ -131,12 +124,14 @@
     
       .modal-form {
         height: 33px;
-        width: 382px;
+        min-width: 382px;
+        max-width: 500px;
         outline: none;
         transition: 0.2s ease-in-out;
       }
     
       .modal-row{
+        width: 100%;
         margin-bottom: 18px;
         transition: 0.2s ease-in-out;
       }
@@ -178,4 +173,63 @@
         height: 115px;
         width: 209px;
         margin-left: 20px;
+    }
+
+    .modal-header-placeholder{
+      display: flex;
+      align-items: center;
+      width: 33px;
+      height: 34px;
+      background: transparent;
+      transition: 0.2s ease-in-out;
+      position: relative;
+    }
+
+
+
+    .modal-header-placeholder--before{
+      display: flex;
+      align-items: center;
+      width: 33px;
+      height: 34px;
+      background: transparent;
+      transition: 0.2s ease-in-out;
+      position: relative;
+
+      button{
+        width: 33px;
+        height: 34px;
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+
+      span{
+        width: 33px;
+        height: 33px;
+      }
+
+    }
+
+    .modal-header-placeholder--after{
+      display: flex;
+      align-items: center;
+      width: 33px;
+      height: 34px;
+      background: transparent;
+      transition: 0.2s ease-in-out;
+      position: relative;
+
+
+      button{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        z-index: 1;
+        
+        padding: 0px;
+      }
+
+
     }
