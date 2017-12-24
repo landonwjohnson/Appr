@@ -91,27 +91,28 @@
     }
 }
 
-.avatarIconGallery--wrapper{
+.avatarIconGallery-wrapper{
     opacity: 1;
     transition: 0.2s ease-in-out;
+    position: relative;
+    
 }
 .avatarIconGallery--hide{
-    display: block;
-    transform:  scaleZ(-20px);
     opacity: 0;
     position: absolute;
     z-index: -1;
     user-select: none;
     transition: 0.2s ease-in-out;
+
 }
 
 .changeAvatarURL-wrapper{
     opacity: 1;
     transition: 0.2s ease-in-out;
+    position: relative;
 }
 
 .changeAvatarURL--hide{
-    transform: translateZ(-20px);
     opacity: 0;
     position: absolute;
     z-index: -1;
@@ -124,4 +125,5 @@
     align-items: center;
     overflow: hidden;
     height: 140px;
+    transition: 0.2s ease-in-out;
 }
