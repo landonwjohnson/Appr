@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
 import HotSpringsUtah from '../../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
 import ThistleHouseUtah from '../../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
+import BackgroundItem from './BackgroundItem/BackgroundItem';
 
 export default class BackgroundMenu extends Component {
     constructor(props) {
@@ -25,8 +26,8 @@ export default class BackgroundMenu extends Component {
                     
                     <ul className='background-list'>
                             <li className="no-background-box" onClick={(e) => handleProjectBackground('')}>  <label>No Background</label>  </li>
-                            <li className="background-box" onClick={(e) => handleProjectBackground(HotSpringsUtah)} style ={ { backgroundImage: `url(${HotSpringsUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
-                            <li className="background-box" onClick={(e) => handleProjectBackground(ThistleHouseUtah)} style ={ { backgroundImage: `url(${ThistleHouseUtah})` } }> <section className="attribution"><Link to="http://bit.ly/landonwjohnson-on-behance" className="attribution" target="_blank"><label>Landon Johnson</label></Link></section> </li>
+                            <BackgroundItem backgroundSource={HotSpringsUtah} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/>
+                            <BackgroundItem backgroundSource={ThistleHouseUtah} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/>
                     </ul>
 
                     <div className='project-background-footer'>
