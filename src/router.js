@@ -34,7 +34,7 @@ export default (
                 <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas"/>
                 <Route component={ Features } path="/user/:userid/project/:projectid/features"/>
                 <Route component={ View } path="/user/:userid/project/:projectid/views"/>
-                <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers"/>
+                <Route component={ Controllers } path="/user/:userid/project/:projectid/controller"/>
                 <Route component={ Schema } path="/user/:userid/project/:projectid/schema"/>
                 <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints"/>
                 <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>

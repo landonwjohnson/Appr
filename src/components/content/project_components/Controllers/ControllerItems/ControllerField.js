@@ -12,10 +12,10 @@ class ControllerField extends Component {
             <div className="contro-item">
             <div className="contro-item-inner">
                 <div className="project-item-header">
-                    <button className="delete-item" onClick={e => handleDeleteController(index)}> </button>
+                    <button className="delete-item" onClick={() => handleDeleteController(index) }> </button>
                 </div>
                 <div className="contro-item-title">
-                    <input type="text" placeholder="" />
+                    <input type="text" placeholder="Name" />
                 </div>
                 <div className="contro-item-inputs">
                     <div className="contro-row-container">

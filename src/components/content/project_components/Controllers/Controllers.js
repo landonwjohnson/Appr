@@ -18,6 +18,10 @@ class Controllers extends Component {
       this.handleDeleteController = this.handleDeleteController.bind(this);
   }
 
+  scrollToBottom = () => {
+    this.listEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   componentWillMount() {
       const projectid = this.props.match.params.projectid;
       findProjectControllers(projectid)
@@ -44,6 +48,7 @@ class Controllers extends Component {
                 let newState = this.state.controllers;
                 newState.push(res.data[0]);
                 this.setState({ controllers: newState });
+                this.scrollToBottom();
             }
         })
         .catch(err => {throw err});
@@ -81,20 +86,20 @@ class Controllers extends Component {
                 console.log(res);
             }
             else {
-                let newState = this.state.controllers;
+                const newState = this.state.controllers;
                 newState.splice(index, 1);
                 this.setState({ controllers: newState });
             }
         })
         .catch(err => {throw err});
   }
-
-  render() {
+  // if we need to we can change the key to equal something else other than the index
+  render() { 
     const { userid, projectid } = this.props.match.params;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerField key={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange}/>
+        return <ControllerField key={index}  index={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange}/>
     });
     
     return (
@@ -110,7 +115,7 @@ class Controllers extends Component {
                                     <div className="add-contro-item-body">
                                         <img src={addIcon} alt="Add New Controller"/>
                                     </div>
-                                    <div className="add-contro-item-footer">
+                                    <div className="add-contro-item-footer" ref={(el) => { this.listEnd = el; }}>
                                         <label> Add New Controller </label>
                                     </div>
                                 </div>
