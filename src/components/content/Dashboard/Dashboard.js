@@ -78,7 +78,6 @@ class Dashboard extends Component {
 
 		return (
 			<div>
-				<Header userid={userid}/>
 				<div className="dashboard-container">
 					<div className="group-list-container">
 						<label className="dash-section-title"> Groups </label>

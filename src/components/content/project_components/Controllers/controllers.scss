@@ -8,6 +8,8 @@
     width: 100vw;
     height: calc(100vh - 50px);
     background-color: rgba(0,0,0,0.4);
+    overflow-y: auto;
+
 }
 
 .controller-list-container {
@@ -17,9 +19,6 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    // overflow: hidden;
-    // overflow-y: scroll;
-    
 }
 
 .controllers-wrapper{

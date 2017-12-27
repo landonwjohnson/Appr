@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './schema.scss';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
-import { } from '../../../../services/project.schema.services';
 
 
 class Schema extends Component {
@@ -116,17 +115,14 @@ class Schema extends Component {
                     </div>
                 </div>     
             <div className="column-item-footer">
-              <button className="add-button" > <span/> Add Column </button>
+              <button className="add-button"> <span/> Add Column </button>
             </div>
           </div>
         )
     })
-
     return (
-      <div>
-      <Header />
         <div className="main-fix">
-          <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+          <ProjectSidebar userid={userid} projectid={projectid}/>
             <div className="schema-container">
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
@@ -137,8 +133,6 @@ class Schema extends Component {
               </div>
             </div>
           </div>
-          <div className="blur-overlay"></div>
-      </div>
     );
   }
 }
