@@ -106,12 +106,6 @@ class Tracking extends Component {
           </div>   
        </div>
       </div>
-<<<<<<< HEAD
-      <div className="blur-overlay"></div>
-      </div>
-=======
-
->>>>>>> 7dac6d59ba8d7a0550940a2bf5f241f58166b298
     );
   }
 }
