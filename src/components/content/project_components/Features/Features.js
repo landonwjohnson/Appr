@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import './features.scss';
 import Header from '../../../Header/Header';
 import FeatureItem from "./FeatureItem/FeatureItem";
@@ -15,6 +15,10 @@ class Features extends Component {
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
         this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
         this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
+    }
+
+    scrollToBottom = () => {
+        this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
     componentWillMount() {
@@ -52,6 +56,7 @@ class Features extends Component {
                     const newState = this.state.features;
                     newState.push(res.data[0]);
                     this.setState({ features: newState });
+                    this.scrollToBottom();
                 }
             })
             .catch(err => {throw err});
@@ -74,6 +79,7 @@ class Features extends Component {
                 }
             })
             .catch(err => {throw err});
+           
     }
 
     handleDeleteFeature(index) {
@@ -94,7 +100,11 @@ class Features extends Component {
     }
 
 
+
+
     render() {
+        console.log(this.props.background);
+
         const { userid, projectid } = this.props.match.params;
         const features = this.state.features;
         const displayFeatures = features.map( feature => {
@@ -105,12 +115,15 @@ class Features extends Component {
             );
         });
         return (
-            <div>
-                <Header />
                 <div className="main-fix">
-                    <ProjectSetupSidebar userid={userid} projectid={projectid}/>
-                    <div className="features-container">
+                    <ProjectSidebar userid={userid} projectid={projectid} handleProjectBackground={this.props.handleProjectBackground} background={this.props.background}/>
+                    <div className="blur-overlay" style ={ { backgroundImage: `url(${this.props.background})` } } />
+
+                    <div className="features-container" >
+
+                        
                         <div className="container-wrapper">
+
                             <div className="project-section-header">
                                 <label> Features </label>
                             </div>
@@ -121,16 +134,19 @@ class Features extends Component {
                                           {displayFeatures}
 
                                         </div>
-                                        <div className="features-footer">
+                                        <div className="features-footer" ref={(el) => { this.listEnd = el; }}>
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
                                     </div>
+                                
                                 </div>
                             </div>
+                            {/* <div className="blur-overlay" style={{backgroundImage: `url(${this.props.background})`}}></div>   */}
                         </div>
+
                     </div>
+
                 </div>
-                <div className="blur-overlay"></div>
-            </div>
+
         );
     }
 }

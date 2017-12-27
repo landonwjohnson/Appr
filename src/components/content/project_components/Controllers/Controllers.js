@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
+import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
 import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
@@ -98,10 +98,8 @@ class Controllers extends Component {
     });
     
     return (
-        <div>
-            <Header />
             <div className="main-fix">
-                <ProjectSetupSidebar userid={userid} projectid={projectid}/>
+                <ProjectSidebar userid={userid} projectid={projectid}/>
                 <div className="controllers-container">
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
@@ -121,8 +119,6 @@ class Controllers extends Component {
                     </div>
                 </div>
             </div>
-            <div className="blur-overlay"></div>
-        </div>
     );
   }
 }

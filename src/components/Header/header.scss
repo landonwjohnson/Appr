@@ -1,17 +1,14 @@
 @import '../_colors.scss';
 
-.header-parent{
-
-  
-}
-
-.header-parent--hide{
+.hideHeader{
   display:none;
 }
 
 .header-container {
     @include darken-background($primary, 15%);
     display: block;
+    position: relative;
+    z-index: 3;
     width: 100%;
     height: 50px;
     display: flex;
@@ -26,8 +23,8 @@
     align-items: center;
     width: 100%;
     height: 50px;
-    z-index: 0;
-
+    z-index: 3;
+    position: relative;
   }
   
   .board-con {
@@ -68,15 +65,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: lightgrey;
+    background: #D6DADC;
+    background-size: cover;
+    mix-blend-mode: multiply;
     width: 30px;
     height: 30px;
     border-radius: 100px;
-
-    img{
-      width: 30px;
-      height: 30px;
-    }
   }
   
   .hello-user {
@@ -102,7 +96,8 @@
     justify-content: flex-end;
     position: absolute; 
     transition: 0.1s ease-in-out;
-    opacity: 1;
+    z-index: 3;
+
 
     .right-menu-outter{
       width: 250px;
@@ -111,6 +106,7 @@
       border-right: 0.8px solid black;
       border-bottom: 0.8px solid black;
       border-top: 0px solid transparent;
+      position: relative;
       z-index: 1;
       
       transition: 0.1s ease-in-out;
@@ -122,6 +118,9 @@
         width: 100%;
         // border: 1px solid black;
         height: 100%;
+        position: relative;
+        z-index: 1;
+       
        
         
         transition: 0.1s ease-in-out;
@@ -132,10 +131,10 @@
           margin: 0;
           padding: 0;
           transition: 0.1s ease-in-out;
+       
         }
     
         li {
-          
           line-height: 18px;
           padding: 10px;
           list-style: none;
@@ -146,7 +145,6 @@
           cursor: pointer;
           color: #111111;
           background: transparent;
-          
         }
 
         li:hover{
@@ -180,7 +178,7 @@
       border-left: 0px solid transparent;
       border-right: 0px solid transparent;
       border-bottom: 0px solid transparent;
-      z-index: 1;
+     
       transition: 0.1s ease-in-out;
 
       .right-menu-inner {
@@ -315,6 +313,8 @@
   }
 
   
+
+  
   
   
    
@@ -339,50 +339,7 @@
 
 
 
-  // animated x
 
-  // #bread-menu-toggle, #bread-menu-toggle .bread-top, #bread-menu-toggle .bread-bottom {
-  //   transition: all 0.5s ease-in-out;
-  // } 
-
-  // #bread-menu-toggle .bread-bottom {
-  //   display: block;
-  //   bottom: 3px;
-  //   width: 24px;
-  //   height: 2px;
-  //   background-color: #fff;
-  //   position: relative;
-  //   z-index: 8;
-  // }
-
-  // #bread-menu-toggle .bread-top {
-  //   display: block;
-    
-  //    width: 24px;
-  //    height: 2px;
-  //    background-color: #fff;
-  //    position: relative;
-  //    z-index: 9;
-  //  }
-  
-  // #bread-menu-toggle.active .bread-top  {
-  //   position: relative;
-  // }
-  
-  // #bread-menu-toggle.active .bread-bottom {
-  //   top: 0;
-  // }
-  
-  // #bread-menu-toggle.active .bread-top {
-    
-  //   transform: rotate(45deg);
-  // }
-  
-  // #bread-menu-toggle.active .bread-bottom {
-   
-  //   transform: rotate(-45deg)
-  // }
-  
 
 
 

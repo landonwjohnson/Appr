@@ -3,11 +3,21 @@ const getDb = require('../database/bootstrap.database');
 
 const accountRouter = express.Router();
 
+// find by id
 accountRouter.get('/:userid', (req, res) => {
     const userId = req.params.userid;
     const db = getDb();
     db.find_user_by_id([ userId ])
         .then(user => res.send(user))
+        .catch(err => res.status(500).send(err));
+});
+
+// find by username
+accountRouter.post('/username', (req, res) => {
+    const { username } = req.body;
+    const db = getDb();
+    db.find_user_by_username([ username ])
+        .then(user => res.send(user[0].username))
         .catch(err => res.status(500).send(err));
 });
 
