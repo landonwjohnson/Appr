@@ -10,7 +10,8 @@
 
 .cardview-container{
     // border: 1px solid red;
-    z-index: 20
+    z-index: 20;
+    
 }
 
 .cardview-inner{
@@ -20,6 +21,7 @@
     padding: 10px;
     background: white;
     z-index: 20;
+    border-radius: 5px;
 }
 .cardview-left{
     margin-right: 15px;
