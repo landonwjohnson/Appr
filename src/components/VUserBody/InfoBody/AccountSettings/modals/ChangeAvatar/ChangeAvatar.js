@@ -74,11 +74,11 @@ class ChangeAvatar extends Component {
                 {/* <form> */}
                     <div className="avatar-settings-content">
                         <div className={`${avatarGalleryClass}`}>
-                            <AvatarIconGallery handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL} />
+                            <AvatarIconGallery handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL} oldAvatar={this.state.avatar}/>
                         </div>
                         
                         <div className={`${changeURLClass}`} >
-                            <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange}/>
+                            <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
                         </div>
                     </div>
 

@@ -5,7 +5,7 @@ export default class BackgroundItem extends Component {
 
 
     render() {
-        const { handleProjectBackground, backgroundSource, attribution, portfolio, creatorName } = this.props;
+        const { handleProjectBackground, backgroundSource, portfolio, creatorName } = this.props;
         return (    
             <li className="background-box" 
                 onClick={(e) => handleProjectBackground(backgroundSource)} style ={ { backgroundImage: `url(${backgroundSource})` } }> 

@@ -135,6 +135,7 @@
     @include darken-color($primary, 10%);
     font-size: 30px;
     text-align: left;
+    white-space: nowrap;
     
 }
 
@@ -151,6 +152,7 @@
     max-width: 100%;
     cursor: pointer;
     user-select: none;
+    white-space: nowrap;
 }
 
 .text-9{
