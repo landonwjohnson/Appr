@@ -86,6 +86,7 @@ class Header extends Component {
   render(){
       const { userInfo, handleInitials } = this.props;
       const userid = this.props.userid;
+
     
     let rightMenuClass = classnames({
         "right-menu-container--hide": this.state.rightMenuOpen,
@@ -139,7 +140,7 @@ class Header extends Component {
                 </div>
                 
         </div>
-        <div className={rightMenuClass}>
+        <div className={rightMenuClass} >
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
@@ -149,6 +150,7 @@ class Header extends Component {
                 </ul>
             </div>
             </div>
+            <div className="backdropCloseMenu" onClick={this.closeMenus}/>
         </div>
         
       
