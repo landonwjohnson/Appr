@@ -1,41 +1,12 @@
 import React, { Component } from 'react';
-import AlertIcon from '../../../img/icons/Bell-02.svg';
 import BoardsIcon from '../../../img/icons/boards.svg';
 import classnames from 'classnames';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
 import Feedback from './Feedback/Feedback';
 import './header.scss';
-import './board-menu.scss';
-import { findDashboardInfo } from '../../../services/dashboard.services';
-import { createGroup } from '../../../services/group.services';
-import { createProject } from '../../../services/project.services';
-
-
-const ModalBox = {
-    
-      overlay : {
-        position: "absolute",
-        top: "0",
-        left: "0",
-        right: "0",
-        bottom: "0",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        overflow: "hidden",
-        width: "100%",
-        zIndex: '5'
-      },
-      content : {
-        borderRadius: "4px",
-        outline: "none",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        right: "50%",
-        bottom: "50%",
-      }
-    };
-
+import { ModalBox } from './headerStyles';
+import BoardMenu from './BoardMenu/BoardMenu';
 
 
 
@@ -43,15 +14,12 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state ={
-            location: '',
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
             showHeader: false,
             showCurtain: true,
             feedbackModalOpen: false,
-            groups: [],
-            projects: [],
             UI: {
                 hideHeader: false
             }
@@ -61,21 +29,6 @@ class Header extends Component {
             this.closeMenus = this.closeMenus.bind(this);
             this.openFeedbackModal = this.openFeedbackModal.bind(this);
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
-    }
-
-    componentWillMount(){
-        const useridForSideBar = '7';
-        findDashboardInfo(useridForSideBar)
-            .then(res => {
-                const {projects, groups} = res.data;
-                if (res.status !== 200){
-                    console.log(res);
-                }
-                else {
-                    this.setState({projects, groups})
-                }
-            })
-            .catch(err => {throw err})
     }
 
     openFeedbackModal(){
@@ -132,46 +85,8 @@ class Header extends Component {
     
   render(){
       const { userInfo, handleInitials } = this.props;
-      console.log(this.state.location)
       const userid = this.props.userid;
-      const groups = this.state.groups;
-      const projects = this.state.projects;
-      const displayGroups = groups.map( group => {
-          const index = groups.indexOf(group);
-          return (
-              <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
-                    <div className="board-menu-item">
-                    <div className="board-item-thumbnail">
-
-                    </div>
-                    <div className="board-item-name">
-                        {group.name}
-                    </div>
-                </div>
-              </Link>
-          )
-      })
-
-      const displayProjects = projects.map( project => {
-        const index = projects.indexOf(project);
-        return (
-            <Link to={`/group-dashboard/${project.id}`} key={`project-${index}`}>
-                  <div className="board-menu-item">
-                  <div className="board-item-thumbnail">
-
-                  </div>
-                  <div className="board-item-name">
-                      {project.name}
-                  </div>
-              </div>
-            </Link>
-        )
-    })
-    const userInitials = userInfo.firstName.charAt(0);
-    const headerClass = classnames({
-        displayHeader: false,
-        hideHeader: this.state.UI.hideHeader
-      })
+    
     let rightMenuClass = classnames({
         "right-menu-container--hide": this.state.rightMenuOpen,
         "right-menu-container": true
@@ -194,38 +109,9 @@ class Header extends Component {
    
     return (
  
-      <div className={headerClass}>
+      <div>
           <div className={boardMenuClass}>
-            <div className="boards-main-container">
-            <div className="board-menu-header">
-            <div className="back-con" onClick={this.closeMenus}>
-                <div className="back-icon"> </div>
-                <div className="board-text">Hide</div>
-            </div> 
-            </div>
-                <div className="recent-boards-con">
-                    <div className="text-12">GROUP PROJECTS</div>
-
-                    {displayGroups}
-               
-                </div>
-                <div className="personal-boards-con">
-                    <div className="text-12">PERSONAL PROJECTS</div>
-
-                        {displayProjects}
-
-                        <Link to="/ideas" onClick={this.closeMenus}>
-                            <div className="create-board-item">
-                                <div className="create-board-thumbnail">
-                                    <div className="plus-symbol">+</div>
-                                </div>
-                                <div className="create-board-name">
-                                    Create Project
-                                </div>
-                            </div>
-                        </Link>
-                </div>
-            </div>
+                <BoardMenu />
           </div>
           <div className="header-container">
                 <div className="nav-bar">
