@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './avataritem.scss';
+import classnames from 'classnames';
 
 class AvatarItem extends Component {
     constructor(props){
@@ -27,10 +28,20 @@ class AvatarItem extends Component {
  
 
     render() {
+        let avatarPicItemClass = classnames({
+            'avatarPicItem': true,
+            'avatarPicItem--selected': this.state.selected
+        })
         console.log(this.state)
         const { backgroundSource, portfolio, creatorName, oldAvatar} = this.props;
       return (
-            <li className="avatarPicItem" value={backgroundSource}  onClick={(e) => this.handleAvatarClick(backgroundSource)} style ={{ backgroundImage: `url(${backgroundSource})` }}> <section className="attribution"><Link to={portfolio} target="_blank"><label>{creatorName}</label><span>SELECTED</span></Link></section> </li>
+            <li className={avatarPicItemClass} value={backgroundSource}  onClick={(e) => this.handleAvatarClick(backgroundSource)} style ={{ backgroundImage: `url(${backgroundSource})` }}> 
+                <section className="attribution">
+                    <Link to={portfolio} target="_blank">
+                        <label>{creatorName}</label>
+                        <span>SELECTED</span>
+                    </Link>
+                </section> </li>
       );
     }
   }
