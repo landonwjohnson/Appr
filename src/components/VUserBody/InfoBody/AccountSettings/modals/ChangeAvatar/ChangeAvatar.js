@@ -68,7 +68,7 @@ class ChangeAvatar extends Component {
                     <div className={`${modelBackBtnClass}`}>
                         <button onClick={this.toggleChangeURL}>Back</button>
                     </div>
-                    {/* <h2 className="modal-title">Choose your avatar</h2> */}
+                    <h2 className="modal-title">Change Avatar</h2>
                     <span className="closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}

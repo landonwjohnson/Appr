@@ -39,8 +39,10 @@ class AvatarItem extends Component {
                 <section className="attribution">
                     <Link to={portfolio} target="_blank">
                         <label>{creatorName}</label>
-                        <span>SELECTED</span>
                     </Link>
+                    
+                    <span>SELECTED</span>
+                    
                 </section> </li>
       );
     }

@@ -13,7 +13,8 @@ class AvatarIconGallery extends Component {
         const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse } = this.props;
       return (
                 <div className="modal-body-avatar">
-                    {/* <label class="modal-input-tag">Choose your avatar</label> */}
+                   
+                    
                     <section className="avatarPicContainer">
                        <ul className="avatarPicList">
                             <li className="avatarURLItem" onClick={e => {toggleChangeURL()}}></li>
@@ -21,9 +22,8 @@ class AvatarIconGallery extends Component {
                             <AvatarItem backgroundSource={SonicAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
                             <AvatarItem backgroundSource={HaloAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
                             <AvatarItem backgroundSource={BanjoAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar} />
-
-
                         </ul>
+                
                     </section> 
                </div>
       );
