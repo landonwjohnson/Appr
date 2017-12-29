@@ -101,7 +101,7 @@ class Features extends Component {
 
 
 
-
+// Does featureItem need a key?
     render() {
         console.log(this.props.background);
 
