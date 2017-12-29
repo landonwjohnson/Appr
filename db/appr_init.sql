@@ -109,10 +109,7 @@ CREATE TABLE project_endpoint (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     url_data TEXT,
-    is_get BOOLEAN default TRUE,
-    is_post BOOLEAN default FALSE,
-    is_update BOOLEAN default FALSE,
-    is_delete BOOLEAN default FALSE,
+    http_verb TEXT,
     req_endpoint_id int references req_endpoint(id),
     res_endpoint_id int references res_endpoint(id)
 );

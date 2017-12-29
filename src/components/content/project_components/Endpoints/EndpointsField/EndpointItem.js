@@ -30,50 +30,6 @@ class EndpointField extends Component {
             </div>
             
             <div className="endpoint-divider"> </div>
-    
-            <div className="endpoint-section-con-bottom">
-              <div className="ep-field-con-bottom" />
-    
-                  <div className="ep-bottom-row">
-                    <div className="req-res-label">
-                      REQ
-                    </div>
-                      <div className="req-res-wrapper">
-                        <input className="req-input-field" type="text" placeholder="username" />
-                        <span>:</span>
-                        <input className="req-input-field" type="text" placeholder="" />
-                      </div>
-                  </div>
-                  
-                  <div className="ep-bottom-add-row">
-                  <div className="req-res-label">
-                      
-                    </div>
-                  <button className="req-res-add" onClick={this.addEndpointRequestHandler}> + Add </button>
-                  </div>
-            </div>
-    
-    
-            <div className="endpoint-section-con-bottom">
-              <div className="ep-field-con-bottom" />
-    
-                  <div className="ep-bottom-row">
-                    <div className="req-res-label">
-                      RES
-                    </div>
-                      <div className="req-res-wrapper">
-                        <input className="req-input-field" type="text" placeholder="username" />
-                        <span>:</span>
-                        <input className="req-input-field" type="text" placeholder="" />
-                      </div>
-                  </div>
-                  <div className="ep-bottom-add-row">
-                  <div className="req-res-label">
-                      
-                    </div>
-                  <button className="req-res-add" onClick={this.addEndpointResponseHandler}> + Add </button>
-                  </div>
-            </div>
           </div>
         );
     }
