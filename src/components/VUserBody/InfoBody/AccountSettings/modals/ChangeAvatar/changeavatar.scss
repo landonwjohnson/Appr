@@ -39,17 +39,10 @@
         height: 100%;
         display: grid;
         grid-template:  repeat(auto-fit, 85px) / repeat(auto-fit, 85px);
-       justify-content: space-evenly;
-       grid-gap: 10px;
-       
-        
-       
+        justify-content: space-evenly;
+        grid-gap: 10px;
         list-style: none;
         padding: 0px;
-        
-        
-        
-       
     }
 
     .avatarURLItem {

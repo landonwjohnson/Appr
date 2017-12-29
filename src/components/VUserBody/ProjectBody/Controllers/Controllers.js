@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
+import ControllerItem from './ControllerItem/ControllerItem';
 import { createProjectController, findProjectControllers, updateProjectController, deleteProjectController } from '../../../../services/project.controller.services';
 
 class Controllers extends Component {
@@ -13,6 +14,10 @@ class Controllers extends Component {
       this.handleChangeInput = this.handleChangeInput.bind(this);
       this.handleSaveChange = this.handleSaveChange.bind(this);
       this.handleDeleteController = this.handleDeleteController.bind(this);
+  }
+
+  scrollToBottom = () => {
+    this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
   componentWillMount() {
@@ -41,6 +46,7 @@ class Controllers extends Component {
                 let newState = this.state.controllers;
                 newState.push(res.data[0]);
                 this.setState({ controllers: newState });
+                this.scrollToBottom();
             }
         })
         .catch(err => {throw err});
@@ -78,54 +84,24 @@ class Controllers extends Component {
                 console.log(res);
             }
             else {
-                let newState = this.state.controllers;
+                const newState = this.state.controllers;
                 newState.splice(index, 1);
                 this.setState({ controllers: newState });
             }
         })
         .catch(err => {throw err});
   }
-
-  render() {
+  // if we need to we can change the key to equal something else other than the index
+  render() { 
     const { userid, projectid } = this.props.match.params;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return (
-            <div className="contro-item" key={`controller-${index}`}>
-                <div className="contro-item-inner">
-                    <div className="project-item-header">
-                        <span className="delete-item" onClick={() => this.handleDeleteController(index)}> </span>
-                    </div>
-                    <div className="contro-item-title">
-                        <input type="text" placeholder="" />
-                    </div>
-                    <div className="contro-item-inputs">
-                        <div className="contro-row-container">
-                            <label className="contro-row-name"> When </label>
-                            <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" id={controller.id} value={controller.when_data} onChange={e => this.handleChangeInput(e, index, 'when_data')} onBlur={e => this.handleSaveChange(e, index)}/>
-                            </div>
-                        </div>
-                        <div className="contro-row-container">
-                            <label className="contro-row-name"> Do </label>
-                            <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" id={controller.id} value={controller.do_data} onChange={e => this.handleChangeInput(e, index, 'do_data')} onBlur={e => this.handleSaveChange(e, index)}/>
-                            </div>
-                        </div>
-                        <div className="contro-row-container">
-                            <label className="contro-row-name"> Require </label>
-                            <div className="contro-input-row">
-                                <input className="contro-input-field" type="text" id={controller.id} value={controller.require_data} onChange={e => this.handleChangeInput(e, index, 'require_data')} onBlur={e => this.handleSaveChange(e, index)}/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        return <ControllerItem key={index}  index={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange}/>
     });
     
     return (
+
                 <div className="controllers-container">
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
@@ -136,7 +112,7 @@ class Controllers extends Component {
                                     <div className="add-contro-item-body">
                                         <img src={addIcon} alt="Add New Controller"/>
                                     </div>
-                                    <div className="add-contro-item-footer">
+                                    <div className="add-contro-item-footer" ref={(el) => { this.listEnd = el; }}>
                                         <label> Add New Controller </label>
                                     </div>
                                 </div>
@@ -144,6 +120,7 @@ class Controllers extends Component {
                         </div>
                     </div>
                 </div>
+        
     );
   }
 }

@@ -77,28 +77,20 @@ class Dashboard extends Component {
 
 		return (
 			<div>
-				<div className="dashboard-container">
-					<div className="group-list-container">
-						<label className="dash-section-title"> Groups </label>
-						<ul className="projects-list">
-
-							{displayGroups}
-
-							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
-									<img src={addIcon} alt="add icon"/>
-								</div>
-								<div className="create-project-thumb-footer">
-									<label> Create New Group </label>
-								</div>
-							</li>
-						</ul>
-					</div>
+				<div className="dashboard-container">		
 					<div className="personal-list-container">
 						<label className="dash-section-title"> Projects </label>
 						<ul className="projects-list">
 
 							{displayProjects}
+							<DashProject />
+							<DashProject />
+							<DashProject />
+							<DashProject />
+							<DashProject />
+							
+
+
 
 							<li className="create-project-thumb">
 								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
@@ -106,6 +98,30 @@ class Dashboard extends Component {
 								</div>
 								<div className="create-project-thumb-footer">
 									<label> Create New Project </label>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div className="group-list-container">
+						<label className="dash-section-title"> Groups </label>
+						<ul className="projects-list">
+
+							{displayGroups}
+							<DashGroup />
+							<DashGroup />
+							<DashGroup />
+							<DashGroup />
+							<DashGroup />
+							<DashGroup />
+							<DashGroup />
+							
+
+							<li className="create-project-thumb">
+								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
+									<img src={addIcon} alt="add icon"/>
+								</div>
+								<div className="create-project-thumb-footer">
+									<label> Create New Group </label>
 								</div>
 							</li>
 						</ul>

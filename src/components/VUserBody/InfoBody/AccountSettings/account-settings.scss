@@ -14,7 +14,6 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #D6DADC;
-    
 } 
 
 .profile-section-inner {
@@ -29,9 +28,6 @@
         justify-content: flex-start;
         width: 85%;
     }
-   
-   
-    // border: 1px solid white;
 } 
 
 .avatar-initial{
@@ -50,7 +46,6 @@
     label{
         position: absolute;
     }
-
 }
 
 
@@ -70,9 +65,6 @@
     font-size: 15px;
     z-index: 1;
     
-  
-    
-    
     div{
         opacity: 0;
         display: flex;
@@ -85,8 +77,6 @@
         border-radius: 0px 0px 100px 100px;
         transition: 0.2s ease-in-out;
     }
-
-   
 }
 
 
@@ -107,9 +97,6 @@
     z-index: 1;
     cursor: pointer;
 
-  
-    
-    
     div{
         opacity: 1;
         color: white;
@@ -122,13 +109,11 @@
         border-radius: 0px 0px 100px 100px;
         transition: 0.2s ease-in-out;
     }
-
 }
 
 .account-section{
     padding-top: 30px;
     width: 55%;
-    // border: 1px solid black;
 }
 
 .headline-30{
@@ -164,10 +149,7 @@
     margin: none;
     margin-left: 10px;
     padding-top: 10px;
-    // border: 1px solid black;
 }
-
-
 
 .account-options{
     display: flex;
