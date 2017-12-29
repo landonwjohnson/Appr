@@ -48,7 +48,7 @@ a{
 }
 
 .main-fix{
-  @include lighten-background($primary, 30%);
+  // @include lighten-background($primary, 30%);
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -214,17 +214,20 @@ body {
   justify-content: flex-end;
   width: 100%;
 
-  span{
+  button{
       top: 4px;
       right: 4px;
       position: relative;
       padding-right: 10px;
+      background: transparent;
+      border: none;
       background-image: url('./img/icons/trashcan-closed-icon.svg');
       width: 25px;
       height: 25px;
       background-repeat: no-repeat;
       opacity: 0.5;
       cursor: pointer;
+      outline: none;
       transition: 0.1s ease-in-out;
 
       &:hover{
