@@ -66,6 +66,7 @@ class SchemaItem extends Component {
                       
               <div className="column-item-footer">
                 <button className="add-button" onClick={this.handleAddColumn}> <span/> Add Column </button>
+                <button className="add-button">Save</button>
               </div>
             </div>
         )

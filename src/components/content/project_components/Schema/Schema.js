@@ -3,44 +3,48 @@ import './schema.scss';
 import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
 import SchemaItem from './SchemaItem/SchemaItem';
-
+import { createProjectSchema, findProjectSchemas } from '../../../../services/project.schema.services';
 
 class Schema extends Component {
   constructor(props){
     super();
     this.state={
-      schemas: [{
-            tables: [{
-                key: 1,
-                name: 'Table name'
-              }],
-            
-      }]
-    }
+      schemas: []
+    };
     this.addSchemaItemHandler = this.addSchemaItemHandler.bind(this);
     this.removeSchemaItemHandler = this.removeSchemaItemHandler.bind(this);
   }
 
+  componentWillMount(){
+    const projectid = this.props.match.params.projectid;
+    findProjectSchemas(projectid)
+      .then( res => {
+        if (res.status !== 200) {
+          console.log(res);
+        }
+        else {
+          this.setState({ schemas: res.data})
+        }
+      })
+      .catch(err => {throw err});
+  }
+
   addSchemaItemHandler(){
-    let SchemaList = this.state.schemas;
-    SchemaList.push({
-      tables: [{
-          key: 1,
-          name: 'Table name'
-        }],
-      columns:[{
-          key: 1,
-          name: '',
-          type: '',
-          size: '',
-          primaryKey: false,
-          foreignKey: false,
-          autoIncrement: false,
-          notNull: false,
-          uniqueReference: false
-        }]
-    })
-    this.setState({schemas: SchemaList})
+    const projectid = this.props.match.params.projectid;
+    const reqBody = {tableNameId: Number, columnName: '', schemaTypeId: Number, sizeData: '', isPrimaryKey: Boolean, isForeignKey: Boolean, isSerial: Boolean, isNotNull: Boolean, isUnique: Boolean};
+    createProjectSchema(projectid, reqBody)
+      .then(res => {
+        if( res.status !== 200) {
+          console.logt(res);
+        }
+        else {
+          const newState = this.state.schemas;
+          newState.push(res.data[0]);
+          this.setState({schemas: newState});
+          // this.scrollToBottom();
+        }
+      })
+      .catch(err => {throw err});
   }
 
   removeSchemaItemHandler(){
