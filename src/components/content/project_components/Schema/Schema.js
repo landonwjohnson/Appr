@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import ProjectSidebar from '../ProjectSetupSidebar/ProjectSidebar';
 import Header from '../../../Header/Header';
+import SchemaItem from './SchemaItem/SchemaItem';
 
 
 class Schema extends Component {
@@ -13,17 +14,6 @@ class Schema extends Component {
                 key: 1,
                 name: 'Table name'
               }],
-            columns:[{
-                key: 1,
-                name: '',
-                type: '',
-                size: '',
-                primaryKey: false,
-                foreignKey: false,
-                autoIncrement: false,
-                notNull: false,
-                uniqueReference: false
-              }]
             
       }]
     }
@@ -62,63 +52,7 @@ class Schema extends Component {
   render() {
     const { userid, projectid } = this.props.match.params;
     const displaySchemas = this.state.schemas.map( schema => {
-        return(
-          <div className="schema-item">
-          <div className="project-item-header">
-            <span onClick={this.removeSchemaItemHandler}> </span>
-          </div>
-            <div className="name-table-row">
-              <input className="name-table" type="text" placeholder="Table Name" />
-            </div>
-                <div className="column-item">
-                  <div className="column-fields-wrapper">
-                    <input className="column-input-text md-input" type ="text" placeholder="Column Name" />
-                    <select className="column-input-select sm-input" required placeholder="type">
-                      <option value="">type </option>
-                      <option value="">DATE</option>
-                      <option value="">INTEGER</option>
-                      <option value="">TEXT</option>
-                      <option value="">VARCHAR</option>
-                      <option value="">CHAR</option>
-                    </select>
-                              
-                    <input className="schema-column-text sm-input" type ="text" placeholder="Size" />
-                  </div>
-                    <div className="column-checkbox-wrapper">
-                          <div className="column-checkbox">
-                            <label> pk </label>
-                            <input type="checkbox" />
-                          </div>
-
-                          <div className="column-checkbox">
-                            <label> fk </label>
-                            <input type="checkbox" />
-                          </div>
-
-                          <div className="column-checkbox">
-                            <label> ai </label>
-                            <input type="checkbox" />
-                          </div>
-
-                          <div className="column-checkbox">
-                            <label> nn </label>
-                            <input type="checkbox" />
-                          </div>
-
-                      <div className="column-checkbox">
-                        <label> ur </label>
-                        <input type="checkbox" />
-                      </div>
-                    </div>
-                    <div className="remove-row">
-                      <span className="delete-x">&times;</span> 
-                    </div>
-                </div>     
-            <div className="column-item-footer">
-              <button className="add-button"> <span/> Add Column </button>
-            </div>
-          </div>
-        )
+        return <SchemaItem removeSchemaItemHandler={this.removeSchemaItemHandler}/>
     })
     return (
         <div className="main-fix">
