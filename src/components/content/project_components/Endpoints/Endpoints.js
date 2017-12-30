@@ -10,74 +10,76 @@ class Endpoints extends Component {
       this.state ={
         endpoints: []
       }
+    }
 
-componentWillMount() {
-  const endpointExamples = [
-      {endpoint_data: [{
-          url_data: "api/rebellion",
-          http_verb: "GET"
-      }]
-    },
-      {endpoint_data: [{
-        url_data: "api/empire",
-        http_verb: "POST"
-    }]
-  }
-  ];
-  const projectid = this.props.match.params.projectid;
-  findProjectEndpoints(projectid)
-      .then( res => {
-          if (res.status !== 200) {
-              alert(res);
-          }
-          else {
-              if (res.data.length === 0) {
-                  this.setState({ endpoints: endpointExamples });
-              }
-              else {
-                  this.setState({ endpoints: res.data });
-              }
-          }
-      })
-      .catch(err => {throw err});
-}
+// componentWillMount() {
+//   const endpointExamples = [
+//       {endpoint_data: [{
+//           url_data: "api/rebellion",
+//           http_verb: "GET"
+//       }]
+//     },
+//       {endpoint_data: [{
+//         url_data: "api/empire",
+//         http_verb: "POST"
+//     }]
+//   }
+//   ];
+//   const projectid = this.props.match.params.projectid;
+//   findProjectEndpoints(projectid)
+//       .then( res => {
+//           if (res.status !== 200) {
+//               alert(res);
+//           }
+//           else {
+//               if (res.data.length === 0) {
+//                   this.setState({ endpoints: endpointExamples });
+//               }
+//               else {
+//                   this.setState({ endpoints: res.data });
+//               }
+//           }
+//       })
+//       .catch(err => {throw err});
+// }
   //endpoint ITEM add and remove methods
-  addEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.push({
-      key: 2,
-      label: 2,
-      url: 'URL',
-      httpVerb: ''
-    })
-    this.setState({arr: EndpointList})
-  }
+//   addEndpointItemHandler(){
+//     let EndpointList = this.state.endpoints;
+//     EndpointList.push({
+//       key: 2,
+//       label: 2,
+//       url: 'URL',
+//       httpVerb: ''
+//     })
+//     this.setState({arr: EndpointList})
+//   }
 
-  removeEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.splice(1, 1);
-    this.setState({arr: EndpointList})
-  }
-
-
-  //endpoint REQUEST add and remove methods
-  addEndpointRequestHandler(){
-    console.log('add request')
-  }
-
-  removeEndpointRequestHandler(){
-
-  }
+//   removeEndpointItemHandler(){
+//     let EndpointList = this.state.endpoints;
+//     EndpointList.splice(1, 1);
+//     this.setState({arr: EndpointList})
+//   }
 
 
-  //endpoint RESPONSE add and remove methods
-  addEndpointResponseHandler(){
-    console.log('add response')
-  }
+//   //endpoint REQUEST add and remove methods
+//   addEndpointRequestHandler(){
+//     console.log('add request')
+//   }
 
-  removeEndpointResponseHandler(){
+//   removeEndpointRequestHandler(){
 
-  }
+//   }
+
+
+//   //endpoint RESPONSE add and remove methods
+//   addEndpointResponseHandler(){
+//     console.log('add response')
+//   }
+
+//   removeEndpointResponseHandler(){
+
+//   }
+// }
 
   render() {
     const { userid, projectid } = this.props.match.params;
