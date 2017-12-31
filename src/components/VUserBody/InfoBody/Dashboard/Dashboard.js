@@ -8,6 +8,7 @@ import { createProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import HotSpringsUtah from '../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
+import ThistleHouseUtah from '../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -85,7 +86,7 @@ class Dashboard extends Component {
 
 							{displayProjects}
 							<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
-							<DashProject />
+							<DashProject projectName='PlanAppUs' backgroundSource={ThistleHouseUtah}/>
 							<DashProject />
 							<DashProject />
 							<DashProject />
@@ -95,9 +96,6 @@ class Dashboard extends Component {
 
 							<li className="create-project-thumb">
 								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
-									<img src={addIcon} alt="add icon"/>
-								</div>
-								<div className="create-project-thumb-footer">
 									<label> Create New Project </label>
 								</div>
 							</li>
@@ -119,9 +117,6 @@ class Dashboard extends Component {
 
 							<li className="create-project-thumb">
 								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
-									<img src={addIcon} alt="add icon"/>
-								</div>
-								<div className="create-project-thumb-footer">
 									<label> Create New Group </label>
 								</div>
 							</li>
