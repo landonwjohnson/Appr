@@ -107,6 +107,9 @@ class Controllers extends Component {
                         <div className="project-section-header"> Controllers </div>
                         <div className="controller-list-container">
                             {displayControllers}
+                            <ControllerItem />
+                            <ControllerItem />
+                            <ControllerItem />
                             <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
                                     <div className="add-contro-item-body">
