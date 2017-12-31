@@ -7,6 +7,7 @@ import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
+import HotSpringsUtah from '../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -83,7 +84,7 @@ class Dashboard extends Component {
 						<ul className="projects-list">
 
 							{displayProjects}
-							<DashProject />
+							<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
 							<DashProject />
 							<DashProject />
 							<DashProject />
