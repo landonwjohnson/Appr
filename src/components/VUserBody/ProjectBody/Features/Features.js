@@ -124,7 +124,23 @@ class Features extends Component {
                                 <div className="features-area drop-shadow">
                                     <div className="features-wrapper">
                                         <div className="features-list">
-
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
+                                            <FeatureItem />
                                           {displayFeatures}
 
                                         </div>

@@ -103,13 +103,18 @@ class Controllers extends Component {
     return (
 
                 <div className="controllers-container">
+                    <div className="container-wrapper">
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
-                        <div className="controller-list-container">
+                        <div className="controller-list">
                             {displayControllers}
                             <ControllerItem />
                             <ControllerItem />
                             <ControllerItem />
+                            <ControllerItem />
+                            <ControllerItem />
+                            <ControllerItem />
+                            
                             <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
                                     <div className="add-contro-item-body">
@@ -121,6 +126,7 @@ class Controllers extends Component {
                                 </div>
                             </button>
                         </div>
+                    </div>
                     </div>
                 </div>
         

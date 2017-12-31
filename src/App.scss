@@ -166,18 +166,22 @@ a{
   justify-content: flex-end;
   width: 100%;
 
-  span{
+  button{
       top: 4px;
       right: 4px;
       position: relative;
       padding-right: 10px;
+      background-color: transparent;
       background-image: url('./img/icons/trashcan-closed-icon.svg');
       width: 25px;
       height: 25px;
       background-repeat: no-repeat;
+      
       opacity: 0.5;
       cursor: pointer;
       transition: 0.1s ease-in-out;
+      border: none;
+      outline: none;
 
       &:hover{
           background-image: url('./img/icons/trashcan-open-icon.svg');
