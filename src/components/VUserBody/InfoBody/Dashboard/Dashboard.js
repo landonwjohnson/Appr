@@ -80,47 +80,52 @@ class Dashboard extends Component {
 		return (
 			<div>
 				<div className="dashboard-container">		
-					<div className="personal-list-container">
-						<label className="dash-section-title"> Projects </label>
-						<ul className="projects-list">
+					<div className="dashboard-wrapper">
+						<div className="personal-list-container">
+							<label className="dash-section-title"> Projects </label>
+							<ul className="projects-list">
 
-							{displayProjects}
-							<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
-							<DashProject projectName='PlanAppUs' backgroundSource={ThistleHouseUtah}/>
-							<DashProject />
-							<DashProject />
-							<DashProject />
-							
+								{displayProjects}
+								<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
+								<DashProject projectName='PlanAppUs' backgroundSource={ThistleHouseUtah}/>
+								<DashProject />
+								<DashProject />
+								<DashProject />
+								
 
 
 
-							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
-									<label> Create New Project </label>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div className="group-list-container">
-						<label className="dash-section-title"> Groups </label>
-						<ul className="projects-list">
+								<li className="create-project-thumb">
+									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
+										<label> Create New Project </label>
+									</div>
 
-							{displayGroups}
-							<DashGroup />
-							<DashGroup />
-							<DashGroup />
-							<DashGroup />
-							<DashGroup />
-							<DashGroup />
-							<DashGroup />
-							
+									
+								</li>
+							</ul>
+						</div>
+					
+						<div className="group-list-container">
+							<label className="dash-section-title"> Groups </label>
+							<ul className="projects-list">
 
-							<li className="create-project-thumb">
-								<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
-									<label> Create New Group </label>
-								</div>
-							</li>
-						</ul>
+								{displayGroups}
+								<DashGroup />
+								<DashGroup />
+								<DashGroup />
+								<DashGroup />
+								<DashGroup />
+								<DashGroup />
+								<DashGroup />
+								
+
+								<li className="create-project-thumb">
+									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>
+										<label> Create New Group </label>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

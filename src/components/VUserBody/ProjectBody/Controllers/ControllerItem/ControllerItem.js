@@ -15,7 +15,14 @@ class ControllerItem extends Component {
                     <button className="delete-item" onClick={() => handleDeleteController(index) }> </button>
                 </div>
                 <div className="contro-item-title">
-                    <input type="text" placeholder="Name" />
+                    <select> 
+                        <option value="view1">View 1</option>
+                        <option value="view2">View 2</option>
+                        <option value="view3">View 3</option>
+                        <option value="view4">View 4</option>
+                        <option value="view5">View 5</option>
+                        <option value="view6">View 6</option>
+                    </select>
                 </div>
                 <div className="contro-item-inputs">
                     <div className="contro-row-container">
