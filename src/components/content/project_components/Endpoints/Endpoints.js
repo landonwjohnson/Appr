@@ -10,7 +10,14 @@ class Endpoints extends Component {
       this.state ={
         endpoints: []
       }
-    }
+
+    this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
+    this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
+      
+    this.addEndpointRequestHandler = this.addEndpointRequestHandler.bind(this);
+    this.removeEndpointRequestHandler = this.removeEndpointItemHandler.bind(this);
+
+  }
 
 // componentWillMount() {
 //   const endpointExamples = [
@@ -42,44 +49,45 @@ class Endpoints extends Component {
 //       })
 //       .catch(err => {throw err});
 // }
-  //endpoint ITEM add and remove methods
-//   addEndpointItemHandler(){
-//     let EndpointList = this.state.endpoints;
-//     EndpointList.push({
-//       key: 2,
-//       label: 2,
-//       url: 'URL',
-//       httpVerb: ''
-//     })
-//     this.setState({arr: EndpointList})
-//   }
 
-//   removeEndpointItemHandler(){
-//     let EndpointList = this.state.endpoints;
-//     EndpointList.splice(1, 1);
-//     this.setState({arr: EndpointList})
-//   }
+  endpoint ITEM add and remove methods
+  addEndpointItemHandler(){
+    let EndpointList = this.state.endpoints;
+    EndpointList.push({
+      key: 2,
+      label: 2,
+      url: 'URL',
+      httpVerb: ''
+    })
+    this.setState({arr: EndpointList})
+  }
 
-
-//   //endpoint REQUEST add and remove methods
-//   addEndpointRequestHandler(){
-//     console.log('add request')
-//   }
-
-//   removeEndpointRequestHandler(){
-
-//   }
+  removeEndpointItemHandler(){
+    let EndpointList = this.state.endpoints;
+    EndpointList.splice(1, 1);
+    this.setState({arr: EndpointList})
+  }
 
 
-//   //endpoint RESPONSE add and remove methods
-//   addEndpointResponseHandler(){
-//     console.log('add response')
-//   }
+  //endpoint REQUEST add and remove methods
+  addEndpointRequestHandler(){
+    console.log('add request')
+  }
 
-//   removeEndpointResponseHandler(){
+  removeEndpointRequestHandler(){
 
-//   }
-// }
+  }
+
+
+  //endpoint RESPONSE add and remove methods
+  addEndpointResponseHandler(){
+    console.log('add response')
+  }
+
+  removeEndpointResponseHandler(){
+
+  }
+}
 
   render() {
     const { userid, projectid } = this.props.match.params;
