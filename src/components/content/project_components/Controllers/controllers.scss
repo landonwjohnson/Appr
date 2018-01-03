@@ -9,26 +9,29 @@
     height: calc(100vh - 50px);
     background-color: rgba(0,0,0,0.4);
     overflow-y: auto;
-
+    max-height: 100%;
 }
 
 .controller-list-container {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template: repeat(auto-fit, 313px) / repeat(auto-fit, 320px);
+    grid-gap: 3%;
     justify-content: center;
-    flex-wrap: wrap;
+    padding-bottom: 20%;
 }
 
 .controllers-wrapper{
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    width: 80%;
+    height: 100%;
     align-items: center;
     justify-content: center;
-    
+    // padding-bottom: 20%;
+
 }
 
 
@@ -40,9 +43,9 @@
     // padding-top: 20px;
     // padding-bottom: 20px;
 
-    margin: 20px;
+
     height: 100%;
-    width: 313px;
+    width: 100%;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     border-radius: 2px;
     background: $light-color;
@@ -152,12 +155,11 @@
 
 
 .add-contro-item{
-    margin: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     border-radius: 2px;
     border: none;
-    height: 320.2px;
-    width: 313px;
+    height: 100%;
+    width: 100%;
     outline: none;
     background-color: $secondary;
     color: white;
@@ -168,6 +170,7 @@
 .add-contro-item-inner{
     width: 100%;
     height: 100%;
+
 }
 
 

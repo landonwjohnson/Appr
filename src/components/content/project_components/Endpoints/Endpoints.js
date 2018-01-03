@@ -10,17 +10,47 @@ class Endpoints extends Component {
       this.state ={
         endpoints: []
       }
-      this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
-      this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
-      
-      this.addEndpointRequestHandler = this.addEndpointRequestHandler.bind(this);
-      this.removeEndpointRequestHandler = this.removeEndpointItemHandler.bind(this);
 
-      this.addEndpointResponseHandler = this.addEndpointResponseHandler.bind(this);
-      this.removeEndpointResponseHandler = this.removeEndpointResponseHandler.bind(this);
+    this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
+    this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
+      
+    this.addEndpointRequestHandler = this.addEndpointRequestHandler.bind(this);
+    this.removeEndpointRequestHandler = this.removeEndpointItemHandler.bind(this);
+
   }
 
-  //endpoint ITEM add and remove methods
+// componentWillMount() {
+//   const endpointExamples = [
+//       {endpoint_data: [{
+//           url_data: "api/rebellion",
+//           http_verb: "GET"
+//       }]
+//     },
+//       {endpoint_data: [{
+//         url_data: "api/empire",
+//         http_verb: "POST"
+//     }]
+//   }
+//   ];
+//   const projectid = this.props.match.params.projectid;
+//   findProjectEndpoints(projectid)
+//       .then( res => {
+//           if (res.status !== 200) {
+//               alert(res);
+//           }
+//           else {
+//               if (res.data.length === 0) {
+//                   this.setState({ endpoints: endpointExamples });
+//               }
+//               else {
+//                   this.setState({ endpoints: res.data });
+//               }
+//           }
+//       })
+//       .catch(err => {throw err});
+// }
+
+  endpoint ITEM add and remove methods
   addEndpointItemHandler(){
     let EndpointList = this.state.endpoints;
     EndpointList.push({
@@ -57,6 +87,7 @@ class Endpoints extends Component {
   removeEndpointResponseHandler(){
 
   }
+}
 
   render() {
     const { userid, projectid } = this.props.match.params;
@@ -89,5 +120,6 @@ class Endpoints extends Component {
     );
   }
 }
+
 
 export default Endpoints;

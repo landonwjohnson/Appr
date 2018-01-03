@@ -109,10 +109,7 @@ CREATE TABLE project_endpoint (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     url_data TEXT,
-    is_get BOOLEAN default TRUE,
-    is_post BOOLEAN default FALSE,
-    is_update BOOLEAN default FALSE,
-    is_delete BOOLEAN default FALSE,
+    http_verb TEXT,
     req_endpoint_id int references req_endpoint(id),
     res_endpoint_id int references res_endpoint(id)
 );
@@ -321,12 +318,12 @@ VALUES
 
         --Actual Endpoint--
 
-INSERT INTO project_endpoint ( project_id, url_data, is_get, is_post, is_update, is_delete, req_endpoint_id, res_endpoint_id )
+INSERT INTO project_endpoint ( project_id, url_data, http_verb, req_endpoint_id, res_endpoint_id )
 VALUES
-    (1, 'api/alliance', TRUE, FALSE, FALSE, FALSE, 1, 1),
-    (2, 'api/empire', TRUE, FALSE, FALSE, FALSE, 2, 2),
-    (2, 'api/jedi', TRUE, FALSE, FALSE, FALSE, 2, 2),
-    (2, 'api/cis', TRUE, FALSE, FALSE, FALSE, 2, 2)
+    (1, 'api/alliance', 'GET', 1, 1),
+    (2, 'api/empire', 'GET', 2, 2),
+    (2, 'api/jedi', 'GET', 2, 2),
+    (2, 'api/cis', 'GET', 2, 2)
 ;
 
     --Schema
