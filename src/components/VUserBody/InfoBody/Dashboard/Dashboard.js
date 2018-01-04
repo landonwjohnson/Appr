@@ -88,19 +88,11 @@ class Dashboard extends Component {
 								{displayProjects}
 								<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
 								<DashProject projectName='PlanAppUs' backgroundSource={ThistleHouseUtah}/>
-								<DashProject />
-								<DashProject />
-								<DashProject />
 								
-
-
-
 								<li className="create-project-thumb">
 									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
 										<label> Create New Project </label>
 									</div>
-
-									
 								</li>
 							</ul>
 						</div>
@@ -109,15 +101,7 @@ class Dashboard extends Component {
 							<label className="dash-section-title"> Groups </label>
 							<ul className="projects-list">
 
-								{displayGroups}
-								<DashGroup />
-								<DashGroup />
-								<DashGroup />
-								<DashGroup />
-								<DashGroup />
-								<DashGroup />
-								<DashGroup />
-								
+								{displayGroups}								
 
 								<li className="create-project-thumb">
 									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('group')}>

@@ -263,3 +263,8 @@ a{
     }
    
   }
+
+
+  label, button, .project-section-header{
+    user-select: none;
+  }

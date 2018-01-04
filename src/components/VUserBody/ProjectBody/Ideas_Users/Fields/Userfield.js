@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class UserField extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const { index, userfieldid, targetDemoData, skillData, descriptionData, handleChangeField, submitChangeField, handleDeleteField } = this.props;
@@ -16,7 +13,7 @@ class UserField extends Component {
                     <input id={userfieldid} name="skill_data" value={skillData} onChange={e => handleChangeField(e, field, index)}/>
                     <input id={userfieldid} name="description_data" value={descriptionData} onChange={e => handleChangeField(e, field, index)}/>
                 </section>
-                <button className="not-enough-info-btn" id={userfieldid} onClick={e => submitChangeField(e, field, index)}> Save </button>
+                <button className="input-complete-btn" id={userfieldid} onClick={e => submitChangeField(e, field, index)}> Save </button>
                 <button className="delete-x" id={userfieldid} onClick={e => handleDeleteField(e, field, index)}> &times; </button>
             </div>
         );

@@ -65,6 +65,7 @@ class AccountSettings extends Component {
 
   
   render() {
+    
     const { userInfo, handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
     console.log(this.state)
     return (

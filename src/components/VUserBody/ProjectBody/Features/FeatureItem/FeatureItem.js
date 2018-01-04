@@ -9,7 +9,7 @@ class FeatureItem extends Component {
             feature: {},
             UI: { saveBtn: false }
         };
-        this.toggleSaveBtn = this.toggleSaveBtn.bind(this);
+        // this.toggleSaveBtn = this.toggleSaveBtn.bind(this);
     }
 
     componentWillMount() {
@@ -26,18 +26,18 @@ class FeatureItem extends Component {
             .catch(err => {throw err});
     }
 
-    toggleSaveBtn(e){
-        if (e.target.value !== this.state.feature.feature_data) {
-            const newState = this.state.UI;
-            newState.saveBtn = true;
-            this.setState({ UI: newState });
-          }
-          else {
-            const newState = this.state.UI;
-            newState.saveBtn = false;
-            this.setState({ UI:  newState });
-          }
-    }
+    // toggleSaveBtn(e){
+    //     if (e.target.value !== this.state.feature.feature_data) {
+    //         const newState = this.state.UI;
+    //         newState.saveBtn = true;
+    //         this.setState({ UI: newState });
+    //       }
+    //       else {
+    //         const newState = this.state.UI;
+    //         newState.saveBtn = false;
+    //         this.setState({ UI:  newState });
+    //       }
+    // }
 
     render() {
         const { index, featureData, handleChangeFeature, handleSubmitFeature, handleDeleteFeature } = this.props;
@@ -49,9 +49,11 @@ class FeatureItem extends Component {
             <div className="features-item">
                 <section>
                     <label>{(index + 1) + '.'}</label>
-                    <input value={featureData} onChange={e => { handleChangeFeature(e, index); this.toggleSaveBtn(e)}}/>
+                    <input value={featureData} onChange={e => { handleChangeFeature(e, index)}}/>
+                    {/* <input value={featureData} onChange={e => { handleChangeFeature(e, index); this.toggleSaveBtn(e)}}/> */}
+
                 </section>
-                <button className={saveBtnClass} onClick={() => handleSubmitFeature(index)}> Save </button>
+                <button className="input-complete-btn" onClick={() => handleSubmitFeature(index)}> Save </button>
                 <button className="delete-x" onClick={() => handleDeleteFeature(index)}> &times; </button> 
             </div>
         );

@@ -16,6 +16,9 @@ class View extends Component {
 
     }
 
+    scrollToBottom = () => {
+        this.listEnd.scrollIntoView({ behavior: "smooth" });
+    }
 
     componentWillMount() {
       const projectid = this.props.match.params.projectid || 1;
@@ -57,6 +60,7 @@ class View extends Component {
                    const newState = this.state.views;
                    newState.push(res.data[0]);
                    this.setState({ views: newState });
+                   this.scrollToBottom();
                 }
             })
             .catch(err => {throw err});
@@ -112,11 +116,11 @@ class View extends Component {
           <div className="view-item" key={`idea-${index}`}>
           <section>
             <label>{(index + 1) + '.'}</label>
-            <input className="view-input-name" type="text" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index, "name")} />
-            <input className="view-input-imgurl" type="text" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index, "image_url")} />
+            <input className="view-input-name" type="text" placeholder="Name" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index, "name")} />
+            <input className="view-input-imgurl" type="text" placeholder="Wireframe URL" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index, "image_url")} />
           </section>
-            <button  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
-            <span className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</span> 
+            <button className="input-complete-btn"  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
+            <button className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</button> 
         </div>
         )
     });
@@ -132,7 +136,7 @@ class View extends Component {
                 <div className="view-wrapper">
                   {displayViews}
               
-                  <div className="view-footer">
+                  <div className="view-footer" ref={(el) => { this.listEnd = el; }}>
                   <button className="add-button" onClick={this.handleAddViewButton}> <span/> Add View </button>
                   </div>
                 </div>

@@ -49,7 +49,7 @@
 }
 
 .features-area {
-    width: 70%;
+    width: 60%;
     background: $light-color;
     margin: 20px;
     border-radius: $border-radius;
@@ -75,17 +75,15 @@
             align-items: center;
             font-weight: bold;
             font-size: 20px;
-            max-width: 100%;
             text-align: left;
-            margin-right: 10px;
+            min-width: 37px;
         }
         
         input{
             border: 1px #CCC solid;
-            border-right: none;
             padding-left: 5px;
             padding-right: 5px;
-            border-radius: 3px 0px 0px 3px;
+            border-radius: 3px 3px 3px 3px;
             width: 100%;
             height: 31px;
             outline: none;
@@ -96,7 +94,7 @@
     .features-footer{
         button{
             @include addBtn();
-            margin-left: 26.5px;
+            margin-left: 37px;
             max-width: 100%;
             color: white;
         }

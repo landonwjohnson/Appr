@@ -4,8 +4,33 @@
     width: 100%;
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
-    
+    height: calc(100vh - 50px);
+    overflow-y: auto;
 
+    &::-webkit-scrollbar {
+        width: 15px;
+        padding-right: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    &::-webkit-scrollbar-track {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+ 
+    &::-webkit-scrollbar-thumb {
+        @include darken-background($primary, 20%);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+        
+    }
+    &::-webkit-scrollbar-thumb:window-inactive {
+        background-color: rgba(50, 50, 50, 0.40);       
+    }
 }
 
 .ideasUsers-wrapper {
@@ -13,8 +38,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 50px);
-    overflow-y: auto;
 }
 
 .ideas-users-input-area {
@@ -22,8 +45,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-   
 }
 
 .ideas-users-area{
@@ -33,9 +54,10 @@
     transition: 1s ease-in-out;
     margin: 20px;
     .area-title{
+        user-select: none;
         text-align: left;
         font-size: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         color: $dark-color;
     }
     .ideas-users-wrapper{
@@ -46,9 +68,7 @@
         background: $light-color; 
     }
 
-    .ideas-item {
-        
-        padding-top: 10px;
+    .ideas-item { 
         padding-bottom: 10px;
         width: 100%;
         display: flex;
@@ -58,33 +78,27 @@
         
         section{
             display: flex;
-            width: 580px;
+            width: 100%;
         }
         label{
+            @include darken-color($primary, 20%);
             display: flex;
             align-items: center;
             font-weight: bold;
             font-size: 20px;
-            max-width: 100%;
             text-align: left;
-            margin-right: 10px;
-            color: $dark-color;
+            min-width: 37px;
         }
         
         input{
+            border: 1px #CCC solid;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 3px 3px 3px 3px;
             width: 100%;
-            height: 24px;
+            height: 31px;
             outline: none;
-        }
-
-        button{
-            margin-left: 10px;
-            margin-right: 10px;
-            border-radius: 5px;
-            height: 30px;
-            font-size: 15px;
-            background-color:grey;
-            color: white;
+            font-size: 17px;
         }
     }
 
@@ -92,39 +106,37 @@
         display: flex;
         justify-content: flex-start;
         width: 100%;
-        padding-top: 10px;
         padding-bottom: 10px;
 
         label{
-            
+            @include darken-color($primary, 20%);
             display: flex;
             align-items: center;
             font-weight: bold;
             font-size: 20px;
-            max-width: 100%;
             text-align: left;
-            margin-right: 10px;
-            color: $dark-color;
+            min-width: 37px;
         }
         section{
             display: flex;
-            width: 580px;
+            width: 100%;
         }
         input{
+            margin-right: 10px;
+            border: 1px #CCC solid;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 3px 3px 3px 3px;
             width: 100%;
-            margin-right: 10px;
-            height: 24px;
+            height: 31px;
+            outline: none;
+            font-size: 17px;
         }
-        button{
-            margin-right: 10px;
-            border-radius: 5px;
-            height: 30px;
-            font-size: 15px;
-            background-color:grey;
-            color: white;
-        }
+
     }
 }
+
+
 
 
 
@@ -135,160 +147,11 @@
     width: 100%;
     max-height: 100%;
     // border: 1px solid black;
+    padding-left: 37px;
 
     button{
+        
         @include addBtn();
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.ideas-users-area-new{
-    width: 90%;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-   
-   
-    margin: 20px;
-
-    .area-title{
-        text-align: left;
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .ideas-users-wrapper{
-        padding: 20px;
-    }
-
-    .ideas-item {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
         
-        section{
-            display: flex;
-            width: 90%;
-        }
-        label{
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 20px;
-            max-width: 100%;
-            text-align: left;
-            margin-right: 10px;
-        }
-        
-        input{
-            width: 100%;
-            height: 24px;
-            outline: none;
-        }
-
-        button{
-            margin-left: 10px;
-            margin-right: 10px;
-            border-radius: 0px;
-            height: 30px;
-            font-size: 15px;
-        }
-    }
-
-    .users-item{
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-
-
-        label{
-            opacity: 0;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 20px;
-            max-width: 100%;
-            text-align: left;
-            margin-right: 10px;
-        }
-        section{
-            display: flex;
-            width: 90%;
-        }
-        input{
-            width: 100%;
-            margin-right: 10px;
-        }
-        button{
-            
-            margin-right: 10px;
-            border-radius: 0px;
-            height: 30px;
-            font-size: 15px;
-        }
     }
 }
-
-
-
-
-.ideas-users-footer{
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    // border: 1px solid black;
-
-    button{
-        margin-left: 26.5px;
-        max-width: 100%;
-    }
-}
-
