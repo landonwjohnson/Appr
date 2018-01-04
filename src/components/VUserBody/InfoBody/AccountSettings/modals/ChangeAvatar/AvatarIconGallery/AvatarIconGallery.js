@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LinkAvatar from '../../../../../../../img/User_Customization/avatars/LinkAvatar.JPG';
-import BanjoAvatar from '../../../../../../../img/User_Customization/avatars/BanjoAvatar.JPG';
+import BanjoAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
 import HaloAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
 import SonicAvatar from '../../../../../../../img/User_Customization/avatars/SonicAvatar.JPG';
 import AvatarItem from './AvatarItem/AvatarItem';

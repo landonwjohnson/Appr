@@ -10,7 +10,16 @@ import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer } from './projectbodyStyles';
 
+
 class ProjectBody extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+        userid: this.props.match.params.userid,
+        projectid: this.props.match.params.projectid
+    }
+
+  }
   render() {
     console.log(this.props)
     const { projectInfo, handleProjectBackground } = this.props;
