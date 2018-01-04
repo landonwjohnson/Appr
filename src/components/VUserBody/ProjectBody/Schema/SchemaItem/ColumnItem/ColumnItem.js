@@ -50,7 +50,7 @@ class ColumnItem extends Component {
                 </div>
               </div>
               <div className="remove-row">
-                <span className="delete-x" onClick={ handleDeleteColumn }>&times;</span> 
+                <button className="delete-x" onClick={ handleDeleteColumn }>&times;</button> 
               </div>
           </div> 
         )
