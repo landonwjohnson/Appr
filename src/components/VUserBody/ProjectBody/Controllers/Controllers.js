@@ -21,6 +21,13 @@ class Controllers extends Component {
   }
 
   componentWillMount() {
+      const controllerExamples = [
+          { 
+              when_data: 'User clicks login',
+              do_data: 'land on dashboard page',
+              require_data: 'Username and password'
+          }
+      ]
       const projectid = this.props.match.params.projectid;
       findProjectControllers(projectid)
         .then( res => {
@@ -28,7 +35,12 @@ class Controllers extends Component {
                 console.log(res);
             }
             else {
-                this.setState({ controllers: res.data });
+                if(res.data.length === 0) {
+                    this.setState({ controllers: controllerExamples });
+                }
+                else {
+                    this.setState({ controllers: res.data });
+                }
             }
         })
         .catch(err => {throw err});
@@ -107,13 +119,8 @@ class Controllers extends Component {
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
                         <div className="controller-list">
+                            
                             {displayControllers}
-                            <ControllerItem />
-                            <ControllerItem />
-                            <ControllerItem />
-                            <ControllerItem />
-                            <ControllerItem />
-                            <ControllerItem />
                             
                             <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
