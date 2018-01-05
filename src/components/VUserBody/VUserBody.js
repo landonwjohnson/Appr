@@ -88,17 +88,17 @@ class VUserBody extends Component {
     }
 
   render() {
- 
+    const { userid, projectid } = this.props.match.params;
     const {userInfo, projectInfo} = this.state;
     return (
       <div>
-        <Header userInfo={userInfo} handleInitials={this.handleInitials}/>
+        <Header userInfo={userInfo} handleInitials={this.handleInitials} userid={userid} projectid={projectid}/>
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} userid={userid} projectid={projectid} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
-                <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} />
+                <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} userid={userid} projectid={projectid}/>
 
       </div>
     );

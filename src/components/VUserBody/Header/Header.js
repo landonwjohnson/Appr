@@ -85,7 +85,7 @@ class Header extends Component {
     
   render(){
       const { userInfo, handleInitials } = this.props;
-      const userid = this.props.userid;
+      const userid = null;
 
     
     let rightMenuClass = classnames({
