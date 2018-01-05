@@ -9,27 +9,32 @@ import Schema from './Schema/Schema';
 import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer } from './projectbodyStyles';
+import UpdateBlocker from '../../../UpdateBlocker';
 
 
 class ProjectBody extends Component {
   constructor(props){
     super(props)
     this.state={
-        userid: this.props.match.params.userid,
-        projectid: this.props.match.params.projectid
+      UI: {
+        background: ''
+      }
     }
-
+    this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
-  render() {
-    console.log(this.props)
-    const { projectInfo, handleProjectBackground } = this.props;
 
+  handleProjectBackground(e){
+    let newBackground = e;
+    this.setState({UI: {background: newBackground}})
+  }
+
+  render() {
+    const {userid, projectid } = this.props.match.params;
     return (
       <ProjectBodyContainer>
-              <ProjectSidebar handleProjectBackground={handleProjectBackground} projectid={this.state.projectid} userid={this.state.userid}/>
-              <BlurOverlay backgroundProp={projectInfo.background} />
-
-
+          <UpdateBlocker>
+              <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid}/>
+              <BlurOverlay backgroundProp={this.state.UI.background} />
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
@@ -37,6 +42,7 @@ class ProjectBody extends Component {
               <Route component={ Schema } path="/user/:userid/project/:projectid/schema" />
               <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints" />
               <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>  
+          </UpdateBlocker>
       </ProjectBodyContainer>
     );
   }

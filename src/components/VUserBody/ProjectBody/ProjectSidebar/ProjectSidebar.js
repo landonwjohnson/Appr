@@ -15,6 +15,7 @@ export default class ProjectSidebar extends Component {
         };
         this.toggleProjectMenu = this.toggleProjectMenu.bind(this);
     }
+    
 
     toggleProjectMenu(){
         if(this.state.UI.hideProjectMenu === false){
@@ -26,6 +27,7 @@ export default class ProjectSidebar extends Component {
     }
 
     render() {
+        
         let navMenuClass = classnames({
             "navMenu-wrapper": true,
             "navMenu--hide": this.state.UI.hideProjectMenu
@@ -36,7 +38,8 @@ export default class ProjectSidebar extends Component {
             "backgroundMenu-wrapper": true
         })
         
-        const { userid, projectid, handleProjectBackground } = this.props;
+        const {handleProjectBackground, userid, projectid } = this.props;
+       
         return (
 
             

@@ -14,9 +14,6 @@ class VUserBody extends Component {
         username: 'landomon',
         email: 'landonwjohnson@gmail.com',
         avatar: 'https://mir-s3-cdn-cf.behance.net/user/138/723b4f10146703.562fb8014adc6.png',
-      },
-      projectInfo:{
-        background: ''
       }
     }
 
@@ -24,9 +21,6 @@ class VUserBody extends Component {
       this.handleNameSubmit = this.handleNameSubmit.bind(this);
       this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
       this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
-
-    //Project
-      this.handleProjectBackground = this.handleProjectBackground.bind(this);
 
     //UI
       this.handleInitials = this.handleInitials.bind(this);
@@ -69,12 +63,6 @@ class VUserBody extends Component {
       })
     }
 
-  //Project
-    handleProjectBackground(e){
-      let newBackground = e;
-      this.setState({projectInfo: {background: newBackground}})
-    }
-
   //UI
     handleInitials(e){
       let userInitials = e;
@@ -88,17 +76,17 @@ class VUserBody extends Component {
     }
 
   render() {
-    const { userid, projectid } = this.props.match.params;
+    const {userid, projectid } = this.props.match.params;
     const {userInfo, projectInfo} = this.state;
     return (
       <div>
-        <Header userInfo={userInfo} handleInitials={this.handleInitials} userid={userid} projectid={projectid}/>
+        <Header userInfo={userInfo} handleInitials={this.handleInitials} userid={userid}/>
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} userid={userid} projectid={projectid} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
-                <ProjectBody projectInfo={projectInfo} handleProjectBackground={this.handleProjectBackground} {...props}/>)} userid={userid} projectid={projectid}/>
+                <ProjectBody projectInfo={projectInfo} {...props}/>)} />
 
       </div>
     );

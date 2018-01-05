@@ -84,8 +84,8 @@ class Header extends Component {
     }
     
   render(){
-      const { userInfo, handleInitials } = this.props;
-      const userid = null;
+      const { userInfo, handleInitials, userid, projectid } = this.props;
+     
 
     
     let rightMenuClass = classnames({
@@ -112,7 +112,7 @@ class Header extends Component {
  
       <div>
           <div className={boardMenuClass}>
-                <BoardMenu />
+                <BoardMenu userid={userid} projectid={projectid} closeMenus={this.closeMenus}/>
           </div>
           <div className="header-container">
                 <div className="nav-bar">
