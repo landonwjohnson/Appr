@@ -28,6 +28,10 @@ $light-color: #E2E4E6;
     border-left: darken($color, $factor) 1px solid;
 }
 
+@mixin darken-bottom-border($color, $factor: 20%){
+    border-bottom: darken($color, $factor) 1px solid;
+}
+
 $border-radius: 5px;
 
 // %some-thing {
@@ -91,6 +95,11 @@ $border-radius: 5px;
         padding-right: 5px;
         height: 20px;
         width: 20px;
+    }
+
+    &:active{
+        background: #539A40;
+
     }
 
 }

@@ -8,6 +8,7 @@
     background-size: cover;
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
+    
 
     
     &::-webkit-scrollbar {
@@ -46,28 +47,41 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
+
+
 }
 
 .features-area {
+
     width: 60%;
     background: $light-color;
     margin: 20px;
     border-radius: $border-radius;
+    
+ 
 
     .features-wrapper {
+        max-height: 100%;
+
         padding: 20px;
+        transition: 1s ease-in-out;
+       
     }
 
     .features-item{
+       
         padding-bottom: 10px;
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
+        animation: test 0.2s ease-in forwards;
+
         
         section{
             display: flex;
             width: 100%;
+           
         }
         label{
             @include darken-color($primary, 20%);
@@ -92,6 +106,7 @@
     }
 
     .features-footer{
+       
         button{
             @include addBtn();
             margin-left: 37px;
@@ -115,4 +130,14 @@
 
 
 
+@keyframes  test{
+    from{
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
 
+        opacity: 1;
+    }
+    
+}

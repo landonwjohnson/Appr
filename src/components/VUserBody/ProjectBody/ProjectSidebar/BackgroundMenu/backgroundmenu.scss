@@ -2,13 +2,11 @@
 
 .project-background-header{
     display: flex;
-    max-width: 240px;
+    width: 240px;
     height: 50px;
     align-items: center;
-    border-bottom: 1px solid #DCDCDC;
     padding-left: 0px;
     padding-right: 0px;
-    
     line-height: 56px;
 
     .rename-project{
@@ -26,9 +24,10 @@
         color: black;
         max-height: 100%;
         outline: none;
-        max-width: 240px;
+        
         background: transparent;
         border: none;
+        overflow: hidden;
     }
     ::-webkit-input-placeholder {
         text-align: left;
@@ -42,11 +41,9 @@
 
 .background-list{
     align-items: center;
-    max-width: 240px;
     display: flex;
     text-align: left;
     flex-direction: column;
-
     height: calc(90vh - 100px);
     padding-left: 0px;
     overflow-y: scroll !important;

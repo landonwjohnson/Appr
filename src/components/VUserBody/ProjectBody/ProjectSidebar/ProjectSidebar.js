@@ -44,6 +44,7 @@ export default class ProjectSidebar extends Component {
 
             
             <div className="project-sidebar">
+                <span className="psb-divider" />
                 <div className={`${navMenuClass}`}>
                     <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>

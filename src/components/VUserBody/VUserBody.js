@@ -3,17 +3,18 @@ import Header from './Header/Header';
 import { Route } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
+import KyloRen from '../../img/User_Customization/avatars/but_im_just_a_pilot__kylo_x_reader__by_beatlesmaniagrl-da0coeq.jpg';
 
 class VUserBody extends Component {
   constructor(props){
     super(props);
     this.state ={
       userInfo:{
-        firstName: 'Landon',
-        lastName: 'Johnson',
-        username: 'landomon',
-        email: 'landonwjohnson@gmail.com',
-        avatar: 'https://mir-s3-cdn-cf.behance.net/user/138/723b4f10146703.562fb8014adc6.png',
+        firstName: 'Kylo',
+        lastName: 'Ren',
+        username: 'radar_tech_matt548',
+        email: 'kyloren@firstorder.org',
+        avatar: `${KyloRen}`,
       }
     }
 

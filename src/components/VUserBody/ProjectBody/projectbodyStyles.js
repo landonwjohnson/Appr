@@ -4,34 +4,28 @@ let ProjectBodyContainer = styled.div `
 display: flex;
 `
 
-let OverlayFrame = styled.div `
-width: 100%;
-height: calc(100vh - 50px);
-filter: blur(7px);
-background-size: cover;
-background-repeat: no-repeat;
-z-index: 0; 
-background-image: url('${propsie => propsie.backgroundProp}');
-background-position: 50% 50%;
-position: absolute;
-overflow: none;
-transition: 0.3s ease-in-out;
-`
-let BlurOverlay = styled.div `
+let Frame = styled.div `
     width: 100%;
     height: calc(100vh - 50px);
+    z-index: 0.1; 
+    position: absolute;
+    overflow: hidden;
+`
+let BlurOverlay = styled.div `
+    top: -10px;
+    width: 103%;
+    height: 103%;
     filter: blur(7px);
-    background-size: cover;
-    background-repeat: no-repeat;
+    // background-size: cover;
+    // background-repeat: no-repeat;
     z-index: 0; 
-    background-image: url('${propsie => propsie.backgroundProp}');
-    background-position: 50% 50%;
+    background: ${propsie => propsie.colorTheme || '#FFF'} url("${propsie => propsie.backgroundImage}") 50%/cover no-repeat;
     position: absolute;
     overflow: none;
     transition: 0.3s ease-in-out;
 `
 export {
     ProjectBodyContainer,
-    OverlayFrame,
+    Frame,
     BlurOverlay
 }

@@ -21,8 +21,6 @@
     transform: translateX(0%);
     opacity: 1;
     transition: 0.2s ease-in-out;
-   
-    
 }
 
 .navMenu--hide{
@@ -51,7 +49,14 @@
     transition: 0.2s ease-in-out;
 }
 
-
+.psb-divider{
+    display: block;
+    position: absolute;
+    top: 50px;
+    background: #DCDCDC;
+    width: 240px;
+    height: 1px;
+}
 
 
 

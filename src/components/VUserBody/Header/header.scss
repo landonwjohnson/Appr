@@ -6,6 +6,7 @@
 
 .header-container {
     @include darken-background($primary, 15%);
+   
     display: block;
     position: relative;
     z-index: 3;
@@ -25,6 +26,7 @@
     height: 50px;
     z-index: 3;
     position: relative;
+    @include darken-bottom-border($primary, 25%);
   }
   
   .board-con {
@@ -102,7 +104,7 @@
     justify-content: flex-end;
     position: absolute; 
     transition: 0.1s ease-in-out;
-    z-index: 3;
+    z-index: 2;
 
 
     .right-menu-outter{
@@ -110,7 +112,7 @@
       max-height: 100%;
       background: white;
       border-left: 0.8px solid black;
-      border-right: 0.8px solid black;
+      border-right: none;
       border-bottom: 0.8px solid black;
       border-top: 0px solid transparent;
       position: relative;
@@ -182,7 +184,6 @@
       border-left: 0px solid transparent;
       border-right: 0px solid transparent;
       border-bottom: 0px solid transparent;
-     
       transition: 0.1s ease-in-out;
 
       .right-menu-inner {
@@ -202,7 +203,6 @@
           margin: 0;
           padding: 0;
           transition: 0.1s ease-in-out;
-          
           z-index: 0;
           
         }
@@ -226,11 +226,6 @@
       display: none;
     }
   }
-  
-  
-
-  
- 
 
 
   .bread-container{
@@ -249,7 +244,6 @@
       justify-content: center;
       max-height: 100%;
       width: 100%;
-      // border: 1px solid black;
       transition: 0.1s ease-in-out;
 
       .bread-menu{
