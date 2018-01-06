@@ -27,6 +27,8 @@ class VUserBody extends Component {
       this.handleInitials = this.handleInitials.bind(this);
   }
 
+
+
   //Submit Account Settings Info
     handleNameSubmit(newFirst, newLast, newUserName){
       this.setState({

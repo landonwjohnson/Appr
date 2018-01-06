@@ -107,7 +107,7 @@
 
     .features-footer{
        
-        button{
+        .add-button{
             @include addBtn();
             margin-left: 37px;
             max-width: 100%;

@@ -7,7 +7,8 @@ class Features extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            features: []
+            features: this.props.featureState
+            // features: this.props.featureState
         };
         this.handleAddFeature = this.handleAddFeature.bind(this);
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
@@ -19,28 +20,12 @@ class Features extends Component {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
-    componentWillMount() {
-        const featureExamples = [
-            {feature_data: "e.g. A user can click a button"},
-            {feature_data: "e.g. A user can create an account"}
-        ];
-        const projectid = this.props.match.params.projectid;
-        findProjectFeatures(projectid)
-            .then( res => {
-                if (res.status !== 200) {
-                    alert(res);
-                }
-                else {
-                    if (res.data.length === 0) {
-                        this.setState({ features: featureExamples });
-                    }
-                    else {
-                        this.setState({ features: res.data });
-                    }
-                }
-            })
-            .catch(err => {throw err});
-    }
+    // shouldComponentMount(){
+    //     const currentState = this.props.featureState;
+    //     this.setState({
+    //         features: currentState
+    //     })
+    // }
 
     handleAddFeature() {
         const projectid = this.props.match.params.projectid;
@@ -101,8 +86,7 @@ class Features extends Component {
 
 
     render() {
-        console.log(this.props.background);
-
+        console.log(this.state)
         const { userid, projectid } = this.props.match.params;
         const features = this.state.features;
         const displayFeatures = features.map( feature => {
@@ -114,7 +98,7 @@ class Features extends Component {
         });
         return (  
                     <div className="features-container" >
-
+                     
                         
                         <div className="container-wrapper">
 
@@ -130,6 +114,8 @@ class Features extends Component {
                                         </div>
                                         <div className="features-footer" ref={(el) => { this.listEnd = el; }}>
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
+                                        <button className="input-complete-btn" onClick={() => this.handleSubmitFeature()}> Save </button>
+
                                     </div>
                                 
                                 </div>

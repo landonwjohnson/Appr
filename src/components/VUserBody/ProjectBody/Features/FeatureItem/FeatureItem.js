@@ -53,7 +53,7 @@ class FeatureItem extends Component {
                     {/* <input value={featureData} onChange={e => { handleChangeFeature(e, index); this.toggleSaveBtn(e)}}/> */}
 
                 </section>
-                <button className="input-complete-btn" onClick={() => handleSubmitFeature(index)}> Save </button>
+                {/* <button className="input-complete-btn" onClick={() => handleSubmitFeature(index)}> Save </button> */}
                 <button className="delete-x" onClick={() => handleDeleteFeature(index)}> &times; </button> 
             </div>
         );

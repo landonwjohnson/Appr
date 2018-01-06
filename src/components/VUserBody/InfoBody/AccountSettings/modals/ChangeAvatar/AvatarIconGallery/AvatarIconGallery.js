@@ -11,6 +11,7 @@ class AvatarIconGallery extends Component {
 
     render() {
         const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse } = this.props;
+        
       return (
                 <div className="modal-body-avatar">
                    
