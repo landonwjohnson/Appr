@@ -1,12 +1,46 @@
 @import '../../_colors.scss';
 
+
+.header-search{
+  margin-right: auto;
+  margin-left: 20px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 3px 3px 3px 3px;
+
+  @include darken-background($primary, 20%);
+  
+  
+
+
+  input{
+    border: none;
+    height: 30px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    color: white;
+    
+  }
+
+  button{
+    opacity: 0.5;
+    background: url('../../../img/icons/searchIcon.svg') no-repeat;
+    background-size: 50%;
+    background-position: 50%;
+    border: none;
+    height: 32px;
+    width: 32px;
+  }
+}
 .hideHeader{
   display:none;
 }
 
 .header-container {
     @include darken-background($primary, 15%);
-   
     display: block;
     position: relative;
     z-index: 3;
@@ -31,7 +65,7 @@
   
   .board-con {
     display: flex;
-    width: 260px;
+    max-width: 260px;
     padding-left: 15px;
   }
   

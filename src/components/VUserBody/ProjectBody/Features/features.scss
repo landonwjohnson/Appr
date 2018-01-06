@@ -75,7 +75,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        animation: test 0.2s ease-in forwards;
+        animation: test 0.8s ease-in;
 
         
         section{
@@ -130,7 +130,7 @@
 
 
 
-@keyframes  test{
+@keyframes test{
     from{
         transform: translateY(-10px);
         opacity: 0;
