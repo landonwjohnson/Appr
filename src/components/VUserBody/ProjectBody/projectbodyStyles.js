@@ -6,7 +6,7 @@ display: flex;
 
 let Frame = styled.div `
     width: 100%;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 40px);
     z-index: 0.1; 
     position: absolute;
     overflow: hidden;
