@@ -5,16 +5,12 @@
   margin-right: auto;
   margin-left: 20px;
   height: 30px;
-  display: flex;
+  display: none;
   align-items: center;
   max-width: 100%;
   border-radius: 3px 3px 3px 3px;
-
   @include darken-background($primary, 20%);
   
-  
-
-
   input{
     border: none;
     height: 30px;
@@ -24,7 +20,7 @@
     color: white;
     
   }
-
+  
   button{
     opacity: 0.5;
     background: url('../../../img/icons/searchIcon.svg') no-repeat;
