@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import ProjectSidebar from './ProjectSidebar/ProjectSidebar';
+import OverView from './Overview/Overview';
 import IdeasUsers from './Ideas_Users/Ideas_Users';
 import Features from './Features/Features';
 import View from './View/View';
@@ -42,6 +43,8 @@ class ProjectBody extends Component {
       <ProjectBodyContainer>
               <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
               <Frame> <BlurOverlay backgroundImage={backgroundImage} colorTheme={colorTheme} /> </Frame>
+              <Route component={ OverView } path="/user/:userid/project/:projectid/overview" />
+
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />

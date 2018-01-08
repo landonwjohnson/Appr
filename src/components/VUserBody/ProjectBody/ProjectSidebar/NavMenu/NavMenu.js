@@ -48,6 +48,7 @@ export default class ProjectSetupSidebar extends Component {
                 </div>
                 
                 <ul className={'nav-list'} >
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/overview`} className="nav-item"><li>Overview</li></NavLink>
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/ideas`} className="nav-item"><li>Ideas & Users</li></NavLink>
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/features`} className="nav-item"><li >Features</li></NavLink>
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/views`}  className="nav-item"><li>Views</li></NavLink>
