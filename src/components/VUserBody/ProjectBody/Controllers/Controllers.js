@@ -105,7 +105,7 @@ class Controllers extends Component {
   }
   // if we need to we can change the key to equal something else other than the index
   render() { 
-    const { userid, projectid } = this.props.match.params;
+    const projectid = this.props.match.params.projectid;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
