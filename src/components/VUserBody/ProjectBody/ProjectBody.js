@@ -17,7 +17,6 @@ class ProjectBody extends Component {
     this.state={
       project: {},
       UI: {
-        backgroundImage: '',
         colorTheme: '',
         backgroundPreview: ''
       }
@@ -44,20 +43,22 @@ class ProjectBody extends Component {
     let newColor = color;
     this.setState({
       UI: {
-        backgroundImage: newBackground,
+        backgroundPreview: newBackground,
         colorTheme: newColor
       }
     })
   }
 
+
+
   render() {
     const { userid, projectid } = this.props.match.params;
-    const { colorTheme, backgroundImage } = this.state.UI;
+    const { colorTheme, backgroundPreview } = this.state.UI;
 
     return (
       <ProjectBodyContainer>
               <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
-              <Frame> <BlurOverlay backgroundImage={backgroundImage || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
+              <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
