@@ -9,11 +9,13 @@ import Schema from './Schema/Schema';
 import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
+import { findProject, updateProject } from '../../../services/project.services';
 
 class ProjectBody extends Component {
   constructor(props){
     super(props)
     this.state={
+      project: {},
       UI: {
         backgroundImage: '',
         colorTheme: '',
@@ -22,6 +24,20 @@ class ProjectBody extends Component {
     }
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
+
+  componentWillMount() {
+    const projectid = this.props.match.params.projectid;
+    findProject(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                this.setState({ project: res.data[0] });
+            }
+        })
+        .catch(err => {throw err});
+}
 
   handleProjectBackground(image, color){
     let newBackground = image;
@@ -41,7 +57,7 @@ class ProjectBody extends Component {
     return (
       <ProjectBodyContainer>
               <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
-              <Frame> <BlurOverlay backgroundImage={backgroundImage} colorTheme={colorTheme} /> </Frame>
+              <Frame> <BlurOverlay backgroundImage={backgroundImage || this.state.project.background} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
