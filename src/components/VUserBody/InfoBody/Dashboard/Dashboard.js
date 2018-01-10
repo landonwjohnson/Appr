@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './dashboard.scss';
 import './dashboard-projects.scss';
-import addIcon from '../../../../img/icons/add-icon.svg';
 import { findDashboardInfo } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
@@ -67,15 +66,18 @@ class Dashboard extends Component {
 
 	render() {
 		const userid = this.props.match.params.userid;
-		const { groups, projects } = this.state
+		const { groups, projects } = this.state;
+
+		const displayProjects = projects.map( project => {
+			const index = projects.indexOf(project);
+			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+		});
+		
 		const displayGroups = groups.map( group => {
 			const index = groups.indexOf(group);
 			return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
 		});
-		const displayProjects = projects.map( project => {
-			const index = projects.indexOf(project);
-			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name}/>
-		});
+
 
 		return (
 			<div>
@@ -86,8 +88,7 @@ class Dashboard extends Component {
 							<ul className="projects-list">
 
 								{displayProjects}
-								<DashProject projectName='Appstuctor' backgroundSource={HotSpringsUtah}/>
-								<DashProject projectName='PlanAppUs' backgroundSource={ThistleHouseUtah}/>
+				
 								
 								<li className="create-project-thumb">
 									<div className="create-project-thumb-body" onClick={() => this.handleCreateButton('project')}>
