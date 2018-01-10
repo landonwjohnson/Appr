@@ -9,7 +9,6 @@ import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
 
 
-
 class Header extends Component {
     constructor(props){
         super(props);
@@ -30,6 +29,8 @@ class Header extends Component {
             this.openFeedbackModal = this.openFeedbackModal.bind(this);
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
+
+
 
     openFeedbackModal(){
         this.setState({breadToX: false})

@@ -220,12 +220,12 @@ VALUES
 
 --Projects
 
-INSERT INTO project ( name, author_id, status_id )
+INSERT INTO project ( name, background, author_id, status_id )
 VALUES
-    ('Defeat the Empire', 2, 1),
-    ('Destroy the Rebels', 6, 1),
-    ('Preserve the Republic', 10, 1),
-    ('Achieve Independence', 15, 1)
+    ('Defeat the Empire', 'http://static.independent.co.uk/s3fs-public/thumbnails/image/2016/02/25/17/Star-wars-5.jpg', 2, 1),
+    ('Destroy the Rebels', 'https://www.walldevil.com/wallpapers/a24/star-wars-wallpaper-sandbox-cigarette-lol-house-paper-dark-smoking-light-lightnings-images-saber.jpg', 6, 1),
+    ('Preserve the Republic', 'https://cdn.europosters.eu/image/1300/40110.jpg', 10, 1),
+    ('Achieve Independence', 'https://images3.alphacoders.com/114/11439.jpg', 15, 1)
 ;
 
 ---------------------------------Test Project Fields
