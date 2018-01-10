@@ -32,6 +32,7 @@ CREATE TABLE status (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
+    avatar TEXT,
     first_name TEXT,
     last_name TEXT,
     email TEXT unique, 
@@ -49,6 +50,7 @@ CREATE TABLE groups (
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
+    background TEXT,
     author_id int references users(id),
     status_id int references status(id)
 );
@@ -184,26 +186,26 @@ VALUES
 
 --User Table
 
-INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+INSERT INTO users ( username, avatar, password, email, first_name, last_name, status_id )
 VALUES
-    ('RealChosenOne', 'Reyismydaughter', 'luke@alliance.org', 'Luke', 'Skywalker', 1),
-    ('HansPrincess', 'ivealwaysknown', 'leia@alliance.org', 'Leia', 'Organa', 1),
-    ('iShotfirst', '12parsecs', 'igotabadfeeling@alliance.org', 'Han', 'Solo', 1),
-    ('beepbeepboop', 'boopboopbop', 'artoo@alliance.org', 'R2', 'D2', 1),
-    ('HumanCyborgRelations', 'beepboopsbuddy', 'dontwipemybrain@alliance.org', 'C3', 'PO', 1),
-    ('DarthSidious', 'goodgood', 'emperor@empire.org', 'Sheev', 'Palpatine', 1),
-    ('DarthVader', 'deathstar4eva', 'vader@empire.org', 'Anakin', 'Skywalker', 1),
-    ('badassbountyhunter', 'iDiedTooSoon', 'boba@empire.org', 'Boba', 'Fett', 1),
-    ('commandingOfficer3', 'dontchokeme', 'tarkin@empire.org', 'Wilhuff', 'Tarkin', 1),
-    ('YoDaMan', 'thereisnotry', 'yoda@jedi.org', 'Minch', 'Yoda', 1),
-    ('KenobiTheWan', 'maulsux', 'ben@jedi.org', 'Obi-Wan', 'Kenobi', 1),
-    ('pepperspray', 'whatifitwaspurple', 'mace@jedi.org', 'Mace', 'Windu', 1),
-    ('deathcheat', 'forceghost1', 'jinn@jedi.org', 'Qui-gon', 'Jinn', 1),
-    ('Slave1Owner', 'ihaveanarmy', 'jango@cis.org', 'Jango', 'Fett', 1),
-    ('gunray', 'isthatlegal', 'gunray@cis.org', 'Newt', 'Gunray', 1),
-    ('DarthTyranus', 'iamsaruman', 'thecount@cis.org', 'Christopher', 'Dooku', 1),
-    ('DarthMaul', 'imstillalive', 'dualsaber@cis.org', 'Talzin', 'Maul', 1),
-    ('JediHunter', 'machinething', 'thegeneral@cis.org', 'Haroj', 'Grievous', 1)
+    ('RealChosenOne', 'https://randomfilmmusings.files.wordpress.com/2012/11/starwarsiv_269pyxurz.jpg', 'Reyismydaughter', 'luke@alliance.org', 'Luke', 'Skywalker', 1),
+    ('HansPrincess', 'http://static.tumblr.com/8326525de0ae3af4467a279191afe30b/yrxly6x/ItHo0ikv1/tumblr_static_9e3ar048od8gk8kkk804s8gg0.jpg', 'ivealwaysknown', 'leia@alliance.org', 'Leia', 'Organa', 1),
+    ('iShotfirst', 'http://screenrant.com/wp-content/uploads/Han-Solo-Shot-Greedo-First-Explained.jpg', '12parsecs', 'igotabadfeeling@alliance.org', 'Han', 'Solo', 1),
+    ('beepbeepboop', 'https://i.ytimg.com/vi/8tjMM67-aao/maxresdefault.jpg', 'boopboopbop', 'artoo@alliance.org', 'R2', 'D2', 1),
+    ('HumanCyborgRelations', 'http://2.bp.blogspot.com/-ovMA7ln5m3M/TfD1oWF3C0I/AAAAAAAADG4/nHa6GKWCN40/s1600/C3PO_really+shiny.jpg', 'beepboopsbuddy', 'dontwipemybrain@alliance.org', 'C3', 'PO', 1),
+    ('DarthSidious', 'https://tse4.mm.bing.net/th?id=OIP.vEmsP46lePGBOZAkRtByPAHaE7&pid=Api', 'goodgood', 'emperor@empire.org', 'Sheev', 'Palpatine', 1),
+    ('DarthVader', 'http://cdn.bgr.com/2015/08/darth-vader.jpg', 'deathstar4eva', 'vader@empire.org', 'Anakin', 'Skywalker', 1),
+    ('badassbountyhunter', 'http://www.fanboy.com/wp-content/uploads/2014/01/bobafett.jpg', 'iDiedTooSoon', 'boba@empire.org', 'Boba', 'Fett', 1),
+    ('commandingOfficer3', 'http://www.3dtotal.com/admin/new_cropper/gallery_736/2016-05-31(93600)_07_Tarkin.jpg', 'dontchokeme', 'tarkin@empire.org', 'Wilhuff', 'Tarkin', 1),
+    ('YoDaMan', 'http://3.bp.blogspot.com/-EjBXTS5uf3Y/T3E35pN1QVI/AAAAAAAAD5c/B-wdtLyoyLk/s1600/2Yoda.jpg', 'thereisnotry', 'yoda@jedi.org', 'Minch', 'Yoda', 1),
+    ('KenobiTheWan', 'https://www.heyuguys.com/images/2017/12/Obi-Wan-Kenobi.jpg', 'maulsux', 'ben@jedi.org', 'Obi-Wan', 'Kenobi', 1),
+    ('pepperspray', 'http://nerdist.com/wp-content/uploads/2016/07/Mace-Windu.jpg', 'whatifitwaspurple', 'mace@jedi.org', 'Mace', 'Windu', 1),
+    ('deathcheat', 'http://3.bp.blogspot.com/-pxyQe3o2NkE/ThpnVwYQ5iI/AAAAAAAAAB0/N1OvRBMn0rU/s1600/Qui-Goncloseup.jpg', 'forceghost1', 'jinn@jedi.org', 'Qui-gon', 'Jinn', 1),
+    ('Slave1Owner', 'http://2.bp.blogspot.com/-wecvbksLwHo/TlznfMIvNWI/AAAAAAAADZA/ZaeK5tZZe_s/s1600/1488-jango-fett-430-531.jpeg', 'ihaveanarmy', 'jango@cis.org', 'Jango', 'Fett', 1),
+    ('gunray', 'http://orig06.deviantart.net/22ec/f/2012/061/1/9/the_newt_and_nute_by_teq_uila-d4rivy0.png', 'isthatlegal', 'gunray@cis.org', 'Newt', 'Gunray', 1),
+    ('DarthTyranus', 'https://lumiere-a.akamaihd.net/v1/images/Count-Dooku_4f552149.jpeg?region=0%2C45%2C1436%2C718', 'iamsaruman', 'thecount@cis.org', 'Christopher', 'Dooku', 1),
+    ('DarthMaul', 'http://geektyrant.com/s/Darth_maul.jpg', 'imstillalive', 'dualsaber@cis.org', 'Talzin', 'Maul', 1),
+    ('JediHunter', 'http://img.lum.dolimg.com/v1/images/open-uri20150608-27674-1empmi4_e1f04d9f.jpeg?region=0%2C0%2C1200%2C675', 'machinething', 'thegeneral@cis.org', 'Haroj', 'Grievous', 1)
 ;
 
 --Groups
