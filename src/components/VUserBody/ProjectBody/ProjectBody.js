@@ -24,6 +24,7 @@ class ProjectBody extends Component {
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
 
+
   componentWillMount() {
     const projectid = this.props.match.params.projectid;
     findProject(projectid)

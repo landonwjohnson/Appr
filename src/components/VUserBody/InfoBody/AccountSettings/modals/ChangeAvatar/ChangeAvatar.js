@@ -46,6 +46,7 @@ class ChangeAvatar extends Component {
       }
     render() {
         const {userInfo, handleAvatarSubmit, onCloseBtnClick } = this.props;
+        alert(this.state.avatar);
 
         let avatarGalleryClass = classnames({
             "avatarIconGallary-wrapper":  true,
