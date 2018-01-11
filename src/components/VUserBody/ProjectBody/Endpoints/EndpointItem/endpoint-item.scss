@@ -1,0 +1,93 @@
+.endpoint-item {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    
+    background: #E2E4E6;   
+    border-radius: 5px;    
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+
+    .project-item-header{
+        height: 5px;
+    }
+    .project-item-header button{
+        top: 0px;
+        left: 15px;
+    }
+}
+
+.endpoint-inner{
+  display: flex;
+  flex-direction: column;
+  
+  .endpoint-name{
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .httpverb-url-con{
+    display: flex;
+    background-color: #F0F0F0;
+    height: 37px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    
+    .http-verb{
+      width: 20%;
+      color: #808080;
+      background: #F0F0F0;
+      font-weight: bold;
+      height: 100%;
+      border: 1px solid #CCC;
+      outline: none;
+      border-radius: 3px 0px 0px 3px; 
+    }
+    
+    .api-input{
+      width: 80%;
+      height: 90%;
+      background: #F0F0F0;
+      border: 1px solid #CCC;
+      outline: none;
+      padding-left: 2%;
+      color: #7E7E7E;
+      border-radius: 0px 3px 3px 0px; 
+      border-left: none;
+    }
+    
+    .endpoint-save{
+      
+    }
+    
+    :focus{
+      background-color: white;
+    }
+  }
+  
+  .response-con{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+
+    label{
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        height: 35px;
+        text-align: left;
+        background: #F0F0F0;
+        border-bottom: 1px solid #CCC;
+    }
+  }
+}
+
+
+
+#responseEditor .ace_editor .ace-tm {
+    width: 100%;
+    
+}
