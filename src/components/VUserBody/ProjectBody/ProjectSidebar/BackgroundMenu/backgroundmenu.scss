@@ -1,5 +1,7 @@
 //CHANGE BACKGROUND MENU UI
 
+@import '../../../../_colors.scss';
+
 .project-background-header{
     display: flex;
     width: 240px;
@@ -24,7 +26,6 @@
         color: black;
         max-height: 100%;
         outline: none;
-        
         background: transparent;
         border: none;
         overflow: hidden;
@@ -46,7 +47,7 @@
     flex-direction: column;
     height: calc(90vh - 100px);
     padding-left: 0px;
-    overflow-y: scroll !important;
+    overflow-y: auto;
 
     .nav-item{
         display: none;
@@ -62,9 +63,7 @@
         -webkit-border-radius: 10px;
         border-radius: 10px;
         background-color: #C4C9CC;
-        position: absolute;
-        
-           
+         
     }
 
     &::-webkit-scrollbar-track {
@@ -106,54 +105,12 @@
             border: 1px solid rgba(0, 0, 0, 0.23);
         }
     }
-
-    .background-box{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        margin-top: 20px;
-        border: 1px solid #DCDCDC;
-        min-height: 100px;
-        width:80%;
-        background-size: 100%;
-        background-position: 50% 50%;
-        border-radius: 10px;    
-        user-select: none;    
-        cursor: pointer;
-
-        .attribution{
-            opacity: 0;
-            transition: 0.2s ease-in-out;
-        }
-
-        &:hover{
-            .attribution{
-                opacity: 1;
-                align-items: center;
-                display: flex;
-                height: 25px;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                border-radius: 0px 0px 10px 10px;
-                transition: 0.2s ease-in-out;
-    
-                label{
-                    margin-left: 10px;
-                    cursor: pointer;
-                    color: hsla(0,0%,100%,.8);
-                    
-                    &:hover{
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        &:active{
-            border: 1px solid rgba(0, 0, 0, 0.23);
-        }
-    }
 }
+
+
+
+
+
 
 .project-background-footer{
     display: block;

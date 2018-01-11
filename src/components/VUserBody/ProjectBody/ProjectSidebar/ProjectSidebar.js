@@ -38,7 +38,7 @@ export default class ProjectSidebar extends Component {
             "backgroundMenu-wrapper": true
         })
         
-        const {handleProjectBackground, userid, projectid } = this.props;
+        const {handleProjectBackground, userid, projectid, selectedBackground } = this.props;
        
         return (
 
@@ -49,7 +49,7 @@ export default class ProjectSidebar extends Component {
                     <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>
                 <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
-                    <BackgroundMenu handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
+                    <BackgroundMenu selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
                 </div>
             </div>
         )

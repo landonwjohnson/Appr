@@ -58,7 +58,7 @@ class ProjectBody extends Component {
 
     return (
       <ProjectBodyContainer>
-              <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
+              <ProjectSidebar selectedBackground={this.state.UI.backgroundPreview} handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
               <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>

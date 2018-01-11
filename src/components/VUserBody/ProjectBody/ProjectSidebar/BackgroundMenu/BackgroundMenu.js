@@ -6,6 +6,7 @@ import ThistleHouseUtah from '../../../../../img/User_Customization/backgrounds/
 import BackgroundItem from './BackgroundItem/BackgroundItem';
 
 export default class BackgroundMenu extends Component {
+    backgrounds = [HotSpringsUtah, ThistleHouseUtah];
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +17,7 @@ export default class BackgroundMenu extends Component {
 
 
     render() {
-        const { handleProjectBackground } = this.props;
+        const { handleProjectBackground, selectedBackground } = this.props;
         return (
             <div>
                  <form>
@@ -26,8 +27,11 @@ export default class BackgroundMenu extends Component {
                     
                     <ul className='background-list'>
                             <li className="no-background-box" onClick={(e) => handleProjectBackground('', '#FFF')}>  <label>No Background</label>  </li>
-                            <BackgroundItem backgroundImageSource={HotSpringsUtah} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/>
-                            <BackgroundItem backgroundImageSource={ThistleHouseUtah} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/>
+                            {this.backgrounds.map( background => {
+                                return(
+                                    <BackgroundItem selected={background === selectedBackground} backgroundImageSource={background} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/> 
+                                )
+                            })}
                     </ul>
 
                     <div className='project-background-footer'>

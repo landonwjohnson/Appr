@@ -1,8 +1,6 @@
 @import '../../../../../../../_colors.scss';
 
 .avatarPicItem{
-    
-    
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -59,6 +57,7 @@
         }
     }
 }
+
 
 
 .avatarPicItem--selected{
