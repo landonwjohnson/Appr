@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
 import HotSpringsUtah from '../../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
 import ThistleHouseUtah from '../../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
+import placeholder1 from '../../../../../img/User_Customization/backgrounds/placeholders/5X8Xkv8.jpg';
+import placeholder2 from '../../../../../img/User_Customization/backgrounds/placeholders/669177.jpg';
+import placeholder3 from '../../../../../img/User_Customization/backgrounds/placeholders/q2NIeON.jpg';
+import placeholder4 from '../../../../../img/User_Customization/backgrounds/placeholders/Star Wars Cartoon Wallpaper-728870.jpg';
+import placeholder5 from '../../../../../img/User_Customization/backgrounds/placeholders/wp1810894.jpg';
+
 import BackgroundItem from './BackgroundItem/BackgroundItem';
 
+
 export default class BackgroundMenu extends Component {
-    backgrounds = [HotSpringsUtah, ThistleHouseUtah];
+    backgrounds = [HotSpringsUtah, ThistleHouseUtah, placeholder1, placeholder2, placeholder3, placeholder4, placeholder5];
     constructor(props) {
         super(props);
         this.state = {
