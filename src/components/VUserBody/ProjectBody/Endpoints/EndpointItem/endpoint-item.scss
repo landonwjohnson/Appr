@@ -32,7 +32,6 @@
     display: flex;
     background-color: #F0F0F0;
     height: 37px;
-    margin-bottom: 20px;
     border-radius: 3px;
     
     .http-verb{
@@ -74,6 +73,56 @@
     border: 1px solid #CCC;
     border-radius: 3px;
     overflow: hidden;
+    margin-top: 20px;
+
+    label{
+        color: #7E7E7E;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        padding-left: 10px;
+        height: 35px;
+        text-align: left;
+        background: #F0F0F0;
+        text-transform: uppercase;
+        border-bottom: 1px solid #CCC;
+    }
+  }
+
+
+  .require-con{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 20px;
+
+    label{
+        color: #7E7E7E;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        height: 35px;
+        font-size: 15px;
+        text-align: left;
+        background: #F0F0F0;
+        border-bottom: 1px solid #CCC;
+        text-transform: uppercase;
+    }
+  }
+
+  .require-con--hide{
+    display: none;
+    flex-direction: column;
+    max-height: 100%;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 20px;
 
     label{
         display: flex;

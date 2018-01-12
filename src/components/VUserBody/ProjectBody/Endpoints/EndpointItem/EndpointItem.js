@@ -32,29 +32,56 @@ class EndpointItem extends Component {
                 </div>
                 <div class="response-con">
                     <label>Response</label>
-<AceEditor
-width={'100%'}
-border={'1px solid #CCC'}
-height={'250px'}
-mode="json"
-theme="tomorrow"
-name="responseEditor"
-onLoad={this.onLoad}
-onChange={this.onChange}
-fontSize={14}
-showPrintMargin={true}
-showGutter={true}
-highlightActiveLine={true}
-value={`{
-    "JSON" : "Object"
-}`}
-setOptions={{
-enableBasicAutocompletion: false,
-enableLiveAutocompletion: false,
-enableSnippets: false,
-showLineNumbers: true,
-tabSize: 2,
-}}/>
+                        <AceEditor
+                            width={'100%'}
+                            border={'1px solid #CCC'}
+                            height={'120px'}
+                            mode="json"
+                            theme="tomorrow"
+                            name="responseEditor"
+                            onLoad={this.onLoad}
+                            onChange={this.onChange}
+                            fontSize={14}
+                            showPrintMargin={true}
+                            showGutter={true}
+                            highlightActiveLine={true}
+                            value={`{\n` +
+                            `\t"JSON" : "Object"\n` +
+                            `}`}
+                            setOptions={{
+                            enableBasicAutocompletion: false,
+                            enableLiveAutocompletion: false,
+                            enableSnippets: false,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                        }}/>
+                </div>
+
+                <div class="require-con">
+                    <label>Require</label>
+                        <AceEditor
+                            width={'100%'}
+                            border={'1px solid #CCC'}
+                            height={'120px'}
+                            mode="json"
+                            theme="tomorrow"
+                            name="requireEditor"
+                            onLoad={this.onLoad}
+                            onChange={this.onChange}
+                            fontSize={14}
+                            showPrintMargin={true}
+                            showGutter={true}
+                            highlightActiveLine={true}
+                            value={`{\n` +
+                            `\t"JSON" : "Object"\n` +
+                            `}`}
+                            setOptions={{
+                            enableBasicAutocompletion: false,
+                            enableLiveAutocompletion: false,
+                            enableSnippets: false,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                        }}/>
                 </div>
             
             </div>
