@@ -3,15 +3,58 @@ import './endpoint-item.scss';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/json';
+import classnames from 'classnames';
 
 class EndpointItem extends Component {
   constructor(){
     super();
     this.state = {
-   
+        UI:{
+            hideReqField: true
+        }
+    }
+    this.toggleRequireCon = this.toggleRequireCon.bind(this);
+  }
+
+  toggleRequireCon(e){
+    const hide = () => {this.setState({UI:{hideReqField: true}})};
+    const show = () => {this.setState({UI:{hideReqField: false}})};
+    if(e === "GET"){
+        return hide();
+    } 
+
+    if(e === "POST"){
+        return show();
+    }
+
+    if(e === "PUT"){
+        return show();
+    }
+    
+    if(e === "DELETE"){
+        return hide();
     }
   }
+
+//   toggleRequireCon(e){
+//     const httpverb = e;
+//     const hide = this.setState({UI:{hideReqField: true}});
+//     const show = this.setState({UI:{hideReqField: false}});
+    
+//     if (e.includes("GET" || "DELETE")) {
+//         return hide
+//      } else {
+//         return show
+//      }
+//   }
+
+
+
   render() {
+      const requireConClass = classnames({
+          "requireCon--hide" : this.state.UI.hideReqField,
+          "requireCon": true
+      })
     return (
         <div class="endpoint-item">
             <div class="project-item-header">
@@ -20,17 +63,17 @@ class EndpointItem extends Component {
                 <div class="endpoint-inner">
                 <input class="endpoint-name" placeholder="name" />
                 <div class="httpverb-url-con">
-                    <select class="http-verb">
-                    <option> GET </option>
-                    <option> POST </option>
-                    <option> PUT </option>
-                    <option> DELETE </option>
+                    <select class="http-verb" onChange={ (e) => this.toggleRequireCon(e.target.value)}>
+                        <option value="GET"> GET </option>
+                        <option value="POST" > POST </option>
+                        <option value="PUT"> PUT </option>
+                        <option value="DELETE"> DELETE </option>
                     </select>
                     <input class="api-input" placeholder="/api/books" />
                     
                     <button>Save</button>
                 </div>
-                <div class="response-con">
+                <div class="responseCon">
                     <label>Response</label>
                         <AceEditor
                             width={'100%'}
@@ -57,7 +100,7 @@ class EndpointItem extends Component {
                         }}/>
                 </div>
 
-                <div class="require-con">
+                <div className={requireConClass}>
                     <label>Require</label>
                         <AceEditor
                             width={'100%'}

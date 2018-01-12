@@ -41,8 +41,8 @@ class ControllerItem extends Component {
                 </div>
                 <div className="contro-item-title">
                     <select> 
-                        <option value="" disabled selected>Select view</option>
-                        { displayViews }
+                            <option value="" disabled selected>Select view</option>
+                            { displayViews }
                     </select>
                 </div>
                 <div className="contro-item-inputs">
