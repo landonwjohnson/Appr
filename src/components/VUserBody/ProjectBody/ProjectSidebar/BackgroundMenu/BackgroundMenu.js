@@ -1,30 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
-import HotSpringsUtah from '../../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
-import ThistleHouseUtah from '../../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
-import placeholder1 from '../../../../../img/User_Customization/backgrounds/placeholders/5X8Xkv8.jpg';
-import placeholder2 from '../../../../../img/User_Customization/backgrounds/placeholders/669177.jpg';
-import placeholder3 from '../../../../../img/User_Customization/backgrounds/placeholders/q2NIeON.jpg';
-import placeholder4 from '../../../../../img/User_Customization/backgrounds/placeholders/Star Wars Cartoon Wallpaper-728870.jpg';
-import placeholder5 from '../../../../../img/User_Customization/backgrounds/placeholders/wp1810894.jpg';
+import { findProjectBackgrounds } from '../../../../../services/project.background.services';
 
 import BackgroundItem from './BackgroundItem/BackgroundItem';
 
 
 export default class BackgroundMenu extends Component {
-    backgrounds = [HotSpringsUtah, ThistleHouseUtah, placeholder1, placeholder2, placeholder3, placeholder4, placeholder5];
-    constructor(props) {
+        constructor(props) {
         super(props);
         this.state = {
-            project: {},
+            backgrounds: [],
             UI: {backgroundMenu: false}
         };
+    }
+
+    componentWillMount(){
+        findProjectBackgrounds()
+            .then( res => {
+                if (res.status !== 200){
+                    console.log(res);
+                }
+                else{
+                    this.setState({ backgrounds: res.data })
+                }
+            })
     }
 
 
     render() {
         const { handleProjectBackground, selectedBackground } = this.props;
+        const backgrounds = this.state.backgrounds;
+        const displayBackgroundItems = backgrounds.map( background => {
+            const index = backgrounds.indexOf(backgrounds);
+            return(
+                <BackgroundItem key={index} selected={background.background_url === selectedBackground} backgroundImageSource={background.background_url} creatorName={background.creator_name} portfolio={background.portfolio} handleProjectBackground={handleProjectBackground}/> 
+            )
+        })
+
         return (
             <div>
                  <form>
@@ -34,11 +47,7 @@ export default class BackgroundMenu extends Component {
                     
                     <ul className='background-list'>
                             <li className="no-background-box" onClick={(e) => handleProjectBackground('', '#FFF')}>  <label>No Background</label>  </li>
-                            {this.backgrounds.map( background => {
-                                return(
-                                    <BackgroundItem selected={background === selectedBackground} backgroundImageSource={background} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleProjectBackground={handleProjectBackground}/> 
-                                )
-                            })}
+                            {displayBackgroundItems}
                     </ul>
 
                     <div className='project-background-footer'>

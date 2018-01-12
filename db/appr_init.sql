@@ -490,15 +490,10 @@ VALUES
 
     INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
     VALUES 
-        ('Aaron T', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Zach T', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Star Wars', '/static/media/5X8Xkv8.7a0f8bd0.jpg', 'www.starwars.com'),
-        ('Star Wars', '/static/media/669177.f40242dd.jpg', 'www.starwars.com'),
-        ('Becky T', '/static/media/q2NIeON.1973fecd.jpg', 'www.starwars.com'),
-        ('Star Wars', '/static/media/q2NIeON.1973fecd.jpg', 'www.starwars.com'),
-        ('Star Wars', '/static/media/wp1810894.b0f2bf2a.jpg', 'www.starwars.com')
+        ('Lucas Arts', 'https://wallpapercave.com/wp/wp1810894.jpg', 'www.starwars.com'),
+        ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
+        ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
+        ('Bioshock', 'https://images3.alphacoders.com/114/114869.jpg', 'www.bioshock.com')
     ;
