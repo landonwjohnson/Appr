@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
+import brace from 'brace';
 import './endpoints.scss';
 
 class Endpoints extends Component {
