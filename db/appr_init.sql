@@ -20,7 +20,8 @@ DROP TABLE IF EXISTS
     group_project, 
     user_project, 
     roles, 
-    tracker;
+    tracker,
+    project_backgrounds;
 
 --Please keep the order of the CREATE TABLE inserts the same
 
@@ -473,3 +474,31 @@ VALUES
     ('3','8', '10', 'test end to end', 'test end to end tracker data'),
     ('3','8', '11', 'get site hosted', 'test site hosted tracker data')
 ;
+
+
+
+
+
+--Landons Playground
+-- Project Backgrounds
+    CREATE TABLE project_backgrounds (
+        id SERIAL PRIMARY KEY,
+        creator_name TEXT,
+        background_url TEXT,
+        portfolio TEXT
+    );
+
+    INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
+    VALUES 
+        ('Aaron T', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Zach T', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Star Wars', '/static/media/5X8Xkv8.7a0f8bd0.jpg', 'www.starwars.com'),
+        ('Star Wars', '/static/media/669177.f40242dd.jpg', 'www.starwars.com'),
+        ('Becky T', '/static/media/q2NIeON.1973fecd.jpg', 'www.starwars.com'),
+        ('Star Wars', '/static/media/q2NIeON.1973fecd.jpg', 'www.starwars.com'),
+        ('Star Wars', '/static/media/wp1810894.b0f2bf2a.jpg', 'www.starwars.com')
+    ;
