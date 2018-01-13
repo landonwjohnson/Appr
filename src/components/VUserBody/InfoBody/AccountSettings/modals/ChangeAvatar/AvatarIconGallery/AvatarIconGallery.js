@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { findAvatars } from '../../../../../../../services/avatar.services';
 import LinkAvatar from '../../../../../../../img/User_Customization/avatars/link_avatar.svg';
 import BanjoAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
 import HaloAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
@@ -6,6 +7,24 @@ import SonicAvatar from '../../../../../../../img/User_Customization/avatars/son
 import AvatarItem from './AvatarItem/AvatarItem';
 
 class AvatarIconGallery extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            avatars: []
+        }
+    }
+
+    componentWillMount(){
+        findAvatars()
+            .then( res => {
+                if(res.status !== 200){
+                    console.log(res);
+                }
+                else{
+                    this.setState({ avatars: res.data })
+                }
+            })
+    }
     avatars = [LinkAvatar, BanjoAvatar, HaloAvatar, SonicAvatar];
     render() {
         const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse, selectedAvatar} = this.props;
