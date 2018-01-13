@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import LinkAvatar from '../../../../../../../img/User_Customization/avatars/link_avatar.svg';
-import BanjoAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
-import HaloAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
-import SonicAvatar from '../../../../../../../img/User_Customization/avatars/sonic_avatar.svg';
+
 import { findAvatars} from '../../../../../../../services/avatar.services';
 import AvatarItem from './AvatarItem/AvatarItem';
 
@@ -26,19 +23,23 @@ class AvatarIconGallery extends Component {
             })
     }
 
-    avatars = [LinkAvatar, BanjoAvatar, HaloAvatar, SonicAvatar];
+
     render() {
         const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse, selectedAvatar} = this.props;
+        const avatars = this.state.avatars;
+        const displayAvatarItems = avatars.map( avatar => {
+            const index = avatars.indexOf(avatars);
+            return(
+                <AvatarItem key={index} selected={ avatar.avatar_url === selectedAvatar } backgroundSource={ avatar.avatar_url } creatorName={ avatar.creatorName } portfolio={ avatar.portfolio } handleAvatarChange={handleAvatarChange}/>
+            )
+        })
       return (
                 <div className="modal-body-avatar">
                     <section className="avatarPicContainer">
                        <ul className="avatarPicList">
                             <li className="avatarURLItem" onClick={e => {toggleChangeURL()}}></li>
-                            {this.avatars.map( avatarImage => {
-                                return(
-                                    <AvatarItem selected={avatarImage === selectedAvatar} backgroundSource={avatarImage} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
-                                )
-                            })}
+                                    { displayAvatarItems }
+                      
                         </ul>
                     </section> 
                </div>
@@ -47,5 +48,3 @@ class AvatarIconGallery extends Component {
   }
 
 export default AvatarIconGallery
-
-

@@ -9,7 +9,6 @@ class AvatarItem extends Component {
         this.state ={
             
         }
-
         this.handleAvatarClick = this.handleAvatarClick.bind(this);
     }
  
