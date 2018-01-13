@@ -1,0 +1,1 @@
+SELECT * FROM avatar_gallery ORDER BY (creator_name);
