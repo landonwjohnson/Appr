@@ -9,13 +9,14 @@ import Schema from './Schema/Schema';
 import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
+import { findProject, updateProject } from '../../../services/project.services';
 
 class ProjectBody extends Component {
   constructor(props){
     super(props)
     this.state={
+      project: {},
       UI: {
-        backgroundImage: '',
         colorTheme: '',
         backgroundPreview: ''
       }
@@ -23,25 +24,42 @@ class ProjectBody extends Component {
     this.handleProjectBackground = this.handleProjectBackground.bind(this);
   }
 
+
+  componentWillMount() {
+    const projectid = this.props.match.params.projectid;
+    findProject(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                this.setState({ project: res.data[0] });
+            }
+        })
+        .catch(err => {throw err});
+}
+
   handleProjectBackground(image, color){
     let newBackground = image;
     let newColor = color;
     this.setState({
       UI: {
-        backgroundImage: newBackground,
+        backgroundPreview: newBackground,
         colorTheme: newColor
       }
     })
   }
 
+
+
   render() {
     const { userid, projectid } = this.props.match.params;
-    const { colorTheme, backgroundImage } = this.state.UI;
+    const { colorTheme, backgroundPreview } = this.state.UI;
 
     return (
       <ProjectBodyContainer>
-              <ProjectSidebar handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
-              <Frame> <BlurOverlay backgroundImage={backgroundImage} colorTheme={colorTheme} /> </Frame>
+              <ProjectSidebar selectedBackground={this.state.UI.backgroundPreview} handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
+              <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />

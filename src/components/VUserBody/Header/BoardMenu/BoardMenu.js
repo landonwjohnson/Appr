@@ -88,7 +88,7 @@ class BoardMenu extends Component {
       return (
           <Link to={`/user/${userid}/project/${project.id}/ideas`} onClick={closeMenus}>
                 <div className="board-menu-item">
-                <div className="board-item-thumbnail">
+                <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
                 </div>
                 <div className="board-item-name">

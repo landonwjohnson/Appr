@@ -20,7 +20,9 @@ DROP TABLE IF EXISTS
     group_project, 
     user_project, 
     roles, 
-    tracker;
+    tracker,
+    project_backgrounds,
+    avatar_gallery;
 
 --Please keep the order of the CREATE TABLE inserts the same
 
@@ -32,6 +34,7 @@ CREATE TABLE status (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT unique,
+    avatar TEXT,
     first_name TEXT,
     last_name TEXT,
     email TEXT unique, 
@@ -49,6 +52,7 @@ CREATE TABLE groups (
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name TEXT,
+    background TEXT,
     author_id int references users(id),
     status_id int references status(id)
 );
@@ -109,10 +113,7 @@ CREATE TABLE project_endpoint (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     url_data TEXT,
-    is_get BOOLEAN default TRUE,
-    is_post BOOLEAN default FALSE,
-    is_update BOOLEAN default FALSE,
-    is_delete BOOLEAN default FALSE,
+    http_verb TEXT,
     req_endpoint_id int references req_endpoint(id),
     res_endpoint_id int references res_endpoint(id)
 );
@@ -187,26 +188,26 @@ VALUES
 
 --User Table
 
-INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+INSERT INTO users ( username, avatar, password, email, first_name, last_name, status_id )
 VALUES
-    ('RealChosenOne', 'Reyismydaughter', 'luke@alliance.org', 'Luke', 'Skywalker', 1),
-    ('HansPrincess', 'ivealwaysknown', 'leia@alliance.org', 'Leia', 'Organa', 1),
-    ('iShotfirst', '12parsecs', 'igotabadfeeling@alliance.org', 'Han', 'Solo', 1),
-    ('beepbeepboop', 'boopboopbop', 'artoo@alliance.org', 'R2', 'D2', 1),
-    ('HumanCyborgRelations', 'beepboopsbuddy', 'dontwipemybrain@alliance.org', 'C3', 'PO', 1),
-    ('DarthSidious', 'goodgood', 'emperor@empire.org', 'Sheev', 'Palpatine', 1),
-    ('DarthVader', 'deathstar4eva', 'vader@empire.org', 'Anakin', 'Skywalker', 1),
-    ('badassbountyhunter', 'iDiedTooSoon', 'boba@empire.org', 'Boba', 'Fett', 1),
-    ('commandingOfficer3', 'dontchokeme', 'tarkin@empire.org', 'Wilhuff', 'Tarkin', 1),
-    ('YoDaMan', 'thereisnotry', 'yoda@jedi.org', 'Minch', 'Yoda', 1),
-    ('KenobiTheWan', 'maulsux', 'ben@jedi.org', 'Obi-Wan', 'Kenobi', 1),
-    ('pepperspray', 'whatifitwaspurple', 'mace@jedi.org', 'Mace', 'Windu', 1),
-    ('deathcheat', 'forceghost1', 'jinn@jedi.org', 'Qui-gon', 'Jinn', 1),
-    ('Slave1Owner', 'ihaveanarmy', 'jango@cis.org', 'Jango', 'Fett', 1),
-    ('gunray', 'isthatlegal', 'gunray@cis.org', 'Newt', 'Gunray', 1),
-    ('DarthTyranus', 'iamsaruman', 'thecount@cis.org', 'Christopher', 'Dooku', 1),
-    ('DarthMaul', 'imstillalive', 'dualsaber@cis.org', 'Talzin', 'Maul', 1),
-    ('JediHunter', 'machinething', 'thegeneral@cis.org', 'Haroj', 'Grievous', 1)
+    ('RealChosenOne', 'https://randomfilmmusings.files.wordpress.com/2012/11/starwarsiv_269pyxurz.jpg', 'Reyismydaughter', 'luke@alliance.org', 'Luke', 'Skywalker', 1),
+    ('HansPrincess', 'http://static.tumblr.com/8326525de0ae3af4467a279191afe30b/yrxly6x/ItHo0ikv1/tumblr_static_9e3ar048od8gk8kkk804s8gg0.jpg', 'ivealwaysknown', 'leia@alliance.org', 'Leia', 'Organa', 1),
+    ('iShotfirst', 'http://screenrant.com/wp-content/uploads/Han-Solo-Shot-Greedo-First-Explained.jpg', '12parsecs', 'igotabadfeeling@alliance.org', 'Han', 'Solo', 1),
+    ('beepbeepboop', 'https://i.ytimg.com/vi/8tjMM67-aao/maxresdefault.jpg', 'boopboopbop', 'artoo@alliance.org', 'R2', 'D2', 1),
+    ('HumanCyborgRelations', 'http://2.bp.blogspot.com/-ovMA7ln5m3M/TfD1oWF3C0I/AAAAAAAADG4/nHa6GKWCN40/s1600/C3PO_really+shiny.jpg', 'beepboopsbuddy', 'dontwipemybrain@alliance.org', 'C3', 'PO', 1),
+    ('DarthSidious', 'https://tse4.mm.bing.net/th?id=OIP.vEmsP46lePGBOZAkRtByPAHaE7&pid=Api', 'goodgood', 'emperor@empire.org', 'Sheev', 'Palpatine', 1),
+    ('DarthVader', 'http://cdn.bgr.com/2015/08/darth-vader.jpg', 'deathstar4eva', 'vader@empire.org', 'Anakin', 'Skywalker', 1),
+    ('badassbountyhunter', 'http://www.fanboy.com/wp-content/uploads/2014/01/bobafett.jpg', 'iDiedTooSoon', 'boba@empire.org', 'Boba', 'Fett', 1),
+    ('commandingOfficer3', 'http://www.3dtotal.com/admin/new_cropper/gallery_736/2016-05-31(93600)_07_Tarkin.jpg', 'dontchokeme', 'tarkin@empire.org', 'Wilhuff', 'Tarkin', 1),
+    ('YoDaMan', 'http://3.bp.blogspot.com/-EjBXTS5uf3Y/T3E35pN1QVI/AAAAAAAAD5c/B-wdtLyoyLk/s1600/2Yoda.jpg', 'thereisnotry', 'yoda@jedi.org', 'Minch', 'Yoda', 1),
+    ('KenobiTheWan', 'https://www.heyuguys.com/images/2017/12/Obi-Wan-Kenobi.jpg', 'maulsux', 'ben@jedi.org', 'Obi-Wan', 'Kenobi', 1),
+    ('pepperspray', 'http://nerdist.com/wp-content/uploads/2016/07/Mace-Windu.jpg', 'whatifitwaspurple', 'mace@jedi.org', 'Mace', 'Windu', 1),
+    ('deathcheat', 'http://3.bp.blogspot.com/-pxyQe3o2NkE/ThpnVwYQ5iI/AAAAAAAAAB0/N1OvRBMn0rU/s1600/Qui-Goncloseup.jpg', 'forceghost1', 'jinn@jedi.org', 'Qui-gon', 'Jinn', 1),
+    ('Slave1Owner', 'http://2.bp.blogspot.com/-wecvbksLwHo/TlznfMIvNWI/AAAAAAAADZA/ZaeK5tZZe_s/s1600/1488-jango-fett-430-531.jpeg', 'ihaveanarmy', 'jango@cis.org', 'Jango', 'Fett', 1),
+    ('gunray', 'http://orig06.deviantart.net/22ec/f/2012/061/1/9/the_newt_and_nute_by_teq_uila-d4rivy0.png', 'isthatlegal', 'gunray@cis.org', 'Newt', 'Gunray', 1),
+    ('DarthTyranus', 'https://lumiere-a.akamaihd.net/v1/images/Count-Dooku_4f552149.jpeg?region=0%2C45%2C1436%2C718', 'iamsaruman', 'thecount@cis.org', 'Christopher', 'Dooku', 1),
+    ('DarthMaul', 'http://geektyrant.com/s/Darth_maul.jpg', 'imstillalive', 'dualsaber@cis.org', 'Talzin', 'Maul', 1),
+    ('JediHunter', 'http://img.lum.dolimg.com/v1/images/open-uri20150608-27674-1empmi4_e1f04d9f.jpeg?region=0%2C0%2C1200%2C675', 'machinething', 'thegeneral@cis.org', 'Haroj', 'Grievous', 1)
 ;
 
 --Groups
@@ -221,12 +222,12 @@ VALUES
 
 --Projects
 
-INSERT INTO project ( name, author_id, status_id )
+INSERT INTO project ( name, background, author_id, status_id )
 VALUES
-    ('Defeat the Empire', 2, 1),
-    ('Destroy the Rebels', 6, 1),
-    ('Preserve the Republic', 10, 1),
-    ('Achieve Independence', 15, 1)
+    ('Defeat the Empire', 'http://static.independent.co.uk/s3fs-public/thumbnails/image/2016/02/25/17/Star-wars-5.jpg', 2, 1),
+    ('Destroy the Rebels', 'https://www.walldevil.com/wallpapers/a24/star-wars-wallpaper-sandbox-cigarette-lol-house-paper-dark-smoking-light-lightnings-images-saber.jpg', 6, 1),
+    ('Preserve the Republic', 'https://cdn.europosters.eu/image/1300/40110.jpg', 10, 1),
+    ('Achieve Independence', 'https://images3.alphacoders.com/114/11439.jpg', 15, 1)
 ;
 
 ---------------------------------Test Project Fields
@@ -282,6 +283,7 @@ VALUES
 INSERT INTO project_view ( project_id, name, image_url )
 VALUES
     (1, 'Alliance Logo', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
+    (1, 'Test', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
     (2, 'Empire Logo', 'http://secure.cdn1.wdpromedia.com/media/rundisney/global/events/runDisney_Icons_Website_SWHM_East200x200.png'),
     (3, 'Jedi Logo', 'https://vignette.wikia.nocookie.net/starwars/images/9/9d/Jedi_symbol.svg/revision/latest/scale-to-width-down/499?cb=20080329163323'),
     (4, 'Separatist Logo', 'https://vignette.wikia.nocookie.net/starwars/images/3/34/CIS_roundel.svg/revision/latest/scale-to-width-down/500?cb=20090330010802')
@@ -321,12 +323,12 @@ VALUES
 
         --Actual Endpoint--
 
-INSERT INTO project_endpoint ( project_id, url_data, is_get, is_post, is_update, is_delete, req_endpoint_id, res_endpoint_id )
+INSERT INTO project_endpoint ( project_id, url_data, http_verb, req_endpoint_id, res_endpoint_id )
 VALUES
-    (1, 'api/alliance', TRUE, FALSE, FALSE, FALSE, 1, 1),
-    (2, 'api/empire', TRUE, FALSE, FALSE, FALSE, 2, 2),
-    (2, 'api/jedi', TRUE, FALSE, FALSE, FALSE, 2, 2),
-    (2, 'api/cis', TRUE, FALSE, FALSE, FALSE, 2, 2)
+    (1, 'api/alliance', 'GET', 1, 1),
+    (2, 'api/empire', 'GET', 2, 2),
+    (2, 'api/jedi', 'GET', 2, 2),
+    (2, 'api/cis', 'GET', 2, 2)
 ;
 
     --Schema
@@ -473,3 +475,49 @@ VALUES
     ('3','8', '10', 'test end to end', 'test end to end tracker data'),
     ('3','8', '11', 'get site hosted', 'test site hosted tracker data')
 ;
+
+
+
+
+
+
+
+
+
+
+
+--Landons Playground
+-- Project Backgrounds
+    CREATE TABLE project_backgrounds (
+        id SERIAL PRIMARY KEY,
+        creator_name TEXT,
+        background_url TEXT,
+        portfolio TEXT
+    );
+
+    INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
+    VALUES 
+        ('Landon Johnson', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Lucas Arts', 'https://wallpapercave.com/wp/wp1810894.jpg', 'www.starwars.com'),
+        ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
+        ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
+        ('Bioshock', 'https://images3.alphacoders.com/114/114869.jpg', 'www.bioshock.com')
+    ;
+
+-- Avatar Gallery
+
+    CREATE TABLE avatar_gallery (
+        id SERIAL PRIMARY KEY,
+        creator_name TEXT,
+        avatar_url TEXT,
+        portfolio TEXT
+    );
+
+    INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
+    VALUES 
+        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg' , 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')
+    ;

@@ -12,6 +12,7 @@ const projectControllerRouter = require('./project.controller.router');
 const projectEndpointRouter = require('./project.endpoint.router');
 const projectSchemaRouter = require('./project.schema.router');
 const feedbackMailerTestRouter = require('./feedbackMailerTest');
+const projectBackgroundsRouter = require('./project.backgrounds.router')
 
 function delegateRoutesFor(app) {
     app.use('/api/auth', authRouter);
@@ -30,6 +31,10 @@ function delegateRoutesFor(app) {
         projectEndpointRouter,
         projectSchemaRouter
     );
+
+    app.use('/api/user_customization',
+        projectBackgroundsRouter
+    )
 
     app.all('*', (req, res) => {
         res.status(404).send({message: 'Cannot access any resource at ' + req.originalUrl});

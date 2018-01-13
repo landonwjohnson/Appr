@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 40px);
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
     overflow-y: auto;
@@ -38,8 +38,6 @@
         background-color: rgba(50, 50, 50, 0.40);       
     } 
 }
-
-.schema-wrapper
 
 .table-list-container{
     width: 100%;

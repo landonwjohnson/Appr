@@ -6,24 +6,20 @@ import SonicAvatar from '../../../../../../../img/User_Customization/avatars/son
 import AvatarItem from './AvatarItem/AvatarItem';
 
 class AvatarIconGallery extends Component {
-
-
-
+    avatars = [LinkAvatar, BanjoAvatar, HaloAvatar, SonicAvatar];
     render() {
-        const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse } = this.props;
+        const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse, selectedAvatar} = this.props;
       return (
                 <div className="modal-body-avatar">
-                   
-                    
                     <section className="avatarPicContainer">
                        <ul className="avatarPicList">
                             <li className="avatarURLItem" onClick={e => {toggleChangeURL()}}></li>
-                            <AvatarItem backgroundSource={LinkAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
-                            <AvatarItem backgroundSource={SonicAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
-                            <AvatarItem backgroundSource={HaloAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
-                            <AvatarItem backgroundSource={BanjoAvatar} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar} />
+                            {this.avatars.map( avatarImage => {
+                                return(
+                                    <AvatarItem selected={avatarImage === selectedAvatar} backgroundSource={avatarImage} creatorName='Landon Johnson' portfolio="http://bit.ly/landonwjohnson-on-behance" handleAvatarChange={handleAvatarChange} oldAvatar={oldAvatar}  />
+                                )
+                            })}
                         </ul>
-                
                     </section> 
                </div>
       );

@@ -1,17 +1,47 @@
 @import '../../_colors.scss';
 
+
+.header-search{
+  margin-right: auto;
+  margin-left: 20px;
+  height: 30px;
+  display: none;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 3px 3px 3px 3px;
+  @include darken-background($primary, 20%);
+  
+  input{
+    border: none;
+    height: 30px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    color: white;
+    
+  }
+  
+  button{
+    opacity: 0.5;
+    background: url('../../../img/icons/searchIcon.svg') no-repeat;
+    background-size: 50%;
+    background-position: 50%;
+    border: none;
+    height: 32px;
+    width: 32px;
+  }
+}
 .hideHeader{
   display:none;
 }
 
 .header-container {
     @include darken-background($primary, 15%);
-   
     display: block;
     position: relative;
     z-index: 3;
     width: 100%;
-    height: 50px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +53,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     z-index: 3;
     position: relative;
     @include darken-bottom-border($primary, 25%);
@@ -31,7 +61,7 @@
   
   .board-con {
     display: flex;
-    width: 260px;
+    max-width: 260px;
     padding-left: 15px;
   }
   
@@ -42,8 +72,8 @@
   }
   
   .board-icon{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
   
   .board-text{
@@ -162,7 +192,7 @@
       width: 100%;
       z-index: 0;
       position: absolute;
-      height: calc(100vh - 50px);
+      height: calc(100vh - 40px);
     }
   }
 
@@ -233,8 +263,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     transition: 0.1s ease-in-out;
 
@@ -253,7 +283,7 @@
         .bread-top {
           position: relative;
           transform: rotate(0deg);
-          width: 24px;
+          width: 22px;
           height: 2px;
           background-color: white;
           margin-bottom: 10px;
@@ -263,7 +293,7 @@
         .bread-bottom{
           position: relative;
           transform: rotate(0deg);
-          width: 24px;
+          width: 22px;
           height: 2px;
           background-color: white;
           transition: 0.1s ease-in-out;

@@ -126,7 +126,7 @@ class Features extends Component {
                                         <div className="features-list">
 
                                           {displayFeatures}
-
+                                          
                                         </div>
                                         <div className="features-footer" ref={(el) => { this.listEnd = el; }}>
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>

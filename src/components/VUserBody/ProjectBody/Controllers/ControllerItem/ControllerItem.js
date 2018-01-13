@@ -1,13 +1,38 @@
 import React, {Component} from  'react';
+import { findProjectViews } from '../../../../../services/project.view.services';
+
 
 class ControllerItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            views: []
+        };
+    }
+
+    componentWillMount(){
+        let projectid = this.props.projectid;
+            findProjectViews(projectid)
+            .then( res => {
+                if(res.status !== 200) {
+                console.log(res);
+                }
+                else {
+                    this.setState({ views: res.data })
+                    }
+            })
+            .catch(err => {throw err});
     }
 
     render() {
         const { index, controllerid, whenData, doData, requireData, handleDeleteController, handleChangeInput, handleSaveChange } = this.props;
+        const views = this.state.views;
+        const displayViews = views.map( view => {
+            const index = views.indexOf(view);
+            return (
+                <option key={`view-${index}`} value={view.name}> {view.name} </option>
+            )
+        })
         return(
             <div className="contro-item">
             <div className="contro-item-inner">
@@ -16,12 +41,8 @@ class ControllerItem extends Component {
                 </div>
                 <div className="contro-item-title">
                     <select> 
-                        <option value="view1">View 1</option>
-                        <option value="view2">View 2</option>
-                        <option value="view3">View 3</option>
-                        <option value="view4">View 4</option>
-                        <option value="view5">View 5</option>
-                        <option value="view6">View 6</option>
+                            <option value="" disabled selected>Select view</option>
+                            { displayViews }
                     </select>
                 </div>
                 <div className="contro-item-inputs">

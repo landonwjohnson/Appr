@@ -9,11 +9,11 @@ import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
 
 
-
 class Header extends Component {
     constructor(props){
         super(props);
         this.state ={
+            user: {},
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
@@ -30,6 +30,8 @@ class Header extends Component {
             this.openFeedbackModal = this.openFeedbackModal.bind(this);
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
+
+
 
     openFeedbackModal(){
         this.setState({breadToX: false})
@@ -117,26 +119,29 @@ class Header extends Component {
           <div className="header-container">
                 <div className="nav-bar">
                     <div className="board-con" href="#" onClick={this.handleBoardMenuClick} >
-                    <div className="board-icon"><img src={BoardsIcon} /></div>
-                    
-                    <div className="board-text">Projects</div>
+                            <div className="board-icon"><img src={BoardsIcon} /></div>      
+                            <div className="board-text">Projects</div>
                     </div>
+                    <div className="header-search"> 
+                                <input />
+                                <button />
+                    </div>
+
                     <div>
                         <div className="logo"></div>
                     </div>
-                <div className="user-con">
-                 
-                        <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
-                        <div className="hello-user">Hello {userInfo.firstName}!</div>
-                        <div className="bread-container" onClick={this.handleRightMenuClick}>
-                            <div className={breadMenuTransform} href="#" >
-                                <div className="bread-menu">
-                                    <div className="bread-top">  </div>
-                                    <div className="bread-bottom"> </div>
-                                </div>
-                            </div> 
-                        </div>    
-                </div>
+                    <div className="user-con">
+                            <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
+                            <div className="hello-user">Hello {userInfo.firstName}!</div>
+                            <div className="bread-container" onClick={this.handleRightMenuClick}>
+                                <div className={breadMenuTransform} href="#" >
+                                    <div className="bread-menu">
+                                        <div className="bread-top">  </div>
+                                        <div className="bread-bottom"> </div>
+                                    </div>
+                                </div> 
+                            </div>    
+                    </div>
                 </div>
                 
         </div>
