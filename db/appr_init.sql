@@ -21,7 +21,8 @@ DROP TABLE IF EXISTS
     user_project, 
     roles, 
     tracker,
-    project_backgrounds;
+    project_backgrounds,
+    avatar_gallery;
 
 --Please keep the order of the CREATE TABLE inserts the same
 
@@ -479,6 +480,12 @@ VALUES
 
 
 
+
+
+
+
+
+
 --Landons Playground
 -- Project Backgrounds
     CREATE TABLE project_backgrounds (
@@ -496,4 +503,21 @@ VALUES
         ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
         ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
         ('Bioshock', 'https://images3.alphacoders.com/114/114869.jpg', 'www.bioshock.com')
+    ;
+
+-- Avatar Gallery
+
+    CREATE TABLE avatar_gallery (
+        id SERIAL PRIMARY KEY,
+        creator_name TEXT,
+        avatar_url TEXT,
+        portfolio TEXT
+    );
+
+    INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
+    VALUES 
+        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg' , 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')
     ;

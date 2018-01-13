@@ -36,18 +36,6 @@ class EndpointItem extends Component {
     }
   }
 
-//   toggleRequireCon(e){
-//     const httpverb = e;
-//     const hide = this.setState({UI:{hideReqField: true}});
-//     const show = this.setState({UI:{hideReqField: false}});
-    
-//     if (e.includes("GET" || "DELETE")) {
-//         return hide
-//      } else {
-//         return show
-//      }
-//   }
-
 
 
   render() {
@@ -106,7 +94,7 @@ class EndpointItem extends Component {
                             width={'100%'}
                             border={'1px solid #CCC'}
                             height={'120px'}
-                            mode="json"
+                            mode="sql"
                             theme="tomorrow"
                             name="requireEditor"
                             onLoad={this.onLoad}

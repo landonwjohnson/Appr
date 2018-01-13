@@ -9,7 +9,6 @@ function findProjectBackgrounds() {
         .catch(err => {throw err});
 }
 
-
 export {
     findProjectBackgrounds
 }
