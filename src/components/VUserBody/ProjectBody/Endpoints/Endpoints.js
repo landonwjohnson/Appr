@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
-import brace from 'brace';
 import './endpoints.scss';
 
 class Endpoints extends Component {
@@ -12,12 +11,6 @@ class Endpoints extends Component {
 
       this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
-      
-      this.addEndpointRequestHandler = this.addEndpointRequestHandler.bind(this);
-      this.removeEndpointRequestHandler = this.removeEndpointItemHandler.bind(this);
-
-      this.addEndpointResponseHandler = this.addEndpointResponseHandler.bind(this);
-      this.removeEndpointResponseHandler = this.removeEndpointResponseHandler.bind(this);
   }
 
   //endpoint ITEM add and remove methods
@@ -39,24 +32,6 @@ class Endpoints extends Component {
   }
 
 
-  //endpoint REQUEST add and remove methods
-  addEndpointRequestHandler(){
-    console.log('add request')
-  }
-
-  removeEndpointRequestHandler(){
-
-  }
-
-
-  //endpoint RESPONSE add and remove methods
-  addEndpointResponseHandler(){
-    console.log('add response')
-  }
-
-  removeEndpointResponseHandler(){
-
-  }
 
   render() {
     const { userid, projectid } = this.props.match.params;
