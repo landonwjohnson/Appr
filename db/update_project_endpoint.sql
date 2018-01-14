@@ -5,8 +5,8 @@ UPDATE project_endpoint
         is_post = $5,
         is_update = $6,
         is_delete = $7,
-        req_endpoint_id = $8,
-        res_endpoint_id = $9
+        response_data = $8,
+        request_data = $9
     WHERE id = $1
     AND project_id = $2
 ;

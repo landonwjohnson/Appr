@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
 import './endpoints.scss';
-import { findProjectEndpoints } from '../../../../services/project.endpoint.services';
+import { findProjectEndpoints, updateProjectEndpoint } from '../../../../services/project.endpoint.services';
 
 class Endpoints extends Component {
   constructor(props){
@@ -12,6 +12,7 @@ class Endpoints extends Component {
 
       this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
+      this.handleResponseChange = this.handleResponseChange.bind(this);
   }
 
 
@@ -46,13 +47,37 @@ class Endpoints extends Component {
     this.setState({EndpointList})
   }
 
+  handleResponseChange(e, index){
+    const newState = this.state.endpoints;
+    newState[index].response_data = e.target.value;
+    this.setState({ endpoints: newState });
+  }
+
+
+
+
+  
 
 
   render() {
     const { userid, projectid } = this.props.match.params;
-    const displayEndpoints = this.state.endpoints.map( endpoint => {
+    const endpoints = this.state.endpoints;
+    const displayEndpoints = endpoints.map( endpoint => {
+      const index = endpoints.indexOf(endpoint);
       return(
-        <EndpointItem removeEndpointItemHandler={this.removeEndpointItemHandler} />
+        <EndpointItem 
+          httpVerb={endpoint.http_verb}
+          id={endpoint.id} 
+          projectid={projectid} 
+          requestData={endpoint.request_data}
+          responseData={endpoint.response_data}
+          urlData={endpoint.url_data}
+          index={index} 
+
+          //Methods
+            removeEndpointItemHandler={this.removeEndpointItemHandler}
+            handleResponseChange={this.handleResponseChange} 
+        />
       )
     })
     return (

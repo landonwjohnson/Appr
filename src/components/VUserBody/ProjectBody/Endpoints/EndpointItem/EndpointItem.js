@@ -16,6 +16,7 @@ class EndpointItem extends Component {
     this.toggleRequireCon = this.toggleRequireCon.bind(this);
   }
 
+
   toggleRequireCon(e){
     const hide = () => {this.setState({UI:{hideReqField: true}})};
     const show = () => {this.setState({UI:{hideReqField: false}})};
@@ -39,29 +40,33 @@ class EndpointItem extends Component {
 
 
   render() {
+      const {httpVerb, id, projectid, requestData, responseData, urlData, index, handleResponseChange} = this.props;
       const requireConClass = classnames({
           "requireCon--hide" : this.state.UI.hideReqField,
           "requireCon": true
       })
+
+      console.log(document.getElementsByClassName('ace_content').value)
     return (
-        <div class="endpoint-item">
-            <div class="project-item-header">
+        <div className="endpoint-item">
+            <div className="project-item-header">
              <button onClick={this.props.removeEndpointItemHandler}> </button>
             </div>
-                <div class="endpoint-inner">
-                <input class="endpoint-name" placeholder="name" />
-                <div class="httpverb-url-con">
-                    <select class="http-verb" onChange={ (e) => this.toggleRequireCon(e.target.value)}>
+                <div className="endpoint-inner">
+                <input className="endpoint-name" placeholder="name" />
+                <div className="httpverb-url-con">
+                    <select className="http-verb"  onChange={ (e) => this.toggleRequireCon(e.target.value)}>
+                        <option value={httpVerb}> {httpVerb} </option>
                         <option value="GET"> GET </option>
                         <option value="POST" > POST </option>
                         <option value="PUT"> PUT </option>
                         <option value="DELETE"> DELETE </option>
                     </select>
-                    <input class="api-input" placeholder="/api/books" />
+                    <input className="api-input" placeholder={urlData} />
                     
                     <button>Save</button>
                 </div>
-                <div class="responseCon">
+                <div className="responseCon">
                     <label>Response</label>
                         <AceEditor
                             width={'100%'}
@@ -71,17 +76,15 @@ class EndpointItem extends Component {
                             theme="tomorrow"
                             name="responseEditor"
                             onLoad={this.onLoad}
-                            onChange={this.onChange}
+                            onChange={ (e) => {this.handleResponseChange(e, index)}}
                             fontSize={14}
                             showPrintMargin={true}
                             showGutter={true}
                             highlightActiveLine={true}
-                            value={`{\n` +
-                            `\t"JSON" : "Object"\n` +
-                            `}`}
+                            value={`${responseData}`}
                             setOptions={{
-                            enableBasicAutocompletion: false,
-                            enableLiveAutocompletion: false,
+                            enableBasicAutocompletion: true,
+                            enableLiveAutocompletion: true,
                             enableSnippets: false,
                             showLineNumbers: true,
                             tabSize: 2,
@@ -89,7 +92,7 @@ class EndpointItem extends Component {
                 </div>
 
                 <div className={requireConClass}>
-                    <label>Require</label>
+                    <label>Request</label>
                         <AceEditor
                             width={'100%'}
                             border={'1px solid #CCC'}
@@ -104,7 +107,7 @@ class EndpointItem extends Component {
                             showGutter={true}
                             highlightActiveLine={true}
                             value={`{\n` +
-                            `\t"JSON" : "Object"\n` +
+                            `\t${requestData}\n` +
                             `}`}
                             setOptions={{
                             enableBasicAutocompletion: false,

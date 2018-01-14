@@ -11,8 +11,6 @@ DROP TABLE IF EXISTS
     project_view, 
     project_controller, 
     project_endpoint, 
-    req_endpoint, 
-    res_endpoint, 
     project_schema, 
     schema_type, 
     project_schema_table, 
@@ -97,25 +95,35 @@ CREATE TABLE project_controller (
 );
 
 
-CREATE TABLE req_endpoint (
-    id SERIAL PRIMARY KEY,
-    key_data TEXT,
-    value_data TEXT
-);
+-- CREATE TABLE req_endpoint (
+--     id SERIAL PRIMARY KEY,
+--     key_data TEXT,
+--     value_data TEXT
+-- );
 
-CREATE TABLE res_endpoint (
-    id SERIAL PRIMARY KEY,
-    key_data TEXT,
-    value_data TEXT
-);
+-- CREATE TABLE res_endpoint (
+--     id SERIAL PRIMARY KEY,
+--     key_data TEXT,
+--     value_data TEXT
+-- );
+
+-- CREATE TABLE project_endpoint (
+--     id SERIAL PRIMARY KEY,
+--     project_id int references project(id),
+--     url_data TEXT,
+--     http_verb TEXT,
+--     req_endpoint_id int references req_endpoint(id),
+--     res_endpoint_id int references res_endpoint(id)
+-- );
+
 
 CREATE TABLE project_endpoint (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     url_data TEXT,
     http_verb TEXT,
-    req_endpoint_id int references req_endpoint(id),
-    res_endpoint_id int references res_endpoint(id)
+    response_data TEXT,
+    request_data TEXT
 );
 
 CREATE TABLE schema_type ( 
@@ -303,32 +311,32 @@ VALUES
 
         --Req Data--
 
-INSERT INTO req_endpoint ( key_data, value_data )
-VALUES
-    ('Group 1 Key', 'REQ Value'),
-    ('Group 2 Key', 'REQ Value'),
-    ('Group 3 Key', 'REQ Value'),
-    ('Group 4 Key', 'REQ Value')
-;
+-- INSERT INTO req_endpoint ( key_data, value_data )
+-- VALUES
+--     ('Group 1 Key', 'REQ Value'),
+--     ('Group 2 Key', 'REQ Value'),
+--     ('Group 3 Key', 'REQ Value'),
+--     ('Group 4 Key', 'REQ Value')
+-- ;
 
         --Res Data--
 
-INSERT INTO res_endpoint ( key_data, value_data )
-VALUES
-    ('Group 1 Key', 'RES Value'),
-    ('Group 2 Key', 'RES Value'),
-    ('Group 3 Key', 'RES Value'),
-    ('Group 4 Key', 'RES Value')
-;
+-- INSERT INTO res_endpoint ( key_data, value_data )
+-- VALUES
+--     ('Group 1 Key', 'RES Value'),
+--     ('Group 2 Key', 'RES Value'),
+--     ('Group 3 Key', 'RES Value'),
+--     ('Group 4 Key', 'RES Value')
+-- ;
 
         --Actual Endpoint--
 
-INSERT INTO project_endpoint ( project_id, url_data, http_verb, req_endpoint_id, res_endpoint_id )
+INSERT INTO project_endpoint ( project_id, url_data, http_verb, response_data, request_data )
 VALUES
-    (1, 'api/alliance', 'GET', 1, 1),
-    (2, 'api/empire', 'GET', 2, 2),
-    (2, 'api/jedi', 'GET', 2, 2),
-    (2, 'api/cis', 'GET', 2, 2)
+    (1, 'api/alliance', 'GET', 'TEST', 'TEST'),
+    (2, 'api/empire', 'GET', 'TEST', 'TEST'),
+    (2, 'api/jedi', 'GET', 'TEST', 'TEST'),
+    (2, 'api/cis', 'GET', 'TEST', 'TEST')
 ;
 
     --Schema
