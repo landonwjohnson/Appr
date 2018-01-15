@@ -29,7 +29,7 @@ class AvatarItem extends Component {
         console.log(this.props)
         const { backgroundSource, portfolio, creatorName} = this.props;
       return (
-            <li className={avatarPicItemClass} value={backgroundSource}  onClick={(e) => this.handleAvatarClick(backgroundSource)} style ={{ backgroundImage: `url(${backgroundSource})` }}> 
+            <li className={avatarPicItemClass} value={backgroundSource}  onClick={(e) => this.handleAvatarClick(backgroundSource)} style ={{ backgroundImage: `url('${backgroundSource}')` }}> 
                 <section className="attribution">
                     <Link to={portfolio} target="_blank">
                         <label>{creatorName}</label>
