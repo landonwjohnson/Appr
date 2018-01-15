@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './endpoint-item.scss';
 import AceEditor from 'react-ace';
+
 import brace from 'brace';
 import 'brace/mode/json';
 import classnames from 'classnames';
@@ -16,37 +17,42 @@ class EndpointItem extends Component {
     this.toggleRequireCon = this.toggleRequireCon.bind(this);
   }
 
-  toggleRequireCon(e){
+  toggleRequireCon(e, index){
+    this.props.handleHttpVerbChange(e, index)
     const hide = () => {this.setState({UI:{hideReqField: true}})};
     const show = () => {this.setState({UI:{hideReqField: false}})};
     if(e === "GET" || e === "DELETE"){
-        return hide();
+         hide();
     } 
-
-    if(e === "POST" || e === "PUT"){
-        return show();
+    else { 
+        show();
     }
 
+ 
   }
 
 
+
   render() {
-    const {httpVerb, id, projectid, requestData, responseData, urlData, index, handleResponseChange} = this.props;
+    const {httpVerb, endpointid, endpointName, projectid, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler} = this.props;
+
+    let responseText = responseData.toString();
+    let requestText = requestData.toString();
+
     const requireConClass = classnames({
         "requireCon--hide" : this.state.UI.hideReqField,
         "requireCon": true
     })
 
-    console.log(document.getElementsByClassName('ace_content').value)
   return (
-      <div className="endpoint-item">
+      <div className="endpoint-item" id={index}>
           <div className="project-item-header">
-           <button onClick={this.props.removeEndpointItemHandler}> </button>
+           <button onClick={() => removeEndpointItemHandler(index)}> </button>
           </div>
               <div className="endpoint-inner">
-              <input className="endpoint-name" placeholder="name" />
+              <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />
               <div className="httpverb-url-con">
-                  <select className="http-verb"  onChange={ (e) => this.toggleRequireCon(e.target.value)}>
+                  <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)}>
                       <option style={{'display': 'none'}} value={httpVerb}> {httpVerb} </option>
                       <option value="GET"> GET </option>
                       <option value="POST" > POST </option>
@@ -55,7 +61,7 @@ class EndpointItem extends Component {
                   </select>
                   <input className="api-input" placeholder={urlData} />
                   
-                  <button>Save</button>
+                  <button className="endpoint-save">Save</button>
               </div>
               <div className="responseCon">
                   <label>Response</label>
@@ -65,14 +71,14 @@ class EndpointItem extends Component {
                           height={'120px'}
                           mode="json"
                           theme="tomorrow"
-                          name="responseEditor"
+                          name={`responseEditor` + index}
                           onLoad={this.onLoad}
-                          onChange={ (e) => {handleResponseChange(e, index)}}
+                          onChange={(e) => {handleResponseChange(e, index)}}
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}
                           highlightActiveLine={true}
-                          value={`${responseData}`}
+                          value={responseText}
                           setOptions={{
                           enableBasicAutocompletion: true,
                           enableLiveAutocompletion: true,
@@ -90,16 +96,14 @@ class EndpointItem extends Component {
                           height={'120px'}
                           mode="json"
                           theme="tomorrow"
-                          name="requireEditor"
+                          name={`requestEditor` + index}
                           onLoad={this.onLoad}
-                          onChange={this.onChange}
+                          onChange={(e) => {handleRequestChange(e, index)}}
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}
                           highlightActiveLine={true}
-                          value={`{\n` +
-                          `\t${requestData}\n` +
-                          `}`}
+                          value={requestText}
                           setOptions={{
                           enableBasicAutocompletion: false,
                           enableLiveAutocompletion: false,

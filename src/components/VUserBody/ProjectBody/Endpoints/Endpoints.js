@@ -10,6 +10,7 @@ class Endpoints extends Component {
             {
               id: 1,
               project_id: 1,
+              name: 'Look at my name!',
               url_data: 'api/project/endpoints',
               http_verb: 'GET',
               response_data: 'What up boy',
@@ -18,6 +19,7 @@ class Endpoints extends Component {
             {
               id: 2,
               project_id: 1,
+              name: "here's another name",
               url_data: 'api/project/blahboo',
               http_verb: 'POST',
               response_data: 'pika',
@@ -26,6 +28,7 @@ class Endpoints extends Component {
             {
               id: 3,
               project_id: 1,
+              name: "3rd name",
               url_data: 'api/project/overkill',
               http_verb: 'PUT',
               response_data: 'BOOM headshot',
@@ -33,56 +36,86 @@ class Endpoints extends Component {
             }
           ]
       }
-
+      this.handleEndpointNameChange = this.handleEndpointNameChange.bind(this);
+      this.handleHttpVerbChange = this.handleHttpVerbChange.bind(this);
       this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
       this.handleResponseChange = this.handleResponseChange.bind(this);
+      this.handleRequestChange = this.handleRequestChange.bind(this);
   }
 
   //endpoint ITEM add and remove methods
   addEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.push({
-      key: 2,
-      label: 2,
-      url: 'URL',
-      httpVerb: ''
+    let newState = this.state.endpoints;
+    newState.push({
+      id: 3,
+      project_id: 1,
+      name: "3rd name",
+      url_data: 'api/project/overkill',
+      http_verb: 'PUT',
+      response_data: 'BOOM headshot',
+      request_data: 'eeeeeek',
     })
-    this.setState({EndpointList})
+    this.setState({endpoints: newState})
   }
 
-  removeEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.pop();
-    this.setState({EndpointList})
-  }
-
-  handleResponseChange(e, index){
+  removeEndpointItemHandler(index){
     const newState = this.state.endpoints;
-    newState[index].response_data = e.target.value;
-    this.setState({ endpoints: newState });
+    newState.splice(index, 1);
+    this.setState({ endpoints: newState })
   }
+
+  handleEndpointNameChange(newName, index){
+    const newState = this.state.endpoints;    
+    newState[index].name = newName;
+    this.setState({ endpoints: newState })
+  }
+
+  handleHttpVerbChange(newVerb, index){
+    const newState = this.state.endpoints;    
+    newState[index].http_verb = newVerb;
+    this.setState({ endpoints: newState })
+  }
+
+  handleResponseChange(newReponseData, index){
+    const newState = this.state.endpoints;
+    newState[index].response_data = newReponseData;
+    this.setState({ endpoints: newState })
+  }
+
+  handleRequestChange(newRequestData, index){
+    const newState = this.state.endpoints;
+    newState[index].request_data = newRequestData;
+    this.setState({ endpoints: newState })
+  }
+  
 
 
 
   render() {
+    console.table(this.state.endpoints);
     const { userid, projectid } = this.props.match.params;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {
       const index = endpoints.indexOf(endpoint);
       return(
         <EndpointItem 
-          httpVerb={endpoint.http_verb}
-          id={endpoint.id} 
+          key={`endpointItem${index}`} 
+          index={index}
+          endpointid={endpoint.id}
           projectid={projectid} 
+          endpointName={endpoint.name}
+          httpVerb={endpoint.http_verb}
           requestData={endpoint.request_data}
           responseData={endpoint.response_data}
           urlData={endpoint.url_data}
-          index={index} 
 
           //Methods
             removeEndpointItemHandler={this.removeEndpointItemHandler}
+            handleEndpointNameChange={this.handleEndpointNameChange}
+            handleHttpVerbChange={this.handleHttpVerbChange}
             handleResponseChange={this.handleResponseChange} 
+            handleRequestChange={this.handleRequestChange}
         />
       )
     })
