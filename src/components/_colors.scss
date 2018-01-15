@@ -80,8 +80,6 @@ $border-radius: 5px;
     border: none;
     background: $addBtn-color1;
     box-shadow: 0 1px 0 #539A40;
-    // background: linear-gradient(to bottom, $addBtn-color2 0, $addBtn-color1 100%);
-    // box-shadow: 0 2px 0 #3f6f21;
     font-weight: bold; 
     height: 30px;
     display: flex;
@@ -101,10 +99,43 @@ $border-radius: 5px;
         background: #539A40;
 
     }
+}
+
+
+
+@mixin saveBtn1 (){
+    border-radius: $addBtn-radius;
+    border: none;
+    background: $saveBtn-color1;
+    box-shadow: 0 1px 0 $saveBtn-color2;
+    font-weight: bold; 
+    margin-left: 5px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: 60px;
+    color: white;
+    outline: none;
+
+    &:active{
+        background: $saveBtn-color2;
+    }
+
+
 
 }
+
+
+
+
 
 //Add Btn Button variables
     $addBtn-color1: #5aac44;
     $addBtn-color2: #61bd4f;
     $addBtn-radius: 3px;
+
+
+//Save Btn Button variables
+    $saveBtn-color1: #0079BF;
+    $saveBtn-color2: #006DAC;

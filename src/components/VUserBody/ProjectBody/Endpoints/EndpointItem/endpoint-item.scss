@@ -1,3 +1,5 @@
+@import '../../../../_colors.scss';
+
 .endpoint-item {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); 
     background: #E2E4E6;   
@@ -30,19 +32,23 @@
   
   .httpverb-url-con{
     display: flex;
-    background-color: #F0F0F0;
     height: 37px;
     border-radius: 3px;
     
     .http-verb{
-      width: 20%;
+      min-width: 80px;
       color: #808080;
       background: #F0F0F0;
       font-weight: bold;
       height: 100%;
       border: 1px solid #CCC;
       outline: none;
+      padding-left: 5px;
       border-radius: 3px 0px 0px 3px; 
+      
+      &:focus{
+        background-color: white;
+      }
     }
     
     .api-input{
@@ -55,15 +61,18 @@
       color: #7E7E7E;
       border-radius: 0px 3px 3px 0px; 
       border-left: none;
+
+      &:focus{
+        background-color: white;
+      }
     }
     
     .endpoint-save{
-      
+      @include saveBtn1();
+      display: flex;
+      justify-content: center;
     }
     
-    :focus{
-      background-color: white;
-    }
   }
   
   .responseCon{

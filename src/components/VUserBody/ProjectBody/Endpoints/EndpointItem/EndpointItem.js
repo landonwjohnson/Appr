@@ -19,21 +19,14 @@ class EndpointItem extends Component {
   toggleRequireCon(e){
     const hide = () => {this.setState({UI:{hideReqField: true}})};
     const show = () => {this.setState({UI:{hideReqField: false}})};
-    if(e === "GET"){
+    if(e === "GET" || e === "DELETE"){
         return hide();
     } 
 
-    if(e === "POST"){
+    if(e === "POST" || e === "PUT"){
         return show();
     }
 
-    if(e === "PUT"){
-        return show();
-    }
-    
-    if(e === "DELETE"){
-        return hide();
-    }
   }
 
 
@@ -59,7 +52,7 @@ class EndpointItem extends Component {
                     </select>
                     <input class="api-input" placeholder="/api/books" />
                     
-                    <button>Save</button>
+                    <button className="endpoint-save">Save</button>
                 </div>
                 <div class="responseCon">
                     <label>Response</label>
