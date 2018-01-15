@@ -76,7 +76,7 @@ class EndpointItem extends Component {
                             theme="tomorrow"
                             name="responseEditor"
                             onLoad={this.onLoad}
-                            onChange={ (e) => {this.handleResponseChange(e, index)}}
+                            onChange={ (e) => {handleResponseChange(e, index)}}
                             fontSize={14}
                             showPrintMargin={true}
                             showGutter={true}
