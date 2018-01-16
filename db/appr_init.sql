@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS
     tracker_card_order,
     tracker_list_order,
     tracker_card,
-    -- tracker_list, 
+    tracker_list, 
     avatar_gallery;
 
 --Please keep the order of the CREATE TABLE inserts the same
@@ -171,19 +171,18 @@ CREATE TABLE user_project (
 
 CREATE TABLE tracker_card_order (
     id SERIAL PRIMARY KEY,
-    card_order int,
-    project_id int references project(id)
+    card_order int
 );
 
 CREATE TABLE tracker_list_order (
     id SERIAL PRIMARY KEY,
-    list_order int,
-    project_id int references project(id)
+    list_order int
 );
 
 
 CREATE TABLE tracker_list (
     id SERIAL PRIMARY KEY,
+    project_id int references project(id),
     list_name TEXT,
     card_order_id int references tracker_card_order(id),
     list_order int references tracker_list_order(id)
@@ -191,6 +190,7 @@ CREATE TABLE tracker_list (
 
 CREATE TABLE tracker_card (
     id SERIAL PRIMARY KEY,
+    project_id int references project(id),
     card_name TEXT,
     card_data TEXT,
     card_order_id int references tracker_card_order(id),
@@ -449,81 +449,81 @@ VALUES
 
 --Tracker
 
-INSERT INTO tracker_card_order ( card_order, project_id ) 
+INSERT INTO tracker_card_order ( card_order ) 
 VALUES
-    (1,1),
-    (2,1),
-    (3,1),
-    (4,1),
-    (5,1),
-    (1,2),
-    (2,2),
-    (3,2),
-    (4,2),
-    (5,2),
-    (1,3),
-    (2,3),
-    (3,3),
-    (4,3),
-    (5,3)
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5)
 ;
 
-INSERT INTO tracker_list_order ( list_order, project_id ) 
+INSERT INTO tracker_list_order ( list_order ) 
 VALUES
-    (1,1),
-    (2,1),
-    (3,1),
-    (4,1),
-    (5,1),
-    (1,2),
-    (2,2),
-    (3,2),
-    (4,2),
-    (5,2),
-    (1,3),
-    (2,3),
-    (3,3),
-    (4,3),
-    (5,3)
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5)
 ;
 
 
-INSERT INTO tracker_list ( list_name, card_order_id, list_order ) 
+INSERT INTO tracker_list ( project_id, list_name, card_order_id, list_order ) 
 VALUES
-    ('ToDo', 1, 1),
-    ('In Process', 2, 1),
-    ('Backlog', 3, 1),
-    ('Needs Approval', 4, 1),
-    ('Done', 5, 1),
-    ('ToDo', 1, 2),
-    ('In Process', 2, 2),
-    ('Backlog', 3, 2),
-    ('Needs Approval', 4, 2),
-    ('Done', 5, 2),
-    ('ToDo', 1, 3),
-    ('In Process', 2, 3),
-    ('Backlog', 3, 3),
-    ('Needs Approval', 4, 3),
-    ('Done', 5, 3)
+    (1, 'ToDo', 1, 1),
+    (1, 'In Process', 2, 1),
+    (1, 'Backlog', 3, 1),
+    (1, 'Needs Approval', 4, 1),
+    (1, 'Done', 5, 1),
+    (2, 'ToDo', 1, 2),
+    (2, 'In Process', 2, 2),
+    (2, 'Backlog', 3, 2),
+    (2, 'Needs Approval', 4, 2),
+    (2, 'Done', 5, 2),
+    (3, 'ToDo', 1, 3),
+    (3, 'In Process', 2, 3),
+    (3, 'Backlog', 3, 3),
+    (3, 'Needs Approval', 4, 3),
+    (3, 'Done', 5, 3)
 ;
 
-INSERT INTO tracker_card ( card_name, card_data, card_order_id, list_order ) 
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order ) 
 VALUES
-    ('Find Vader', 'data', 1, 1),
-    ('Find the Emporer', 'data', 2, 1),
-    ('Use the Force', 'data', 3, 1),
-    ('Kill both', 'data', 4, 1),
-    ('Restore peace and balance to the force', 'data', 5, 1),
-    ('Find Luke', 'data', 1, 2),
-    ('Find the resistance', 'data', 2, 2),
-    ('Kill everyone', 'data', 3, 2),
-    ('Enslave the universe', 'data', 4, 2),
-    ('get home in time for lunch', 'data', 5, 2),
-    ('Find the Chosen One', 'data', 1, 3),
-    ('Bring balance to the force', 'data', 2, 3),
-    ('Follow the Jedi Code', 'data', 3, 3),
-    ('Train younglings', 'data', 4, 3),
-    ('Take over the universe without making it seem evil', 'data', 5, 3)
+    (1, 'Find Vader', 'data', 1, 1),
+    (1, 'Find the Emporer', 'data', 2, 1),
+    (1, 'Use the Force', 'data', 3, 1),
+    (1, 'Kill both', 'data', 4, 1),
+    (1, 'Restore peace and balance to the force', 'data', 5, 1),
+    (2, 'Find Luke', 'data', 1, 2),
+    (2, 'Find the resistance', 'data', 2, 2),
+    (2, 'Kill everyone', 'data', 3, 2),
+    (2, 'Enslave the universe', 'data', 4, 2),
+    (2, 'get home in time for lunch', 'data', 5, 2),
+    (3, 'Find the Chosen One', 'data', 1, 3),
+    (3, 'Bring balance to the force', 'data', 2, 3),
+    (3, 'Follow the Jedi Code', 'data', 3, 3),
+    (3, 'Train younglings', 'data', 4, 3),
+    (3, 'Take over the universe without making it seem evil', 'data', 5, 3)
 ;
 
 
