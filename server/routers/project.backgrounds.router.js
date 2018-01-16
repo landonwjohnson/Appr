@@ -11,3 +11,12 @@ projectBackgroundsRouter.get('/project_backgrounds', (req, res) => {
 })
 
 module.exports = projectBackgroundsRouter;
+
+//make a post for posting background to DB
+//*********** 
+//*********** 
+//*********** 
+//*********** 
+//*********** 
+//*********** 
+//*********** 
