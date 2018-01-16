@@ -80,7 +80,7 @@ class Endpoints extends Component {
 
   handleEndpointURLChange(newURL, index){
     const newState = this.state.endpoints;    
-    newState[index].name = newURL;
+    newState[index].url_data = newURL;
     this.setState({ endpoints: newState })
   }
 
@@ -121,7 +121,7 @@ class Endpoints extends Component {
             removeEndpointItemHandler={this.removeEndpointItemHandler}
             handleEndpointNameChange={this.handleEndpointNameChange}
             handleHttpVerbChange={this.handleHttpVerbChange}
-            handleEndpointURL={this.handleEndpointURLChange}
+            handleEndpointURLChange={this.handleEndpointURLChange}
             handleResponseChange={this.handleResponseChange} 
             handleRequestChange={this.handleRequestChange}
         />

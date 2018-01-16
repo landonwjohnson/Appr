@@ -36,7 +36,7 @@ class EndpointItem extends Component {
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
-    let urlText = urlData.toString();
+    
 
     const requireConClass = classnames({
         "requireCon--hide" : this.state.UI.hideReqField,
@@ -58,7 +58,7 @@ class EndpointItem extends Component {
                       <option value="PUT"> PUT </option>
                       <option value="DELETE"> DELETE </option>
                   </select>
-                  <input className="api-input" placeholder={urlText} />
+                  <input className="api-input" onChange={(e) => {handleEndpointURLChange(e.target.value, index)}} placeholder={urlData} />
                   
                   <button className="endpoint-save">Save</button>
               </div>
