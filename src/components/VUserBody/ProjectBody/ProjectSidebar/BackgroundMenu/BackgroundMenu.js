@@ -29,10 +29,10 @@ export default class BackgroundMenu extends Component {
 
 
     render() {
-        const { handleProjectBackground, selectedBackground } = this.props;
+        const { handleProjectBackground, selectedBackground, changeProjectBackground } = this.props;
         const backgrounds = this.state.backgrounds;
         const displayBackgroundItems = backgrounds.map( background => {
-            const index = backgrounds.indexOf(backgrounds);
+            const index = backgrounds.indexOf(background);
             return(
                 <BackgroundItem key={index} selected={background.background_url === selectedBackground} backgroundImageSource={background.background_url} creatorName={background.creator_name} portfolio={background.portfolio} handleProjectBackground={handleProjectBackground}/> 
             )
@@ -52,7 +52,7 @@ export default class BackgroundMenu extends Component {
 
                     <div className='project-background-footer'>
                         <div className="project-sidebar-buttonset">
-                            <button className="changeBackgroundBtn">Change</button>
+                            <button onClick={(e) => changeProjectBackground()} className="changeBackgroundBtn">Change</button>
                             <div onClick={this.props.toggleProjectMenu} className="closeBackgroundList"> <span /> </div>
                         </div>
                         

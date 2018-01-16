@@ -83,6 +83,7 @@
     border-radius: 3px;
     overflow: hidden;
     margin-top: 20px;
+    resize: vertical;
 
     label{
         color: #7E7E7E;
@@ -109,6 +110,7 @@
     overflow: hidden;
     margin-top: 20px;
     transition: 0.5s ease-in-out;
+
 
     label{
         color: #7E7E7E;
@@ -145,13 +147,6 @@
         border-bottom: 1px solid #CCC;
     }
   }
-}
-
-
-
-#responseEditor .ace_editor .ace-tm {
-    width: 100%;
-    
 }
 
 

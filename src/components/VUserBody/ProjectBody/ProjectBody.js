@@ -21,7 +21,8 @@ class ProjectBody extends Component {
         backgroundPreview: ''
       }
     }
-    this.handleProjectBackground = this.handleProjectBackground.bind(this);
+    this.handleProjectBackgroundPreview = this.handleProjectBackgroundPreview.bind(this);
+    this.changeProjectBackground = this.changeProjectBackground.bind(this);
   }
 
 
@@ -39,7 +40,7 @@ class ProjectBody extends Component {
         .catch(err => {throw err});
 }
 
-  handleProjectBackground(image, color){
+  handleProjectBackgroundPreview(image, color){
     let newBackground = image;
     let newColor = color;
     this.setState({
@@ -50,6 +51,20 @@ class ProjectBody extends Component {
     })
   }
 
+  changeProjectBackground(){
+    const projectid = this.props.match.params.projectid;
+    let newBackground = this.state.UI.backgroundPreview;
+    const { author_id, background, id, name, status_id } = this.state.project;
+    const reqBody = {author_id: author_id, background: newBackground, id: id, name: name, status_id: status_id };
+    updateProject(projectid, reqBody)
+      .then( res => {
+        if (res.status !== 200) {
+          alert(res)
+        }
+      })
+      .catch(err => {throw err});
+  }
+
 
 
   render() {
@@ -58,7 +73,14 @@ class ProjectBody extends Component {
 
     return (
       <ProjectBodyContainer>
-              <ProjectSidebar selectedBackground={this.state.UI.backgroundPreview} handleProjectBackground={this.handleProjectBackground} projectid={projectid} userid={userid} colorTheme={colorTheme}/>
+              <ProjectSidebar 
+                selectedBackground={this.state.UI.backgroundPreview} 
+                handleProjectBackground={this.handleProjectBackgroundPreview}
+                projectid={projectid} 
+                userid={userid} 
+                colorTheme={colorTheme}
+                changeProjectBackground={this.changeProjectBackground}
+              />
               <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>

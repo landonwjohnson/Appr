@@ -535,7 +535,7 @@ VALUES
 
     INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
     VALUES 
-        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg' , 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')

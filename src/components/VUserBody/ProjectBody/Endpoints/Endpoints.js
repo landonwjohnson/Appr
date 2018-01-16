@@ -7,35 +7,7 @@ class Endpoints extends Component {
   constructor(props){
     super(props);
       this.state ={
-          endpoints: [
-            {
-              id: 1,
-              project_id: 1,
-              name: 'Look at my name!',
-              url_data: 'api/project/endpoints',
-              http_verb: 'GET',
-              response_data: 'What up boy',
-              request_data: ';)',
-            },
-            {
-              id: 2,
-              project_id: 1,
-              name: "here's another name",
-              url_data: 'api/project/blahboo',
-              http_verb: 'POST',
-              response_data: 'pika',
-              request_data: 'chu',
-            },
-            {
-              id: 3,
-              project_id: 1,
-              name: "3rd name",
-              url_data: 'api/project/overkill',
-              http_verb: 'PUT',
-              response_data: 'BOOM headshot',
-              request_data: 'eeeeeek',
-            }
-          ]
+          endpoints: []
       }
       this.handleEndpointNameChange = this.handleEndpointNameChange.bind(this);
       this.handleHttpVerbChange = this.handleHttpVerbChange.bind(this);
@@ -67,9 +39,9 @@ class Endpoints extends Component {
     newState.push({
       id: 3,
       project_id: 1,
-      name: "3rd name",
-      url_data: 'api/project/overkill',
+      endpoint_name: "3rd name",
       http_verb: 'PUT',
+      url_data: 'api/project/overkill',
       response_data: 'BOOM headshot',
       request_data: 'eeeeeek',
     })
@@ -129,9 +101,10 @@ class Endpoints extends Component {
           projectid={projectid} 
           endpointName={endpoint.endpoint_name}
           httpVerb={endpoint.http_verb}
+          urlData={endpoint.url_data}
           requestData={endpoint.request_data}
           responseData={endpoint.response_data}
-          urlData={endpoint.url_data}
+          
 
           //Methods
             removeEndpointItemHandler={this.removeEndpointItemHandler}
