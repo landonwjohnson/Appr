@@ -22,6 +22,10 @@ DROP TABLE IF EXISTS
     roles, 
     tracker,
     project_backgrounds,
+    tracker_card_order,
+    tracker_list_order,
+    tracker_card,
+    -- tracker_list, 
     avatar_gallery;
 
 --Please keep the order of the CREATE TABLE inserts the same
@@ -167,31 +171,30 @@ CREATE TABLE user_project (
 
 CREATE TABLE tracker_card_order (
     id SERIAL PRIMARY KEY,
-    order int,
-    project_id int references project(id);
+    card_order int,
+    project_id int references project(id)
 );
 
 CREATE TABLE tracker_list_order (
     id SERIAL PRIMARY KEY,
-    order int,
-    project_id int references project(id);
+    list_order int,
+    project_id int references project(id)
 );
 
-
-CREATE TABLE tracker_card (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    data TEXT,
-    card_order_id int references tracker_card_order,
-    list_order int references tracker_list
-);
 
 CREATE TABLE tracker_list (
     id SERIAL PRIMARY KEY,
-    name TEXT,
+    list_name TEXT,
     card_order_id int references tracker_card_order(id),
     list_order int references tracker_list_order(id)
+);
 
+CREATE TABLE tracker_card (
+    id SERIAL PRIMARY KEY,
+    card_name TEXT,
+    card_data TEXT,
+    card_order_id int references tracker_card_order(id),
+    list_order int references tracker_list(id)
 );
 
 -----------Start of Test user info---------------
@@ -444,9 +447,9 @@ VALUES
     (9, 4, 3)
 ;
 
---Tracker for Group 1
+--Tracker
 
-INSERT INTO tracker_card_order ( order, project_id ) 
+INSERT INTO tracker_card_order ( card_order, project_id ) 
 VALUES
     (1,1),
     (2,1),
@@ -465,7 +468,7 @@ VALUES
     (5,3)
 ;
 
-INSERT INTO tracker_list_order ( order, project_id ) 
+INSERT INTO tracker_list_order ( list_order, project_id ) 
 VALUES
     (1,1),
     (2,1),
@@ -484,7 +487,27 @@ VALUES
     (5,3)
 ;
 
-INSERT INTO tracker_card ( name, card_order_id, list_order ) 
+
+INSERT INTO tracker_list ( list_name, card_order_id, list_order ) 
+VALUES
+    ('ToDo', 1, 1),
+    ('In Process', 2, 1),
+    ('Backlog', 3, 1),
+    ('Needs Approval', 4, 1),
+    ('Done', 5, 1),
+    ('ToDo', 1, 2),
+    ('In Process', 2, 2),
+    ('Backlog', 3, 2),
+    ('Needs Approval', 4, 2),
+    ('Done', 5, 2),
+    ('ToDo', 1, 3),
+    ('In Process', 2, 3),
+    ('Backlog', 3, 3),
+    ('Needs Approval', 4, 3),
+    ('Done', 5, 3)
+;
+
+INSERT INTO tracker_card ( card_name, card_data, card_order_id, list_order ) 
 VALUES
     ('Find Vader', 'data', 1, 1),
     ('Find the Emporer', 'data', 2, 1),
@@ -503,26 +526,8 @@ VALUES
     ('Take over the universe without making it seem evil', 'data', 5, 3)
 ;
 
---Tracker for Group 3
 
-INSERT INTO tracker_list ( name, card_order_id, list_order ) 
-VALUES
-    ('ToDo', 1, 1),
-    ('In Process', 2, 1),
-    ('Backlog', 3, 1),
-    ('Needs Approval', 4, 1),
-    ('Done', 5, 1),
-    ('ToDo', 1, 2),
-    ('In Process', 2, 2),
-    ('Backlog', 3, 2),
-    ('Needs Approval', 4, 2),
-    ('Done', 5, 2),
-    ('ToDo', 1, 3),
-    ('In Process', 2, 3),
-    ('Backlog', 3, 3),
-    ('Needs Approval', 4, 3),
-    ('Done', 5, 3)
-;
+
 
 
 
