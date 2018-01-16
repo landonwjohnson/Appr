@@ -1,12 +1,10 @@
 UPDATE project_endpoint
-    SET
-        url_data = $3,
-        is_get = $4,
-        is_post = $5,
-        is_update = $6,
-        is_delete = $7,
-        req_endpoint_id = $8,
-        res_endpoint_id = $9
+    SET 
+        endpoint_name = $3,
+        http_verb = $4
+        url_data = $5,
+        response_data = $6,
+        request_data = $7
     WHERE id = $1
     AND project_id = $2
 ;

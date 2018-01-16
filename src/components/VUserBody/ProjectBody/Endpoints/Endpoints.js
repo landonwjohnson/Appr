@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
 import './endpoints.scss';
+import { findProjectEndpoints } from '../../../../services/project.endpoint.services';
 
 class Endpoints extends Component {
   constructor(props){
@@ -43,6 +44,21 @@ class Endpoints extends Component {
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
       this.handleResponseChange = this.handleResponseChange.bind(this);
       this.handleRequestChange = this.handleRequestChange.bind(this);
+  }
+
+  
+  componentWillMount(){
+    const projectid = this.props.match.params.projectid;
+    findProjectEndpoints(projectid)
+      .then(res => {
+        if (res.status !== 200){
+          alert(res);
+        }
+        else {
+          this.setState({ endpoints: res.data })
+        }
+      })
+
   }
 
   //endpoint ITEM add and remove methods
@@ -111,7 +127,7 @@ class Endpoints extends Component {
           index={index}
           endpointid={endpoint.id}
           projectid={projectid} 
-          endpointName={endpoint.name}
+          endpointName={endpoint.endpoint_name}
           httpVerb={endpoint.http_verb}
           requestData={endpoint.request_data}
           responseData={endpoint.response_data}
