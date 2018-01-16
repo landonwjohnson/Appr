@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
 
 import { findAvatars} from '../../../../../../../services/avatar.services';
 import AvatarItem from './AvatarItem/AvatarItem';

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import SchemaItem from './SchemaItem/SchemaItem';
 import { createProjectSchema, findProjectSchemas } from '../../../../services/project.schema.services';
+import NewSchemaItem from './NewSchemaItem/NewSchemaItem';
 
 class Schema extends Component {
   constructor(props){
@@ -63,12 +64,15 @@ class Schema extends Component {
     return (
 
             <div className="schema-container">
+              <div className="container-wrapper">
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
+                  <NewSchemaItem />
                     {displaySchemas}
                   <button className="add-table" onClick={this.addSchemaItemHandler} ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>
+              </div>
               </div>
             </div>
     );
