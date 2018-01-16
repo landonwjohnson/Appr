@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS
     project_view, 
     project_controller, 
     project_endpoint, 
+    req_endpoint, 
+    res_endpoint, 
     project_schema, 
     schema_type, 
     project_schema_table, 
@@ -20,10 +22,6 @@ DROP TABLE IF EXISTS
     roles, 
     tracker,
     project_backgrounds,
-    tracker_card_order,
-    tracker_list_order,
-    tracker_card,
-    tracker_list, 
     avatar_gallery;
 
 --Please keep the order of the CREATE TABLE inserts the same
@@ -535,7 +533,7 @@ VALUES
 
     INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
     VALUES 
-        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'http://1.bp.blogspot.com/-4suEajg9teY/UW1-o065YVI/AAAAAAAAKM0/zeG-UIm2HN0/s1600/halo+4+master+chief+wallpapers++7.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')

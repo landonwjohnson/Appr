@@ -23,6 +23,7 @@ class ProjectBody extends Component {
     }
     this.handleProjectBackgroundPreview = this.handleProjectBackgroundPreview.bind(this);
     this.changeProjectBackground = this.changeProjectBackground.bind(this);
+    this.clearProjectBackgroundPreview = this.clearProjectBackgroundPreview.bind(this);
   }
 
 
@@ -45,8 +46,17 @@ class ProjectBody extends Component {
     let newColor = color;
     this.setState({
       UI: {
-        backgroundPreview: newBackground,
-        colorTheme: newColor
+        colorTheme: newColor,
+        backgroundPreview: newBackground
+      }
+    })
+  }
+
+  clearProjectBackgroundPreview(){
+    this.setState({
+      UI: {
+        colorTheme: '',
+        backgroundPreview: ''
       }
     })
   }
@@ -74,12 +84,13 @@ class ProjectBody extends Component {
     return (
       <ProjectBodyContainer>
               <ProjectSidebar 
-                selectedBackground={this.state.UI.backgroundPreview} 
+                selectedBackground={this.state.UI.backgroundPreview || this.state.project.background} 
                 handleProjectBackground={this.handleProjectBackgroundPreview}
                 projectid={projectid} 
                 userid={userid} 
                 colorTheme={colorTheme}
                 changeProjectBackground={this.changeProjectBackground}
+                clearProjectBackgroundPreview={this.clearProjectBackgroundPreview}
               />
               <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />

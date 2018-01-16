@@ -18,12 +18,15 @@ export default class ProjectSidebar extends Component {
     
 
     toggleProjectMenu(){
+        this.props.clearProjectBackgroundPreview();
         if(this.state.UI.hideProjectMenu === false){
             this.setState({ UI: { hideProjectMenu: true, hideBackgroundMenu: false } })
         }
         else if(this.state.UI.hideBackgroundMenu === false){
             this.setState({ UI: { hideProjectMenu: false, hideBackgroundMenu: true } })
         }
+
+        
     }
 
     render() {
