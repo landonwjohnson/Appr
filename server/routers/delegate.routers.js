@@ -13,6 +13,7 @@ const projectEndpointRouter = require('./project.endpoint.router');
 const projectSchemaRouter = require('./project.schema.router');
 const feedbackMailerTestRouter = require('./feedbackMailerTest');
 const projectBackgroundsRouter = require('./project.backgrounds.router');
+const projectTrackerRouter = require('./project.tracker.router');
 const avatarsRouter = require('./avatar.router');
 
 function delegateRoutesFor(app) {
@@ -30,7 +31,8 @@ function delegateRoutesFor(app) {
         projectViewRouter,
         projectControllerRouter,
         projectEndpointRouter,
-        projectSchemaRouter
+        projectSchemaRouter,
+        projectTrackerRouter
     );
 
     app.use('/api/user_customization',
