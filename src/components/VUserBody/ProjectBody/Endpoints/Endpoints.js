@@ -38,6 +38,7 @@ class Endpoints extends Component {
       }
       this.handleEndpointNameChange = this.handleEndpointNameChange.bind(this);
       this.handleHttpVerbChange = this.handleHttpVerbChange.bind(this);
+      this.handleEndpointURLChange = this.handleEndpointURLChange.bind(this);
       this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
       this.handleResponseChange = this.handleResponseChange.bind(this);
@@ -74,6 +75,12 @@ class Endpoints extends Component {
   handleHttpVerbChange(newVerb, index){
     const newState = this.state.endpoints;    
     newState[index].http_verb = newVerb;
+    this.setState({ endpoints: newState })
+  }
+
+  handleEndpointURLChange(newURL, index){
+    const newState = this.state.endpoints;    
+    newState[index].name = newURL;
     this.setState({ endpoints: newState })
   }
 
@@ -114,6 +121,7 @@ class Endpoints extends Component {
             removeEndpointItemHandler={this.removeEndpointItemHandler}
             handleEndpointNameChange={this.handleEndpointNameChange}
             handleHttpVerbChange={this.handleHttpVerbChange}
+            handleEndpointURL={this.handleEndpointURLChange}
             handleResponseChange={this.handleResponseChange} 
             handleRequestChange={this.handleRequestChange}
         />
