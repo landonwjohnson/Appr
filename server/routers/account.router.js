@@ -3,6 +3,7 @@ const getDb = require('../database/bootstrap.database');
 
 const accountRouter = express.Router();
 
+
 // find by id
 accountRouter.get('/:userid', (req, res) => {
     const userId = req.params.userid;
@@ -53,6 +54,15 @@ accountRouter.put('/delete/:userid', (req, res) => {
     const db = getDb();
     db.delete_user([ userId ])
         .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
+
+//find user info
+accountRouter.get('/info/:userid', (req, res) => {
+    const userId = req.params.userid;
+    const db = getDb();
+    db.find_user_info([ userId ])
+        .then(user => res.send(user))
         .catch(err => res.status(500).send(err));
 });
 

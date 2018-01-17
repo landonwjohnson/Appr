@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
-
 import { findAvatars} from '../../../../../../../services/avatar.services';
 import AvatarItem from './AvatarItem/AvatarItem';
 
@@ -26,12 +24,12 @@ class AvatarIconGallery extends Component {
 
 
     render() {
-        const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse, selectedAvatar} = this.props;
+        const { handleAvatarChange, toggleChangeURL, selectedAvatar} = this.props;
         const avatars = this.state.avatars;
         const displayAvatarItems = avatars.map( avatar => {
             const index = avatars.indexOf(avatar);
             return(
-                <AvatarItem key={index} id={avatar.id} selected={ avatar.avatar_url === selectedAvatar } backgroundSource={ avatar.avatar_url } creatorName={ avatar.creatorName } portfolio={ avatar.portfolio } handleAvatarChange={handleAvatarChange}/>
+                <AvatarItem key={index} selected={ avatar.avatar_url === selectedAvatar } backgroundSource={avatar.avatar_url} creatorName={avatar.creator_name} portfolio={avatar.portfolio} handleAvatarChange={handleAvatarChange}/>
             )
         })
       return (
