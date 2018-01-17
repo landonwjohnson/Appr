@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './board-menu.scss'
 import { findDashboardInfo } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
@@ -17,13 +17,15 @@ class BoardMenu extends Component {
     }
 
     componentWillMount(){
-        const {userid, projectid} = this.props;
-		findDashboardInfo(userid)
-			.then( res => {
-				res.status !== 200 ? console.log(res) : this.setState(res.data);
-			})
-			.catch(err => {throw err});
-    }
+        const userid = this.props.userid;
+        findDashboardInfo(userid)
+            .then( res => {
+                res.status !== 200 ? console.log(res) : this.setState(res.data);
+            })
+            .catch(err => {throw err});
+        }
+
+
 
     handleCreateButton(buttonPressed) {
 		const userid = this.props;
@@ -66,7 +68,7 @@ class BoardMenu extends Component {
   render() {
     const groups = this.state.groups;
     const projects = this.state.projects;
-    const { userid, projectid, closeMenus } = this.props;
+    const { userid, closeMenus } = this.props;
     const displayGroups = groups.map( group => {
         const index = groups.indexOf(group);
         return (
@@ -86,7 +88,7 @@ class BoardMenu extends Component {
     const displayProjects = projects.map( project => {
       const index = projects.indexOf(project);
       return (
-          <Link to={`/user/${userid}/project/${project.id}/ideas`} onClick={closeMenus}>
+          <Link to={`/user/${userid}/project/${project.id}/ideas`} onClick={this.location.reload()}>
                 <div className="board-menu-item">
                 <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
@@ -141,6 +143,7 @@ class BoardMenu extends Component {
         </div>
     );
   }
+
 }
 
 export default BoardMenu;

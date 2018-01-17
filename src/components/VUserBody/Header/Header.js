@@ -86,7 +86,8 @@ class Header extends Component {
     }
     
   render(){
-      const { userInfo, handleInitials, userid, projectid } = this.props;
+    const { userInfo, handleInitials, userid } = this.props;
+
      
 
     
@@ -114,7 +115,7 @@ class Header extends Component {
  
       <div>
           <div className={boardMenuClass}>
-                <BoardMenu userid={userid} projectid={projectid} closeMenus={this.closeMenus}/>
+                <BoardMenu userid={userid} closeMenus={this.closeMenus}/>
           </div>
           <div className="header-container">
                 <div className="nav-bar">
