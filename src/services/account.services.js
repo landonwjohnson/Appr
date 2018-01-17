@@ -9,6 +9,8 @@ function findUser(userid) {
         .catch(err => {throw err});
 }
 
+
+
 function findUsername(body) {
     return axios
         .post(`${baseURL}/username`, body)
@@ -30,9 +32,17 @@ function deleteUser(userid) {
         .catch(err => {throw err});
 }
 
+function findUserInfo(userid) {
+    return axios
+        .get(`${baseURL}/${userid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
 export {
     findUser,
     findUsername,
     updateUser,
-    deleteUser
+    deleteUser,
+    findUserInfo
 };
