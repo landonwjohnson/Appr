@@ -11,8 +11,6 @@ DROP TABLE IF EXISTS
     project_view, 
     project_controller, 
     project_endpoint, 
-    req_endpoint, 
-    res_endpoint, 
     project_schema, 
     schema_type, 
     project_schema_table, 
@@ -20,7 +18,10 @@ DROP TABLE IF EXISTS
     group_project, 
     user_project, 
     roles, 
-    tracker,
+    tracker_card_order,
+    tracker_list_order,
+    tracker_card,
+    tracker_list,
     project_backgrounds,
     avatar_gallery;
 
