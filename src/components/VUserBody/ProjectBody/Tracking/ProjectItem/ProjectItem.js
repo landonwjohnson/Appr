@@ -3,7 +3,7 @@ import './projectitem.scss'
 import ProjectCard from './ProjectCards/ProjectCard';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { findTrackerCards, deleteTrackerCard } from '../../../../../services/project.tracker.services';
+import { findTrackerCards, deleteTrackerCard, findTrackerCardsPerList } from '../../../../../services/project.tracker.services';
 
 class ProjectItem extends Component {
   constructor(props){
@@ -22,8 +22,8 @@ class ProjectItem extends Component {
 
 componentWillMount() {
   const projectid = this.props.projectid;
-  const listid = this.props.listid;
-  findTrackerCards(projectid, listid)
+  const list_order = this.props.list_order;
+  findTrackerCardsPerList(projectid, list_order)
     .then(res => {
       if(res.status !== 200) {
         console.log(res);
@@ -67,7 +67,7 @@ addTaskItemHandler(){
 removeTaskItemHandler(index){
   const projectid = this.props.projectid;
   const cardid = this.state.tasks[index].id;
-  deleteTrackerCard(projectid, cardid)
+  deleteTrackerCard(projectid, cardid, )
     .then( res => {
       if( res.status !== 200 ) {
         console.log(res);

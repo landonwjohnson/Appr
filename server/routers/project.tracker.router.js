@@ -56,6 +56,16 @@ projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listid', (req, res
         .catch(err => res.status(500).send(err));
 });
 
+//delete one list
+projectTrackerRouter.delete('/:projectid/delete/tracker-list/:trackerid/list-order/:listid', (req, res) => {
+    const projectid = req.params.projectid;
+    const trackerid = req.params.trackerid;
+    const listid = req.params.listid;
+    const db = getDb();
+    db.delete_tracker_list([ projectid, trackerid, listid ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
 
 // cards
 //test works
@@ -75,6 +85,18 @@ projectTrackerRouter.get('/:projectid/tracker-cards', (req, res) => {
         .then(cards => res.send(cards))
         .catch(err => res.status(500).send(err));
 });
+
+//get all cards on one list
+projectTrackerRouter.get('/:projectid/tracker-cards/:listid', (req, res) => {
+    const projectid = req.params.projectid;
+    const listid = req.params.listid;
+    const db = getDb();
+    db.find_tracker_cards([ projectid, listid ])
+        .then(cards => res.send(cards))
+        .catch(err => res.status(500).send(err));
+});
+
+
 //test works
 projectTrackerRouter.get('/:projectid/tracker-card/:cardid', (req, res) => {
     const projectid = req.params.projectid;

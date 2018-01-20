@@ -1,5 +1,6 @@
 DELETE FROM tracker_card
-    WHERE list_order = $2
+    WHERE list_order = $3
+    ANd project_id = $1
 ;
 
 DELETE FROM tracker_list

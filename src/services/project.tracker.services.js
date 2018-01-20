@@ -30,9 +30,9 @@ function updateTrackerList(projectid, listid, body) {
         .catch(err => {throw err});
 }
 
-function deleteTrackerList(projectid, listid) {
+function deleteTrackerList(projectid, trackerid, listid) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}`)
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${trackerid}/list-order/${listid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
@@ -52,6 +52,13 @@ function createTrackerCard(projectid, body) {
 function findTrackerCards(projectid) {
     return axios
         .get(`${baseURL}/${projectid}/tracker-cards`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+//finding tracker cards per list
+function findTrackerCardsPerList(projectid, listid) {
+    return axios
+        .get(`${baseURL}/${projectid}/tracker-cards/${listid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
@@ -85,6 +92,7 @@ export {
     deleteTrackerList,
     createTrackerCard,
     findTrackerCards,
+    findTrackerCardsPerList,
     findTrackerCard,
     updateTrackerCard,
     deleteTrackerCard,
