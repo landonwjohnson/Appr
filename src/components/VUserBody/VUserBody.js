@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header/Header';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
@@ -111,7 +111,7 @@ class VUserBody extends Component {
   }
 }
 
-export default VUserBody;
+export default withRouter(VUserBody);
 
 
 

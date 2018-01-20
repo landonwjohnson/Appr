@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './App.scss';
 import { Route } from 'react-router-dom';
 import Register from './components/AuthBody/Register/Register';
@@ -25,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
