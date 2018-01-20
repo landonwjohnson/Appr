@@ -1,68 +1,130 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
-import brace from 'brace';
 import './endpoints.scss';
 
 class Endpoints extends Component {
   constructor(props){
     super(props);
       this.state ={
-          endpoints: []
+          endpoints: [
+            {
+              id: 1,
+              project_id: 1,
+              name: 'Look at my name!',
+              url_data: 'api/project/endpoints',
+              http_verb: 'GET',
+              response_data: 'What up boy',
+              request_data: ';)',
+            },
+            {
+              id: 2,
+              project_id: 1,
+              name: "here's another name",
+              url_data: 'api/project/blahboo',
+              http_verb: 'POST',
+              response_data: 'pika',
+              request_data: 'chu',
+            },
+            {
+              id: 3,
+              project_id: 1,
+              name: "3rd name",
+              url_data: 'api/project/overkill',
+              http_verb: 'PUT',
+              response_data: 'BOOM headshot',
+              request_data: 'eeeeeek',
+            }
+          ]
       }
-
+      this.handleEndpointNameChange = this.handleEndpointNameChange.bind(this);
+      this.handleHttpVerbChange = this.handleHttpVerbChange.bind(this);
+      this.handleEndpointURLChange = this.handleEndpointURLChange.bind(this);
       this.addEndpointItemHandler = this.addEndpointItemHandler.bind(this);
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
-      
-      this.addEndpointRequestHandler = this.addEndpointRequestHandler.bind(this);
-      this.removeEndpointRequestHandler = this.removeEndpointItemHandler.bind(this);
-
-      this.addEndpointResponseHandler = this.addEndpointResponseHandler.bind(this);
-      this.removeEndpointResponseHandler = this.removeEndpointResponseHandler.bind(this);
+      this.handleResponseChange = this.handleResponseChange.bind(this);
+      this.handleRequestChange = this.handleRequestChange.bind(this);
   }
 
   //endpoint ITEM add and remove methods
   addEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.push({
-      key: 2,
-      label: 2,
-      url: 'URL',
-      httpVerb: ''
+    let newState = this.state.endpoints;
+    newState.push({
+      id: 3,
+      project_id: 1,
+      name: "3rd name",
+      url_data: 'api/project/overkill',
+      http_verb: 'PUT',
+      response_data: 'BOOM headshot',
+      request_data: 'eeeeeek',
     })
-    this.setState({EndpointList})
+    this.setState({endpoints: newState})
   }
 
-  removeEndpointItemHandler(){
-    let EndpointList = this.state.endpoints;
-    EndpointList.pop();
-    this.setState({EndpointList})
+  removeEndpointItemHandler(index){
+    const newState = this.state.endpoints;
+    newState.splice(index, 1);
+    this.setState({ endpoints: newState })
   }
 
-
-  //endpoint REQUEST add and remove methods
-  addEndpointRequestHandler(){
-    console.log('add request')
+  handleEndpointNameChange(newName, index){
+    const newState = this.state.endpoints;    
+    newState[index].name = newName;
+    this.setState({ endpoints: newState })
   }
 
-  removeEndpointRequestHandler(){
-
+  handleHttpVerbChange(newVerb, index){
+    const newState = this.state.endpoints;    
+    newState[index].http_verb = newVerb;
+    this.setState({ endpoints: newState })
   }
 
-
-  //endpoint RESPONSE add and remove methods
-  addEndpointResponseHandler(){
-    console.log('add response')
+  handleEndpointURLChange(newURL, index){
+    const newState = this.state.endpoints;    
+    newState[index].url_data = newURL;
+    this.setState({ endpoints: newState })
   }
 
-  removeEndpointResponseHandler(){
-
+  handleResponseChange(newReponseData, index){
+    const newState = this.state.endpoints;
+    newState[index].response_data = newReponseData;
+    this.setState({ endpoints: newState })
   }
+
+  handleRequestChange(newRequestData, index){
+    const newState = this.state.endpoints;
+    newState[index].request_data = newRequestData;
+    this.setState({ endpoints: newState })
+  }
+  
+
+
 
   render() {
+    console.table(this.state.endpoints);
     const { userid, projectid } = this.props.match.params;
-    const displayEndpoints = this.state.endpoints.map( endpoint => {
+    const endpoints = this.state.endpoints;
+    const displayEndpoints = endpoints.map( endpoint => {
+      const index = endpoints.indexOf(endpoint);
       return(
-        <EndpointItem removeEndpointItemHandler={this.removeEndpointItemHandler} />
+        <EndpointItem 
+          key={`endpointItem${index}`} 
+          index={index}
+          endpointid={endpoint.id}
+          projectid={projectid} 
+          endpointName={endpoint.name}
+          httpVerb={endpoint.http_verb}
+          requestData={endpoint.request_data}
+          responseData={endpoint.response_data}
+          urlData={endpoint.url_data}
+
+          //Methods
+            removeEndpointItemHandler={this.removeEndpointItemHandler}
+            handleEndpointNameChange={this.handleEndpointNameChange}
+            handleHttpVerbChange={this.handleHttpVerbChange}
+            handleEndpointURLChange={this.handleEndpointURLChange}
+            handleResponseChange={this.handleResponseChange} 
+            handleRequestChange={this.handleRequestChange}
+        />
       )
     })
     return (
