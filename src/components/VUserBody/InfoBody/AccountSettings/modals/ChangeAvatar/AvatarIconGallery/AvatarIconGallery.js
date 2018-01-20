@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import LinkAvatar from '../../../../../../../img/User_Customization/avatars/link_avatar.svg';
-import BanjoAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
-import HaloAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
-import SonicAvatar from '../../../../../../../img/User_Customization/avatars/sonic_avatar.svg';
-import { findAvatars } from '../../../../../../../services/avatar.services';
+import { findAvatars} from '../../../../../../../services/avatar.services';
 import AvatarItem from './AvatarItem/AvatarItem';
 
 class AvatarIconGallery extends Component {
@@ -28,12 +24,12 @@ class AvatarIconGallery extends Component {
 
 
     render() {
-        const { handleAvatarChange, toggleChangeURL, oldAvatar, handleFalse, selectedAvatar} = this.props;
+        const { handleAvatarChange, toggleChangeURL, selectedAvatar} = this.props;
         const avatars = this.state.avatars;
         const displayAvatarItems = avatars.map( avatar => {
-            const index = avatars.indexOf(avatars);
+            const index = avatars.indexOf(avatar);
             return(
-                <AvatarItem key={index} selected={ avatar.avatar_url === selectedAvatar } backgroundSource={ avatar.avatar_url } creatorName={ avatar.creatorName } portfolio={ avatar.portfolio } handleAvatarChange={handleAvatarChange}/>
+                <AvatarItem key={index} selected={ avatar.avatar_url === selectedAvatar } backgroundSource={avatar.avatar_url} creatorName={avatar.creator_name} portfolio={avatar.portfolio} handleAvatarChange={handleAvatarChange}/>
             )
         })
       return (

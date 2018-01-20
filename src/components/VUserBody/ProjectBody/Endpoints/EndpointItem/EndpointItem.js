@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './endpoint-item.scss';
 import AceEditor from 'react-ace';
-
 import brace from 'brace';
 import 'brace/mode/json';
+import 'brace/ext/spellcheck';
 import classnames from 'classnames';
 
 class EndpointItem extends Component {
@@ -62,31 +62,6 @@ class EndpointItem extends Component {
                   
                   <button className="endpoint-save">Save</button>
               </div>
-              <div className="responseCon">
-                  <label>Response</label>
-                      <AceEditor
-                          width={'100%'}
-                          border={'1px solid #CCC'}
-                          height={'120px'}
-                          mode="json"
-                          theme="tomorrow"
-                          name={`responseEditor` + index}
-                          onLoad={this.onLoad}
-                          onChange={(e) => {handleResponseChange(e, index)}}
-                          fontSize={14}
-                          showPrintMargin={true}
-                          showGutter={true}
-                          highlightActiveLine={true}
-                          value={responseText}
-                          setOptions={{
-                          enableBasicAutocompletion: true,
-                          enableLiveAutocompletion: true,
-                          enableSnippets: false,
-                          showLineNumbers: true,
-                          tabSize: 2,
-                      }}/>
-              </div>
-
               <div className={requireConClass}>
                   <label>Request</label>
                       <AceEditor
@@ -106,6 +81,31 @@ class EndpointItem extends Component {
                           setOptions={{
                           enableBasicAutocompletion: false,
                           enableLiveAutocompletion: false,
+                          enableSnippets: false,
+                          showLineNumbers: true,
+                          tabSize: 2,
+                      }}/>
+              </div>
+
+              <div className="responseCon">
+                  <label>Response</label>
+                      <AceEditor
+                          width={'100%'}
+                          border={'1px solid #CCC'}
+                          height={'120px'}
+                          mode="json"
+                          theme="tomorrow"
+                          name={`responseEditor` + index}
+                          onLoad={this.onLoad}
+                          onChange={(e) => {handleResponseChange(e, index)}}
+                          fontSize={14}
+                          showPrintMargin={true}
+                          showGutter={true}
+                          highlightActiveLine={true}
+                          value={responseText}
+                          setOptions={{
+                          enableBasicAutocompletion: true,
+                          enableLiveAutocompletion: true,
                           enableSnippets: false,
                           showLineNumbers: true,
                           tabSize: 2,

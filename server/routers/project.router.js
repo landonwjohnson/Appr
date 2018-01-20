@@ -28,9 +28,9 @@ projectRouter.get('/:projectid', (req, res) => {
 
 projectRouter.put('/update/:projectid', (req, res) => {
     const projectId = req.params.projectid;
-    const { name } = req.body;
+    const { name, background } = req.body;
     const db = getDb();
-    db.update_project([ projectId, name ])
+    db.update_project([ projectId, name, background ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });

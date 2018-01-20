@@ -96,26 +96,14 @@ CREATE TABLE project_controller (
     require_data TEXT
 );
 
-
-CREATE TABLE req_endpoint (
-    id SERIAL PRIMARY KEY,
-    key_data TEXT,
-    value_data TEXT
-);
-
-CREATE TABLE res_endpoint (
-    id SERIAL PRIMARY KEY,
-    key_data TEXT,
-    value_data TEXT
-);
-
 CREATE TABLE project_endpoint (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    url_data TEXT,
+    endpoint_name TEXT,
     http_verb TEXT,
-    req_endpoint_id int references req_endpoint(id),
-    res_endpoint_id int references res_endpoint(id)
+    url_data TEXT,
+    response_data TEXT,
+    request_data TEXT
 );
 
 CREATE TABLE schema_type ( 
@@ -165,15 +153,33 @@ CREATE TABLE user_project (
     roles_id int references roles(id)
 );
 
-CREATE TABLE tracker (
+CREATE TABLE tracker_card_order (
     id SERIAL PRIMARY KEY,
-    group_id int references groups(id),
-    user_id int references users(id),
-    tracker_order int,
-    tracker_name TEXT ,
-    tracker_data TEXT
+    card_order int
 );
 
+CREATE TABLE tracker_list_order (
+    id SERIAL PRIMARY KEY,
+    list_order int
+);
+
+
+CREATE TABLE tracker_list (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    list_name TEXT,
+    card_order_id int references tracker_card_order(id),
+    list_order int references tracker_list_order(id)
+);
+
+CREATE TABLE tracker_card (
+    id SERIAL PRIMARY KEY,
+    project_id int references project(id),
+    card_name TEXT,
+    card_data TEXT,
+    card_order_id int references tracker_card_order(id),
+    list_order int references tracker_list(id)
+);
 
 -----------Start of Test user info---------------
 
@@ -301,34 +307,14 @@ VALUES
 
     --Endpoint
 
-        --Req Data--
-
-INSERT INTO req_endpoint ( key_data, value_data )
-VALUES
-    ('Group 1 Key', 'REQ Value'),
-    ('Group 2 Key', 'REQ Value'),
-    ('Group 3 Key', 'REQ Value'),
-    ('Group 4 Key', 'REQ Value')
-;
-
-        --Res Data--
-
-INSERT INTO res_endpoint ( key_data, value_data )
-VALUES
-    ('Group 1 Key', 'RES Value'),
-    ('Group 2 Key', 'RES Value'),
-    ('Group 3 Key', 'RES Value'),
-    ('Group 4 Key', 'RES Value')
-;
-
         --Actual Endpoint--
 
-INSERT INTO project_endpoint ( project_id, url_data, http_verb, req_endpoint_id, res_endpoint_id )
+INSERT INTO project_endpoint ( project_id, endpoint_name, http_verb, url_data, response_data, request_data )
 VALUES
-    (1, 'api/alliance', 'GET', 1, 1),
-    (2, 'api/empire', 'GET', 2, 2),
-    (2, 'api/jedi', 'GET', 2, 2),
-    (2, 'api/cis', 'GET', 2, 2)
+    (1, 'Get all users', 'GET', 'api/alliance/users', 'Yo I am a gangster', 'I party like a rockstar'),
+    (1, 'Meow', 'PUT', 'api/kittenmittens', 'Everyday is Caturday', 'You got to be kitten me right meow'),
+    (2, 'Get all people', 'POST', 'api/alliance/users', 'I am not even a person', 'party party party'),
+    (3, 'Get all homies', 'PUT', 'api/alliance/users', 'Stay gangster dawg', 'They call me 50 Shades of Cray')
 ;
 
     --Schema
@@ -425,56 +411,87 @@ VALUES
     (9, 4, 3)
 ;
 
---Tracker for Group 1
+--Tracker
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
+INSERT INTO tracker_card_order ( card_order ) 
 VALUES
-    ('1','1', '1', 'views and routes', 'test views and routes tracker data'),
-    ('1','1', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data'),
-    ('1','4', '3', 'test front end', 'test FE tracker data'),
-    ('1','4', '4', 'create end points', 'test endpoint tracker data'),
-    ('1','5', '5', 'move staged data from service to server', 'test server staged data tracker data'),
-    ('1','5', '6', 'test endpoints with postman', 'test postman tracker data'),
-    ('1','7', '7', 'test FE with server', 'test FE w/ server tracker data'),
-    ('1','7', '8', 'replace staged data with queries', 'test query tracker data'),
-    ('1','9', '9', 'test full stack w/ postman ', 'test full stack tracker data'),
-    ('1','9', '10', 'test end to end', 'test end to end tracker data'),
-    ('1','1', '11', 'get site hosted', 'test site hosted tracker data')
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5)
 ;
 
---Tracker for Group 2
-
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
+INSERT INTO tracker_list_order ( list_order ) 
 VALUES
-    ('2','2', '1', 'views and routes', 'test views and routes tracker data'),
-    ('2','2', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data'),
-    ('2','2', '3', 'test front end', 'test FE tracker data'),
-    ('2','6', '4', 'create end points', 'test endpoint tracker data'),
-    ('2','6', '5', 'move staged data from service to server', 'test server staged data tracker data'),
-    ('2','6', '6', 'test endpoints with postman', 'test postman tracker data'),
-    ('2','10', '7', 'test FE with server', 'test FE w/ server tracker data'),
-    ('2','10', '8', 'replace staged data with queries', 'test query tracker data'),
-    ('2','10', '9', 'test full stack w/ postman ', 'test full stack tracker data'),
-    ('2','6', '10', 'test end to end', 'test end to end tracker data'),
-    ('2','2', '11', 'get site hosted', 'test site hosted tracker data')
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (1),
+    (2),
+    (3),
+    (4),
+    (5)
 ;
 
---Tracker for Group 3
 
-INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data) 
+INSERT INTO tracker_list ( project_id, list_name, card_order_id, list_order ) 
 VALUES
-    ('3','3', '1', 'views and routes', 'test views and routes tracker data'),
-    ('3','3', '2', 'controllers and services with staged data in services', 'test controllers and services tracker data'),
-    ('3','3', '3', 'test front end', 'test FE tracker data'),
-    ('3','3', '4', 'create end points', 'test endpoint tracker data'),
-    ('3','3', '5', 'move staged data from service to server', 'test server staged data tracker data'),
-    ('3','3', '6', 'test endpoints with postman', 'test postman tracker data'),
-    ('3','8', '7', 'test FE with server', 'test FE w/ server tracker data'),
-    ('3','8', '8', 'replace staged data with queries', 'test query tracker data'),
-    ('3','8', '9', 'test full stack w/ postman ', 'test full stack tracker data'),
-    ('3','8', '10', 'test end to end', 'test end to end tracker data'),
-    ('3','8', '11', 'get site hosted', 'test site hosted tracker data')
+    (1, 'ToDo', 1, 1),
+    (1, 'In Process', 2, 1),
+    (1, 'Backlog', 3, 1),
+    (1, 'Needs Approval', 4, 1),
+    (1, 'Done', 5, 1),
+    (2, 'ToDo', 1, 2),
+    (2, 'In Process', 2, 2),
+    (2, 'Backlog', 3, 2),
+    (2, 'Needs Approval', 4, 2),
+    (2, 'Done', 5, 2),
+    (3, 'ToDo', 1, 3),
+    (3, 'In Process', 2, 3),
+    (3, 'Backlog', 3, 3),
+    (3, 'Needs Approval', 4, 3),
+    (3, 'Done', 5, 3)
 ;
+
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order ) 
+VALUES
+    (1, 'Find Vader', 'data', 1, 1),
+    (1, 'Find the Emporer', 'data', 2, 1),
+    (1, 'Use the Force', 'data', 3, 1),
+    (1, 'Kill both', 'data', 4, 1),
+    (1, 'Restore peace and balance to the force', 'data', 5, 1),
+    (2, 'Find Luke', 'data', 1, 2),
+    (2, 'Find the resistance', 'data', 2, 2),
+    (2, 'Kill everyone', 'data', 3, 2),
+    (2, 'Enslave the universe', 'data', 4, 2),
+    (2, 'get home in time for lunch', 'data', 5, 2),
+    (3, 'Find the Chosen One', 'data', 1, 3),
+    (3, 'Bring balance to the force', 'data', 2, 3),
+    (3, 'Follow the Jedi Code', 'data', 3, 3),
+    (3, 'Train younglings', 'data', 4, 3),
+    (3, 'Take over the universe without making it seem evil', 'data', 5, 3)
+;
+
+
+
 
 
 
@@ -516,7 +533,7 @@ VALUES
 
     INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
     VALUES 
-        ('Landon Johnson', '/static/media/link_avatar.1d93f165.svg' , 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'http://1.bp.blogspot.com/-4suEajg9teY/UW1-o065YVI/AAAAAAAAKM0/zeG-UIm2HN0/s1600/halo+4+master+chief+wallpapers++7.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')

@@ -13,7 +13,6 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state ={
-            user: {},
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
@@ -30,6 +29,7 @@ class Header extends Component {
             this.openFeedbackModal = this.openFeedbackModal.bind(this);
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
     }
+
 
 
 
@@ -131,7 +131,7 @@ class Header extends Component {
                         <div className="logo"></div>
                     </div>
                     <div className="user-con">
-                            <div className="avatar" style={{backgroundImage: `url(${this.props.userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
+                            <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
                             <div className="hello-user">Hello {userInfo.firstName}!</div>
                             <div className="bread-container" onClick={this.handleRightMenuClick}>
                                 <div className={breadMenuTransform} href="#" >
