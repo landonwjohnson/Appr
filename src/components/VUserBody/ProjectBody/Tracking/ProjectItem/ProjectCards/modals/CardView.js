@@ -9,6 +9,7 @@ import MembersIcon from '../../../../../../../img/icons/member-icon.svg';
 
 class CardView extends Component {
   render() {
+      const {index, onDeleteTaskClick} = this.props;
     return (
     <div className="cardview-parent">
     
@@ -79,7 +80,7 @@ class CardView extends Component {
                                 <label> Labels </label> 
                             </div>
                         </button>
-                        <button className="btn-and-icon delete-task-btn" onClick={this.props.onDeleteTaskClick} >
+                        <button className="btn-and-icon delete-task-btn" onClick={(e) => {onDeleteTaskClick(index)}} >
                             <div className="label-icon-con">
                                 <label > Delete </label> 
                             </div>
