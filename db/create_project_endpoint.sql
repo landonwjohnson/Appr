@@ -1,4 +1,4 @@
-INSERT INTO project_endpoint (project_id, url_data, is_get, is_post, is_update, is_delete, req_endpoint_id, res_endpoint_id)
+INSERT INTO project_endpoint (project_id, endpoint_name, http_verb, url_data, response_data, request_data)
     VALUES
-        ($1, $2, $3, $4, $5, $6, $7, $8)
+        ($1, $2, $3, $4, $5, $6)
 ;

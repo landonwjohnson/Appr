@@ -18,12 +18,15 @@ export default class ProjectSidebar extends Component {
     
 
     toggleProjectMenu(){
+        this.props.clearProjectBackgroundPreview();
         if(this.state.UI.hideProjectMenu === false){
             this.setState({ UI: { hideProjectMenu: true, hideBackgroundMenu: false } })
         }
         else if(this.state.UI.hideBackgroundMenu === false){
             this.setState({ UI: { hideProjectMenu: false, hideBackgroundMenu: true } })
         }
+
+        
     }
 
     render() {
@@ -38,7 +41,7 @@ export default class ProjectSidebar extends Component {
             "backgroundMenu-wrapper": true
         })
         
-        const {handleProjectBackground, userid, projectid, selectedBackground } = this.props;
+        const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground } = this.props;
        
         return (
 
@@ -49,7 +52,7 @@ export default class ProjectSidebar extends Component {
                     <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>
                 <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
-                    <BackgroundMenu selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
+                    <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
                 </div>
             </div>
         )

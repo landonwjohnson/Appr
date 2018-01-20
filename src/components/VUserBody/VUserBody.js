@@ -3,19 +3,13 @@ import Header from './Header/Header';
 import { Route } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
-import KyloRen from '../../img/User_Customization/avatars/but_im_just_a_pilot__kylo_x_reader__by_beatlesmaniagrl-da0coeq.jpg';
+import { findUserInfo } from '../../services/account.services';
 
 class VUserBody extends Component {
   constructor(props){
     super(props);
     this.state ={
-      userInfo:{
-        firstName: 'Kylo',
-        lastName: 'Ren',
-        username: 'radar_tech_matt548',
-        email: 'kyloren@firstorder.org',
-        avatar: `${KyloRen}`,
-      }
+      userInfo: {}
     }
 
     //AccountSettings
@@ -25,6 +19,28 @@ class VUserBody extends Component {
 
     //UI
       this.handleInitials = this.handleInitials.bind(this);
+  }
+
+  componentWillMount(){
+    const userid = this.props.match.params.userid;
+    findUserInfo(userid)
+    .then( res => {
+        if (res.status !== 200) {
+            alert(res);
+        }
+        else {
+              this.setState({ 
+                  userInfo: {   
+                    username: res.data[0].username,
+                    avatar: res.data[0].avatar,
+                    firstName: res.data[0].first_name,
+                    lastName: res.data[0].last_name,
+                    email: res.data[0].email
+                  }
+              });
+        }
+    })
+    .catch(err => {throw err});
   }
 
   //Submit Account Settings Info
@@ -77,17 +93,18 @@ class VUserBody extends Component {
     }
 
   render() {
+    console.table(this.state.user)
+    
     const {userid, projectid } = this.props.match.params;
-    const {userInfo, projectInfo} = this.state;
     return (
       <div>
-        <Header userInfo={userInfo} handleInitials={this.handleInitials} userid={userid}/>
+        <Header userInfo={this.state.userInfo} handleInitials={this.handleInitials} userid={userid}/>
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
+                <InfoBody userInfo={this.state.userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
-                <ProjectBody projectInfo={projectInfo} {...props}/>)} />
+                <ProjectBody  {...props}/>)} />
 
       </div>
     );
