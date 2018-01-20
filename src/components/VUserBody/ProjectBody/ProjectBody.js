@@ -99,7 +99,9 @@ class ProjectBody extends Component {
               <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers" />
               <Route component={ Schema } path="/user/:userid/project/:projectid/schema" />
               <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints" />
-              <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>  
+              {/* <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>   */}
+              <Route path="/user/:userid/project/:projectid/tracker" render={(props) => (
+                <Tracking projectid={projectid} {...props}/> )} />
       </ProjectBodyContainer>
     );
   }

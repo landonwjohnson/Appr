@@ -6,15 +6,17 @@ const projectTrackerRouter = express.Router();
 //lists
 
 //create
+//test works 
 projectTrackerRouter.post('/:projectid/create/tracker-list', (req, res) => {
     const projectid = req.params.projectid;
-    const { list_name, card_order_id, list_order } = req.body;
+    const { listName, listOrder } = req.body;
     const db = getDb();
-    db.create_tracker_list([ projectid, listName, cardOrderId, listOrder ])
+    db.create_tracker_list([ projectid, listName, listOrder ])
         .then(list => res.send(list))
         .catch(err => res.status(500).send(err));
 });
 //get all
+//test works
 projectTrackerRouter.get('/:projectid/tracker-lists', (req, res) => {
     const projectid = req.params.projectid;
     const db = getDb();
@@ -23,6 +25,7 @@ projectTrackerRouter.get('/:projectid/tracker-lists', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 //get one
+//test works
 projectTrackerRouter.get('/:projectid/tracker-list/:listid', (req, res) => {
     const projectid = req.params.projectid;
     const listid = req.params.listid;
@@ -32,16 +35,18 @@ projectTrackerRouter.get('/:projectid/tracker-list/:listid', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 //update
-projectTrackerRouter.put('/:projectid/tracker-list/:listid', (req, res) => {
+//test works
+projectTrackerRouter.put('/:projectid/update/tracker-list/:listid', (req, res) => {
     const projectid = req.params.projectid;
     const listid = req.params.listid;
     const { listName, cardOrderId, listOrder } = req.body;
     const db = getDb();
-    db.update_tracker_list([ projectid, listid, listName, cardOrderId, listOrder ])
+    db.update_tracker_list([ projectid, listid, listName, listOrder ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
 //delete
+//test works
 projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listid', (req, res) => {
     const projectid = req.params.projectid;
     const listid = req.params.listid;
@@ -53,7 +58,7 @@ projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listid', (req, res
 
 
 // cards
-
+//test works
 projectTrackerRouter.post('/:projectid/create/tracker-card', (req, res) => {
     const projectid = req.params.projectid;
     const { cardName, cardData, cardOrderId, listOrder } = req.body;
@@ -62,7 +67,7 @@ projectTrackerRouter.post('/:projectid/create/tracker-card', (req, res) => {
         .then(card => res.send(card))
         .catch(err => res.status(500).send(err));
 });
-
+//test works
 projectTrackerRouter.get('/:projectid/tracker-cards', (req, res) => {
     const projectid = req.params.projectid;
     const db = getDb();
@@ -70,7 +75,7 @@ projectTrackerRouter.get('/:projectid/tracker-cards', (req, res) => {
         .then(cards => res.send(cards))
         .catch(err => res.status(500).send(err));
 });
-
+//test works
 projectTrackerRouter.get('/:projectid/tracker-card/:cardid', (req, res) => {
     const projectid = req.params.projectid;
     const cardid = req.params.cardid;
@@ -79,8 +84,8 @@ projectTrackerRouter.get('/:projectid/tracker-card/:cardid', (req, res) => {
         .then(card => res.send(card))
         .catch(err => res.status(500).send(err));
 });
-
-projectTrackerRouter.put('/:projectid/tracker-list/:cardid', (req, res) => {
+//test works
+projectTrackerRouter.put('/:projectid/update/tracker-card/:cardid', (req, res) => {
     const projectid = req.params.projectid;
     const cardid = req.params.cardid;
     const { cardName, cardData, cardOrderId, listOrder } = req.body;
@@ -89,8 +94,8 @@ projectTrackerRouter.put('/:projectid/tracker-list/:cardid', (req, res) => {
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
-
-projectTrackerRouter.delete('/:projectid/delete/tracker-list/:cardid', (req, res) => {
+//test works
+projectTrackerRouter.delete('/:projectid/delete/tracker-card/:cardid', (req, res) => {
     const projectid = req.params.projectid;
     const cardid = req.params.cardid;
     const db = getDb();
