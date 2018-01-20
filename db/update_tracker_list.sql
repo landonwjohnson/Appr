@@ -9,3 +9,4 @@ UPDATE tracker_list
 
 Select * from tracker_list
     Where id = $2
+    ;
