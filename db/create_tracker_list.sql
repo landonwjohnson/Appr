@@ -1,6 +1,6 @@
-INSERT INTO tracker_list (project_id, list_name, card_order_id, list_order)
+INSERT INTO tracker_list (project_id, list_name, list_order)
     VALUES
-        ($1, $2, $3, $4)
+        ($1, $2, $3)
 ;
 
 SELECT * FROM tracker_list

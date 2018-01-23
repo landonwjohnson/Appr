@@ -1,8 +1,7 @@
 UPDATE tracker_list
     SET
         list_name = $3,
-        card_order_id = $4,
-        list_order = $5
+        list_order = $4
     WHERE id = $2
     AND project_id = $1
 ;

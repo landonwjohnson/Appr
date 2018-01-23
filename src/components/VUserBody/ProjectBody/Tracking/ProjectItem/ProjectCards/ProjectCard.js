@@ -52,10 +52,12 @@ class ProjectCard extends Component {
 
 
   render() {
+    const {index} = this.props;
+
     return (
 
      
-      <div id={this.props.taskName.replace(/[^a-zA-Z]/g, '').toLowerCase() + ".task"} >
+      <div >
             <li onClick={this.openCardView}><label>{this.props.taskName}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
             
@@ -65,7 +67,7 @@ class ProjectCard extends Component {
               className="cardview-container"
               style={CardViewModalBox}
             >
-              <CardView listName={this.props.listName} taskName={this.props.taskName}   onCloseBtnClick={this.closeCardView} onDeleteTaskClick={this.props.onDeleteTaskClick} />
+              <CardView index={index} listName={this.props.listName} taskName={this.props.taskName}   onCloseBtnClick={this.closeCardView} onDeleteTaskClick={this.props.onDeleteTaskClick} />
             </Modal>
             
 
