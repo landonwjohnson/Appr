@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, BrowserRouter } from 'react-router-dom';
 import './board-menu.scss'
 import { findDashboardInfo } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
-
 
 class BoardMenu extends Component {
     constructor(props){
@@ -91,7 +90,7 @@ class BoardMenu extends Component {
                 <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
                 </div>
-                <div className="board-item-name">
+                <div className="board-item-name" onClick={(e) => {window.location.reload()}}>
                     {project.name}
                 </div>
             </div>
