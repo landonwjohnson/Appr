@@ -5,11 +5,19 @@ import ChangeAvatarURL from './AvatarChangeURL/AvatarChangeURL';
 import AvatarIconGallery from './AvatarIconGallery/AvatarIconGallery';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { updateUserInfo } from '../../../../../../services/account.services'
 
 class ChangeAvatar extends Component {
     constructor(props){
         super(props)
         this.state={
+            userInfo: {
+                username: this.props.userInfo.username,
+                firstName: this.props.userInfo.firstName,
+                lastName: this.props.userInfo.lastName,
+                email: this.props.userInfo.email,
+                avatar: this.props.userInfo.avatar
+            },
             avatar: this.props.userInfo.avatar,
             UI:{
                 hideChangeURLOption: true,
@@ -17,6 +25,7 @@ class ChangeAvatar extends Component {
             }
         };
         this.handleAvatarChange = this.handleAvatarChange.bind(this);
+        this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
         this.toggleChangeURL = this.toggleChangeURL.bind(this);
     }
 
@@ -37,11 +46,33 @@ class ChangeAvatar extends Component {
             }
         })
     }}
+
+    handleAvatarSubmit(){
+        const userid = this.props.userInfo.id;
+        const reqBody = this.state.userInfo;
+        console.table(reqBody)
+        updateUserInfo(userid, reqBody)
+          .then( res => {
+            if ( res.status !== 200 ) {
+              alert(res);
+            }
+            else{
+              window.location.reload();
+            }
+          })
+          .catch(err => {throw err});
+    }
     
     handleAvatarChange(e){
         let newAvatar = e.trim();
         this.setState({
-            avatar: newAvatar
+            userInfo: {
+                username: this.props.userInfo.username,
+                firstName: this.props.userInfo.firstName,
+                lastName: this.props.userInfo.lastName,
+                email: this.props.userInfo.email,
+                avatar: newAvatar
+            }
           })
       }
     render() {
@@ -74,7 +105,7 @@ class ChangeAvatar extends Component {
                 {/* <form> */}
                     <div className="avatar-settings-content">
                         <div className={`${avatarGalleryClass}`}>
-                            <AvatarIconGallery selectedAvatar={this.state.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
+                            <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
                         </div>
                         
                         <div className={`${changeURLClass}`} >
@@ -83,7 +114,7 @@ class ChangeAvatar extends Component {
                     </div>
 
                 <div className="submitModal">
-                    <button id="updateAvatar" onClick={(e) => {handleAvatarSubmit(this.state.avatar)}}>
+                    <button id="updateAvatar" onClick={(e) => {this.handleAvatarSubmit()}}>
                     Update Avatar
                     </button>
                 </div>

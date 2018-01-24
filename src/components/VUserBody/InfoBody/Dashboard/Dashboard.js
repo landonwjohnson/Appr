@@ -6,8 +6,6 @@ import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
-import HotSpringsUtah from '../../../../img/User_Customization/backgrounds/Hot-Springs-Utah.jpg';
-import ThistleHouseUtah from '../../../../img/User_Customization/backgrounds/Thistle-House-Utah.jpg';
 
 class Dashboard extends Component {
 	constructor(props) {

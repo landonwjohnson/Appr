@@ -31,6 +31,7 @@ class VUserBody extends Component {
         else {
               this.setState({ 
                   userInfo: {   
+                    id: res.data[0].id,
                     username: res.data[0].username,
                     avatar: res.data[0].avatar,
                     firstName: res.data[0].first_name,
@@ -93,15 +94,14 @@ class VUserBody extends Component {
     }
 
   render() {
-    console.table(this.state.user)
-    
-    const {userid, projectid } = this.props.match.params;
+    const userInfo = this.state.userInfo;
+    const userid = this.state.userInfo.id;
     return (
       <div>
-        <Header userInfo={this.state.userInfo} handleInitials={this.handleInitials} userid={userid}/>
+        <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
         
             <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={this.state.userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
+                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
                 <ProjectBody  {...props}/>)} />
