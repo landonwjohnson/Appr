@@ -27,7 +27,7 @@ class ProjectBody extends Component {
   }
 
 
-  componentDidUpdate() {
+  componentWillMount() {
     const projectid = this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {

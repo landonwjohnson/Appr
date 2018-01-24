@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
 import './endpoints.scss';
-import { findProjectEndpoints } from '../../../../services/project.endpoint.services';
+import { findProjectEndpoints, createProjectEndpoint, updateProjectEndpoint, deleteProjectEndpoint } from '../../../../services/project.endpoint.services';
 
 class Endpoints extends Component {
   constructor(props){
@@ -16,9 +16,13 @@ class Endpoints extends Component {
       this.removeEndpointItemHandler = this.removeEndpointItemHandler.bind(this);
       this.handleResponseChange = this.handleResponseChange.bind(this);
       this.handleRequestChange = this.handleRequestChange.bind(this);
+      this.handleSubmitEndpoint = this.handleSubmitEndpoint.bind(this);
   }
 
-  
+  scrollToBottom = () => {
+    this.listEnd.scrollIntoView({ behavior: "smooth" });
+}
+
   componentWillMount(){
     const projectid = this.props.match.params.projectid;
     findProjectEndpoints(projectid)
@@ -34,24 +38,62 @@ class Endpoints extends Component {
   }
 
   //endpoint ITEM add and remove methods
-  addEndpointItemHandler(){
-    let newState = this.state.endpoints;
-    newState.push({
-      id: 3,
-      project_id: 1,
-      endpoint_name: "3rd name",
-      http_verb: 'PUT',
-      url_data: 'api/project/overkill',
-      response_data: 'BOOM headshot',
-      request_data: 'eeeeeek',
-    })
-    this.setState({endpoints: newState})
+  addEndpointItemHandler(projectid){
+    const reqBody = { endpointName: '', httpVerb: '', urlData: '', responseData: '', requestData: ''};
+    createProjectEndpoint(projectid, reqBody)
+      .then( res => {
+        if (res.status !== 200){
+          alert(res);
+        }
+        else{
+          const newState = this.state.endpoints;
+          newState.push(res.data[0]);
+          this.setState({ endpoints: newState });
+          this.scrollToBottom();
+        }
+      })
+  }
+
+  handleSubmitEndpoint(index){
+    const projectid = this.props.match.params.projectid;
+    alert('handleSubmitEndpoint FIRED!!!!!')
+    const { endpoint_name, http_verb, url_data, response_data, request_data} = this.state.endpoints[index];
+    const reqBody = { 
+      endpointName: endpoint_name, 
+      httpVerb: http_verb, 
+      urlData: url_data, 
+      responseData: response_data, 
+      requestData: request_data
+    };
+
+    const endpointid = Number(this.state.endpoints[index].id);
+    alert(`the index is ${index}`);
+    alert(`the endpointid is ${endpointid}`)
+    alert(`the projectid is ${projectid}`)
+    updateProjectEndpoint(projectid, endpointid, reqBody)
+      .then( res => {
+        if (res.status !== 200){
+          alert(res);
+        }
+      })
+      .catch(err => {throw err});
   }
 
   removeEndpointItemHandler(index){
-    const newState = this.state.endpoints;
-    newState.splice(index, 1);
-    this.setState({ endpoints: newState })
+    const projectid = this.props.match.params.projectid;
+    const endpointid = this.state.endpoints[index].id;
+
+    deleteProjectEndpoint(projectid, endpointid)
+      .then( res => {
+        if (res.status !== 200){
+          console.log(res);
+        }
+        else {
+          const newState = this.state.endpoints;
+          newState.splice(index, 1);
+          this.setState( { endpoints: newState } );
+        }
+      })
   }
 
   handleEndpointNameChange(newName, index){
@@ -113,6 +155,8 @@ class Endpoints extends Component {
             handleEndpointURLChange={this.handleEndpointURLChange}
             handleResponseChange={this.handleResponseChange} 
             handleRequestChange={this.handleRequestChange}
+            handleSubmitEndpoint={this.handleSubmitEndpoint}
+
         />
       )
     })
@@ -128,8 +172,8 @@ class Endpoints extends Component {
 
                         {displayEndpoints}
                       
-                      <div className="add-button-footer">
-                            <button className="add-endpoint-item" onClick={this.addEndpointItemHandler}> Add Endpoint</button>
+                      <div className="add-button-footer" ref={(el) => {this.listEnd = el; }}>
+                            <button className="add-endpoint-item" onClick={(e) => {this.addEndpointItemHandler(projectid)}}> Add Endpoint</button>
                       </div>
                     </div>
                 </div>
