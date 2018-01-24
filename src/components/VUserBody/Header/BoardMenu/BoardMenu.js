@@ -16,8 +16,8 @@ class BoardMenu extends Component {
         this.handleCreateButton = this.handleCreateButton.bind(this);
     }
 
-    componentWillMount(){
-        const {userid, projectid} = this.props;
+    componentWillReceiveProps(){
+        const userid = this.props.userid;
 		findDashboardInfo(userid)
 			.then( res => {
 				res.status !== 200 ? console.log(res) : this.setState(res.data);

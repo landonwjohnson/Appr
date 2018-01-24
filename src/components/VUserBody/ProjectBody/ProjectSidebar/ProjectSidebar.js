@@ -25,8 +25,6 @@ export default class ProjectSidebar extends Component {
         else if(this.state.UI.hideBackgroundMenu === false){
             this.setState({ UI: { hideProjectMenu: false, hideBackgroundMenu: true } })
         }
-
-        
     }
 
     render() {
@@ -41,7 +39,7 @@ export default class ProjectSidebar extends Component {
             "backgroundMenu-wrapper": true
         })
         
-        const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground } = this.props;
+        const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground, projectName } = this.props;
        
         return (
 
@@ -49,7 +47,7 @@ export default class ProjectSidebar extends Component {
             <div className="project-sidebar">
                 <span className="psb-divider" />
                 <div className={`${navMenuClass}`}>
-                    <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
+                    <NavMenu projectName={projectName} userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>
                 <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
                     <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
