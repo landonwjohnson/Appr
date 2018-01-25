@@ -40,7 +40,7 @@ class Endpoints extends Component {
       id: 3,
       project_id: 1,
       endpoint_name: "3rd name",
-      http_verb: 'PUT',
+      http_verb: 'GET',
       url_data: 'api/project/overkill',
       response_data: 'BOOM headshot',
       request_data: 'eeeeeek',
