@@ -20,7 +20,7 @@ class Controllers extends Component {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  componentWillMount() {
+  componentWillReceiveProps() {
       const controllerExamples = [
           { 
               when_data: 'User clicks login',

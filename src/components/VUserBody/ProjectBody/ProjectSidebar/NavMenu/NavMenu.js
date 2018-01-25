@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import classnames from 'classnames';
+import { NavLink } from 'react-router-dom';
+
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
 
@@ -40,11 +40,11 @@ export default class ProjectSetupSidebar extends Component {
     }
 
     render() {
-        const { userid, projectid } = this.props;
+        const { userid, projectid, projectName} = this.props;
         return (
             <div>
                 <div className='project-sidebar-header'>
-                    <input className="rename-project" type="text" value={this.state.project.name} onChange={e => this.handleChangeName(e)} autoFocus /> 
+                    <input className="rename-project" type="text" placeholder={projectName} onChange={e => this.handleChangeName(e)}/> 
                 </div>
                 
                 <ul className={'nav-list'} >

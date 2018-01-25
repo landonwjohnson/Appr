@@ -37,7 +37,7 @@ class EndpointItem extends Component {
 
 
   render() {
-    const {httpVerb, endpointid, endpointName, projectid, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange} = this.props;
+    const {httpVerb, endpointid, endpointName, projectid, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
@@ -65,7 +65,7 @@ class EndpointItem extends Component {
                   </select>
                   <input className="api-input" onChange={(e) => {handleEndpointURLChange(e.target.value, index)}} placeholder={urlData} />
                   
-                  <button className="endpoint-save">Save</button>
+                  <button className="endpoint-save" onClick={(e) => {handleSubmitEndpoint(index)}}>Save</button>
               </div>
               <div className={requireConClass}>
                   <label>Request</label>

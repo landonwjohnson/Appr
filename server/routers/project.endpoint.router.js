@@ -10,8 +10,8 @@ projectEndpointRouter.post('/:projectid/create/endpoint', (req, res) => {
     const projectid = req.params.projectid;
     const { endpointName, httpVerb, urlData, responseData, requestData } = req.body;
     const db = getDb();
-    db.create_project_endpoint( [projectid, endpointName, httpVerb, urlData, responseData, requestData ] )
-        .then(promise => res.send())
+    db.create_project_endpoint([ projectid, endpointName, httpVerb, urlData, responseData, requestData ])
+        .then(endpoint => res.send(endpoint))
         .catch(err => res.status(500).send(err));
 });
 

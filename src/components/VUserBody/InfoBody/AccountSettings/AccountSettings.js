@@ -7,16 +7,17 @@ import ChangePassword from './modals/ChangePassword'
 import ChangeAvatar from './modals/ChangeAvatar/ChangeAvatar';
 import Modal from 'react-modal';
 import { ModalBox } from './accountsettingsStyled';
-import { findUser } from '../../../../services/account.services';
+import { findUserInfo } from '../../../../services/account.services';
 
 class AccountSettings extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       profileModalOpen: false,
       emailModalOpen: false,
       passwordModalOpen: false,
       avatarModalOpen: false,
+      userInfo: {}
     }
     //UI Modals
       this.openProfileModal = this.openProfileModal.bind(this);
@@ -27,6 +28,29 @@ class AccountSettings extends Component {
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
+  }
+
+  componentWillMount(){
+    const userid = this.props.match.params.userid;
+    findUserInfo(userid)
+    .then( res => {
+        if (res.status !== 200) {
+            alert(res);
+        }
+        else {
+              this.setState({ 
+                  userInfo: {   
+                    id: res.data[0].id,
+                    username: res.data[0].username,
+                    avatar: res.data[0].avatar,
+                    firstName: res.data[0].first_name,
+                    lastName: res.data[0].last_name,
+                    email: res.data[0].email
+                  }
+              });
+        }
+    })
+    .catch(err => {throw err});
   }
 
   //UI Modals
@@ -65,8 +89,8 @@ class AccountSettings extends Component {
 
   
   render() {
-    
-    const { userInfo, handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
+    const userInfo = this.state.userInfo;
+    const { handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -112,7 +136,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <EditProfile userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} handleFirstNameChange={this.handleFirstNameChange} handleLastNameChange={this.handleLastNameChange} />
+              <EditProfile userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} />
           </Modal>
 
           <Modal 
