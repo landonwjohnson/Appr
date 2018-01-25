@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
+import { updateUserInfo } from '../../../../../services/account.services'
 
 class EditProfile extends Component {
   constructor(props){
     super(props)
     this.state={
+      username: this.props.userInfo.username,
       firstName: this.props.userInfo.firstName,
       lastName: this.props.userInfo.lastName,
-      username: this.props.userInfo.username
+      email: this.props.userInfo.email,
+      avatar: this.props.userInfo.avatar
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleUserNameChange = this.handleUserNameChange.bind(this);
+    this.handleNameSubmit = this.handleNameSubmit.bind(this);
   }
+
+
+  handleNameSubmit(){
+    const userid = this.props.userInfo.id;
+    const reqBody = this.state;
+    console.table(reqBody)
+    updateUserInfo(userid, reqBody)
+      .then( res => {
+        if ( res.status !== 200 ) {
+          alert(res);
+        }
+        else{
+          window.location.reload();
+        }
+      })
+      .catch(err => {throw err});
+  }
+
+
 
   handleFirstNameChange(e){
     let newFirstName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
@@ -66,7 +89,7 @@ class EditProfile extends Component {
                     </section>
                 </div>
               <div className="submitModal">
-                <button id="updateProfile" onClick={(e) => {handleNameSubmit(this.state.firstName, this.state.lastName, this.state.username)}}>
+                <button id="updateProfile" onClick={(e) => {this.handleNameSubmit()}}>
                   Update Profile
                 </button>
               </div>

@@ -11,8 +11,6 @@ DROP TABLE IF EXISTS
     project_view, 
     project_controller, 
     project_endpoint, 
-    req_endpoint, 
-    res_endpoint, 
     project_schema, 
     schema_type, 
     project_schema_table, 

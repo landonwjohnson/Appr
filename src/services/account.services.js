@@ -39,10 +39,17 @@ function findUserInfo(userid) {
         .catch(err => {throw err});
 }
 
+function updateUserInfo(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
 export {
     findUser,
     findUsername,
     updateUser,
     deleteUser,
-    findUserInfo
+    findUserInfo,
+    updateUserInfo
 };

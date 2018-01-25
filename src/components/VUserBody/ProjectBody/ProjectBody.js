@@ -78,7 +78,9 @@ class ProjectBody extends Component {
 
 
   render() {
-    const { userid, projectid } = this.props.match.params;
+    const { userid } = this.props.match.params;
+    const projectid = this.state.project.id;
+    const projectName = this.state.project.name;
     const { colorTheme, backgroundPreview } = this.state.UI;
 
     return (
@@ -89,6 +91,7 @@ class ProjectBody extends Component {
                 projectid={projectid} 
                 userid={userid} 
                 colorTheme={colorTheme}
+                projectName={projectName}
                 changeProjectBackground={this.changeProjectBackground}
                 clearProjectBackgroundPreview={this.clearProjectBackgroundPreview}
               />

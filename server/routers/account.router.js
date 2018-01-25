@@ -24,7 +24,7 @@ accountRouter.post('/username', (req, res) => {
 
 accountRouter.put('/update/:userid', (req, res) => {
     const userId = req.params.userid;
-    const { firstName, lastName, email, password, username } = req.body;
+    const { firstName, lastName, email, password, username, avatar } = req.body;
     const db = getDb();
     db.find_user_by_email([ email ])
         .then( user => {
@@ -38,7 +38,7 @@ accountRouter.put('/update/:userid', (req, res) => {
                             return res.status(409).send({message: 'Another account is currently using that username.'});
                         }
                         else {
-                            db.update_user([ userId, firstName, lastName, email, password, username ])
+                            db.update_user([ userId, firstName, lastName, email, password, username, avatar ])
                                 .then(promise => res.send())
                                 .catch(err => res.status(500).send(err));
                         }
@@ -64,6 +64,17 @@ accountRouter.get('/info/:userid', (req, res) => {
     db.find_user_info([ userId ])
         .then(user => res.send(user))
         .catch(err => res.status(500).send(err));
+});
+
+//update user info
+
+accountRouter.put('/info/update/:userid', (req, res) => {
+    const userId = req.params.userid;
+    const { firstName, lastName, email, password, username, avatar } = req.body;
+    const db = getDb();
+    db.update_user([ userId, firstName, lastName, email, password, username, avatar ])
+    .then(promise => res.send())
+    .catch(err => res.status(500).send(err));
 });
 
 module.exports = accountRouter;
