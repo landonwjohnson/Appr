@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import SchemaItem from './SchemaItem/SchemaItem';
 import { createProjectSchema, findProjectSchemas } from '../../../../services/project.schema.services';
-import NewSchemaItem from './NewSchemaItem/NewSchemaItem';
+
 
 class Schema extends Component {
   constructor(props){
