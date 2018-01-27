@@ -56,4 +56,4 @@ class SchemaItem extends Component {
 }
 }
 
-export default NewSchemaItem;
+export default SchemaItem;
