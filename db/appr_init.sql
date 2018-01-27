@@ -358,6 +358,8 @@ VALUES
 --     (4, 4, 'Separatists', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE)
 -- ;
 
+INSERT INTO project_schema (project_id, name, database_type, schema_data)
+VALUES
     (1,'select.sql', 'SQL', 'select * from users;'),
     (2,'insert.sql', 'mongo', 'select * from cats;'),
     (1,'drop.sql', 'SQL', 'select * from dogs;')
