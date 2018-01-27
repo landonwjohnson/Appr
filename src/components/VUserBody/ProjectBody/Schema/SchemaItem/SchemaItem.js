@@ -1,76 +1,59 @@
-import React, {Component} from 'react';
-import ColumnItem from './ColumnItem/ColumnItem';
+import React, { Component } from 'react';
+import './schemaitem.scss';
+import AceEditor from 'react-ace';
+import brace from 'brace';
+import 'brace/mode/sql';
 
 
-class SchemaItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            columns:[{
-                  key: 1,
-                  name: '',
-                  type: '',
-                  size: '',
-                  primaryKey: false,
-                  foreignKey: false,
-                  autoIncrement: false,
-                  notNull: false,
-                  uniqueReference: false
-            }]
-        };
-
-        this.handleAddColumn = this.handleAddColumn.bind(this);
-        this.handleDeleteColumn = this.handleDeleteColumn.bind(this);
+class NewSchemaItem extends Component {
+  constructor(){
+    super();
+    this.state = {
     }
+  }
 
-    handleAddColumn(){
-      let ColumnList = this.state.columns;
-      ColumnList.push({
-              columns:[{
-                key: 1,
-                name: '',
-                type: '',
-                size: '',
-                primaryKey: false,
-                foreignKey: false,
-                autoIncrement: false,
-                notNull: false,
-                uniqueReference: false
-          }]
-      })
-      this.setState({columns: ColumnList})
-    }
 
-    handleDeleteColumn(){
-      let newState = this.state.columns;
-      newState.pop();
-      console.log("working");
-      this.setState({columns: newState})
-    }
 
-    render() {
-        const {removeSchemaItemHandler} = this.props;
-        const displayColumns = this.state.columns.map( column => {
-            return <ColumnItem handleDeleteColumn={this.handleDeleteColumn} />
-        })
-        return(
-            <div className="schema-item">
-            <div className="project-item-header">
-              <button className="delete-item"onClick={removeSchemaItemHandler}></button>
-            </div>
-              <div className="name-table-row">
-                <input className="name-table" type="text" placeholder="Table Name" />
+  render() {
+
+
+  return (
+      <div className="new-schema-item">
+          <div className="project-item-header">
+           <button> </button>
+          </div>
+              <div className="schemaItem-inner">
+              <input className="schemaItem-name" placeholder={'find_user.sql'} />
+              <div className="sqlCon">
+                  <label>SQL</label>
+                      <AceEditor
+                          width={'100%'}
+                          border={'1px solid #CCC'}
+                          height={'120px'}
+                          mode="sql"
+                          theme="tomorrow"
+                          name={'schema'}
+                          onLoad={this.onLoad}
+                          onChange={this.onChange}
+                          fontSize={14}
+                          showPrintMargin={true}
+                          showGutter={true}
+                          highlightActiveLine={true}
+                          value={``}
+                          setOptions={{
+                          enableBasicAutocompletion: true,
+                          enableLiveAutocompletion: true,
+                          enableSnippets: false,
+                          showLineNumbers: true,
+                          tabSize: 2,
+                      }}/>
               </div>
 
-              {displayColumns}
-                      
-              <div className="column-item-footer">
-                <button className="add-button" onClick={this.handleAddColumn}> <span/> Add Column </button>
-                <button className="add-button">Save</button>
-              </div>
-            </div>
-        )
-    }
+          </div>
+      
+      </div>
+  );
+}
 }
 
-export default SchemaItem;
+export default NewSchemaItem;

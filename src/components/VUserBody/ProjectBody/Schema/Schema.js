@@ -57,6 +57,7 @@ class Schema extends Component {
   }
 
   render() {
+    console.table(this.state.schema);
     
     const displaySchemas = this.state.schemas.map( schema => {
         return <SchemaItem removeSchemaItemHandler={this.removeSchemaItemHandler}/>
@@ -68,7 +69,6 @@ class Schema extends Component {
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
-                  <NewSchemaItem />
                     {displaySchemas}
                   <button className="add-table" onClick={this.addSchemaItemHandler} ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>

@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS
     project_controller, 
     project_endpoint, 
     project_schema, 
-    schema_type, 
+    -- schema_type, 
     project_schema_table, 
     user_group, 
     group_project, 
@@ -107,10 +107,10 @@ CREATE TABLE project_endpoint (
     request_data TEXT
 );
 
-CREATE TABLE schema_type ( 
-    id SERIAL PRIMARY KEY, 
-    type_data TEXT 
-); 
+-- CREATE TABLE schema_type ( 
+--     id SERIAL PRIMARY KEY, 
+--     type_data TEXT 
+-- ); 
 
 CREATE TABLE project_schema_table (
     id SERIAL PRIMARY KEY, 
@@ -330,14 +330,14 @@ VALUES
 
         --Schema Type--
 
-INSERT INTO schema_type ( type_data )
-VALUES
-    ('Date'),
-    ('Integer'),
-    ('Text'),
-    ('Varchar'),
-    ('Char')
-;
+-- INSERT INTO schema_type ( type_data )
+-- VALUES
+--     ('Date'),
+--     ('Integer'),
+--     ('Text'),
+--     ('Varchar'),
+--     ('Char')
+-- ;
 
 
         --Actual Schema--    
