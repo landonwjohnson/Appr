@@ -5,9 +5,9 @@ import brace from 'brace';
 import 'brace/mode/sql';
 
 
-class NewSchemaItem extends Component {
-  constructor(){
-    super();
+class SchemaItem extends Component {
+  constructor(props){
+    super(props);
     this.state = {
     }
   }
@@ -15,7 +15,7 @@ class NewSchemaItem extends Component {
 
 
   render() {
-
+    const {index, schemaName, schemaid, projectid, databaseType, schemaData} = this.props;
 
   return (
       <div className="new-schema-item">
@@ -23,7 +23,7 @@ class NewSchemaItem extends Component {
            <button> </button>
           </div>
               <div className="schemaItem-inner">
-              <input className="schemaItem-name" placeholder={'find_user.sql'} />
+              <input className="schemaItem-name" placeholder={schemaName} />
               <div className="sqlCon">
                   <label>SQL</label>
                       <AceEditor
@@ -39,7 +39,7 @@ class NewSchemaItem extends Component {
                           showPrintMargin={true}
                           showGutter={true}
                           highlightActiveLine={true}
-                          value={``}
+                          value={schemaData}
                           setOptions={{
                           enableBasicAutocompletion: true,
                           enableLiveAutocompletion: true,

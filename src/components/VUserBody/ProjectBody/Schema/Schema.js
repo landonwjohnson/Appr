@@ -59,8 +59,20 @@ class Schema extends Component {
   render() {
     console.table(this.state.schema);
     
-    const displaySchemas = this.state.schemas.map( schema => {
-        return <SchemaItem removeSchemaItemHandler={this.removeSchemaItemHandler}/>
+    const { userid, projectid } = this.props.match.params;
+    const schemas = this.state.schemas;
+    const displaySchemas = schemas.map( schema => {
+      const index = schemas.indexOf(schema);
+        return <SchemaItem
+                  key={`schemaItem${index}`} 
+                  index={index}
+                  schemaName={schema.name}
+                  schemaid={schema.id}
+                  projectid={projectid}
+                  databaseType={schema.database_type}
+                  schemaData={schema.schema_data}
+                  removeSchemaItemHandler={this.removeSchemaItemHandler}
+                />
     })
     return (
 
@@ -69,6 +81,7 @@ class Schema extends Component {
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
+                  
                     {displaySchemas}
                   <button className="add-table" onClick={this.addSchemaItemHandler} ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>
