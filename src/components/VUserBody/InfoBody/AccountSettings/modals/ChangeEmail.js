@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
+import { updateUserInfo } from '../../../../../services/account.services';
 
 class ChangeEmail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: this.props.userInfo.email
+            username: this.props.userInfo.username,
+            firstName: this.props.userInfo.firstName,
+            lastName: this.props.userInfo.lastName,
+            email: this.props.userInfo.email,
+            avatar: this.props.userInfo.avatar
         }
         
         this.handleEmailChange = this.handleEmailChange.bind(this);
     }
+
+    handleEmailSubmit(){
+        const userid = this.props.userInfo.id;
+        const reqBody = this.state;
+        console.table(reqBody)
+        updateUserInfo(userid, reqBody)
+          .then( res => {
+            if ( res.status !== 200 ) {
+              alert(res);
+            }
+            else{
+              window.location.reload();
+            }
+          })
+          .catch(err => {throw err});
+      }
 
     handleEmailChange(e){
         let newEmail = e.toLowerCase();
@@ -42,7 +63,7 @@ class ChangeEmail extends Component {
                     </section>
                 </div>
                 <div className="submitModal">
-                    <button id="updateEmail" onClick={(e) => {handleEmailSubmit(this.state.email)}}>
+                    <button id="updateEmail" onClick={(e) => {this.handleEmailSubmit()}}>
                     Update Email
                     </button>
                 </div>
