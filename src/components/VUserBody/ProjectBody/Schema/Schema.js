@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import SchemaItem from './SchemaItem/SchemaItem';
 import { createProjectSchema, findProjectSchemas } from '../../../../services/project.schema.services';
-import NewSchemaItem from './NewSchemaItem/NewSchemaItem';
+
 
 class Schema extends Component {
   constructor(props){
@@ -58,8 +58,20 @@ class Schema extends Component {
 
   render() {
     
-    const displaySchemas = this.state.schemas.map( schema => {
-        return <SchemaItem removeSchemaItemHandler={this.removeSchemaItemHandler}/>
+    const { userid, projectid } = this.props.match.params;
+    const schemas = this.state.schemas;
+    const displaySchemas = schemas.map( schema => {
+      const index = schemas.indexOf(schema);
+        return <SchemaItem
+                  key={`schemaItem${index}`} 
+                  index={index}
+                  schemaName={schema.name}
+                  schemaid={schema.id}
+                  projectid={projectid}
+                  databaseType={schema.database_type}
+                  schemaData={schema.schema_data}
+                  removeSchemaItemHandler={this.removeSchemaItemHandler}
+                />
     })
     return (
 
@@ -68,7 +80,7 @@ class Schema extends Component {
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
-                  <NewSchemaItem />
+                  
                     {displaySchemas}
                   <button className="add-table" onClick={this.addSchemaItemHandler} ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>
