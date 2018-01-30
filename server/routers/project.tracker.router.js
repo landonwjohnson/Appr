@@ -47,14 +47,14 @@ projectTrackerRouter.put('/:projectid/update/tracker-list/:listid', (req, res) =
 });
 //delete
 //test works
-projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listid', (req, res) => {
-    const projectid = req.params.projectid;
-    const listid = req.params.listid;
-    const db = getDb();
-    db.delete_tracker_list([ projectid, listid ])
-        .then(promise => res.send())
-        .catch(err => res.status(500).send(err));
-});
+// projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listid', (req, res) => {
+//     const projectid = req.params.projectid;
+//     const listid = req.params.listid;
+//     const db = getDb();
+//     db.delete_tracker_list([ projectid, listid ])
+//         .then(promise => res.send())
+//         .catch(err => res.status(500).send(err));
+// });
 
 //delete one list
 projectTrackerRouter.delete('/:projectid/delete/tracker-list/:trackerid/list-order/:listid', (req, res) => {

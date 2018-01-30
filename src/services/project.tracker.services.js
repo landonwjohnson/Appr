@@ -30,9 +30,9 @@ function updateTrackerList(projectid, listid, body) {
         .catch(err => {throw err});
 }
 
-function deleteTrackerList(projectid, trackerid, listid) {
+function deleteTrackerList(projectid, listid, list_order) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/tracker-list/${trackerid}/list-order/${listid}`)
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}/list-order/${list_order}`)
         .then(res => res)
         .catch(err => {throw err});
 }

@@ -64,11 +64,11 @@ componentWillMount(){
     this.scrollToBottom();
   }
 
-  removeTrackerListHandle(index){
+  removeTrackerListHandle(e, index){
     const projectid = this.props.projectid;
     const listid = this.state.lists[index].id;
     const list_order = this.state.lists[index].list_order;
-    deleteTrackerList(projectid, list_order, listid)
+    deleteTrackerList(projectid, listid, list_order)
       .then(res => {
         if( res.status !== 200) {
           console.log(res);
