@@ -24,8 +24,9 @@ function findProjectEndpoint(projectid, endpointid) {
 }
 
 function updateProjectEndpoint(projectid, endpointid, body) {
+    console.table(body)
     return axios
-        .put(`${baseURL}/${projectid}/update/endpoint/${endpointid}`)
+        .put(`${baseURL}/${projectid}/update/endpoint/${endpointid}`, body)
         .then(res => res)
         .catch(err => {throw err});
 }

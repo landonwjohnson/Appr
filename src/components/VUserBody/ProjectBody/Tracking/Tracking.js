@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
 import classnames from "classnames";
-import { findTrackerLists, deleteTrackerList } from '../../../../services/project.tracker.services';
+import { findTrackerLists, deleteTrackerList, deleteTrackerCards } from '../../../../services/project.tracker.services';
 
 
 class Tracking extends Component {
@@ -65,21 +65,15 @@ componentWillMount(){
   }
 
   removeTrackerListHandle(index){
-    const projectid = this.props.projectid;
-    const listid = this.state.lists[index].id;
-    const list_order = this.state.lists[index].list_order;
-    deleteTrackerList(projectid, list_order, listid)
-      .then(res => {
-        if( res.status !== 200) {
-          console.log(res);
-        }
-        else{
-          const newState = this.state.lists;
-          newState.splice(index, 1);
-          this.setState({ lists: newState })
-        }
-      })
-      .catch(err => {throw err});
+    const listid = this.state.lists[index];
+    alert(`list id is ${listid}`);
+    console.table(listid)
+    
+
+
+    // deleteTrackerList(projectid, reqBody){
+
+    // }
   }
   
   render() {
@@ -92,7 +86,7 @@ componentWillMount(){
     const displayTrackerLists= this.state.lists.map( (list) => {
       const index = lists.indexOf(list);
       return(
-        <ProjectItem key={`tracker-list-${index}`} index={index} lists={lists} list_order={list.list_order} listid= {list.listid} PutInTrashClick={this.removeTrackerListHandle} listName={list.list_name} listid={list.id} projectid={this.props.projectid} />
+        <ProjectItem key={`tracker-list-${index}`} index={index} list_order={list.list_order} listid= {list.listid} removeTrackerListHandle={this.removeTrackerListHandle} listName={list.list_name} listid={list.id} projectid={this.props.projectid} />
       )
     })
    

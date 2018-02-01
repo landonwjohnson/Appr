@@ -34,7 +34,6 @@ class Endpoints extends Component {
           this.setState({ endpoints: res.data })
         }
       })
-
   }
 
   //endpoint ITEM add and remove methods
@@ -130,6 +129,7 @@ class Endpoints extends Component {
 
 
   render() {
+    console.table(this.state.endpoints)
     
     const { userid, projectid } = this.props.match.params;
     const endpoints = this.state.endpoints;
