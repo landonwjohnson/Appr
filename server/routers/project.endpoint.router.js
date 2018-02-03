@@ -35,14 +35,14 @@ projectEndpointRouter.get('/:projectid/endpoint/:endpointid', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
-//I'm having issues with this one - Landon
+//I'm having issues with this one
 projectEndpointRouter.put('/:projectid/update/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const { endpointName, httpVerb, urlData, responseData, requestData } = req.body;
     const db = getDb();
     db.update_project_endpoint([projectid, endpointid, endpointName, httpVerb, urlData, responseData, requestData])
-        .then(promise => res.send())
+        .then(promise => res.send(promise))
         .catch(err => res.status(500).send(err));
 });
 
