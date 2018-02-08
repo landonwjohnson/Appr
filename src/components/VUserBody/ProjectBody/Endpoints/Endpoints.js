@@ -130,7 +130,6 @@ class Endpoints extends Component {
 
 
   render() {
-    
     const { userid, projectid } = this.props.match.params;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {

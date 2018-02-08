@@ -35,14 +35,14 @@ class Schema extends Component {
   addSchemaItemHandler(projectid){
     const reqBody = {schemaName: 'test', databaseType: '', schemaData: ''};
     createProjectSchema(projectid, reqBody)
-      .then(res => {
-        if( res.status !== 200) {
-          console.log(res);
+      .then( res => {
+        if (res.status !== 200){
+          alert(res);
         }
-        else {
+        else{
           const newState = this.state.schemas;
           newState.push(res.data[0]);
-          this.setState({schemas: newState});
+          this.setState({ schemas: newState });
           this.scrollToBottom();
         }
       })
@@ -55,16 +55,22 @@ class Schema extends Component {
     this.setState({schemas: SchemaList})
   }
 
+  handleSchemaNameChange(newName, index){
+    const newState = this.state.schemas;
+    newState[index].schema_name = newName;
+    this.setState({ schemas: newState })
+  }
+
   render() {
     const { userid, projectid } = this.props.match.params;
     const schemas = this.state.schemas;
-    const displaySchemas = schemas.map( schema => {
+    const displaySchemas = schemas.map( (schema) => {
       const index = schemas.indexOf(schema);
         return <SchemaItem
                   key={`schemaItem${index}`} 
+                  schemaid={schema.id}
                   index={index}
                   schemaName={schema.schema_name}
-                  schemaid={schema.id}
                   projectid={projectid}
                   databaseType={schema.database_type}
                   schemaData={schema.schema_data}

@@ -34,9 +34,9 @@ projectSchemaRouter.get('/:projectid/schema/:schemaid', (req, res) => {
 projectSchemaRouter.put('/:projectid/update/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
-    const {tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
+    const {schemaName, databaseType, schemaData} = req.body;
     const db = getDb();
-    db.update_project_schema([ projectid, schemaid, tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique ])
+    db.update_project_schema([ projectid, schemaid, schemaName, databaseType, schemaData])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });

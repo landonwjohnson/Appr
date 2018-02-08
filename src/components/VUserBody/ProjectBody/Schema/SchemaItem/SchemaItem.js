@@ -22,8 +22,9 @@ class SchemaItem extends Component {
           <div className="project-item-header">
            <button> </button>
           </div>
+                <button >Save</button>
               <div className="schemaItem-inner">
-              <input className="schemaItem-name" placeholder={schemaName} />
+              <input className="schemaItem-name"  placeholder={schemaName}/>
               <div className="sqlCon">
                   <label>SQL</label>
                       <AceEditor
