@@ -32,13 +32,12 @@ class Schema extends Component {
       .catch(err => {throw err});
   }
 
-  addSchemaItemHandler(){
-    const projectid = this.props.match.params.projectid;
-    const reqBody = {tableNameId: Number, columnName: '', schemaTypeId: Number, sizeData: '', isPrimaryKey: Boolean, isForeignKey: Boolean, isSerial: Boolean, isNotNull: Boolean, isUnique: Boolean};
+  addSchemaItemHandler(projectid){
+    const reqBody = {schemaName: 'test', databaseType: '', schemaData: ''};
     createProjectSchema(projectid, reqBody)
       .then(res => {
         if( res.status !== 200) {
-          console.logt(res);
+          console.log(res);
         }
         else {
           const newState = this.state.schemas;
@@ -57,8 +56,6 @@ class Schema extends Component {
   }
 
   render() {
-    console.table(this.state.schema);
-    
     const { userid, projectid } = this.props.match.params;
     const schemas = this.state.schemas;
     const displaySchemas = schemas.map( schema => {
@@ -66,7 +63,7 @@ class Schema extends Component {
         return <SchemaItem
                   key={`schemaItem${index}`} 
                   index={index}
-                  schemaName={schema.name}
+                  schemaName={schema.schema_name}
                   schemaid={schema.id}
                   projectid={projectid}
                   databaseType={schema.database_type}
@@ -83,7 +80,7 @@ class Schema extends Component {
                 <div className="table-list-container">
                   
                     {displaySchemas}
-                  <button className="add-table" onClick={this.addSchemaItemHandler} ref={(el) => { this.listEnd = el; }}> Add Table </button>
+                  <button className="add-table" onClick={(e) => {this.addSchemaItemHandler(projectid)}}  ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>
               </div>
               </div>

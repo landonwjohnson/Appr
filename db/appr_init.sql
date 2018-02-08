@@ -134,7 +134,7 @@ CREATE TABLE project_endpoint (
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    name TEXT,
+    schema_name TEXT,
     database_type TEXT,
     schema_data TEXT
 );
@@ -358,7 +358,7 @@ VALUES
 --     (4, 4, 'Separatists', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE)
 -- ;
 
-INSERT INTO project_schema (project_id, name, database_type, schema_data)
+INSERT INTO project_schema (project_id, schema_name, database_type, schema_data)
 VALUES
     (1,'select.sql', 'SQL', 'select * from users;'),
     (2,'insert.sql', 'mongo', 'select * from cats;'),

@@ -5,9 +5,9 @@ const projectSchemaRouter = express.Router();
 
 projectSchemaRouter.post('/:projectid/create/schema', (req, res) => {
     const projectid = req.params.projectid;
-    const {tableNameId, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
+    const {schemaName, databaseType, schemaData} = req.body;
     const db = getDb();
-    db.create_project_schema([ projectid, tableNameId, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique ])
+    db.create_project_schema([ projectid, schemaName, databaseType, schemaData])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
