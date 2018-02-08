@@ -126,5 +126,14 @@ projectTrackerRouter.delete('/:projectid/delete/tracker-card/:cardid', (req, res
         .catch(err => res.status(500).send(err));
 });
 
+projectTrackerRouter.delete('/:projectid/delete/tracker-card/:listid', (req, res) => {
+    const projectid = req.params.projectid;
+    const listid = req.params.listid;
+    const db = getDb();
+    db.delete_tracker_cards([ projectid, listid ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
+
 
 module.exports = projectTrackerRouter;

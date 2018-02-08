@@ -67,7 +67,7 @@ addTaskItemHandler(){
 removeTaskItemHandler(index){
   const projectid = this.props.projectid;
   const cardid = this.state.tasks[index].id;
-  deleteTrackerCard(projectid, cardid, )
+  deleteTrackerCard(projectid, cardid)
     .then( res => {
       if( res.status !== 200 ) {
         console.log(res);
@@ -78,15 +78,11 @@ removeTaskItemHandler(index){
         this.setState({ tasks: newState });
       }
     })
-  // let NewTask = this.state.tasks;
-  // NewTask.pop();
-  // console.log('remove task')
-  // this.setState({taskName: NewTask})
 }
 
   render() {
     const tasks = this.state.tasks;
-    const {index, PutInTrashClick, list_order} = this.props;
+    const {index, removeTrackerListHandle, list_order} = this.props;
     console.log(this.state.taskName)
 
     let addTaskInput = classnames({
@@ -102,7 +98,7 @@ removeTaskItemHandler(index){
     const displayTasks = this.state.tasks.map((task) =>{
       const index = tasks.indexOf(task);
       return(
-        <ProjectCard key={index} index= {index} list_order= {list_order} listName={this.props.listName} taskName={task.card_name} onDeleteTaskClick={this.removeTaskItemHandler} projectid={this.props.projectid} />
+        <ProjectCard key={index} index={index} list_order= {list_order} listName={this.props.listName} taskName={task.card_name} onDeleteTaskClick={this.removeTaskItemHandler} projectid={this.props.projectid} />
       )
     })
     return (
@@ -112,7 +108,7 @@ removeTaskItemHandler(index){
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
                     <input type="text" placeholder={this.props.listName}/>
-                    <span onClick={ (e) => {PutInTrashClick(index)} } > </span>
+                    <span onClick={ (e) => {removeTrackerListHandle(index)} } > </span>
                   </div>
                   <div className="prjt-item-body">
                     <ul>
@@ -141,8 +137,8 @@ removeTaskItemHandler(index){
   }
 }
 
-ProjectItem.propTypes = { PutInTrashClick: PropTypes.func }
-ProjectItem.defaultProps = { PutInTrashClick: () => {} }
+ProjectItem.propTypes = { removeTrackerListHandle: PropTypes.func }
+ProjectItem.defaultProps = { removeTrackerListHandle: () => {} }
 export default ProjectItem;
 
 

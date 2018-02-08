@@ -107,6 +107,7 @@ CREATE TABLE project_endpoint (
     request_data TEXT
 );
 
+
 -- CREATE TABLE schema_type ( 
 --     id SERIAL PRIMARY KEY, 
 --     type_data TEXT 

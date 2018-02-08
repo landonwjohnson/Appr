@@ -15,16 +15,18 @@ class SchemaItem extends Component {
 
 
   render() {
-    const {index, schemaName, schemaid, projectid, databaseType, schemaData} = this.props;
+    const {index, schemaName, schemaid, projectid, databaseType, schemaData, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema} = this.props;
+
+    let schemaDataText = schemaData.toString();
 
   return (
       <div className="new-schema-item">
           <div className="project-item-header">
            <button> </button>
           </div>
-                <button >Save</button>
+                <button onClick={ (e) => {handleSubmitSchema(index)} }>Save</button>
               <div className="schemaItem-inner">
-              <input className="schemaItem-name"  placeholder={schemaName}/>
+              <input className="schemaItem-name"  placeholder={schemaName} onChange={(e) => { handleSchemaNameChange(e.target.value, index) }}/>
               <div className="sqlCon">
                   <label>SQL</label>
                       <AceEditor
@@ -35,12 +37,12 @@ class SchemaItem extends Component {
                           theme="tomorrow"
                           name={'schema'}
                           onLoad={this.onLoad}
-                          onChange={this.onChange}
+                          onChange={(e) => {handleSchemaDataChange(e, index)}}
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}
                           highlightActiveLine={true}
-                          value={schemaData}
+                          value={schemaDataText}
                           setOptions={{
                           enableBasicAutocompletion: true,
                           enableLiveAutocompletion: true,

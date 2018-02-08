@@ -17,6 +17,9 @@ class EndpointItem extends Component {
     this.toggleRequireCon = this.toggleRequireCon.bind(this);
   }
 
+  componentWillMount(){
+    this.toggleRequireCon(this.props.httpVerb, this.props.index)
+  }
 
   toggleRequireCon(e, index){
     this.props.handleHttpVerbChange(e, index)
@@ -57,7 +60,7 @@ class EndpointItem extends Component {
               <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />
               <div className="httpverb-url-con" >
                   <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)}>
-                      <option style={{'display': 'none'}} value={httpVerb}> {httpVerb} </option>
+                      <option value={httpVerb}> {httpVerb} </option>
                       <option value="GET"> GET </option>
                       <option value="POST" > POST </option>
                       <option value="PUT"> PUT </option>

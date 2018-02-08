@@ -34,7 +34,6 @@ class Endpoints extends Component {
           this.setState({ endpoints: res.data })
         }
       })
-
   }
 
   //endpoint ITEM add and remove methods
@@ -56,7 +55,7 @@ class Endpoints extends Component {
 
   handleSubmitEndpoint(index){
     const projectid = this.props.match.params.projectid;
-    alert('handleSubmitEndpoint FIRED!!!!!')
+    // alert('handleSubmitEndpoint FIRED!!!!!')
     const { endpoint_name, http_verb, url_data, response_data, request_data} = this.state.endpoints[index];
     const reqBody = { 
       endpointName: endpoint_name, 
@@ -67,9 +66,9 @@ class Endpoints extends Component {
     };
 
     const endpointid = Number(this.state.endpoints[index].id);
-    alert(`the index is ${index}`);
-    alert(`the endpointid is ${endpointid}`)
-    alert(`the projectid is ${projectid}`)
+    // alert(`the index is ${index}`);
+    // alert(`the endpointid is ${endpointid}`)
+    // alert(`the projectid is ${projectid}`)
     updateProjectEndpoint(projectid, endpointid, reqBody)
       .then( res => {
         if (res.status !== 200){
@@ -79,6 +78,8 @@ class Endpoints extends Component {
       .catch(err => {throw err});
   }
 
+
+  //removes it from UI, but does not delete it
   removeEndpointItemHandler(index){
     const projectid = this.props.match.params.projectid;
     const endpointid = this.state.endpoints[index].id;
@@ -98,7 +99,7 @@ class Endpoints extends Component {
 
   handleEndpointNameChange(newName, index){
     const newState = this.state.endpoints;    
-    newState[index].name = newName;
+    newState[index].endpoint_name = newName;
     this.setState({ endpoints: newState })
   }
 
@@ -130,6 +131,8 @@ class Endpoints extends Component {
 
 
   render() {
+    console.table(this.state.endpoints)
+    
     const { userid, projectid } = this.props.match.params;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {
