@@ -1,5 +1,8 @@
 @import './components/_colors.scss';
 
+:root{
+  --project-color: #616161;
+}
 .App {
   text-align: center;
   height: 100vh;

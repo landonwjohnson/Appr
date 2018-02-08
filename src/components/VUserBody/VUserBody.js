@@ -9,7 +9,7 @@ class VUserBody extends Component {
   constructor(props){
     super(props);
     this.state ={
-      userInfo: {}
+      userInfo: {},
     }
 
     //AccountSettings
@@ -19,6 +19,7 @@ class VUserBody extends Component {
 
     //UI
       this.handleInitials = this.handleInitials.bind(this);
+      this.handleColor = this.handleColor.bind(this);
   }
 
   componentWillMount(){
@@ -99,7 +100,7 @@ class VUserBody extends Component {
     return (
       <div>
         <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
-        
+        <input type="color" onChange={(e) => console.log(e.target.value)}/>
             <Route path="/user/:userid/"  render={(props) => (
                 <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
 

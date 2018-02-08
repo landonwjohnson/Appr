@@ -123,6 +123,7 @@ class Header extends Component {
                             <div className="board-icon"><img src={BoardsIcon} /></div>      
                             <div className="board-text">Projects</div>
                     </div>
+                    <input type="color" />
                     <div className="header-search"> 
                                 <input />
                                 <button />
