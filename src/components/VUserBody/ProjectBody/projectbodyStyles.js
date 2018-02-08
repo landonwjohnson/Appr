@@ -19,7 +19,7 @@ let BlurOverlay = styled.div `
     // background-size: cover;
     // background-repeat: no-repeat;
     z-index: 0; 
-    background: ${propsie => propsie.colorTheme || '#FFF'} url("${propsie => propsie.backgroundImage}") 50%/cover no-repeat;
+    background: ${propsie => propsie.colorTheme || 'var(--project-background-theme)'} url("${propsie => propsie.backgroundImage}") 50%/cover no-repeat;
     position: absolute;
     overflow: none;
     transition: 0.3s ease-in-out;

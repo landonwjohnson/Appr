@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux';
-import themeReducer from './ducks/theme.reducer';
+import projectInfo from './ducks/projectInfo.reducer';
 
-combineReducers({
-    themeReducer
+const rootReducer = combineReducers({
+    projectInfo
 })
 
 
-export default createStore( combineReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+export default createStore( rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );

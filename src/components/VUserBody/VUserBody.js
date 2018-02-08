@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
+import { connect } from 'react-redux';
 
 class VUserBody extends Component {
   constructor(props){
@@ -19,7 +20,6 @@ class VUserBody extends Component {
 
     //UI
       this.handleInitials = this.handleInitials.bind(this);
-      this.handleColor = this.handleColor.bind(this);
   }
 
   componentWillMount(){
@@ -97,8 +97,9 @@ class VUserBody extends Component {
   render() {
     const userInfo = this.state.userInfo;
     const userid = this.state.userInfo.id;
+    const themeColor = this.props.projectInfo.themeColor;
     return (
-      <div>
+      <div style={{'--primary-theme-color': `${themeColor}` }}>
         <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
         <input type="color" onChange={(e) => console.log(e.target.value)}/>
             <Route path="/user/:userid/"  render={(props) => (
@@ -106,13 +107,21 @@ class VUserBody extends Component {
 
             <Route path="/user/:userid/project/:projectid" render={(props) => (
                 <ProjectBody  {...props}/>)} />
-
+            
       </div>
     );
   }
 }
 
-export default withRouter(VUserBody);
+function mapStateToProps(state){
+  return state
+  
+}
+
+
+export default withRouter(connect( mapStateToProps ) (VUserBody));
+
+
 
 
 

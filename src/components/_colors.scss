@@ -10,6 +10,11 @@ $medium-color: #8F8F8F;
 $light-color: #E2E4E6;
 
 
+@mixin variable($property, $varible, $fallback){
+  #{$property}: $fallback;
+  #{$property}: var($variable);
+}
+
 
 @mixin darken-background($color, $factor: 20%) {
     background-color: darken($color, $factor);

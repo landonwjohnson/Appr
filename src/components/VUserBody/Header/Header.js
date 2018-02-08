@@ -8,6 +8,10 @@ import './header.scss';
 import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
 
+//REDUX
+    import { updateThemeColor } from '../../../actions/actionCreators';
+    import { connect } from 'react-redux';
+
 
 class Header extends Component {
     constructor(props){
@@ -86,7 +90,7 @@ class Header extends Component {
     }
     
   render(){
-    const { userInfo, handleInitials, userid } = this.props;
+    const { userInfo, handleInitials, userid, updateThemeColor } = this.props;
 
      
 
@@ -110,6 +114,8 @@ class Header extends Component {
         "bread-menu-toggle-before": true,
         "bread-menu-toggle-after": this.state.breadToX
     })
+
+
    
     return (
  
@@ -123,7 +129,7 @@ class Header extends Component {
                             <div className="board-icon"><img src={BoardsIcon} /></div>      
                             <div className="board-text">Projects</div>
                     </div>
-                    <input type="color" />
+                    <input type="color" onChange={e => updateThemeColor(e.target.value)}/>
                     <div className="header-search"> 
                                 <input />
                                 <button />
@@ -180,4 +186,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+
+function mapStateToProps(state){
+    return state;
+  }
+  
+  
+  export default connect( mapStateToProps, { updateThemeColor } ) (Header);

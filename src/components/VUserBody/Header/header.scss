@@ -36,7 +36,8 @@
 }
 
 .header-container {
-    @include darken-background($primary, 15%);
+    
+    background: var(--primary-theme-color);
     display: block;
     position: relative;
     z-index: 3;
@@ -46,6 +47,15 @@
     justify-content: center;
     align-items: center;
     user-select: none;
+    // @include darken-background($primary, 15%);
+    
+    // background:
+    //   linear-gradient(
+    //     to top,
+    //     rgba(0, 0, 0, 0.25),
+    //     rgba(0, 0, 0, 0.25)
+    //   )
+    // var(--primary-theme-color);
   }
   
   .nav-bar {
@@ -56,7 +66,8 @@
     height: 40px;
     z-index: 3;
     position: relative;
-    @include darken-bottom-border($primary, 25%);
+    // @include darken-bottom-border($primary, 25%);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.70);
   }
   
   .board-con {
