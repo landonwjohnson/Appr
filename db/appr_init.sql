@@ -92,6 +92,7 @@ CREATE TABLE project_view (
 CREATE TABLE project_controller (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
+    controller_name TEXT,
     when_data TEXT,
     do_data TEXT,
     require_data TEXT
@@ -306,12 +307,12 @@ VALUES
 
     --Controllers
 
-INSERT INTO project_controller ( project_id, when_data, do_data, require_data )
+INSERT INTO project_controller ( project_id, controller_name, when_data, do_data, require_data )
 VALUES
-    (1, 'Coming out of hyperspace', 'Check for a trap', 'no backup plan'),
-    (2, 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'a black outfit'),
-    (3, 'Unsure what to do', 'Use the force', 'a calm mind'),
-    (4, 'Jedi are attacking', 'Run into danger', 'no free will')
+    (1, 'Alliance Logo', 'Coming out of hyperspace', 'Check for a trap', 'no backup plan'),
+    (2, 'Empire Logo', 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'a black outfit'),
+    (3, 'Jedi Logo', 'Unsure what to do', 'Use the force', 'a calm mind'),
+    (4, 'Separatist Logo', 'Jedi are attacking', 'Run into danger', 'no free will')
 ;
 
     --Endpoint

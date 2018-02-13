@@ -14,13 +14,14 @@ class Controllers extends Component {
       this.handleChangeInput = this.handleChangeInput.bind(this);
       this.handleSaveChange = this.handleSaveChange.bind(this);
       this.handleDeleteController = this.handleDeleteController.bind(this);
+      this.handleControllerNameChange = this.handleControllerNameChange.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
       const controllerExamples = [
           { 
               when_data: 'User clicks login',
@@ -48,7 +49,7 @@ class Controllers extends Component {
 
   handleAddController() {
     const projectid = this.props.match.params.projectid;
-    const reqBody = { whenData: '', doData: '', requireData: '' };
+    const reqBody = { controllerName: 'Select View', whenData: '', doData: '', requireData: '' };
     createProjectController(projectid, reqBody)
         .then(res => {
             if (res.status !== 200) {
@@ -73,12 +74,37 @@ class Controllers extends Component {
   handleSaveChange(e, index) {
       const projectid = this.props.match.params.projectid;
       const controllerid = e.target.id;
+      console.log(controllerid)
       const reqBody = {
+          controllerName: this.state.controllers[index].controller_name,
           whenData: this.state.controllers[index].when_data,
           doData: this.state.controllers[index].do_data,
           requireData: this.state.controllers[index].require_data
       };
+
+      console.table(reqBody)
       updateProjectController(projectid, controllerid, reqBody)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+        })
+        .catch(err => {throw err});
+  }
+
+  handleControllerNameChange(e, index, value){
+        const projectid = this.props.match.params.projectid;
+        const controllerid = e.target.id;
+        
+        console.log(controllerid)
+        const reqBody = {
+            controllerName: value,
+            whenData: this.state.controllers[index].when_data,
+            doData: this.state.controllers[index].do_data,
+            requireData: this.state.controllers[index].require_data
+        };
+
+        updateProjectController(projectid, controllerid, reqBody)
         .then( res => {
             if (res.status !== 200) {
                 console.log(res);
@@ -109,7 +135,7 @@ class Controllers extends Component {
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerItem key={index}  index={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid}/>
+        return <ControllerItem key={index}  index={index} controllerid={controller.id} controllerName={controller.controller_name} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid} handleControllerNameChange={this.handleControllerNameChange}/>
     });
     
     return (
