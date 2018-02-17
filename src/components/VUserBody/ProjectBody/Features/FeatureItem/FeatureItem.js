@@ -40,7 +40,7 @@ class FeatureItem extends Component {
     // }
 
     render() {
-        const { index, featureData, handleChangeFeature, handleSubmitFeature, handleDeleteFeature, handleSaveChange } = this.props;
+        const { index, featureData, handleChangeFeature, handleDeleteFeature, handleSaveChange } = this.props;
         const saveBtnClass = classnames({
         "input-complete-btn":  this.state.UI.saveBtn,
         "input-incomplete-btn" : true
