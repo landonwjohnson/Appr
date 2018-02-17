@@ -12,4 +12,3 @@ function findAvatars(){
 export {
     findAvatars
 }
-

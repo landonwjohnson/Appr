@@ -23,7 +23,7 @@ class Controllers extends Component {
 
   componentWillMount() {
       const controllerExamples = [
-          { 
+          {
               when_data: 'User clicks login',
               do_data: 'land on dashboard page',
               require_data: 'Username and password'
@@ -96,7 +96,7 @@ class Controllers extends Component {
   handleControllerNameChange(e, index, value){
         const projectid = this.props.match.params.projectid;
         const controllerid = e.target.id;
-        
+
         console.log(controllerid)
         const reqBody = {
             controllerName: value,
@@ -131,14 +131,14 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
   // if we need to we can change the key to equal something else other than the index
-  render() { 
+  render() {
     const projectid = this.props.match.params.projectid;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
         return <ControllerItem key={index}  index={index} controllerid={controller.id} controllerName={controller.controller_name} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid} handleControllerNameChange={this.handleControllerNameChange}/>
     });
-    
+
     return (
 
                 <div className="controllers-container">
@@ -146,9 +146,9 @@ class Controllers extends Component {
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
                         <div className="controller-list">
-                            
+
                             {displayControllers}
-                            
+
                             <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
                                     <div className="add-contro-item-body">
@@ -163,7 +163,7 @@ class Controllers extends Component {
                     </div>
                     </div>
                 </div>
-        
+
     );
   }
 }

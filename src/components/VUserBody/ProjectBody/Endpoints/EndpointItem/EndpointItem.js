@@ -33,6 +33,10 @@ class EndpointItem extends Component {
     }
   }
 
+  httpHideShow(){
+
+  }
+
 
 
   render() {
@@ -52,9 +56,9 @@ class EndpointItem extends Component {
           <div className="project-item-header">
            <button onClick={() => removeEndpointItemHandler(index)}> </button>
           </div>
-              <div className="endpoint-inner">
+            <div className="endpoint-inner" >
               <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />
-              <div className="httpverb-url-con">
+              <div className="httpverb-url-con" >
                   <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)}>
                       <option value={httpVerb}> {httpVerb} </option>
                       <option value="GET"> GET </option>

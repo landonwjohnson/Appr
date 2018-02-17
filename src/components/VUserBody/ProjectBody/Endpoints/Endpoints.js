@@ -139,10 +139,10 @@ class Endpoints extends Component {
       const index = endpoints.indexOf(endpoint);
       return(
         <EndpointItem 
-          key={`endpointItem${index}`} 
+          key={`endpointItem${index}`}
           index={index}
           endpointid={endpoint.id}
-          projectid={projectid} 
+          projectid={projectid}
           endpointName={endpoint.endpoint_name}
           httpVerb={endpoint.http_verb}
           urlData={endpoint.url_data}

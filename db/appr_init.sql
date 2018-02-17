@@ -1,23 +1,23 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
-DROP TABLE IF EXISTS 
+DROP TABLE IF EXISTS
     status,
-    users, 
-    groups, 
-    project, 
-    project_idea, 
-    project_user_field, 
-    project_feature, 
-    project_view, 
-    project_controller, 
-    project_endpoint, 
-    project_schema, 
-    schema_type, 
-    project_schema_table, 
-    user_group, 
-    group_project, 
-    user_project, 
-    roles, 
+    users,
+    groups,
+    project,
+    project_idea,
+    project_user_field,
+    project_feature,
+    project_view,
+    project_controller,
+    project_endpoint,
+    project_schema,
+    -- schema_type,
+    project_schema_table,
+    user_group,
+    group_project,
+    user_project,
+    roles,
     tracker_card_order,
     tracker_list_order,
     tracker_card,
@@ -38,7 +38,7 @@ CREATE TABLE users (
     avatar TEXT,
     first_name TEXT,
     last_name TEXT,
-    email TEXT unique, 
+    email TEXT unique,
     password TEXT,
     status_id int references status(id)
  );
@@ -109,14 +109,14 @@ CREATE TABLE project_endpoint (
 );
 
 
--- CREATE TABLE schema_type ( 
---     id SERIAL PRIMARY KEY, 
---     type_data TEXT 
--- ); 
+-- CREATE TABLE schema_type (
+--     id SERIAL PRIMARY KEY,
+--     type_data TEXT
+-- );
 
 -- CREATE TABLE project_schema_table (
---     id SERIAL PRIMARY KEY, 
---     table_name TEXT 
+--     id SERIAL PRIMARY KEY,
+--     table_name TEXT
 -- );
 
 -- CREATE TABLE project_schema(
@@ -136,31 +136,31 @@ CREATE TABLE project_endpoint (
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    name TEXT,
+    schema_name TEXT,
     database_type TEXT,
     schema_data TEXT
 );
 
 --end of project fields
 
-CREATE TABLE roles ( 
-    id SERIAL PRIMARY KEY, 
-    roles TEXT 
-); 
+CREATE TABLE roles (
+    id SERIAL PRIMARY KEY,
+    roles TEXT
+);
 
 CREATE TABLE user_group (
-    user_id int references users(id), 
+    user_id int references users(id),
     group_id int references groups(id)
 );
 
 CREATE TABLE group_project (
-    group_id int references groups(id), 
+    group_id int references groups(id),
     project_id int references project(id)
 );
 
-CREATE TABLE user_project ( 
-    user_id int references users(id), 
-    project_id int references project(id), 
+CREATE TABLE user_project (
+    user_id int references users(id),
+    project_id int references project(id),
     roles_id int references roles(id)
 );
 
@@ -278,7 +278,7 @@ VALUES
     (3, 'Jedi', 'lightsaber and dipolmacy', 'patient'),
     (4, 'Droid', 'programmed', 'cheap')
 ;
-    
+
     --Features
 
 INSERT INTO project_feature ( project_id, feature_data )
@@ -350,7 +350,7 @@ VALUES
 -- ;
 
 
-        --Actual Schema--    
+        --Actual Schema--
 
 -- INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
 -- VALUES
@@ -360,7 +360,7 @@ VALUES
 --     (4, 4, 'Separatists', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE)
 -- ;
 
-INSERT INTO project_schema (project_id, name, database_type, schema_data)
+INSERT INTO project_schema (project_id, schema_name, database_type, schema_data)
 VALUES
     (1,'select.sql', 'SQL', 'select * from users;'),
     (2,'insert.sql', 'mongo', 'select * from cats;'),
@@ -430,7 +430,7 @@ VALUES
 
 --Tracker
 
-INSERT INTO tracker_card_order ( card_order ) 
+INSERT INTO tracker_card_order ( card_order )
 VALUES
     (1),
     (2),
@@ -449,7 +449,7 @@ VALUES
     (5)
 ;
 
-INSERT INTO tracker_list_order ( list_order ) 
+INSERT INTO tracker_list_order ( list_order )
 VALUES
     (1),
     (2),
@@ -469,7 +469,7 @@ VALUES
 ;
 
 
-INSERT INTO tracker_list ( project_id, list_name, list_order ) 
+INSERT INTO tracker_list ( project_id, list_name, list_order )
 VALUES
     (1, 'ToDo', 1),
     (1, 'In Process', 1),
@@ -488,7 +488,7 @@ VALUES
     (3, 'Done', 3)
 ;
 
-INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order ) 
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order )
 VALUES
     (2, 'Find Vader', 'data', 1, 1),
     (2, 'Find the Emporer', 'data', 2, 1),
@@ -530,9 +530,15 @@ VALUES
     );
 
     INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
-    VALUES 
+<<<<<<< HEAD
+    VALUES
+        ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Hot-Springs-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Thistle-House-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+=======
+    VALUES
         -- ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Hot-Springs-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         -- ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Thistle-House-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+>>>>>>> ffe2ae7c0f1d778fca779d07e8fd976060b85ef8
         ('Lucas Arts', 'https://wallpapercave.com/wp/wp1810894.jpg', 'www.starwars.com'),
         ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
         ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
@@ -549,7 +555,7 @@ VALUES
     );
 
     -- INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
-    -- VALUES 
+    -- VALUES
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/link_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/banjokazooie_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/mastercheif_avatar.svg'),

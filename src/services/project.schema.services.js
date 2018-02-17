@@ -4,7 +4,7 @@ const baseURL = '/api/project';
 
 function createProjectSchema(projectid, body) {
     return axios
-        .post( `${baseURL}/${projectid}/create/schema`, body)
+        .post(`${baseURL}/${projectid}/create/schema`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
