@@ -530,9 +530,15 @@ VALUES
     );
 
     INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
+<<<<<<< HEAD
     VALUES
         ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Hot-Springs-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Thistle-House-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+=======
+    VALUES 
+        -- ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Hot-Springs-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        -- ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/backgrounds/Landon+Johnson/Thistle-House-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+>>>>>>> ffe2ae7c0f1d778fca779d07e8fd976060b85ef8
         ('Lucas Arts', 'https://wallpapercave.com/wp/wp1810894.jpg', 'www.starwars.com'),
         ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
         ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
@@ -549,7 +555,11 @@ VALUES
     );
 
     -- INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
+<<<<<<< HEAD
     -- VALUES
+=======
+    -- VALUES 
+>>>>>>> ffe2ae7c0f1d778fca779d07e8fd976060b85ef8
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/link_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/banjokazooie_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
     --     ('Landon Johnson', 'https://s3-us-west-1.amazonaws.com/appr/user_customization/avatars/Landon+Johnson/mastercheif_avatar.svg'),
