@@ -25,7 +25,7 @@ class ControllerItem extends Component {
     }
 
     render() {
-        const { index, controllerid, whenData, doData, requireData, handleDeleteController, handleChangeInput, handleSaveChange } = this.props;
+        const { index, controllerid, whenData, doData, requireData, handleDeleteController, handleChangeInput, handleSaveChange, controllerName, handleControllerNameChange } = this.props;
         const views = this.state.views;
         const displayViews = views.map( view => {
             const index = views.indexOf(view);
@@ -40,10 +40,11 @@ class ControllerItem extends Component {
                     <button className="delete-item" onClick={() => handleDeleteController(index) }> </button>
                 </div>
                 <div className="contro-item-title">
-                    <select> 
-                            <option value="" disabled selected>Select view</option>
+                    <select name={`${controllerid}-selectname`} onChange={(e) => handleControllerNameChange(e, index, e.target.value)}> 
+                            <option style={{'display': 'none'}}> {controllerName} </option>
                             { displayViews }
                     </select>
+                    <button> Save </button>
                 </div>
                 <div className="contro-item-inputs">
                     <div className="contro-row-container">
