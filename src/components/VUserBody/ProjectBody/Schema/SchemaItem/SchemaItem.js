@@ -15,7 +15,7 @@ class SchemaItem extends Component {
 
 
   render() {
-    const {index, schemaName, schemaid, projectid, databaseType, schemaData, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema} = this.props;
+    const {index, schemaName, projectid, databaseType, schemaData, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema} = this.props;
 
     let schemaDataText = schemaData.toString();
 
@@ -53,7 +53,7 @@ class SchemaItem extends Component {
               </div>
 
           </div>
-      
+
       </div>
   );
 }

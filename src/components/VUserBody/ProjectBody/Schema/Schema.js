@@ -6,7 +6,7 @@ import { createProjectSchema, findProjectSchemas, updateProjectSchema } from '..
 
 class Schema extends Component {
   constructor(props){
-    super();
+    super(props);
     this.state={
       schemas: []
     };
@@ -53,7 +53,8 @@ class Schema extends Component {
       .catch(err => {throw err});
   }
 
-  addSchemaItemHandler(projectid){
+  addSchemaItemHandler(){
+    const projectid = this.props.match.params.projectid;
     const reqBody = {schemaName: 'test', databaseType: '', schemaData: ''};
     createProjectSchema(projectid, reqBody)
       .then( res => {
@@ -61,10 +62,20 @@ class Schema extends Component {
           alert(res);
         }
         else{
-          const newState = this.state.schemas;
-          newState.push(res.data[0]);
-          this.setState({ schemas: newState });
-          this.scrollToBottom();
+          // const newState = this.state.schemas;
+          // newState.push(res.data[0]);
+          // this.setState({ schemas: newState });
+          findProjectSchemas(projectid)
+            .then( res => {
+              if (res.status !== 200) {
+              console.log(res);
+              }
+              else {
+              this.setState({ schemas: res.data})
+              this.scrollToBottom();
+              }
+            })
+          .catch(err => {throw err});
         }
       })
       .catch(err => {throw err});
@@ -93,11 +104,12 @@ class Schema extends Component {
     console.table(this.state.schemas);
     const { userid, projectid } = this.props.match.params;
     const schemas = this.state.schemas;
-    const displaySchemas = schemas.map( (schema) => {
+    const displaySchemas = schemas.map( schema => {
       const index = schemas.indexOf(schema);
+      let id = schema.id;
         return <SchemaItem
-                  key={`schemaItem${index}`} 
-                  schemaid={schema.id}
+                  key={`schemaItem${index}`}
+                  id={id}
                   index={index}
                   schemaName={schema.schema_name}
                   projectid={projectid}
@@ -118,9 +130,9 @@ class Schema extends Component {
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
-                  
+
                     {displaySchemas}
-                  <button className="add-table" onClick={(e) => {this.addSchemaItemHandler(projectid)}}  ref={(el) => { this.listEnd = el; }}> Add Table </button>
+                  <button className="add-table" onClick={this.addSchemaItemHandler}  ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>
               </div>
               </div>

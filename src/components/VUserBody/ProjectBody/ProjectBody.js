@@ -85,11 +85,11 @@ class ProjectBody extends Component {
 
     return (
       <ProjectBodyContainer>
-              <ProjectSidebar 
-                selectedBackground={this.state.UI.backgroundPreview || this.state.project.background} 
+              <ProjectSidebar
+                selectedBackground={this.state.UI.backgroundPreview || this.state.project.background}
                 handleProjectBackground={this.handleProjectBackgroundPreview}
-                projectid={projectid} 
-                userid={userid} 
+                projectid={projectid}
+                userid={userid}
                 colorTheme={colorTheme}
                 projectName={projectName}
                 changeProjectBackground={this.changeProjectBackground}
