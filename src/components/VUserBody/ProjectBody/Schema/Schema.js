@@ -96,7 +96,7 @@ class Schema extends Component {
     const displaySchemas = schemas.map( (schema) => {
       const index = schemas.indexOf(schema);
         return <SchemaItem
-                  key={`schemaItem${index}`} 
+                  key={`schemaItem${index}`}
                   schemaid={schema.id}
                   index={index}
                   schemaName={schema.schema_name}
@@ -118,7 +118,7 @@ class Schema extends Component {
               <div className="schema-wrapper">
                 <div className="project-section-header">Schema</div>
                 <div className="table-list-container">
-                  
+
                     {displaySchemas}
                   <button className="add-table" onClick={(e) => {this.addSchemaItemHandler(projectid)}}  ref={(el) => { this.listEnd = el; }}> Add Table </button>
                 </div>

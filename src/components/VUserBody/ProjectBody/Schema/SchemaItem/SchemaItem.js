@@ -53,7 +53,7 @@ class SchemaItem extends Component {
               </div>
 
           </div>
-      
+
       </div>
   );
 }
