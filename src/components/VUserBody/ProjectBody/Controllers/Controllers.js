@@ -75,6 +75,7 @@ class Controllers extends Component {
       const projectid = this.props.match.params.projectid;
       const controllerid = e.target.id;
       console.log(controllerid)
+      console.log(this.state.controllers[index].controller_name);
       const reqBody = {
           controllerName: this.state.controllers[index].controller_name,
           whenData: this.state.controllers[index].when_data,
