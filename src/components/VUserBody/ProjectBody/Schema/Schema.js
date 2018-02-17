@@ -85,21 +85,21 @@ class Schema extends Component {
   removeSchemaItemHandler(index){
     const projectid = this.props.match.params.projectid;
     const schemaid = this.state.schemas[index].id;
-
     deleteProjectSchema(projectid, schemaid)
       .then( res => {
         if (res.status !== 200){
           console.log(res);
         }
         else {
-          console.log(index);
-          console.log(schemaid);
+          console.log(res);
+          console.log(res.request.responseURL);
           console.log(projectid);
-          // const newState = this.state.schemas;
-          // newState.splice(index, 1);
-          // this.setState( { schemas: newState } );
+          const newState = this.state.schemas;
+          newState.splice(index, 1);
+          this.setState( { schemas: newState } );
         }
       })
+      .catch( err => {throw err});
   }
 
   handleSchemaNameChange(newName, index){
@@ -170,7 +170,7 @@ class Schema extends Component {
                 <div className="table-list-container">
 
                     {displaySchemas}
-                  <button className="add-table" onClick={this.addSchemaItemHandler}  ref={(el) => { this.listEnd = el; }}> Add Table </button>
+                  <button className="add-table" onClick={this.addSchemaItemHandler}  ref={(el) => { this.listEnd = el; }}> Add Item </button>
                 </div>
               </div>
               </div>

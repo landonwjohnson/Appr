@@ -15,14 +15,14 @@ class SchemaItem extends Component {
 
 
   render() {
-    const {index, schemaName, projectid, databaseType, schemaData, removeSchemaItemHandler, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema, handleSaveChange} = this.props;
+    const {index, schemaName, projectid, databaseType, schemaData, removeSchemaItemHandler, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema, handleSaveChange, id} = this.props;
 
     let schemaDataText = schemaData.toString();
 
   return (
       <div className="new-schema-item">
           <div className="project-item-header">
-           <button onClick={() => {removeSchemaItemHandler(index)}}> </button>
+           <button onClick={() => removeSchemaItemHandler(index)}> </button>
           </div>
               <div className="schemaItem-inner">
               <input className="schemaItem-name"  placeholder={schemaName} onChange={(e) => { handleSchemaNameChange(e.target.value, index) }} onBlur={ e => handleSaveChange(e, index) }/>
