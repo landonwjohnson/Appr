@@ -10,33 +10,33 @@
     z-index: 1;
     overflow-y: auto;
 
-    
+
     &::-webkit-scrollbar {
         width: 15px;
         padding-right: 5px;
         -webkit-overflow-scrolling: touch;
     }
-    
+
 
     &::-webkit-scrollbar-track {
         margin-top: 3%;
         margin-bottom: 3%;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         -webkit-border-radius: 10px;
         border-radius: 10px;
     }
- 
+
 
     &::-webkit-scrollbar-thumb {
         @include darken-background($primary, 20%);
         -webkit-border-radius: 10px;
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
-        
+
     }
     &::-webkit-scrollbar-thumb:window-inactive {
-        background-color: rgba(50, 50, 50, 0.40);       
-    } 
+        background-color: rgba(50, 50, 50, 0.40);
+    }
 }
 
 .schema-wrapper{
@@ -44,10 +44,15 @@
 }
 
 .table-list-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-height: 100%;
+    grid-gap: 40px;
 }
 
 .add-table {
@@ -97,7 +102,7 @@
             text-align: left;
             font-weight: 300;
         }
-    }   
+    }
 }
 
 
@@ -122,15 +127,15 @@
     width: 100%;
     height: 26px;
     padding: 0px;
-    
-   
+
+
 }
 .column-input-select{
     height: 100%;
     width: 100%;
     height: 30px;
-    
-    
+
+
 }
 
 .column-checkbox-wrapper{
@@ -159,7 +164,7 @@
 
 
 .column-item-footer{
-    
+
     display: flex;
     align-items: flex-start;
     width: 100%;
@@ -169,8 +174,8 @@
         background-color: $secondary;
         color: white;
     }
-    
-  
+
+
 }
 
 
@@ -180,7 +185,7 @@
     margin-right: 20px;
     outline: none;
   }
-  
+
   .md-input {
     width: 150px;
     max-height: 30px;

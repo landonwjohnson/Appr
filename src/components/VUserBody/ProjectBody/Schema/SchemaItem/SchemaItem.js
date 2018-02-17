@@ -15,18 +15,17 @@ class SchemaItem extends Component {
 
 
   render() {
-    const {index, schemaName, projectid, databaseType, schemaData, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema} = this.props;
+    const {index, schemaName, projectid, databaseType, schemaData, removeSchemaItemHandler, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema, handleSaveChange} = this.props;
 
     let schemaDataText = schemaData.toString();
 
   return (
       <div className="new-schema-item">
           <div className="project-item-header">
-           <button> </button>
+           <button onClick={() => {removeSchemaItemHandler(index)}}> </button>
           </div>
-                <button onClick={ (e) => {handleSubmitSchema(index)} }>Save</button>
               <div className="schemaItem-inner">
-              <input className="schemaItem-name"  placeholder={schemaName} onChange={(e) => { handleSchemaNameChange(e.target.value, index) }}/>
+              <input className="schemaItem-name"  placeholder={schemaName} onChange={(e) => { handleSchemaNameChange(e.target.value, index) }} onBlur={ e => handleSaveChange(e, index) }/>
               <div className="sqlCon">
                   <label>SQL</label>
                       <AceEditor
@@ -38,6 +37,7 @@ class SchemaItem extends Component {
                           name={'schema'}
                           onLoad={this.onLoad}
                           onChange={(e) => {handleSchemaDataChange(e, index)}}
+                          onBlur={ e => handleSaveChange(e, index) }
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}

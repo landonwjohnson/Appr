@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './schema.scss';
 import SchemaItem from './SchemaItem/SchemaItem';
-import { createProjectSchema, findProjectSchemas, updateProjectSchema } from '../../../../services/project.schema.services';
+import { createProjectSchema, findProjectSchemas, updateProjectSchema, deleteProjectSchema } from '../../../../services/project.schema.services';
 
 
 class Schema extends Component {
@@ -14,6 +14,7 @@ class Schema extends Component {
     this.removeSchemaItemHandler = this.removeSchemaItemHandler.bind(this);
     this.handleSchemaNameChange = this.handleSchemaNameChange.bind(this);
     this.handleSchemaDataChange = this.handleSchemaDataChange.bind(this);
+    this.handleSaveChange = this.handleSaveChange.bind(this);
   }
 
   scrollToBottom = () => {
@@ -55,7 +56,7 @@ class Schema extends Component {
 
   addSchemaItemHandler(){
     const projectid = this.props.match.params.projectid;
-    const reqBody = {schemaName: 'test', databaseType: '', schemaData: ''};
+    const reqBody = {schemaName: 'test', databaseType: 'SQL', schemaData: ''};
     createProjectSchema(projectid, reqBody)
       .then( res => {
         if (res.status !== 200){
@@ -81,10 +82,24 @@ class Schema extends Component {
       .catch(err => {throw err});
   }
 
-  removeSchemaItemHandler(){
-    let SchemaList = this.state.schemas;
-    SchemaList.splice(1,1);
-    this.setState({schemas: SchemaList})
+  removeSchemaItemHandler(index){
+    const projectid = this.props.match.params.projectid;
+    const schemaid = this.state.schemas[index].id;
+
+    deleteProjectSchema(projectid, schemaid)
+      .then( res => {
+        if (res.status !== 200){
+          console.log(res);
+        }
+        else {
+          console.log(index);
+          console.log(schemaid);
+          console.log(projectid);
+          // const newState = this.state.schemas;
+          // newState.splice(index, 1);
+          // this.setState( { schemas: newState } );
+        }
+      })
   }
 
   handleSchemaNameChange(newName, index){
@@ -97,6 +112,28 @@ class Schema extends Component {
     const newState = this.state.schemas;
     newState[index].schema_data = newSchemaData;
     this.setState({ schemas: newState });
+  }
+
+  handleSaveChange(e, index) {
+    const {projectid} = this.props.match.params;
+      const schemaid = this.state.schemas[index].id;
+      console.log(schemaid);
+      console.log(projectid);
+      const reqBody = {
+          schemaName: this.state.schemas[index].schema_name,
+          databaseType: this.state.schemas[index].database_type,
+          schemaData: this.state.schemas[index].schema_data,
+      };
+
+      console.table(reqBody)
+      updateProjectSchema(projectid, schemaid, reqBody)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+        })
+        .catch(err => {throw err});
+
   }
 
 
@@ -116,11 +153,12 @@ class Schema extends Component {
                   databaseType={schema.database_type}
                   schemaData={schema.schema_data}
 
-
+                  //methods
                   removeSchemaItemHandler={this.removeSchemaItemHandler}
                   handleSchemaNameChange={this.handleSchemaNameChange}
                   handleSchemaDataChange={this.handleSchemaDataChange}
                   handleSubmitSchema={this.handleSubmitSchema}
+                  handleSaveChange={this.handleSaveChange}
                 />
     })
     return (
