@@ -13,6 +13,7 @@ class Features extends Component {
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
         this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
         this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
+        this.handleSaveChange = this.handleSaveChange.bind(this);
     }
 
     scrollToBottom = () => {
@@ -97,6 +98,24 @@ class Features extends Component {
             .catch(err => {throw err});
     }
 
+    handleSaveChange(e, index) {
+        const {projectid} = this.props.match.params;
+          const featureid = this.state.features[index].id;
+          console.log(featureid);
+          console.log(projectid);
+          const reqBody = {
+              featureData: this.state.features[index].feature_data
+          };
+          updateProjectFeature(projectid, featureid, reqBody)
+          .then( res => {
+              if (res.status !== 200) {
+                  alert(res);
+              }
+          })
+          .catch(err => {throw err});
+
+      }
+
 
 
 
@@ -115,7 +134,8 @@ class Features extends Component {
                         featureData={feature.feature_data}
                         handleChangeFeature={this.handleChangeFeature}
                         handleSubmitFeature={this.handleSubmitFeature}
-                        handleDeleteFeature={this.handleDeleteFeature} />
+                        handleDeleteFeature={this.handleDeleteFeature}
+                        handleSaveChange={this.handleSaveChange} />
             );
         });
         return (

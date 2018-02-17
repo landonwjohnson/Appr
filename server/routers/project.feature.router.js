@@ -45,7 +45,7 @@ projectFeatureRouter.delete('/:projectid/delete/feature/:featureid', (req, res) 
     const projectid = req.params.projectid;
     const featureid = req.params.featureid;
     const db = getDb();
-    db.delete_project_feature([ featureid ])
+    db.delete_project_feature([ projectid, featureid ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err))
 });

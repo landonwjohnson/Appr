@@ -40,21 +40,21 @@ class FeatureItem extends Component {
     // }
 
     render() {
-        const { index, featureData, handleChangeFeature, handleSubmitFeature, handleDeleteFeature } = this.props;
+        const { index, featureData, handleChangeFeature, handleSubmitFeature, handleDeleteFeature, handleSaveChange } = this.props;
         const saveBtnClass = classnames({
-        "input-complete-btn":  this.state.UI.saveBtn, 
+        "input-complete-btn":  this.state.UI.saveBtn,
         "input-incomplete-btn" : true
         });
         return (
             <div className="features-item">
                 <section>
                     <label>{(index + 1) + '.'}</label>
-                    <input value={featureData} onChange={e => { handleChangeFeature(e, index)}}/>
+                    <input value={featureData} onChange={e => { handleChangeFeature(e, index)}} onBlur={e => handleSaveChange(e, index)}/>
                     {/* <input value={featureData} onChange={e => { handleChangeFeature(e, index); this.toggleSaveBtn(e)}}/> */}
 
                 </section>
-                <button className="input-complete-btn" onClick={() => handleSubmitFeature(index)}> Save </button>
-                <button className="delete-x" onClick={() => handleDeleteFeature(index)}> &times; </button> 
+                {/* <button className="input-complete-btn" onClick={() => handleSubmitFeature(index)}> Save </button> */}
+                <button className="delete-x" onClick={() => handleDeleteFeature(index)}> &times; </button>
             </div>
         );
     }

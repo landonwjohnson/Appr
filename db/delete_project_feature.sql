@@ -1,4 +1,4 @@
 DELETE FROM project_feature
-    WHERE project_id = $1
-    AND id = $1
+    WHERE id = $2
+    AND project_id = $1
 ;
