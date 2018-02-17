@@ -77,7 +77,7 @@ class Features extends Component {
                 }
             })
             .catch(err => {throw err});
-           
+
     }
 
     handleDeleteFeature(index) {
@@ -108,14 +108,20 @@ class Features extends Component {
         const displayFeatures = features.map( feature => {
             const index = features.indexOf(feature);
             const id = feature.id;
-            return (
-              <FeatureItem index={index} projectid={projectid} id={id} featureData={feature.feature_data} handleChangeFeature={this.handleChangeFeature} handleSubmitFeature={this.handleSubmitFeature} handleDeleteFeature={this.handleDeleteFeature} />
+            return (<FeatureItem
+                        index={index}
+                        projectid={projectid}
+                        id={id}
+                        featureData={feature.feature_data}
+                        handleChangeFeature={this.handleChangeFeature}
+                        handleSubmitFeature={this.handleSubmitFeature}
+                        handleDeleteFeature={this.handleDeleteFeature} />
             );
         });
-        return (  
+        return (
                     <div className="features-container" >
 
-                        
+
                         <div className="container-wrapper">
 
                             <div className="project-section-header">
@@ -126,12 +132,12 @@ class Features extends Component {
                                         <div className="features-list">
 
                                           {displayFeatures}
-                                          
+
                                         </div>
                                         <div className="features-footer" ref={(el) => { this.listEnd = el; }}>
                                         <button className="add-button" onClick={this.handleAddFeature}> <span/> Add Feature </button>
                                     </div>
-                                
+
                                 </div>
                             </div>
                         </div>
