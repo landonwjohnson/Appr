@@ -300,6 +300,7 @@ INSERT INTO project_view ( project_id, name, image_url )
 VALUES
     (1, 'Alliance Logo', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
     (1, 'Test', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
+    (1, 'Cool Beans', 'boobs'),
     (2, 'Empire Logo', 'http://secure.cdn1.wdpromedia.com/media/rundisney/global/events/runDisney_Icons_Website_SWHM_East200x200.png'),
     (3, 'Jedi Logo', 'https://vignette.wikia.nocookie.net/starwars/images/9/9d/Jedi_symbol.svg/revision/latest/scale-to-width-down/499?cb=20080329163323'),
     (4, 'Separatist Logo', 'https://vignette.wikia.nocookie.net/starwars/images/3/34/CIS_roundel.svg/revision/latest/scale-to-width-down/500?cb=20090330010802')
