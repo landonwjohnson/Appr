@@ -30,7 +30,7 @@ class ControllerItem extends Component {
         const displayViews = views.map( view => {
             const index = views.indexOf(view);
             return (
-                <option key={`view-${index}`} value={view.name} onChange={ (e) => console.log(e.target.value) }> {view.name} </option>
+                <option key={`view-${index}`} value={view.name} > {view.name} </option>
             )
         })
         return(
@@ -40,8 +40,8 @@ class ControllerItem extends Component {
                     <button className="delete-item" onClick={() => handleDeleteController(index) }> </button>
                 </div>
                 <div className="contro-item-title">
-                    <select name={`${controllerid}-selectname`}  >
-                            <option style={{'display': 'none'}}> {controllerName} </option>
+                    <select name={`${controllerid}-selectname`} onChange={(e) => handleChangeInput(e, index, 'controller_name')} onBlur={handleSaveChange(index)}  >
+                            <option style={{'display': 'none'}} > {controllerName} </option>
                             { displayViews }
                     </select>
                     <button> Save </button>
@@ -50,19 +50,19 @@ class ControllerItem extends Component {
                     <div className="contro-row-container">
                         <label className="contro-row-name"> When </label>
                         <div className="contro-input-row">
-                            <input className="contro-input-field" type="text" id={controllerid} value={whenData} onChange={e => handleChangeInput(e, index, 'when_data')} onBlur={e => handleSaveChange(e, index)}/>
+                            <input className="contro-input-field" type="text" id={controllerid} value={whenData} onChange={e => handleChangeInput(e, index, 'when_data')} onBlur={() => handleSaveChange(index)}/>
                         </div>
                     </div>
                     <div className="contro-row-container">
                         <label className="contro-row-name"> Do </label>
                         <div className="contro-input-row">
-                            <input className="contro-input-field" type="text" id={controllerid} value={doData} onChange={e => handleChangeInput(e, index, 'do_data')} onBlur={e => handleSaveChange(e, index)}/>
+                            <input className="contro-input-field" type="text" id={controllerid} value={doData} onChange={e => handleChangeInput(e, index, 'do_data')} onBlur={() => handleSaveChange(index)}/>
                         </div>
                     </div>
                     <div className="contro-row-container">
                         <label className="contro-row-name"> Require </label>
                         <div className="contro-input-row">
-                            <input className="contro-input-field" type="text" id={controllerid} value={requireData} onChange={e => handleChangeInput(e, index, 'require_data')} onBlur={e => handleSaveChange(e, index)}/>
+                            <input className="contro-input-field" type="text" id={controllerid} value={requireData} onChange={e => handleChangeInput(e, index, 'require_data')} onBlur={() => handleSaveChange(index)}/>
                         </div>
                     </div>
                 </div>
