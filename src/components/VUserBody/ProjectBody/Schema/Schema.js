@@ -170,7 +170,9 @@ class Schema extends Component {
                 <div className="table-list-container">
 
                     {displaySchemas}
-                  <button className="add-table" onClick={this.addSchemaItemHandler}  ref={(el) => { this.listEnd = el; }}> Add Item </button>
+                  <div className="add-button-footer" ref={(el) => { this.listEnd = el; }}>
+                        <button className="add-table" onClick={this.addSchemaItemHandler}  > Add Item </button>
+                  </div>
                 </div>
               </div>
               </div>

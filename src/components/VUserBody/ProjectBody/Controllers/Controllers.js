@@ -83,11 +83,16 @@ class Controllers extends Component {
           requireData: this.state.controllers[index].require_data
       };
 
+      //Validation
+
       console.table(reqBody)
       updateProjectController(projectid, controllerid, reqBody)
         .then( res => {
             if (res.status !== 200) {
                 console.log(res);
+            }
+            else{
+                console.table(res.config.data)
             }
         })
         .catch(err => {throw err});

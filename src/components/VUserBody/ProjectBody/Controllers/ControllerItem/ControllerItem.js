@@ -44,7 +44,6 @@ class ControllerItem extends Component {
                             <option style={{'display': 'none'}} > {controllerName} </option>
                             { displayViews }
                     </select>
-                    <button> Save </button>
                 </div>
                 <div className="contro-item-inputs">
                     <div className="contro-row-container">
