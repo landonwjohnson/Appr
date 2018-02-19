@@ -11,8 +11,9 @@ class Features extends Component {
         };
         this.handleAddFeature = this.handleAddFeature.bind(this);
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
-        this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
+        // this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
         this.handleDeleteFeature = this.handleDeleteFeature.bind(this);
+        this.handleSaveChange = this.handleSaveChange.bind(this);
     }
 
     scrollToBottom = () => {
@@ -66,19 +67,19 @@ class Features extends Component {
         this.setState({ features: newState });
     }
 
-    handleSubmitFeature(index) {
-        const projectid = this.props.match.params.projectid;
-        const { id, feature_data } = this.state.features[index];
-        const reqBody = { featureData: feature_data };
-        updateProjectFeature(projectid, id, reqBody)
-            .then( res => {
-                if (res.status !== 200) {
-                    alert(res);
-                }
-            })
-            .catch(err => {throw err});
+    // handleSubmitFeature(index) {
+    //     const projectid = this.props.match.params.projectid;
+    //     const { id, feature_data } = this.state.features[index];
+    //     const reqBody = { featureData: feature_data };
+    //     updateProjectFeature(projectid, id, reqBody)
+    //         .then( res => {
+    //             if (res.status !== 200) {
+    //                 alert(res);
+    //             }
+    //         })
+    //         .catch(err => {throw err});
 
-    }
+    // }
 
     handleDeleteFeature(index) {
         const projectid = this.props.match.params.projectid;
@@ -97,6 +98,24 @@ class Features extends Component {
             .catch(err => {throw err});
     }
 
+    handleSaveChange(e, index) {
+        const {projectid} = this.props.match.params;
+          const featureid = this.state.features[index].id;
+          console.log(featureid);
+          console.log(projectid);
+          const reqBody = {
+              featureData: this.state.features[index].feature_data
+          };
+          updateProjectFeature(projectid, featureid, reqBody)
+          .then( res => {
+              if (res.status !== 200) {
+                  alert(res);
+              }
+          })
+          .catch(err => {throw err});
+
+      }
+
 
 
 
@@ -114,8 +133,9 @@ class Features extends Component {
                         id={id}
                         featureData={feature.feature_data}
                         handleChangeFeature={this.handleChangeFeature}
-                        handleSubmitFeature={this.handleSubmitFeature}
-                        handleDeleteFeature={this.handleDeleteFeature} />
+                        // handleSubmitFeature={this.handleSubmitFeature}
+                        handleDeleteFeature={this.handleDeleteFeature}
+                        handleSaveChange={this.handleSaveChange} />
             );
         });
         return (

@@ -57,11 +57,11 @@ class Endpoints extends Component {
     const projectid = this.props.match.params.projectid;
     // alert('handleSubmitEndpoint FIRED!!!!!')
     const { endpoint_name, http_verb, url_data, response_data, request_data} = this.state.endpoints[index];
-    const reqBody = { 
-      endpointName: endpoint_name, 
-      httpVerb: http_verb, 
-      urlData: url_data, 
-      responseData: response_data, 
+    const reqBody = {
+      endpointName: endpoint_name,
+      httpVerb: http_verb,
+      urlData: url_data,
+      responseData: response_data,
       requestData: request_data
     };
 
@@ -98,19 +98,19 @@ class Endpoints extends Component {
   }
 
   handleEndpointNameChange(newName, index){
-    const newState = this.state.endpoints;    
+    const newState = this.state.endpoints;
     newState[index].endpoint_name = newName;
     this.setState({ endpoints: newState })
   }
 
   handleHttpVerbChange(newVerb, index){
-    const newState = this.state.endpoints;    
+    const newState = this.state.endpoints;
     newState[index].http_verb = newVerb;
     this.setState({ endpoints: newState })
   }
 
   handleEndpointURLChange(newURL, index){
-    const newState = this.state.endpoints;    
+    const newState = this.state.endpoints;
     newState[index].url_data = newURL;
     this.setState({ endpoints: newState })
   }
@@ -126,19 +126,19 @@ class Endpoints extends Component {
     newState[index].request_data = newRequestData;
     this.setState({ endpoints: newState })
   }
-  
+
 
 
 
   render() {
     console.table(this.state.endpoints)
-    
+
     const { userid, projectid } = this.props.match.params;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {
       const index = endpoints.indexOf(endpoint);
       return(
-        <EndpointItem 
+        <EndpointItem
           key={`endpointItem${index}`}
           index={index}
           endpointid={endpoint.id}
@@ -148,14 +148,14 @@ class Endpoints extends Component {
           urlData={endpoint.url_data}
           requestData={endpoint.request_data}
           responseData={endpoint.response_data}
-          
+
 
           //Methods
             removeEndpointItemHandler={this.removeEndpointItemHandler}
             handleEndpointNameChange={this.handleEndpointNameChange}
             handleHttpVerbChange={this.handleHttpVerbChange}
             handleEndpointURLChange={this.handleEndpointURLChange}
-            handleResponseChange={this.handleResponseChange} 
+            handleResponseChange={this.handleResponseChange}
             handleRequestChange={this.handleRequestChange}
             handleSubmitEndpoint={this.handleSubmitEndpoint}
 
@@ -173,15 +173,15 @@ class Endpoints extends Component {
                     <div className="endpoint-list">
 
                         {displayEndpoints}
-                      
+
                       <div className="add-button-footer" ref={(el) => {this.listEnd = el; }}>
                             <button className="add-endpoint-item" onClick={(e) => {this.addEndpointItemHandler(projectid)}}> Add Endpoint</button>
                       </div>
                     </div>
                 </div>
                 </div>
-          </div> 
-       
+          </div>
+
     );
   }
 }

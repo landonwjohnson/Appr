@@ -71,9 +71,9 @@ class Controllers extends Component {
       this.setState({ controllers: newState });
   }
 
-  handleSaveChange(e, index) {
+  handleSaveChange(index) {
       const projectid = this.props.match.params.projectid;
-      const controllerid = e.target.id;
+      const controllerid = this.state.controllers[index].id;
       console.log(controllerid)
       console.log(this.state.controllers[index].controller_name);
       const reqBody = {

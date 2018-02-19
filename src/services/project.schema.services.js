@@ -32,7 +32,7 @@ function updateProjectSchema(projectid, schemaid, body) {
 
 function deleteProjectSchema(projectid, schemaid) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/schema/${schemaid}`)
+        .delete(`/api/project/${projectid}/delete/schema/${schemaid}`)
         .then(res => res)
         .catch(err => {throw err});
 }

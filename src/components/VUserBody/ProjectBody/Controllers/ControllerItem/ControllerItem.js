@@ -30,7 +30,7 @@ class ControllerItem extends Component {
         const displayViews = views.map( view => {
             const index = views.indexOf(view);
             return (
-                <option key={`view-${index}`} value={view.name}> {view.name} </option>
+                <option key={`view-${index}`} value={view.name} onChange={ (e) => console.log(e.target.value) }> {view.name} </option>
             )
         })
         return(
@@ -40,7 +40,7 @@ class ControllerItem extends Component {
                     <button className="delete-item" onClick={() => handleDeleteController(index) }> </button>
                 </div>
                 <div className="contro-item-title">
-                    <select name={`${controllerid}-selectname`} onChange={(e) => handleControllerNameChange(e, index, e.target.value)}> 
+                    <select name={`${controllerid}-selectname`}  >
                             <option style={{'display': 'none'}}> {controllerName} </option>
                             { displayViews }
                     </select>
