@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
 import classnames from "classnames";
-import { findTrackerLists, deleteTrackerList, deleteTrackerCards } from '../../../../services/project.tracker.services';
+import { findTrackerLists, deleteTrackerList, deleteTrackerCards, createTrackerList } from '../../../../services/project.tracker.services';
+
+
 
 
 class Tracking extends Component {
@@ -51,17 +53,42 @@ componentWillMount(){
   addTrackerListHandle(){
 
 
-    let TrackingList = this.state.lists;
-    TrackingList.push({
-      name: this.state.listName
-    })
-    this.setState({
-      isAddListInputOpen: false,
-      trackerLists: TrackingList,
-      listName: '',
-    })
+    let projectid = this.props.projectid;
+    let listOrder = this.state.lists.length + 1;
 
-    this.scrollToBottom();
+    let listName = this.state.listName;
+
+    let body = {listName, listOrder};
+    
+
+    createTrackerList(projectid, body)
+      .then(res => {
+        if(res.status !== 200){
+          console.log(res);
+        }
+        else {
+
+          findTrackerLists(projectid)
+          .then( res => {
+            if (res.status !== 200) {
+              console.log(res);
+            }
+            else {
+              this.setState({
+                lists: res.data,
+                isAddListInputOpen: false,
+                listName: '',
+              })
+            }
+          })
+
+        }
+      })
+
+
+
+
+
   }
 
   removeTrackerListHandle(index){
@@ -79,6 +106,7 @@ componentWillMount(){
   render() {
     const { userid, projectid } = this.props.match.params;
     const lists = this.state.lists
+
     
     console.log(this.state.listName);
     console.table(this.state.lists);

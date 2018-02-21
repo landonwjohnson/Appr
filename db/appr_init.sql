@@ -109,30 +109,6 @@ CREATE TABLE project_endpoint (
 );
 
 
--- CREATE TABLE schema_type (
---     id SERIAL PRIMARY KEY,
---     type_data TEXT
--- );
-
--- CREATE TABLE project_schema_table (
---     id SERIAL PRIMARY KEY,
---     table_name TEXT
--- );
-
--- CREATE TABLE project_schema(
---     id SERIAL PRIMARY KEY,
---     project_id int references project(id),
---     table_name_id int references project_schema_table(id),
---     column_name TEXT,
---     schema_type_id int references schema_type(id),
---     size_data TEXT,
---     is_primary_key BOOLEAN default FALSE,
---     is_foreign_key BOOLEAN default FALSE,
---     is_serial BOOLEAN default FALSE,
---     is_not_null BOOLEAN default FALSE,
---     is_unique BOOLEAN default FALSE
--- );
-
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
