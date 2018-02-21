@@ -138,5 +138,34 @@ projectTrackerRouter.delete('/:projectid/delete/tracker-card/:listid', (req, res
         .catch(err => res.status(500).send(err));
 });
 
+//Landons Gotta be the bomb
+projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listorder/:listid', (req, res) => {
+    const listid = req.params.listid;
+    const projectid = req.params.projectid;
+    const listOrder = req.params.listorder;
+    const db = getDb();
+
+
+
+    db.delete_tracker_list_landon([ listid, projectid, listOrder ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+
+    db.delete_tracker_cards_landon([ projectid, listOrder ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
+
+
+projectTrackerRouter.delete('/:projectid/delete/cards/tracker-list/:listorder', (req, res) => {
+    const projectid = req.params.projectid;
+    const listorder = req.params.listorder;
+    const db = getDb();
+    db.delete_tracker_cards_landon([ projectid, listorder ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
+
+
 
 module.exports = projectTrackerRouter;

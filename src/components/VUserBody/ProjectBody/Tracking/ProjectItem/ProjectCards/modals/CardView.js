@@ -9,7 +9,7 @@ import MembersIcon from '../../../../../../../img/icons/member-icon.svg';
 
 class CardView extends Component {
   render() {
-      const {index, onDeleteTaskClick} = this.props;
+      const {index, onDeleteTaskClick, onCloseBtnClick} = this.props;
     return (
     <div className="cardview-parent">
     
@@ -35,7 +35,7 @@ class CardView extends Component {
           </div>
           <div className="cardview-right">
                 <section className="top-con">
-                    <span onClick={this.props.onCloseBtnClick}> &times; </span>
+                    <span onClick={(e) => onCloseBtnClick()}> &times; </span>
                 </section>
                 <section className="side-group-menu">
                     <div className="cv-side-title">
@@ -80,7 +80,7 @@ class CardView extends Component {
                                 <label> Labels </label> 
                             </div>
                         </button>
-                        <button className="btn-and-icon delete-task-btn" onClick={(e) => {onDeleteTaskClick(index)}} >
+                        <button className="btn-and-icon delete-task-btn" onClick={() => onCloseBtnClick() & onDeleteTaskClick(index)} >
                             <div className="label-icon-con">
                                 <label > Delete </label> 
                             </div>

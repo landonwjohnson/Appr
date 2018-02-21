@@ -306,36 +306,6 @@ VALUES
 
     --Schema
 
-        --Schema Table Name--
--- INSERT INTO project_schema_table ( table_name )
--- VALUES
---     ('Alliance'),
---     ('Empire'),
---     ('Jedi'),
---     ('Confederacy')
--- ;
-
-        --Schema Type--
-
--- INSERT INTO schema_type ( type_data )
--- VALUES
---     ('Date'),
---     ('Integer'),
---     ('Text'),
---     ('Varchar'),
---     ('Char')
--- ;
-
-
-        --Actual Schema--
-
--- INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
--- VALUES
---     (1, 1, 'Rebels', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (2, 2, 'Sith Lords', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (3, 3, 'Jedi Masters', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (4, 4, 'Separatists', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE)
--- ;
 
 INSERT INTO project_schema (project_id, schema_name, database_type, schema_data)
 VALUES

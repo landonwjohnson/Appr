@@ -3,7 +3,7 @@ import './projectitem.scss'
 import ProjectCard from './ProjectCards/ProjectCard';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { findTrackerCards, deleteTrackerCard, findTrackerCardsPerList } from '../../../../../services/project.tracker.services';
+import { findTrackerCards, deleteTrackerCard, findTrackerCardsPerList, createTrackerCard } from '../../../../../services/project.tracker.services';
 
 class ProjectItem extends Component {
   constructor(props){
@@ -20,9 +20,10 @@ class ProjectItem extends Component {
     this.removeTaskItemHandler = this.removeTaskItemHandler.bind(this);
 }
 
-componentWillMount() {
+componentDidMount() {
   const projectid = this.props.projectid;
   const list_order = this.props.list_order;
+  const listName = this.props.listName;
   findTrackerCardsPerList(projectid, list_order)
     .then(res => {
       if(res.status !== 200) {
@@ -30,8 +31,27 @@ componentWillMount() {
       }
       else{
         this.setState({ tasks: res.data });
+        console.log(listName)
+        console.log(this.state.tasks.length)
       }
     })
+}
+
+componentWillReceiveProps(){
+  const projectid = this.props.projectid;
+  const list_order = this.props.list_order;
+  const listName = this.props.listName;
+  findTrackerCardsPerList(projectid, list_order)
+  .then(res => {
+    if(res.status !== 200) {
+      console.log(res);
+    }
+    else{
+      this.setState({ tasks: res.data });
+      console.log(listName)
+      console.log(this.state.tasks.length)
+    }
+  })
 }
 
 
@@ -43,7 +63,6 @@ addTaskToggle(){
         })
     }
     else {
-     
         this.setState({
           isTaskInputOpen: true,
           showText: false
@@ -52,6 +71,11 @@ addTaskToggle(){
 }
 
 addTaskItemHandler(){
+  let projectid = this.props.projectid;
+
+
+  let reqBody = {cardName: this.state.taskName, cardData: '', cardOrderId: ''};
+  createTrackerCard(projectid, reqBody)
   let NewTask = this.state.tasks;
   NewTask.push({
       taskName: this.state.taskName,
@@ -67,22 +91,30 @@ addTaskItemHandler(){
 removeTaskItemHandler(index){
   const projectid = this.props.projectid;
   const cardid = this.state.tasks[index].id;
+  const list_order = this.props.list_order;
   deleteTrackerCard(projectid, cardid)
     .then( res => {
       if( res.status !== 200 ) {
         console.log(res);
       }
       else {
-        const newState = this.state.tasks;
-        newState.splice(index, 1);
-        this.setState({ tasks: newState });
+        findTrackerCardsPerList(projectid, list_order)
+          .then(res => {
+            if(res.status !== 200) {
+              console.log(res);
+            }
+            else{
+              this.setState({ tasks: res.data });
+            }
+          })
       }
     })
 }
 
   render() {
+
     const tasks = this.state.tasks;
-    const {index, removeTrackerListHandle, list_order} = this.props;
+    const {index, removeTrackerListHandle, list_order, listid} = this.props;
     console.log(this.state.taskName)
 
     let addTaskInput = classnames({
@@ -101,9 +133,11 @@ removeTaskItemHandler(index){
         <ProjectCard key={index} index={index} list_order= {list_order} listName={this.props.listName} taskName={task.card_name} onDeleteTaskClick={this.removeTaskItemHandler} projectid={this.props.projectid} />
       )
     })
+
+
     return (
     
-      <div className="project-item" >
+      <div className="project-item" onClick={() => console.log(this.props)} >
             <div className="project-item-block">
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
