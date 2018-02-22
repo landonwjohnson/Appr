@@ -1,11 +1,13 @@
-const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const passport = require('../auth/local.auth');
 
+
 function decorate(app) {
+
+
     //app.use(express.static(/*directory of build folder*/));
     app.use(bodyParser.json());
     app.use(cors());

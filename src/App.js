@@ -6,6 +6,8 @@ import Register from './components/AuthBody/Register/Register';
 import Login from './components/AuthBody/Login/Login';
 import VUserBody from './components/VUserBody/VUserBody';
 import Home from './components/AuthBody/Home/Home';
+import io from 'socket.io-client';
+
 
 class App extends Component {
   constructor(){
@@ -13,6 +15,10 @@ class App extends Component {
     this.state = {
    
     }
+  }
+
+  componentDidMount(){
+    this.socket = io();
   }
   render() {
     return (

@@ -1,4 +1,3 @@
-const express = require('express');
 const authRouter = require('./auth.router');
 const accountRouter = require('./account.router');
 const dashboardRouter = require('./dashboard.router');

@@ -10,6 +10,7 @@ import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
 import { findProject, updateProject } from '../../../services/project.services';
+import io from 'socket.io-client';
 
 class ProjectBody extends Component {
   constructor(props){
@@ -28,6 +29,8 @@ class ProjectBody extends Component {
 
 
   componentDidMount() {
+    this.socket = io();
+
     const projectid = this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {
