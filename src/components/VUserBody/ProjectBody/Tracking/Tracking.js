@@ -86,6 +86,11 @@ componentWillMount(){
 
     deleteTrackerListCardsNew(projectid, listOrder)
       .then(res => {
+
+      })
+
+    deleteTrackerListNew(projectid, listOrder, listid)
+      .then( res => {
         findTrackerLists(projectid)
         .then( res => {
           if (res.status !== 200) {
@@ -100,11 +105,6 @@ componentWillMount(){
           }
         })
       })
-
-    // deleteTrackerListNew(projectid, listOrder, listid)
-    //   .then( res => {
-
-    //   })
   }
   
   render() {

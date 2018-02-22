@@ -20,7 +20,7 @@ class ProjectItem extends Component {
     this.removeTaskItemHandler = this.removeTaskItemHandler.bind(this);
 }
 
-componentDidMount() {
+componentWillMount() {
   const projectid = this.props.projectid;
   const list_order = this.props.list_order;
   const listName = this.props.listName;
@@ -37,10 +37,10 @@ componentDidMount() {
     })
 }
 
-componentWillReceiveProps(){
-  const projectid = this.props.projectid;
-  const list_order = this.props.list_order;
-  const listName = this.props.listName;
+componentWillReceiveProps(nextProps){
+  const projectid = nextProps.projectid;
+  const list_order = nextProps.list_order;
+  const listName = nextProps.listName;
   findTrackerCardsPerList(projectid, list_order)
   .then(res => {
     if(res.status !== 200) {
