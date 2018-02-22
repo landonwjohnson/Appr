@@ -28,6 +28,20 @@ export default class ProjectSetupSidebar extends Component {
             .catch(err => {throw err});
     }
 
+    componentWillReceiveProps(nextProps){
+        const projectid = nextProps;
+        findProject(projectid)
+            .then( res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    this.setState({ project: res.data[0] });
+                }
+            })
+            .catch(err => {throw err});
+    }
+
     handleChangeName(e) {
         const projectid = this.props.projectid;
         const reqBody = { name: e.target.value };

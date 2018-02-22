@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
 import classnames from "classnames";
-import { findTrackerLists, deleteTrackerListNew, deleteTrackerCards, createTrackerList, deleteTrackerListCardsNew } from '../../../../services/project.tracker.services';
-
+import { findTrackerLists, deleteTrackerListNew, deleteTrackerCards, createTrackerList, deleteTrackerListCardsNew, updateTrackerList } from '../../../../services/project.tracker.services';
 
 
 
@@ -20,23 +19,34 @@ class Tracking extends Component {
 
             this.addTrackerListHandle = this.addTrackerListHandle.bind(this);
             this.removeTrackerListHandle = this.removeTrackerListHandle.bind(this);
+
+            this.findMeSomeStuff = this.findMeSomeStuff.bind(this);
         }
 
       scrollToBottom = () => {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
+
+findMeSomeStuff(projectid){
+  findTrackerLists(projectid)
+  .then( res => {
+    if (res.status !== 200) {
+      console.log(res);
+    }
+    else {
+      this.setState({ lists: res.data });
+    }
+  })
+}
+
+
+
 componentWillMount(){
   const projectid = this.props.projectid;
-  findTrackerLists(projectid)
-    .then( res => {
-      if (res.status !== 200) {
-        console.log(res);
-      }
-      else {
-        this.setState({ lists: res.data });
-      }
-    })
+  this.findMeSomeStuff(projectid);
 }
+
+
   //Add List Button methods
   openListToggle(e){
     this.setState({isAddListInputOpen: true})
@@ -108,15 +118,34 @@ componentWillMount(){
   }
   
   render() {
-    const { userid, projectid } = this.props.match.params;
+
     const lists = this.state.lists
 
-    
-    console.log(this.state.listName);
-    console.table(this.state.lists);
+
+    // lists.forEach(list => {
+    //   let listid = list.id;
+    //   let body = {
+    //     listName: list.list_name,
+    //     listOrder: 1
+    //   }
+
+    //   for(var i = 0; i < lists.length; i++){
+    //     let newListID = i;
+    //     console.log(`newListId ${newListID}`)
+
+    //   }
+
+    //   updateTrackerList(projectid, listid, body)
+    //   .then( res => {
+    //     console.log(res.data)
+    //   })
+    //   .catch(err => {throw err})
+    //   });
+
+
 
     const displayTrackerLists= this.state.lists.map( (list) => {
-      const index = lists.indexOf(list);
+      const index = lists.indexOf(list);  
 
       return(
         <ProjectItem key={`tracker-list-${index}`} index={index} list_order={list.list_order} listid={list.id} removeTrackerListHandle={this.removeTrackerListHandle} listName={list.list_name}  projectid={this.props.projectid} />

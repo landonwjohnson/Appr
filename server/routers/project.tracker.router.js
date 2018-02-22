@@ -42,7 +42,7 @@ projectTrackerRouter.get('/:projectid/tracker-list/:listid', (req, res) => {
 projectTrackerRouter.put('/:projectid/update/tracker-list/:listid', (req, res) => {
     const projectid = req.params.projectid;
     const listid = req.params.listid;
-    const { listName, cardOrderId, listOrder } = req.body;
+    const { listName, listOrder } = req.body;
     const db = getDb();
     db.update_tracker_list([ projectid, listid, listName, listOrder ])
         .then(promise => res.send())

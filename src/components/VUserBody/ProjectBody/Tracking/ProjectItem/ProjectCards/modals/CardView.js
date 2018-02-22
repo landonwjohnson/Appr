@@ -6,10 +6,13 @@ import LabelIcon from '../../../../../../../img/icons/label-icon.svg';
 import CopyIcon from '../../../../../../../img/icons/copy-icon.svg';
 import MoveIcon from '../../../../../../../img/icons/move-icon.svg';
 import MembersIcon from '../../../../../../../img/icons/member-icon.svg';
+import { findTrackerCard } from '../../../../../../../services/project.tracker.services';
 
 class CardView extends Component {
+
+
   render() {
-      const {index, onDeleteTaskClick, onCloseBtnClick} = this.props;
+      const {onDeleteTaskClick, onCloseBtnClick, listName, cardid, taskName} = this.props;
     return (
     <div className="cardview-parent">
     
@@ -18,10 +21,10 @@ class CardView extends Component {
           <div className="cardview-left">
               <section className="cardview-header">
                   <div className="cardview-title">
-                      {this.props.taskName}
+                      {taskName}
                   </div>
                   <div className="cardview-fromlist">
-                      In list <b>{this.props.listName}</b>
+                      In list <b>{listName}</b>
                   </div>
               </section>
               <section className="cardview-body">
@@ -80,7 +83,7 @@ class CardView extends Component {
                                 <label> Labels </label> 
                             </div>
                         </button>
-                        <button className="btn-and-icon delete-task-btn" onClick={() => onCloseBtnClick() & onDeleteTaskClick(index)} >
+                        <button className="btn-and-icon delete-task-btn" onClick={() => onCloseBtnClick() & onDeleteTaskClick(cardid)} >
                             <div className="label-icon-con">
                                 <label > Delete </label> 
                             </div>
