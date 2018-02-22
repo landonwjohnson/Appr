@@ -151,15 +151,4 @@ projectTrackerRouter.delete('/:projectid/delete/tracker-list/:listorder/:listid'
 });
 
 
-projectTrackerRouter.delete('/:projectid/delete/cards/tracker-list/:listorder', (req, res) => {
-    const projectid = req.params.projectid;
-    const listorder = req.params.listorder;
-    const db = getDb();
-    db.delete_tracker_cards_landon([ projectid, listorder ])
-        .then(promise => res.send())
-        .catch(err => res.status(500).send(err));
-});
-
-
-
 module.exports = projectTrackerRouter;

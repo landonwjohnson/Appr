@@ -71,20 +71,33 @@ addTaskToggle(){
 }
 
 addTaskItemHandler(){
+  let len = this.state.tasks.length;
   let projectid = this.props.projectid;
+  console.log(projectid)
+  let listOrder = this.props.list_order;
+  let cardOrderId = len + 1;
 
-
-  let reqBody = {cardName: this.state.taskName, cardData: '', cardOrderId: ''};
+  console.log(cardOrderId)
+  let reqBody = {cardName: this.state.taskName, cardData: '', cardOrderId, listOrder};
   createTrackerCard(projectid, reqBody)
-  let NewTask = this.state.tasks;
-  NewTask.push({
-      taskName: this.state.taskName,
-      listName: `${this.props.listName}`
-  })
-  this.setState({
-      tasks: NewTask,
-      taskName: ''
-  })
+    .then(res => {
+      console.table(res.data)
+    })
+
+    findTrackerCardsPerList(projectid, listOrder)
+    .then(res => {
+      if(res.status !== 200) {
+        console.log(res);
+      }
+      else{
+          this.setState({
+            tasks: res.data,
+            taskName: ''
+        })
+      }
+    })
+
+
   this.addTaskToggle();
 }
 
@@ -130,7 +143,7 @@ removeTaskItemHandler(index){
     const displayTasks = this.state.tasks.map((task) =>{
       const index = tasks.indexOf(task);
       return(
-        <ProjectCard key={index} index={index} list_order= {list_order} listName={this.props.listName} taskName={task.card_name} onDeleteTaskClick={this.removeTaskItemHandler} projectid={this.props.projectid} />
+        <ProjectCard key={index} index={index} cardOrderId={task.card_order_id} list_order={list_order} listName={this.props.listName} taskName={task.card_name} onDeleteTaskClick={this.removeTaskItemHandler} projectid={this.props.projectid} />
       )
     })
 
