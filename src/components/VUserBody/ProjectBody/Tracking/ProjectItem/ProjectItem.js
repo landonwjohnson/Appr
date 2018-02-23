@@ -3,7 +3,7 @@ import './projectitem.scss'
 import ProjectCard from './ProjectCards/ProjectCard';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { findTrackerCards, deleteTrackerCard, findTrackerCardsPerList, createTrackerCard } from '../../../../../services/project.tracker.services';
+import { findTrackerCards, deleteTrackerCard, findTrackerCardsPerList, createTrackerCard, updateTrackerCard } from '../../../../../services/project.tracker.services';
 
 class ProjectItem extends Component {
   constructor(props){
@@ -37,11 +37,10 @@ findCardsForList(projectid, listid){
   })
 }
 
-componentDidMount() {
+componentWillMount() {
   const projectid = this.props.projectid;
   const listid = this.props.listid;
   this.findCardsForList(projectid, listid);
-
 }
 
 componentWillReceiveProps(nextProps){
@@ -69,15 +68,14 @@ addTaskToggle(){
 addTaskItemHandler(){
   let len = this.state.tasks.length;
   let projectid = this.props.projectid;
-  let listOrder = this.props.list_order;
-  let cardOrderId = len + 1;
+  let listid= this.props.listid;
+  let cardOrder = len + 1;
 
-  console.log(cardOrderId)
-  let reqBody = {cardName: this.state.taskName, cardData: '', cardOrderId, listOrder};
+  let reqBody = {cardName: this.state.taskName, cardData: '', cardOrder, listid};
   createTrackerCard(projectid, reqBody)
     .then(res => {
       console.table(res.data)
-      this.findCardsForList(projectid, listOrder);
+      this.findCardsForList(projectid, listid);
     })
     
   this.addTaskToggle();
@@ -86,14 +84,14 @@ addTaskItemHandler(){
 removeTaskItemHandler(id){
   const projectid = this.props.projectid;
   const cardid = id;
-  const list_order = this.props.list_order;
+  const listid = this.props.listid;
   deleteTrackerCard(projectid, cardid)
     .then( res => {
       if( res.status !== 200 ) {
         console.log(res);
       }
       else {
-        this.findCardsForList(projectid, list_order)
+        this.findCardsForList(projectid, listid)
       }
     })
 }
@@ -112,6 +110,25 @@ removeTaskItemHandler(id){
       "show-text": true,
       "hide": this.state.showText
     })
+
+    tasks.forEach((card, index) => {
+      let cardid = card.id;
+      let projectid = card.project_id;
+      let body = {
+        cardName: card.card_name,
+        cardData: card.card_data,
+        cardOrder: index+1,
+        listid: card.list_id
+      }
+
+      console.table(body)
+
+      updateTrackerCard(projectid, cardid, body)
+          .then( res => {
+            console.table(res.data)
+          })
+          .catch(err => {throw err})
+    });
     
     const displayTasks = this.state.tasks.map((task) =>{
       const index = tasks.indexOf(task);
@@ -119,13 +136,9 @@ removeTaskItemHandler(id){
         <ProjectCard 
           key={index} 
           index={index} 
-          cardid={task.id}
-          cardOrderId={task.card_order} 
-          listid = {task.list_id} 
-          listName={this.props.listName} 
-          taskName={task.card_name} 
+          {...task}
           onDeleteTaskClick={this.removeTaskItemHandler} 
-          projectid={this.props.projectid} />
+        />
       )
     })
 
@@ -173,20 +186,3 @@ export default ProjectItem;
 
 
 
-
-{/* <div className="dotmenu--open">
-                    <div className="pop-over-menu">
-                        <div className="pop-over-menu-wrapper">
-                            <div className="menu-header">
-                              <span className="menu-placeholder"></span>
-                              <div classname="menu-title">
-                                List Actions
-                              </div>
-                              <span className="delete-x"> &times;</span>
-                            </div>
-                            <ul>
-                              <li>Archive This List</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div> */}

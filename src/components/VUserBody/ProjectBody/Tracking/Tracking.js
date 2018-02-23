@@ -96,19 +96,7 @@ componentWillMount(){
 
     deleteTrackerListNew(projectid, listid)
       .then( res => {
-        findTrackerLists(projectid)
-        .then( res => {
-          if (res.status !== 200) {
-            console.log(res);
-          }
-          else {
-            this.setState({
-              lists: res.data,
-              isAddListInputOpen: false,
-              listName: '',
-            })
-          }
-        })
+        this.findMeSomeStuff(projectid)
       })
   }
   
@@ -119,18 +107,18 @@ componentWillMount(){
 
 
     lists.forEach((list, index) => {
-      let listid = list.id;
+        let listid = list.id;
 
-      let body = {
-        listName: list.list_name,
-        listOrder: index+1
-      }
+        let body = {
+          listName: list.list_name,
+          listOrder: index+1
+        }
 
-      updateTrackerList(projectid, listid, body)
-      .then( res => {
-        console.table(res.data)
-      })
-      .catch(err => {throw err})
+        updateTrackerList(projectid, listid, body)
+            .then( res => {
+              console.table(res.data)
+            })
+            .catch(err => {throw err})
       });
 
 

@@ -113,9 +113,9 @@ projectTrackerRouter.get('/:projectid/tracker-card/:cardid', (req, res) => {
 projectTrackerRouter.put('/:projectid/update/tracker-card/:cardid', (req, res) => {
     const projectid = req.params.projectid;
     const cardid = req.params.cardid;
-    const { cardName, cardData, cardOrderId, listid } = req.body;
+    const { cardName, cardData, cardOrder, listid } = req.body;
     const db = getDb();
-    db.update_tracker_card([ projectid, cardid, cardName, cardData, cardOrderId, listid ])
+    db.update_tracker_card([ projectid, cardid, cardName, cardData, cardOrder, listid ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
