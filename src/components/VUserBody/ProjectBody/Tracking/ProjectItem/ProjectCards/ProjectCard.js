@@ -77,8 +77,8 @@ class ProjectCard extends Component {
 
 
   render() {
-    let { card_name, card_data, card_order, id, list_id, project_id } = this.props;
-    let listName = "test";
+    let { card_name, card_data, card_order, id, list_id, project_id, listName } = this.props;
+
 
     return (
 

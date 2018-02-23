@@ -138,6 +138,7 @@ removeTaskItemHandler(id){
           index={index} 
           {...task}
           onDeleteTaskClick={this.removeTaskItemHandler} 
+          listName={this.props.listName}
         />
       )
     })
