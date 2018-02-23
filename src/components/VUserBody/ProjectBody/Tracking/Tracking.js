@@ -44,6 +44,8 @@ findMeSomeStuff(projectid){
 componentWillMount(){
   const projectid = this.props.projectid;
   this.findMeSomeStuff(projectid);
+
+
 }
 
 
@@ -119,28 +121,25 @@ componentWillMount(){
   
   render() {
 
-    const lists = this.state.lists
+    const lists = this.state.lists;
+    const projectid = this.props.projectid;
 
 
-    // lists.forEach(list => {
-    //   let listid = list.id;
-    //   let body = {
-    //     listName: list.list_name,
-    //     listOrder: 1
-    //   }
+    lists.forEach((list, index) => {
+      let listid = list.id;
 
-    //   for(var i = 0; i < lists.length; i++){
-    //     let newListID = i;
-    //     console.log(`newListId ${newListID}`)
+      let body = {
+        listName: list.list_name,
+        listOrder: index+1
+      }
 
-    //   }
 
-    //   updateTrackerList(projectid, listid, body)
-    //   .then( res => {
-    //     console.log(res.data)
-    //   })
-    //   .catch(err => {throw err})
-    //   });
+      updateTrackerList(projectid, listid, body)
+      .then( res => {
+        console.table(res.data)
+      })
+      .catch(err => {throw err})
+      });
 
 
 

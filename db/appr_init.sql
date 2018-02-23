@@ -164,7 +164,7 @@ CREATE TABLE tracker_card (
     card_name TEXT,
     card_data TEXT,
     card_order_id int references tracker_card_order(id),
-    list_order int references tracker_list_order(id)
+    list_id int references tracker_list(id)
 );
 
 -----------Start of Test user info---------------
@@ -435,7 +435,7 @@ VALUES
     (3, 'Done', 3)
 ;
 
-INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order )
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_id )
 VALUES
     (2, 'Find Vader', 'data', 1, 1),
     (2, 'Find the Emporer', 'data', 2, 1),

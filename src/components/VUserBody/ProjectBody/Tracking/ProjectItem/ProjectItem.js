@@ -121,7 +121,7 @@ removeTaskItemHandler(id){
           index={index} 
           cardid={task.id}
           cardOrderId={task.card_order_id} 
-          list_order={list_order} 
+          listid = {task.list_id} 
           listName={this.props.listName} 
           taskName={task.card_name} 
           onDeleteTaskClick={this.removeTaskItemHandler} 
