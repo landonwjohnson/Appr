@@ -140,22 +140,12 @@ CREATE TABLE user_project (
     roles_id int references roles(id)
 );
 
-CREATE TABLE tracker_card_order (
-    id SERIAL PRIMARY KEY,
-    card_order int
-);
-
-CREATE TABLE tracker_list_order (
-    id SERIAL PRIMARY KEY,
-    list_order int
-);
-
 
 CREATE TABLE tracker_list (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     list_name TEXT,
-    list_order int references tracker_list_order(id)
+    list_order int
 );
 
 CREATE TABLE tracker_card (
@@ -163,7 +153,7 @@ CREATE TABLE tracker_card (
     project_id int references project(id),
     card_name TEXT,
     card_data TEXT,
-    card_order_id int references tracker_card_order(id),
+    card_order int,
     list_id int references tracker_list(id)
 );
 
@@ -377,43 +367,6 @@ VALUES
 
 --Tracker
 
-INSERT INTO tracker_card_order ( card_order )
-VALUES
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5)
-;
-
-INSERT INTO tracker_list_order ( list_order )
-VALUES
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5)
-;
 
 
 INSERT INTO tracker_list ( project_id, list_name, list_order )
@@ -435,23 +388,23 @@ VALUES
     (3, 'Done', 3)
 ;
 
-INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_id )
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order, list_id )
 VALUES
-    (2, 'Find Vader', 'data', 1, 1),
-    (2, 'Find the Emporer', 'data', 2, 1),
-    (2, 'Use the Force', 'data', 3, 1),
-    (2, 'Kill both', 'data', 4, 1),
-    (2, 'Restore peace and balance ', 'data', 5, 1),
-    (2, 'Find Luke', 'data', 1, 2),
-    (2, 'Find the resistance', 'data', 2, 2),
-    (2, 'Kill everyone', 'data', 3, 2),
-    (2, 'Enslave the universe', 'data', 4, 2),
-    (2, 'get home in time for lunch', 'data', 5, 2),
-    (2, 'Find the Chosen One', 'data', 1, 3),
-    (2, 'Bring balance to the force', 'data', 2, 3),
-    (2, 'Follow the Jedi Code', 'data', 3, 3),
-    (2, 'Train younglings', 'data', 4, 3),
-    (2, 'Take over the universe ', 'data', 5, 3)
+    (2, 'Find Vader', 'data', 1, 6),
+    (2, 'Find the Emporer', 'data', 2, 6),
+    (2, 'Use the Force', 'data', 3, 6),
+    (2, 'Kill both', 'data', 4, 6),
+    (2, 'Restore peace and balance ', 'data', 5, 6),
+    (2, 'Find Luke', 'data', 1, 7),
+    (2, 'Find the resistance', 'data', 2, 7),
+    (2, 'Kill everyone', 'data', 3, 7),
+    (2, 'Enslave the universe', 'data', 4, 7),
+    (2, 'get home in time for lunch', 'data', 5, 7),
+    (2, 'Find the Chosen One', 'data', 1, 8),
+    (2, 'Bring balance to the force', 'data', 2, 8),
+    (2, 'Follow the Jedi Code', 'data', 3, 8),
+    (2, 'Train younglings', 'data', 4, 8),
+    (2, 'Take over the universe ', 'data', 5, 8)
 ;
 
 

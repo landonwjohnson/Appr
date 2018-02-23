@@ -22,8 +22,8 @@ class ProjectItem extends Component {
 }
 
 
-findCardsForList(projectid, listOrder){
-  findTrackerCardsPerList(projectid, listOrder)
+findCardsForList(projectid, listid){
+  findTrackerCardsPerList(projectid, listid)
   .then(res => {
     if(res.status !== 200) {
       console.log(res);
@@ -39,15 +39,15 @@ findCardsForList(projectid, listOrder){
 
 componentDidMount() {
   const projectid = this.props.projectid;
-  const list_order = this.props.list_order;
-  this.findCardsForList(projectid, list_order);
+  const listid = this.props.listid;
+  this.findCardsForList(projectid, listid);
 
 }
 
 componentWillReceiveProps(nextProps){
   const projectid = nextProps.projectid;
-  const list_order = nextProps.list_order;
-  this.findCardsForList(projectid, list_order);
+  const listid = nextProps.listid;
+  this.findCardsForList(projectid, listid);
 }
 
 
@@ -101,7 +101,7 @@ removeTaskItemHandler(id){
   render() {
 
     const tasks = this.state.tasks;
-    const {index, removeTrackerListHandle, list_order} = this.props;
+    const {removeTrackerListHandle, listid} = this.props;
 
     let addTaskInput = classnames({
       "add-task-show": true,
@@ -120,7 +120,7 @@ removeTaskItemHandler(id){
           key={index} 
           index={index} 
           cardid={task.id}
-          cardOrderId={task.card_order_id} 
+          cardOrderId={task.card_order} 
           listid = {task.list_id} 
           listName={this.props.listName} 
           taskName={task.card_name} 
@@ -137,7 +137,7 @@ removeTaskItemHandler(id){
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
                     <input type="text" placeholder={this.props.listName}/>
-                    <span onClick={ (e) => {removeTrackerListHandle(index)} } > </span>
+                    <span onClick={ (e) => {removeTrackerListHandle(listid)} } > </span>
                   </div>
                   <div className="prjt-item-body">
                     <ul>

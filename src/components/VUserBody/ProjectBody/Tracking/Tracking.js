@@ -91,17 +91,10 @@ componentWillMount(){
       })
   }
 
-  removeTrackerListHandle(index){
+  removeTrackerListHandle(listid){
     const projectid = this.props.projectid;
-    let listOrder = this.state.lists[index].list_order;
-    let listid = this.state.lists[index].id;
 
-    deleteTrackerListCardsNew(projectid, listOrder)
-      .then(res => {
-
-      })
-
-    deleteTrackerListNew(projectid, listOrder, listid)
+    deleteTrackerListNew(projectid, listid)
       .then( res => {
         findTrackerLists(projectid)
         .then( res => {
@@ -132,7 +125,6 @@ componentWillMount(){
         listName: list.list_name,
         listOrder: index+1
       }
-
 
       updateTrackerList(projectid, listid, body)
       .then( res => {

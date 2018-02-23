@@ -96,16 +96,16 @@ function deleteTrackerCards(projectid, listid) {
 
 
 //Landons Ish
-function deleteTrackerListNew(projectid, listOrder, listid) {
+function deleteTrackerListNew(projectid, listid) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listOrder}/${listid}`)
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
-function deleteTrackerListCardsNew(projectid, listorder) {
+function deleteTrackerListCardsNew(projectid, listid) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/cards/tracker-list/${listorder}`)
+        .delete(`${baseURL}/${projectid}/delete/cards/tracker-list/${listid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
