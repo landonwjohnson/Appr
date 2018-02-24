@@ -3,8 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
+import { connect } from 'react-redux';
 
-export default class ProjectSetupSidebar extends Component {
+class ProjectSetupSidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +15,7 @@ export default class ProjectSetupSidebar extends Component {
         this.handleChangeName = this.handleChangeName.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const projectid = this.props.projectid;
         findProject(projectid)
             .then( res => {
@@ -28,19 +29,6 @@ export default class ProjectSetupSidebar extends Component {
             .catch(err => {throw err});
     }
 
-    componentWillReceiveProps(nextProps){
-        const projectid = nextProps;
-        findProject(projectid)
-            .then( res => {
-                if (res.status !== 200) {
-                    console.log(res);
-                }
-                else {
-                    this.setState({ project: res.data[0] });
-                }
-            })
-            .catch(err => {throw err});
-    }
 
     handleChangeName(e) {
         const projectid = this.props.projectid;
@@ -54,11 +42,11 @@ export default class ProjectSetupSidebar extends Component {
     }
 
     render() {
-        const { userid, projectid, projectName} = this.props;
+        const { userid, projectid, projectName, projectInfo } = this.props;
         return (
             <div>
                 <div className='project-sidebar-header'>
-                    <input className="rename-project" type="text" placeholder={projectName} onChange={e => this.handleChangeName(e)}/> 
+                    <input className="rename-project" type="text" placeholder={projectInfo.name} onChange={e => this.handleChangeName(e)}/> 
                 </div>
                 
                 <ul className={'nav-list'} >
@@ -79,3 +67,9 @@ export default class ProjectSetupSidebar extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    return state
+}
+
+export default connect(mapStateToProps)(ProjectSetupSidebar);

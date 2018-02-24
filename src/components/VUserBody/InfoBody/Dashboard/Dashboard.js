@@ -6,6 +6,7 @@ import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -116,4 +117,9 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+
+function mapStateToProps(state){
+	return state;
+  }
+  
+export default connect( mapStateToProps ) (Dashboard);

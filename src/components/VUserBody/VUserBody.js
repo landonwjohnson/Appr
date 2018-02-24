@@ -4,6 +4,9 @@ import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
+import { findDashboardInfo } from '../../services/dashboard.services';
+import { updateUser, updateDashboard } from '../../actions/actionCreators';
+import { connect } from 'react-redux';
 
 class VUserBody extends Component {
   constructor(props){
@@ -29,6 +32,15 @@ class VUserBody extends Component {
             alert(res);
         }
         else {
+              let userInfo = {   
+                  id: res.data[0].id,
+                  username: res.data[0].username,
+                  avatar: res.data[0].avatar,
+                  firstName: res.data[0].first_name,
+                  lastName: res.data[0].last_name,
+                  email: res.data[0].email
+                }
+
               this.setState({ 
                   userInfo: {   
                     id: res.data[0].id,
@@ -39,9 +51,18 @@ class VUserBody extends Component {
                     email: res.data[0].email
                   }
               });
+
+              this.props.updateUser(userInfo)
         }
     })
     .catch(err => {throw err});
+
+
+    findDashboardInfo(userid)
+        .then( res => {
+          this.props.updateDashboard(res.data);
+        })
+        .catch(err => {throw err});
   }
 
   //Submit Account Settings Info
@@ -111,7 +132,12 @@ class VUserBody extends Component {
   }
 }
 
-export default withRouter(VUserBody);
+function mapStateToProps(state){
+  return state;
+}
+
+export default connect( mapStateToProps, { updateUser, updateDashboard } ) (VUserBody);
+
 
 
 

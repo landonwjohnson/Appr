@@ -1,14 +1,16 @@
 
 
 var initialState={
-    projects = []
+    groups: [],
+    projects: []
+
 }
 
 function dashboardInfo(state = initialState, action){
 console.log('REDUCER HIT: Action ->', action );
     switch(action.type) {
-        case "UPDATE_PROJECTS":
-            return Object.assign( {}, state, { projects: action.payload });     
+        case "UPDATE_DASHBOARD":
+            return Object.assign( action.payload );     
 
         default: return state;
     }

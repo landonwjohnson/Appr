@@ -47,7 +47,7 @@ export default class ProjectSidebar extends Component {
             <div className="project-sidebar">
                 <span className="psb-divider" />
                 <div className={`${navMenuClass}`}>
-                    <NavMenu projectName={projectName} userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
+                    <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
                 </div>
                 <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
                     <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />

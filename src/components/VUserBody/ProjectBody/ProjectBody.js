@@ -10,6 +10,8 @@ import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
 import { findProject, updateProject } from '../../../services/project.services';
+import { connect } from 'react-redux';
+import { updateProjectRedux } from '../../../actions/actionCreators';
 
 class ProjectBody extends Component {
   constructor(props){
@@ -35,25 +37,14 @@ class ProjectBody extends Component {
                 console.log(res);
             }
             else {
+                this.props.updateProjectRedux(res.data[0]);
                 this.setState({ project: res.data[0] });
             }
         })
         .catch(err => {throw err});
 }
 
-componentWillReceiveProps(nextProps){
-  const projectid = nextProps;
-  findProject(projectid)
-      .then( res => {
-          if (res.status !== 200) {
-              console.log(res);
-          }
-          else {
-              this.setState({ project: res.data[0] });
-          }
-      })
-      .catch(err => {throw err});
-}
+
 
 
 
@@ -96,7 +87,7 @@ componentWillReceiveProps(nextProps){
   render() {
     const { userid } = this.props.match.params;
     const projectid = this.state.project.id;
-    const projectName = this.state.project.name;
+    const projectBackground = this.props.projectInfo.background;
     const { colorTheme, backgroundPreview } = this.state.UI;
 
     return (
@@ -107,11 +98,10 @@ componentWillReceiveProps(nextProps){
                 projectid={projectid}
                 userid={userid}
                 colorTheme={colorTheme}
-                projectName={projectName}
                 changeProjectBackground={this.changeProjectBackground}
                 clearProjectBackgroundPreview={this.clearProjectBackgroundPreview}
               />
-              <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
+              <Frame> <BlurOverlay backgroundImage={backgroundPreview || projectBackground || null} colorTheme={colorTheme} /> </Frame>
               <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
@@ -126,4 +116,9 @@ componentWillReceiveProps(nextProps){
   }
 }
 
-export default ProjectBody;
+function mapStateToProps(state){
+  return state;
+}
+
+export default connect( mapStateToProps, { updateProjectRedux } ) (ProjectBody);
+
