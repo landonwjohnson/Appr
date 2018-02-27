@@ -23,6 +23,13 @@ function updateProject(projectid, body) {
         .catch(err => {throw err});
 }
 
+function updateProjectBackground(projectid, body) {
+    return axios
+        .put(`${baseURL}/update/background/${projectid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
 function deleteProject(projectid) {
     return axios
         .delete(`${baseURL}/delete/${projectid}`)
@@ -34,5 +41,6 @@ export {
     createProject,
     findProject,
     updateProject,
-    deleteProject
+    deleteProject,
+    updateProjectBackground
 };

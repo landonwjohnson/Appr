@@ -19,14 +19,7 @@ class BoardMenu extends Component {
         this.handleCreateButton = this.handleCreateButton.bind(this);
     }
 
-    componentWillReceiveProps(){
-        const userid = this.props.userid;
-		findDashboardInfo(userid)
-			.then( res => {
-				res.status !== 200 ? console.log(res) : this.setState(res.data);
-			})
-			.catch(err => {throw err});
-    }
+
 
     handleCreateButton(buttonPressed) {
 		const userid = this.props;
@@ -110,7 +103,8 @@ class BoardMenu extends Component {
       let projectid = project.id;
       let path = `/user/${userid}/project/${project.id}/ideas`;
       return (
-                <div className="board-menu-item" onClick={(e) => getProject(projectid, path)}>
+            <Link to={path}>
+                <div className="board-menu-item" >
                 <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
                 </div>
@@ -118,6 +112,7 @@ class BoardMenu extends Component {
                     {project.name}
                 </div>
             </div>
+            </Link>
       )
   })
   

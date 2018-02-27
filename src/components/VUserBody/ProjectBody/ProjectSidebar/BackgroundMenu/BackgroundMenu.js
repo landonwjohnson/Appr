@@ -15,7 +15,7 @@ export default class BackgroundMenu extends Component {
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         findProjectBackgrounds()
             .then( res => {
                 if (res.status !== 200){
@@ -29,7 +29,9 @@ export default class BackgroundMenu extends Component {
 
 
     render() {
-        const { handleProjectBackground, selectedBackground, changeProjectBackground } = this.props;
+
+
+        const { handleProjectBackground, selectedBackground, changeProjectBackground, toggleProjectMenu } = this.props;
         const backgrounds = this.state.backgrounds;
         const displayBackgroundItems = backgrounds.map( background => {
             const index = backgrounds.indexOf(background);
@@ -38,9 +40,12 @@ export default class BackgroundMenu extends Component {
             )
         })
 
+
+        
+
         return (
             <div>
-                 <form>
+                 
                     <div className='project-background-header'>
                         <input className="change-background-url" type="url" placeholder="Enter Image URL" onChange={(e) => this.props.handleProjectBackground(e.target.value)} />
                     </div>
@@ -52,12 +57,12 @@ export default class BackgroundMenu extends Component {
 
                     <div className='project-background-footer'>
                         <div className="project-sidebar-buttonset">
-                            <button onClick={(e) => changeProjectBackground()} className="changeBackgroundBtn">Change</button>
-                            <div onClick={this.props.toggleProjectMenu} className="closeBackgroundList"> <span /> </div>
+                            <button onClick={(e) => {changeProjectBackground(), toggleProjectMenu()} } className="changeBackgroundBtn">Change</button>
+                            <div onClick={toggleProjectMenu} className="closeBackgroundList"> <span /> </div>
                         </div>
                         
                     </div>
-                </form>
+                
             </div>
         )
     }

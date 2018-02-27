@@ -4,6 +4,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
 import { connect } from 'react-redux';
+import { updateDashboard } from '../../../../../actions/actionCreators';
+import { findDashboardInfo } from '../../../../../services/dashboard.services';
 
 class ProjectSetupSidebar extends Component {
     constructor(props) {
@@ -13,31 +15,40 @@ class ProjectSetupSidebar extends Component {
             UI: {backgroundMenu: false}
         };
         this.handleChangeName = this.handleChangeName.bind(this);
+        this.pullFromBackend = this.pullFromBackend.bind(this);
+    }
+
+    pullFromBackend(projectid){
+        findProject(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                this.setState({ project: res.data[0] });
+            }
+        })
+        .catch(err => {throw err});
     }
 
     componentDidMount() {
         const projectid = this.props.projectid;
         findProject(projectid)
-            .then( res => {
-                if (res.status !== 200) {
-                    console.log(res);
-                }
-                else {
-                    this.setState({ project: res.data[0] });
-                }
-            })
-            .catch(err => {throw err});
     }
 
 
     handleChangeName(e) {
         const projectid = this.props.projectid;
-        const reqBody = { name: e.target.value };
-        const newState = this.state.project;
-        newState.name = e.target.value;
-        this.setState({ project: newState });
+        const userid = this.props.userInfo.id;
+        let reqBody = {name: e.target.value, background: this.props.projectInfo.background }
         updateProject(projectid, reqBody)
-            .then(res => res)
+            .then(res => {
+                this.pullFromBackend(projectid)
+                findDashboardInfo(userid)
+                .then( res => {
+                    this.props.updateDashboard(res.data)
+                })
+            })
             .catch(err => {throw err});
     }
 
@@ -69,7 +80,11 @@ class ProjectSetupSidebar extends Component {
 }
 
 function mapStateToProps(state){
-    return state
+    let { projectInfo, userInfo } = state;
+    return {
+        projectInfo,
+        userInfo
+    }
 }
 
-export default withRouter(connect(mapStateToProps)(ProjectSetupSidebar));
+export default withRouter(connect(mapStateToProps, {updateDashboard})(ProjectSetupSidebar));

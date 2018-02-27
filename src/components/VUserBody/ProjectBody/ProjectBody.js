@@ -11,7 +11,8 @@ import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
 import { findProject, updateProject } from '../../../services/project.services';
 import { connect } from 'react-redux';
-import { updateProjectRedux } from '../../../actions/actionCreators';
+import { updateProjectRedux, updateDashboard } from '../../../actions/actionCreators';
+import { findDashboardInfo } from '../../../services/dashboard.services';
 
 class ProjectBody extends Component {
   constructor(props){
@@ -69,17 +70,26 @@ class ProjectBody extends Component {
   }
 
   changeProjectBackground(){
+    let userid = this.props.userInfo.id;
+    console.log(userid)
     const projectid = this.props.match.params.projectid;
     let newBackground = this.state.UI.backgroundPreview;
     const { author_id, background, id, name, status_id } = this.state.project;
     const reqBody = {author_id: author_id, background: newBackground, id: id, name: name, status_id: status_id };
     updateProject(projectid, reqBody)
       .then( res => {
-        if (res.status !== 200) {
-          alert(res)
-        }
+        findProject(projectid)
+        .then( res => {
+                this.props.updateProjectRedux(res.data[0]);
+                this.setState({ project: res.data[0] });
+        })
       })
       .catch(err => {throw err});
+
+      findDashboardInfo(userid)
+          .then(res => {
+            this.props.updateDashboard(res.data)
+          })
   }
 
 
@@ -120,5 +130,5 @@ function mapStateToProps(state){
   return state;
 }
 
-export default withRouter(connect( mapStateToProps, { updateProjectRedux } ) (ProjectBody));
+export default withRouter(connect( mapStateToProps, { updateProjectRedux, updateDashboard } ) (ProjectBody));
 

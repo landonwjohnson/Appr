@@ -39,8 +39,8 @@ class VUserBody extends Component {
                   id: res.data[0].id,
                   username: res.data[0].username,
                   avatar: res.data[0].avatar,
-                  firstName: res.data[0].first_name,
-                  lastName: res.data[0].last_name,
+                  first_name: res.data[0].first_name,
+                  last_name: res.data[0].last_name,
                   email: res.data[0].email
                 }
 
@@ -49,8 +49,8 @@ class VUserBody extends Component {
                     id: res.data[0].id,
                     username: res.data[0].username,
                     avatar: res.data[0].avatar,
-                    firstName: res.data[0].first_name,
-                    lastName: res.data[0].last_name,
+                    first_name: res.data[0].first_name,
+                    last_name: res.data[0].last_name,
                     email: res.data[0].email
                   }
               });
@@ -72,8 +72,8 @@ class VUserBody extends Component {
     handleNameSubmit(newFirst, newLast, newUserName){
       this.setState({
         userInfo: {
-          firstName: newFirst,
-          lastName: newLast,
+          first_name: newFirst,
+          last_name: newLast,
           username: newUserName,
           email: this.state.userInfo.email,
           avatar: this.state.userInfo.avatar
@@ -123,7 +123,7 @@ class VUserBody extends Component {
     const urlUserid = this.props.match.params.userid;
     let VUserBodyPage = 
     <div>
-      <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
+      <Header userid={userid}  handleInitials={this.handleInitials}/>
       
           <Route path="/user/:userid/"  render={(props) => (
               <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
@@ -131,9 +131,8 @@ class VUserBody extends Component {
           <Route path="/user/:userid/project/:projectid" render={(props) => (
               
               <ProjectBody  {...props}/>)} />
-  </div>
+   </div>
     console.log(userid);
-    console.log('pika');
     // if (userid !== urlUserid) {
     //   VUserBodyPage = <div> You Cannot Pass! </div>
     // }
