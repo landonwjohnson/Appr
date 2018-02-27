@@ -96,7 +96,7 @@ class Dashboard extends Component {
 							</ul>
 						</div>
 					
-						<div className="group-list-container">
+						{/* <div className="group-list-container">
 							<label className="dash-section-title"> Groups </label>
 							<ul className="projects-list">
 
@@ -108,7 +108,7 @@ class Dashboard extends Component {
 									</div>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
