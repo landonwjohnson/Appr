@@ -1,8 +1,9 @@
 UPDATE project_controller
     SET
-        when_data = $3,
-        do_data = $4,
-        require_data = $5
+        controller_name = $3,
+        when_data = $4,
+        do_data = $5,
+        require_data = $6
     WHERE id = $2
     AND project_id = $1
 ;

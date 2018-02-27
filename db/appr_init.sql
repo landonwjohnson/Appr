@@ -1,23 +1,23 @@
 --Drops current tables in DB and re-adds tables over again on Server restart
 
-DROP TABLE IF EXISTS 
+DROP TABLE IF EXISTS
     status,
-    users, 
-    groups, 
-    project, 
-    project_idea, 
-    project_user_field, 
-    project_feature, 
-    project_view, 
-    project_controller, 
-    project_endpoint, 
-    project_schema, 
-    schema_type, 
-    project_schema_table, 
-    user_group, 
-    group_project, 
-    user_project, 
-    roles, 
+    users,
+    groups,
+    project,
+    project_idea,
+    project_user_field,
+    project_feature,
+    project_view,
+    project_controller,
+    project_endpoint,
+    project_schema,
+    -- schema_type,
+    project_schema_table,
+    user_group,
+    group_project,
+    user_project,
+    roles,
     tracker_card_order,
     tracker_list_order,
     tracker_card,
@@ -38,7 +38,7 @@ CREATE TABLE users (
     avatar TEXT,
     first_name TEXT,
     last_name TEXT,
-    email TEXT unique, 
+    email TEXT unique,
     password TEXT,
     status_id int references status(id)
  );
@@ -92,6 +92,7 @@ CREATE TABLE project_view (
 CREATE TABLE project_controller (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
+    controller_name TEXT,
     when_data TEXT,
     do_data TEXT,
     require_data TEXT
@@ -107,69 +108,36 @@ CREATE TABLE project_endpoint (
     request_data TEXT
 );
 
--- CREATE TABLE schema_type ( 
---     id SERIAL PRIMARY KEY, 
---     type_data TEXT 
--- ); 
-
--- CREATE TABLE project_schema_table (
---     id SERIAL PRIMARY KEY, 
---     table_name TEXT 
--- );
-
--- CREATE TABLE project_schema(
---     id SERIAL PRIMARY KEY,
---     project_id int references project(id),
---     table_name_id int references project_schema_table(id),
---     column_name TEXT,
---     schema_type_id int references schema_type(id),
---     size_data TEXT,
---     is_primary_key BOOLEAN default FALSE,
---     is_foreign_key BOOLEAN default FALSE,
---     is_serial BOOLEAN default FALSE,
---     is_not_null BOOLEAN default FALSE,
---     is_unique BOOLEAN default FALSE
--- );
 
 CREATE TABLE project_schema(
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
-    name TEXT,
+    schema_name TEXT,
     database_type TEXT,
     schema_data TEXT
 );
 
 --end of project fields
 
-CREATE TABLE roles ( 
-    id SERIAL PRIMARY KEY, 
-    roles TEXT 
-); 
+CREATE TABLE roles (
+    id SERIAL PRIMARY KEY,
+    roles TEXT
+);
 
 CREATE TABLE user_group (
-    user_id int references users(id), 
+    user_id int references users(id),
     group_id int references groups(id)
 );
 
 CREATE TABLE group_project (
-    group_id int references groups(id), 
+    group_id int references groups(id),
     project_id int references project(id)
 );
 
-CREATE TABLE user_project ( 
-    user_id int references users(id), 
-    project_id int references project(id), 
+CREATE TABLE user_project (
+    user_id int references users(id),
+    project_id int references project(id),
     roles_id int references roles(id)
-);
-
-CREATE TABLE tracker_card_order (
-    id SERIAL PRIMARY KEY,
-    card_order int
-);
-
-CREATE TABLE tracker_list_order (
-    id SERIAL PRIMARY KEY,
-    list_order int
 );
 
 
@@ -177,7 +145,7 @@ CREATE TABLE tracker_list (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
     list_name TEXT,
-    list_order int references tracker_list_order(id)
+    list_order int
 );
 
 CREATE TABLE tracker_card (
@@ -185,8 +153,8 @@ CREATE TABLE tracker_card (
     project_id int references project(id),
     card_name TEXT,
     card_data TEXT,
-    card_order_id int references tracker_card_order(id),
-    list_order int references tracker_list_order(id)
+    card_order int,
+    list_id int references tracker_list(id)
 );
 
 -----------Start of Test user info---------------
@@ -276,7 +244,7 @@ VALUES
     (3, 'Jedi', 'lightsaber and dipolmacy', 'patient'),
     (4, 'Droid', 'programmed', 'cheap')
 ;
-    
+
     --Features
 
 INSERT INTO project_feature ( project_id, feature_data )
@@ -298,6 +266,7 @@ INSERT INTO project_view ( project_id, name, image_url )
 VALUES
     (1, 'Alliance Logo', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
     (1, 'Test', 'https://i.ytimg.com/vi/9ak6l31HJ4c/maxresdefault.jpg'),
+    (1, 'Cool Beans', 'boobs'),
     (2, 'Empire Logo', 'http://secure.cdn1.wdpromedia.com/media/rundisney/global/events/runDisney_Icons_Website_SWHM_East200x200.png'),
     (3, 'Jedi Logo', 'https://vignette.wikia.nocookie.net/starwars/images/9/9d/Jedi_symbol.svg/revision/latest/scale-to-width-down/499?cb=20080329163323'),
     (4, 'Separatist Logo', 'https://vignette.wikia.nocookie.net/starwars/images/3/34/CIS_roundel.svg/revision/latest/scale-to-width-down/500?cb=20090330010802')
@@ -305,12 +274,12 @@ VALUES
 
     --Controllers
 
-INSERT INTO project_controller ( project_id, when_data, do_data, require_data )
+INSERT INTO project_controller ( project_id, controller_name, when_data, do_data, require_data )
 VALUES
-    (1, 'Coming out of hyperspace', 'Check for a trap', 'no backup plan'),
-    (2, 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'a black outfit'),
-    (3, 'Unsure what to do', 'Use the force', 'a calm mind'),
-    (4, 'Jedi are attacking', 'Run into danger', 'no free will')
+    (1, 'Alliance Logo', 'Coming out of hyperspace', 'Check for a trap', 'no backup plan'),
+    (2, 'Empire Logo', 'The anger begins to flow through you', 'Let the hatred make you more powerful', 'a black outfit'),
+    (3, 'Jedi Logo', 'Unsure what to do', 'Use the force', 'a calm mind'),
+    (4, 'Separatist Logo', 'Jedi are attacking', 'Run into danger', 'no free will')
 ;
 
     --Endpoint
@@ -327,38 +296,8 @@ VALUES
 
     --Schema
 
-        --Schema Table Name--
--- INSERT INTO project_schema_table ( table_name )
--- VALUES
---     ('Alliance'),
---     ('Empire'),
---     ('Jedi'),
---     ('Confederacy')
--- ;
 
-        --Schema Type--
-
--- INSERT INTO schema_type ( type_data )
--- VALUES
---     ('Date'),
---     ('Integer'),
---     ('Text'),
---     ('Varchar'),
---     ('Char')
--- ;
-
-
-        --Actual Schema--    
-
--- INSERT INTO project_schema ( project_id, table_name_id, column_name, schema_type_id, size_data, is_primary_key, is_foreign_key, is_serial, is_not_null, is_unique)
--- VALUES
---     (1, 1, 'Rebels', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (2, 2, 'Sith Lords', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (3, 3, 'Jedi Masters', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE),
---     (4, 4, 'Separatists', 3, 'No limit', FALSE, FALSE, FALSE, TRUE, FALSE)
--- ;
-
-INSERT INTO project_schema (project_id, name, database_type, schema_data)
+INSERT INTO project_schema (project_id, schema_name, database_type, schema_data)
 VALUES
     (1,'select.sql', 'SQL', 'select * from users;'),
     (2,'insert.sql', 'mongo', 'select * from cats;'),
@@ -428,46 +367,9 @@ VALUES
 
 --Tracker
 
-INSERT INTO tracker_card_order ( card_order ) 
-VALUES
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5)
-;
-
-INSERT INTO tracker_list_order ( list_order ) 
-VALUES
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5),
-    (1),
-    (2),
-    (3),
-    (4),
-    (5)
-;
 
 
-INSERT INTO tracker_list ( project_id, list_name, list_order ) 
+INSERT INTO tracker_list ( project_id, list_name, list_order )
 VALUES
     (1, 'ToDo', 1),
     (1, 'In Process', 2),
@@ -486,23 +388,23 @@ VALUES
     (3, 'Done', 5)
 ;
 
-INSERT INTO tracker_card ( project_id, card_name, card_data, card_order_id, list_order ) 
+INSERT INTO tracker_card ( project_id, card_name, card_data, card_order, list_id )
 VALUES
-    (2, 'Find Vader', 'data', 1, 1),
-    (2, 'Find the Emporer', 'data', 2, 1),
-    (2, 'Use the Force', 'data', 3, 1),
-    (2, 'Kill both', 'data', 4, 1),
-    (2, 'Restore peace and balance ', 'data', 5, 1),
-    (2, 'Find Luke', 'data', 1, 2),
-    (2, 'Find the resistance', 'data', 2, 2),
-    (2, 'Kill everyone', 'data', 3, 2),
-    (2, 'Enslave the universe', 'data', 4, 2),
-    (2, 'get home in time for lunch', 'data', 5, 2),
-    (2, 'Find the Chosen One', 'data', 1, 3),
-    (2, 'Bring balance to the force', 'data', 2, 3),
-    (2, 'Follow the Jedi Code', 'data', 3, 3),
-    (2, 'Train younglings', 'data', 4, 3),
-    (2, 'Take over the universe ', 'data', 5, 3)
+    (2, 'Find Vader', 'data', 1, 6),
+    (2, 'Find the Emporer', 'data', 2, 6),
+    (2, 'Use the Force', 'data', 3, 6),
+    (2, 'Kill both', 'data', 4, 6),
+    (2, 'Restore peace and balance ', 'data', 5, 6),
+    (2, 'Find Luke', 'data', 1, 7),
+    (2, 'Find the resistance', 'data', 2, 7),
+    (2, 'Kill everyone', 'data', 3, 7),
+    (2, 'Enslave the universe', 'data', 4, 7),
+    (2, 'get home in time for lunch', 'data', 5, 7),
+    (2, 'Find the Chosen One', 'data', 1, 8),
+    (2, 'Bring balance to the force', 'data', 2, 8),
+    (2, 'Follow the Jedi Code', 'data', 3, 8),
+    (2, 'Train younglings', 'data', 4, 8),
+    (2, 'Take over the universe ', 'data', 5, 8)
 ;
 
 
@@ -528,9 +430,9 @@ VALUES
     );
 
     INSERT INTO project_backgrounds (creator_name, background_url, portfolio)
-    VALUES 
-        ('Landon Johnson', '/static/media/Hot-Springs-Utah.4a8d528e.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/Thistle-House-Utah.56560693.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+    VALUES
+        ('Landon Johnson', 'https://res.cloudinary.com/landonwebdev/image/upload/v1518998907/Appr/backgrounds/Thistle-House-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'https://res.cloudinary.com/landonwebdev/image/upload/v1518998907/Appr/backgrounds/Hot-Springs-Utah.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
         ('Lucas Arts', 'https://wallpapercave.com/wp/wp1810894.jpg', 'www.starwars.com'),
         ('Bungie', 'https://wallpapercave.com/wp/L5XxF4q.jpg', 'www.bungie.net'),
         ('Nintendo', 'https://i2.wp.com/pswallpapers.com/wp-content/uploads/2017/03/The-Legend-of-Zelda-Breath-of-the-Wild-1080-Main-1.jpg', 'www.nintendo.com'),
@@ -547,9 +449,9 @@ VALUES
     );
 
     INSERT INTO avatar_gallery (creator_name, avatar_url, portfolio)
-    VALUES 
-        ('Landon Johnson', 'http://1.bp.blogspot.com/-4suEajg9teY/UW1-o065YVI/AAAAAAAAKM0/zeG-UIm2HN0/s1600/halo+4+master+chief+wallpapers++7.jpg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/banjokazooie_avatar.8af1f761.svg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/mastercheif_avatar.fafa74ff.svg', 'http://bit.ly/landonwjohnson-on-behance'),
-        ('Landon Johnson', '/static/media/sonic_avatar.cdf83ab8.svg', 'http://bit.ly/landonwjohnson-on-behance')
+    VALUES
+        ('Landon Johnson', 'http://res.cloudinary.com/landonwebdev/image/upload/v1518998847/Appr/avatars/mastercheif_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'http://res.cloudinary.com/landonwebdev/image/upload/v1518998847/Appr/avatars/link_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'http://res.cloudinary.com/landonwebdev/image/upload/v1518998878/Appr/banjokazooie_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance'),
+        ('Landon Johnson', 'http://res.cloudinary.com/landonwebdev/image/upload/v1518999678/Appr/sonic_avatar.svg', 'http://bit.ly/landonwjohnson-on-behance')
     ;

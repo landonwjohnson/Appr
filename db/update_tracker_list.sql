@@ -6,6 +6,3 @@ UPDATE tracker_list
     AND project_id = $1
 ;
 
-Select * from tracker_list
-    Where id = $2
-    ;

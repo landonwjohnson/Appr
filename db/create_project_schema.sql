@@ -3,7 +3,7 @@
 --         ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
 -- ;
 
-INSERT INTO project_schema (project_id, name, database_type, schema_data)
+INSERT INTO project_schema (project_id, schema_name, database_type, schema_data)
 VALUES
     ($1, $2, $3, $4)
 ;

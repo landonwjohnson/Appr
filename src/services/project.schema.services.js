@@ -4,7 +4,7 @@ const baseURL = '/api/project';
 
 function createProjectSchema(projectid, body) {
     return axios
-        .post( `${baseURL}/${projectid}/create/schema`, body)
+        .post(`${baseURL}/${projectid}/create/schema`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
@@ -32,7 +32,7 @@ function updateProjectSchema(projectid, schemaid, body) {
 
 function deleteProjectSchema(projectid, schemaid) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/schema/${schemaid}`)
+        .delete(`/api/project/${projectid}/delete/schema/${schemaid}`)
         .then(res => res)
         .catch(err => {throw err});
 }

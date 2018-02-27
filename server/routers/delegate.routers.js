@@ -38,7 +38,6 @@ function delegateRoutesFor(app) {
     app.use('/api/user_customization',
         projectBackgroundsRouter,
         avatarsRouter
-
     )
 
     app.all('*', (req, res) => {

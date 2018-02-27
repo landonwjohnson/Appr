@@ -17,6 +17,10 @@ class EndpointItem extends Component {
     this.toggleRequireCon = this.toggleRequireCon.bind(this);
   }
 
+  componentWillMount(){
+    this.toggleRequireCon(this.props.httpVerb, this.props.index)
+  }
+
   toggleRequireCon(e, index){
     this.props.handleHttpVerbChange(e, index)
     const hide = () => {this.setState({UI:{hideReqField: true}})};
@@ -29,10 +33,14 @@ class EndpointItem extends Component {
     }
   }
 
+  httpHideShow(){
+
+  }
+
 
 
   render() {
-    const {httpVerb, endpointid, endpointName, projectid, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
+    const {httpVerb, endpointName, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
@@ -48,11 +56,11 @@ class EndpointItem extends Component {
           <div className="project-item-header">
            <button onClick={() => removeEndpointItemHandler(index)}> </button>
           </div>
-              <div className="endpoint-inner">
+            <div className="endpoint-inner" >
               <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />
-              <div className="httpverb-url-con">
+              <div className="httpverb-url-con" >
                   <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)}>
-                      <option style={{'display': 'none'}} value={httpVerb}> {httpVerb} </option>
+                      <option value={httpVerb}> {httpVerb} </option>
                       <option value="GET"> GET </option>
                       <option value="POST" > POST </option>
                       <option value="PUT"> PUT </option>

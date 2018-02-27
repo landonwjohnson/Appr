@@ -4,6 +4,7 @@ import editIcon from '../../../../../../img/icons/Pencil-Icon.svg';
 import CardView from './modals/CardView';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import { findTrackerCard } from '../../../../../../services/project.tracker.services';
 
 
 const CardViewModalBox = {
@@ -32,15 +33,39 @@ const CardViewModalBox = {
   };
 
 class ProjectCard extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      cardViewModalOpen: false
+      cardViewModalOpen: false,
+      // cardValue: []
+
     }
 
     this.openCardView = this.openCardView.bind(this);
     this.closeCardView = this.closeCardView.bind(this);
   }
+
+  // findCard(projectid, cardid){
+  //   findTrackerCard(projectid, cardid)
+  //   .then( res => {
+  //     this.setState({
+  //       cardValue: res.data[0]
+  //     })
+  //   })
+  // }
+
+  // componentWillMount(){
+  //   let {project_id, card_id} = this.props;
+  //   this.findCard(project_id, card_id)
+  // }
+
+
+  // componentWillReceiveProps(nextProps){
+  //   let {project_id, card_id} = nextProps;
+  //   this.findCard(project_id, card_id)
+  // }
+
+
 
   openCardView(){
     this.setState({cardViewModalOpen: true})
@@ -52,13 +77,15 @@ class ProjectCard extends Component {
 
 
   render() {
-    const {index} = this.props;
+    let { card_name, card_data, card_order, id, list_id, project_id, listName } = this.props;
+
 
     return (
 
+
      
-      <div >
-            <li onClick={this.openCardView}><label>{this.props.taskName}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
+      <div onClick={(e) => console.table(this.state.cardValue)}>
+            <li onClick={this.openCardView}><label>{card_name}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
             
             <Modal 
@@ -67,7 +94,7 @@ class ProjectCard extends Component {
               className="cardview-container"
               style={CardViewModalBox}
             >
-              <CardView index={index} listName={this.props.listName} taskName={this.props.taskName}   onCloseBtnClick={this.closeCardView} onDeleteTaskClick={this.props.onDeleteTaskClick} />
+              <CardView cardid={id} listName={listName} taskName={card_name}   onCloseBtnClick={this.closeCardView} onDeleteTaskClick={this.props.onDeleteTaskClick} />
             </Modal>
             
 

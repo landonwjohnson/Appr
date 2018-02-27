@@ -14,15 +14,16 @@ class Controllers extends Component {
       this.handleChangeInput = this.handleChangeInput.bind(this);
       this.handleSaveChange = this.handleSaveChange.bind(this);
       this.handleDeleteController = this.handleDeleteController.bind(this);
+      this.handleControllerNameChange = this.handleControllerNameChange.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
       const controllerExamples = [
-          { 
+          {
               when_data: 'User clicks login',
               do_data: 'land on dashboard page',
               require_data: 'Username and password'
@@ -48,7 +49,7 @@ class Controllers extends Component {
 
   handleAddController() {
     const projectid = this.props.match.params.projectid;
-    const reqBody = { whenData: '', doData: '', requireData: '' };
+    const reqBody = { controllerName: 'Select View', whenData: '', doData: '', requireData: '' };
     createProjectController(projectid, reqBody)
         .then(res => {
             if (res.status !== 200) {
@@ -70,15 +71,46 @@ class Controllers extends Component {
       this.setState({ controllers: newState });
   }
 
-  handleSaveChange(e, index) {
+  handleSaveChange(index) {
       const projectid = this.props.match.params.projectid;
-      const controllerid = e.target.id;
+      const controllerid = this.state.controllers[index].id;
+      console.log(controllerid)
+      console.log(this.state.controllers[index].controller_name);
       const reqBody = {
+          controllerName: this.state.controllers[index].controller_name,
           whenData: this.state.controllers[index].when_data,
           doData: this.state.controllers[index].do_data,
           requireData: this.state.controllers[index].require_data
       };
+
+      //Validation
+
+      console.table(reqBody)
       updateProjectController(projectid, controllerid, reqBody)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else{
+                console.table(res.config.data)
+            }
+        })
+        .catch(err => {throw err});
+  }
+
+  handleControllerNameChange(e, index, value){
+        const projectid = this.props.match.params.projectid;
+        const controllerid = e.target.id;
+
+        console.log(controllerid)
+        const reqBody = {
+            controllerName: value,
+            whenData: this.state.controllers[index].when_data,
+            doData: this.state.controllers[index].do_data,
+            requireData: this.state.controllers[index].require_data
+        };
+
+        updateProjectController(projectid, controllerid, reqBody)
         .then( res => {
             if (res.status !== 200) {
                 console.log(res);
@@ -104,14 +136,14 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
   // if we need to we can change the key to equal something else other than the index
-  render() { 
+  render() {
     const projectid = this.props.match.params.projectid;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerItem key={index}  index={index} controllerid={controller.id} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid}/>
+        return <ControllerItem key={index}  index={index} controllerid={controller.id} controllerName={controller.controller_name} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid} handleControllerNameChange={this.handleControllerNameChange}/>
     });
-    
+
     return (
 
                 <div className="controllers-container">
@@ -119,9 +151,9 @@ class Controllers extends Component {
                     <div className="controllers-wrapper">
                         <div className="project-section-header"> Controllers </div>
                         <div className="controller-list">
-                            
+
                             {displayControllers}
-                            
+
                             <button className="add-contro-item" onClick={this.handleAddController}>
                                 <div className="add-contro-item-inner">
                                     <div className="add-contro-item-body">
@@ -136,7 +168,7 @@ class Controllers extends Component {
                     </div>
                     </div>
                 </div>
-        
+
     );
   }
 }

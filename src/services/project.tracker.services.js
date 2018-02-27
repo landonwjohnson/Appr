@@ -30,12 +30,14 @@ function updateTrackerList(projectid, listid, body) {
         .catch(err => {throw err});
 }
 
-function deleteTrackerList(projectid, listid, list_order) {
+function deleteTrackerList(projectid, trackerid, listid, body) {
     return axios
-        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}/list-order/${list_order}`)
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${trackerid}/list-order/${listid}`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
+
+
 
 
 ///////////////////
@@ -84,6 +86,30 @@ function deleteTrackerCard(projectid, cardid) {
         .catch(err => {throw err});
 }
 
+function deleteTrackerCards(projectid, listid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/tracker-card/${listid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+
+
+//Landons Ish
+function deleteTrackerListNew(projectid, listid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function deleteTrackerListCardsNew(projectid, listid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/cards/tracker-list/${listid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
 export {
     createTrackerList,
     findTrackerLists,
@@ -96,4 +122,9 @@ export {
     findTrackerCard,
     updateTrackerCard,
     deleteTrackerCard,
+    deleteTrackerCards,
+
+    //Landons
+    deleteTrackerListNew,
+    deleteTrackerListCardsNew
 };
