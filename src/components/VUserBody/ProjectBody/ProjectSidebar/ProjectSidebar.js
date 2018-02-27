@@ -3,8 +3,9 @@ import classnames from 'classnames';
 import './projectsidebar.scss';
 import NavMenu from './NavMenu/NavMenu';
 import BackgroundMenu from './BackgroundMenu/BackgroundMenu';
+import { withRouter } from 'react-router-dom'
 
-export default class ProjectSidebar extends Component {
+ class ProjectSidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,3 +57,5 @@ export default class ProjectSidebar extends Component {
         )
     }
 }
+
+export default withRouter(ProjectSidebar);

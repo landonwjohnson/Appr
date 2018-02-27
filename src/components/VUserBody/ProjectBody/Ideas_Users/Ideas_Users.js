@@ -16,10 +16,10 @@ class Ideas_Users extends Component {
         this.handleChangeField = this.handleChangeField.bind(this);
         this.submitChangeField = this.submitChangeField.bind(this);
         this.handleDeleteField = this.handleDeleteField.bind(this);
+        this.pullFromDatabase = this.pullFromDatabase.bind(this);
     }
 
-    componentWillMount() {
-        const projectid = this.props.match.params.projectid
+    pullFromDatabase(projectid){
         const ideaExamples = [
             { idea_data: 'e.g. Rule the Galaxy.' },
             { idea_data: 'e.g. Get Baby out of the corner.'}
@@ -50,6 +50,18 @@ class Ideas_Users extends Component {
                 }
             })
             .catch(err => {throw err});
+
+    }
+
+    componentWillMount() {
+        const projectid = this.props.match.params.projectid
+        this.pullFromDatabase(projectid);
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        const projectid = nextProps.match.params.projectid
+        this.pullFromDatabase(projectid);
     }
 
     handleAddField(field) {

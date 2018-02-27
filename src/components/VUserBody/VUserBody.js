@@ -4,13 +4,12 @@ import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
-<<<<<<< HEAD
+
 import { findDashboardInfo } from '../../services/dashboard.services';
 import { updateUser, updateDashboard } from '../../actions/actionCreators';
 import { connect } from 'react-redux';
-=======
+
 // import { url } from 'inspector';
->>>>>>> ff38ce0dcd9c7c6d21cb8afecc4a7d4e788c23d3
 
 class VUserBody extends Component {
   constructor(props){

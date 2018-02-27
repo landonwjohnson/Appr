@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import ProjectSidebar from './ProjectSidebar/ProjectSidebar';
 import IdeasUsers from './Ideas_Users/Ideas_Users';
 import Features from './Features/Features';
@@ -102,13 +102,13 @@ class ProjectBody extends Component {
                 clearProjectBackgroundPreview={this.clearProjectBackgroundPreview}
               />
               <Frame> <BlurOverlay backgroundImage={backgroundPreview || projectBackground || null} colorTheme={colorTheme} /> </Frame>
-              <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
+              <Route path="/user/:userid/project/:projectid/ideas" render={(props) => (
+                <IdeasUsers projectid={projectid} {...props}/> )} />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
               <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers" />
               <Route component={ Schema } path="/user/:userid/project/:projectid/schema" />
               <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints" />
-              {/* <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>   */}
               <Route path="/user/:userid/project/:projectid/tracker" render={(props) => (
                 <Tracking projectid={projectid} {...props}/> )} />
       </ProjectBodyContainer>
@@ -120,5 +120,5 @@ function mapStateToProps(state){
   return state;
 }
 
-export default connect( mapStateToProps, { updateProjectRedux } ) (ProjectBody);
+export default withRouter(connect( mapStateToProps, { updateProjectRedux } ) (ProjectBody));
 

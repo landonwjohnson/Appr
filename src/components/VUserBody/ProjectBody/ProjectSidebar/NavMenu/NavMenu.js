@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
@@ -50,13 +50,13 @@ class ProjectSetupSidebar extends Component {
                 </div>
                 
                 <ul className={'nav-list'} >
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/ideas`} className="nav-item"><li>Ideas & Users</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/features`} className="nav-item"><li >Features</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/views`}  className="nav-item"><li>Views</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/controllers`} className="nav-item"><li>Controllers</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/endpoints`} className="nav-item"><li>Endpoints</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/schema`} className="nav-item"><li >Schema</li></NavLink>
-                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/ideas`} className="nav-item" ><li>Ideas & Users</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/features`} className="nav-item"><li >Features</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/views`}  className="nav-item"><li>Views</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/controllers`} className="nav-item"><li>Controllers</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/endpoints`} className="nav-item"><li>Endpoints</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/schema`} className="nav-item"><li >Schema</li></NavLink>
+                    <NavLink exact activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></NavLink>
                 </ul>
 
                 <div className='project-sidebar-footer'>
@@ -72,4 +72,4 @@ function mapStateToProps(state){
     return state
 }
 
-export default connect(mapStateToProps)(ProjectSetupSidebar);
+export default withRouter(connect(mapStateToProps)(ProjectSetupSidebar));
