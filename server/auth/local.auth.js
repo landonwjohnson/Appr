@@ -32,13 +32,13 @@ passport.use('login', new Strategy(
 // passport.use( /* Logout Auth Strategy */ );
 
 passport.serializeUser((user, done) => {
-    return done(null, user.id);
+    return done(null, user);
 });
 
-passport.deserializeUser((userid, done) => {
+passport.deserializeUser((user, done) => {
     const db = getDb();
-    db.find_user_by_id([ userid ])
-        .then( user => done(null, user[0]))
+    db.find_user_by_id([ user.id ])
+        .then( user => done(null, user))
         .catch( err => done(err));
 });
 

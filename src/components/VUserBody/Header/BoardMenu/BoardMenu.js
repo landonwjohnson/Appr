@@ -144,7 +144,7 @@ class BoardMenu extends Component {
                             </div>
                         </div>
             </div>
-            <div className="recent-boards-con">
+            {/* <div className="recent-boards-con">
                 <div className="text-12">GROUP PROJECTS</div>
         
                 {displayGroups}
@@ -158,7 +158,7 @@ class BoardMenu extends Component {
                                 Create Group
                             </div>
                         </div>
-            </div>
+            </div> */}
             
         </div>
     );

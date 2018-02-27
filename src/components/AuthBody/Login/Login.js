@@ -78,7 +78,7 @@ class Login extends Component {
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="password" defaultValue="deathstar4eva" name="password" placeholder="Password" onChange={e => this.handleInputChange(e)}/>
+								<input className="usr-pswd-input" type="password"  name="password" placeholder="deathstar4eva" onChange={e => this.handleInputChange(e)}/>
 							</div>
 
 							<div className="login-btn-con">

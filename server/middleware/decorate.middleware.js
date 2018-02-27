@@ -13,7 +13,10 @@ function decorate(app) {
     app.use(session({
         secret: 'It belongs in a museum!',
         resave: false,
-        saveUninitialized: true
+        saveUninitialized: true,
+        cookie: {
+            user: { id: null }
+        }
     }));
     app.use(passport.initialize());
     app.use(passport.session());
