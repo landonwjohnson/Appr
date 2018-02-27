@@ -27,7 +27,7 @@ class ProjectBody extends Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
     const projectid = this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {
@@ -40,6 +40,22 @@ class ProjectBody extends Component {
         })
         .catch(err => {throw err});
 }
+
+componentWillReceiveProps(nextProps){
+  const projectid = nextProps;
+  findProject(projectid)
+      .then( res => {
+          if (res.status !== 200) {
+              console.log(res);
+          }
+          else {
+              this.setState({ project: res.data[0] });
+          }
+      })
+      .catch(err => {throw err});
+}
+
+
 
   handleProjectBackgroundPreview(image, color){
     let newBackground = image;

@@ -28,6 +28,20 @@ export default class ProjectSetupSidebar extends Component {
             .catch(err => {throw err});
     }
 
+    componentWillReceiveProps(nextProps){
+        const projectid = nextProps;
+        findProject(projectid)
+            .then( res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    this.setState({ project: res.data[0] });
+                }
+            })
+            .catch(err => {throw err});
+    }
+
     handleChangeName(e) {
         const projectid = this.props.projectid;
         const reqBody = { name: e.target.value };
@@ -54,7 +68,7 @@ export default class ProjectSetupSidebar extends Component {
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/controllers`} className="nav-item"><li>Controllers</li></NavLink>
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/endpoints`} className="nav-item"><li>Endpoints</li></NavLink>
                     <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/schema`} className="nav-item"><li >Schema</li></NavLink>
-                    {/* <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></NavLink> */}
+                    <NavLink activeClassName="nav-item--active" to={`/user/${userid}/project/${projectid}/tracker`} className="nav-item"><li >Tracker</li></NavLink>
                 </ul>
 
                 <div className='project-sidebar-footer'>

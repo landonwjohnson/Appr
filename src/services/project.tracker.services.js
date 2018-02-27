@@ -38,6 +38,8 @@ function deleteTrackerList(projectid, trackerid, listid, body) {
 }
 
 
+
+
 ///////////////////
 //Cards
 ///////////////////
@@ -91,6 +93,23 @@ function deleteTrackerCards(projectid, listid) {
         .catch(err => {throw err});
 }
 
+
+
+//Landons Ish
+function deleteTrackerListNew(projectid, listid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/tracker-list/${listid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function deleteTrackerListCardsNew(projectid, listid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/cards/tracker-list/${listid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
 export {
     createTrackerList,
     findTrackerLists,
@@ -103,5 +122,9 @@ export {
     findTrackerCard,
     updateTrackerCard,
     deleteTrackerCard,
-    deleteTrackerCards
+    deleteTrackerCards,
+
+    //Landons
+    deleteTrackerListNew,
+    deleteTrackerListCardsNew
 };
