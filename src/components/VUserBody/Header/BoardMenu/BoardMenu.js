@@ -19,8 +19,6 @@ class BoardMenu extends Component {
         this.handleCreateButton = this.handleCreateButton.bind(this);
     }
 
-
-
     handleCreateButton(buttonPressed) {
 		const userid = this.props;
 		let name = '';
@@ -103,7 +101,7 @@ class BoardMenu extends Component {
       let projectid = project.id;
       let path = `/user/${userid}/project/${project.id}/ideas`;
       return (
-            <Link to={path}>
+            <Link to={path} onClick={closeMenus()}>
                 <div className="board-menu-item" >
                 <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
