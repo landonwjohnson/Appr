@@ -53,6 +53,8 @@ authRouter.post('/login-test', (req, res) => {
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {
+    req.session.cookie.user = req.session.passport.user;
+    console.log(req.session);
     res.send(req.user);
 });
 
