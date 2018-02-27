@@ -4,13 +4,14 @@ import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
+// import { url } from 'inspector';
 
 class VUserBody extends Component {
   constructor(props){
     super(props);
     this.state ={
-      userInfo: {}
-    }
+      userInfo: {},
+    };
 
     //AccountSettings
       this.handleNameSubmit = this.handleNameSubmit.bind(this);
@@ -19,7 +20,7 @@ class VUserBody extends Component {
 
     //UI
       this.handleInitials = this.handleInitials.bind(this);
-  }
+  };
 
   componentWillMount(){
     const userid = this.props.match.params.userid;
@@ -96,16 +97,26 @@ class VUserBody extends Component {
   render() {
     const userInfo = this.state.userInfo;
     const userid = this.state.userInfo.id;
+    const urlUserid = this.props.match.params.userid;
+    let VUserBodyPage = 
+    <div>
+      <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
+      
+          <Route path="/user/:userid/"  render={(props) => (
+              <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
+
+          <Route path="/user/:userid/project/:projectid" render={(props) => (
+              
+              <ProjectBody  {...props}/>)} />
+  </div>
+    console.log(userid);
+    console.log('pika');
+    // if (userid !== urlUserid) {
+    //   VUserBodyPage = <div> You Cannot Pass! </div>
+    // }
     return (
       <div>
-        <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
-        
-            <Route path="/user/:userid/"  render={(props) => (
-                <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
-
-            <Route path="/user/:userid/project/:projectid" render={(props) => (
-                <ProjectBody  {...props}/>)} />
-
+        {VUserBodyPage}
       </div>
     );
   }

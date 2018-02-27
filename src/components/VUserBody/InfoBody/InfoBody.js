@@ -24,6 +24,3 @@ class InfoBody extends Component {
 }
 
 export default InfoBody;
-
-
-
