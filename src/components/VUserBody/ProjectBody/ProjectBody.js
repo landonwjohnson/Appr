@@ -75,14 +75,18 @@ class ProjectBody extends Component {
     console.log(userid)
     const projectid = this.props.match.params.projectid;
     let newBackground = this.state.UI.backgroundPreview;
-    const { author_id, background, id, name, status_id } = this.state.project;
+    const { author_id, background, id, name, status_id } = this.props.projectInfo;
     const reqBody = {author_id: author_id, background: newBackground, id: id, name: name, status_id: status_id };
     updateProject(projectid, reqBody)
       .then( res => {
         findProject(projectid)
         .then( res => {
                 this.props.updateProjectRedux(res.data[0]);
-                this.setState({ project: res.data[0] });
+                this.setState({
+                  UI: {
+                    backgroundPreview: ''
+                  }
+                })                
         })
       })
       .catch(err => {throw err});
