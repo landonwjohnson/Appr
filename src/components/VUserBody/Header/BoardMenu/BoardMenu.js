@@ -59,59 +59,61 @@ class BoardMenu extends Component {
 
   render() {
 
-    const { userid, projectid, closeMenus, updateProjectRedux } = this.props;
+    const { projectid, closeMenus, updateProjectRedux } = this.props;
 
 
-    const groups = this.props.dashboardInfo.groups;
-    const projects = this.props.dashboardInfo.projects;
+    // const groups = this.props.dashboardInfo.groups;
+    // const projects = this.props.dashboardInfo.projects;
 
-    function getProject(projectid, path){
-        findProject(projectid)
-        .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
+    // function getProject(projectid, path){
+    //     findProject(projectid)
+    //     .then( res => {
+    //         if (res.status !== 200) {
+    //             console.log(res);
+    //         }
+    //         else {
+    //             closeMenus();
+    //             updateProjectRedux(res.data[0]);
+    //             history.push(path)
+    //         }
+    //     })
+    //     .catch(err => {throw err});
+    // }
+
+    // const displayGroups = groups.map( group => {
+    //     const index = groups.indexOf(group);
+    //     return (
+    //         <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
+    //               <div className="board-menu-item">
+    //               <div className="board-item-thumbnail">
+
+    //               </div>
+    //               <div className="board-item-name">
+    //                   {group.name}
+    //               </div>
+    //           </div>
+    //         </Link>
+    //     )
+    // })
+
+    let userid = this.props.userInfo.id;
+
+    const displayProjects = this.props.dashboardInfo.projects.map( (project, index) => {
+            if(project !== null){
+                let path = `/user/${userid}/project/${project.id}/ideas`;
+                return (
+                        <Link to={path} onClick={closeMenus()}>
+                            <div className="board-menu-item" >
+                            <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
+
+                            </div>
+                            <div className="board-item-name">
+                                {project.name}
+                            </div>
+                        </div>
+                        </Link>
+                )
             }
-            else {
-                closeMenus();
-                updateProjectRedux(res.data[0]);
-                history.push(path)
-            }
-        })
-        .catch(err => {throw err});
-    }
-
-    const displayGroups = groups.map( group => {
-        const index = groups.indexOf(group);
-        return (
-            <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
-                  <div className="board-menu-item">
-                  <div className="board-item-thumbnail">
-
-                  </div>
-                  <div className="board-item-name">
-                      {group.name}
-                  </div>
-              </div>
-            </Link>
-        )
-    })
-
-    const displayProjects = projects.map( project => {
-      const index = projects.indexOf(project);
-      let projectid = project.id;
-      let path = `/user/${userid}/project/${project.id}/ideas`;
-      return (
-            <Link to={path} onClick={closeMenus()}>
-                <div className="board-menu-item" >
-                <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
-
-                </div>
-                <div className="board-item-name" onClick={(e) => getProject(projectid, path)}>
-                    {project.name}
-                </div>
-            </div>
-            </Link>
-      )
   })
   
     return (
