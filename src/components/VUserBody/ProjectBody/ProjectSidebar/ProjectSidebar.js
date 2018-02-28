@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom'
         this.state = {
             UI:{ 
                 hideProjectMenu: false,
+                hideSettingsMenu: true,
                 hideBackgroundMenu: true
             }
         };
