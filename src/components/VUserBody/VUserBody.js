@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router-dom';
 import InfoBody from './InfoBody/InfoBody';
 import ProjectBody from './ProjectBody/ProjectBody';
 import { findUserInfo } from '../../services/account.services';
+// import { url } from 'inspector';
 
 import { findDashboardInfo } from '../../services/dashboard.services';
 import { updateUser, updateDashboard } from '../../actions/actionCreators';
@@ -123,7 +124,11 @@ class VUserBody extends Component {
     const urlUserid = this.props.match.params.userid;
     let VUserBodyPage = 
     <div>
+<<<<<<< HEAD
       <Header userid={userid}  handleInitials={this.handleInitials}/>
+=======
+      <Header userid={userid} userInfo={userInfo} handleInitials={this.handleInitials}/>
+>>>>>>> 701b95b1d4a4522b5a2efb2b389949e36b45be55
       
           <Route path="/user/:userid/"  render={(props) => (
               <InfoBody userInfo={userInfo} handleNameSubmit={this.handleNameSubmit} handleEmailSubmit={this.handleEmailSubmit} handleAvatarSubmit={this.handleAvatarSubmit} handleInitials={this.handleInitials} {...props}/>)} />
@@ -131,8 +136,14 @@ class VUserBody extends Component {
           <Route path="/user/:userid/project/:projectid" render={(props) => (
               
               <ProjectBody  {...props}/>)} />
+<<<<<<< HEAD
    </div>
     console.log(userid);
+=======
+  </div>
+    console.log(userid);
+    console.log('pika');
+>>>>>>> 701b95b1d4a4522b5a2efb2b389949e36b45be55
     // if (userid !== urlUserid) {
     //   VUserBodyPage = <div> You Cannot Pass! </div>
     // }
