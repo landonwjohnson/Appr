@@ -22,10 +22,6 @@ class ArchiveProject extends Component {
 
         const { closeArchiveModal, projectInfo, userInfo, dashboardInfo } = this.props;
 
-
-        console.table(projectInfo)
-
-
         function handleArchive(){
             let projectid = projectInfo.id;
             let userid = userInfo.id;
@@ -40,8 +36,6 @@ class ArchiveProject extends Component {
                     console.table(res.data)
                     history.push(path)
                 })
-
-
         }
 
       return (

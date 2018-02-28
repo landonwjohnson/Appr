@@ -81,7 +81,7 @@ import { withRouter } from 'react-router-dom'
             "settingsMenu-wrapper": true
         })
         
-        const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground, projectName } = this.props;
+        const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground } = this.props;
        
         return (
 
@@ -89,7 +89,7 @@ import { withRouter } from 'react-router-dom'
             <div className="project-sidebar">
                 <span className="psb-divider" />
                 <div className={`${navMenuClass}`}>
-                    <NavMenu userid={userid} projectid={projectid} toggleSettingsMenu={this.toggleSettingsMenu} />
+                    <NavMenu userid={userid} projectid={projectid} toggleSettingsMenu={this.toggleSettingsMenu}  />
                 </div>
                 <div className={settingsMenuClass} toggleSettingsMenu={this.toggleSettingsMenu}>
                     <SettingsMenu toggleSettingsMenu={this.toggleSettingsMenu} toggleBackgroundMenu={this.toggleBackgroundMenu} />

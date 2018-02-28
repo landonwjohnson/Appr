@@ -11,53 +11,21 @@ class ProjectSetupSidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            project: {},
-            UI: {backgroundMenu: false}
+            projectName: ''
         };
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.pullFromBackend = this.pullFromBackend.bind(this);
-    }
-
-    pullFromBackend(projectid){
-        findProject(projectid)
-        .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-            else {
-                this.setState({ project: res.data[0] });
-            }
-        })
-        .catch(err => {throw err});
-    }
-
-    componentDidMount() {
-        const projectid = this.props.projectid;
-        findProject(projectid)
-    }
+  }
 
 
-    handleChangeName(e) {
-        const projectid = this.props.projectid;
-        const userid = this.props.userInfo.id;
-        let reqBody = {name: e.target.value, background: this.props.projectInfo.background }
-        updateProject(projectid, reqBody)
-            .then(res => {
-                this.pullFromBackend(projectid)
-                findDashboardInfo(userid)
-                .then( res => {
-                    this.props.updateDashboard(res.data)
-                })
-            })
-            .catch(err => {throw err});
-    }
 
     render() {
-        const { userid, projectid, projectName, projectInfo, toggleSettingsMenu } = this.props;
+        const { userid, projectid, projectInfo, toggleSettingsMenu } = this.props;
+        let projectName = this.props.projectInfo.name;
         return (
             <div>
                 <div className='project-sidebar-header'>
-                    <input className="rename-project" type="text" placeholder={projectInfo.name} onChange={e => this.handleChangeName(e)}/> 
+                    <div className="nav-project-name"> 
+                        {projectName}
+                    </div>
                 </div>
                 
                 <ul className={'nav-list'} >
@@ -72,7 +40,6 @@ class ProjectSetupSidebar extends Component {
 
                 <div className='project-sidebar-footer'>
                     <label onClick={(e) => toggleSettingsMenu()}>Change Settings</label>
-                    
                 </div>
             </div>
         )
@@ -80,11 +47,7 @@ class ProjectSetupSidebar extends Component {
 }
 
 function mapStateToProps(state){
-    let { projectInfo, userInfo } = state;
-    return {
-        projectInfo,
-        userInfo
-    }
+    return state;
 }
 
 export default withRouter(connect(mapStateToProps, {updateDashboard})(ProjectSetupSidebar));

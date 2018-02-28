@@ -4,6 +4,7 @@ import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectId
 import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
 import IdeaField from './Fields/IdeaField';
 import UserField from './Fields/Userfield';
+import { connect } from 'react-redux';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -54,13 +55,13 @@ class Ideas_Users extends Component {
     }
 
     componentWillMount() {
-        const projectid = this.props.match.params.projectid
+        const projectid = this.props.projectInfo.id;
         this.pullFromDatabase(projectid);
     }
 
 
     componentWillReceiveProps(nextProps) {
-        const projectid = nextProps.match.params.projectid
+        const projectid = nextProps.projectInfo.id;
         this.pullFromDatabase(projectid);
     }
 
@@ -213,4 +214,8 @@ class Ideas_Users extends Component {
     }
 }
 
-export default Ideas_Users;
+function mapStateToProps(state){
+    return state
+}
+
+export default connect(mapStateToProps)(Ideas_Users);

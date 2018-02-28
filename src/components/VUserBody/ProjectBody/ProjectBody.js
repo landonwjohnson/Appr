@@ -30,7 +30,7 @@ class ProjectBody extends Component {
   }
 
 
-  componentDidMount() {
+  componentWillMount() {
     const projectid = this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {
@@ -39,11 +39,12 @@ class ProjectBody extends Component {
             }
             else {
                 this.props.updateProjectRedux(res.data[0]);
-                this.setState({ project: res.data[0] });
             }
         })
         .catch(err => {throw err});
 }
+
+
 
 
 
@@ -95,8 +96,8 @@ class ProjectBody extends Component {
 
 
   render() {
-    const { userid } = this.props.match.params;
-    const projectid = this.state.project.id;
+    const userid = this.props.userInfo.id;
+    const projectid = this.props.projectInfo.id;
     const projectBackground = this.props.projectInfo.background;
     const { colorTheme, backgroundPreview } = this.state.UI;
 

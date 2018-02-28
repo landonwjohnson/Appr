@@ -65,20 +65,20 @@ class BoardMenu extends Component {
     // const groups = this.props.dashboardInfo.groups;
     // const projects = this.props.dashboardInfo.projects;
 
-    // function getProject(projectid, path){
-    //     findProject(projectid)
-    //     .then( res => {
-    //         if (res.status !== 200) {
-    //             console.log(res);
-    //         }
-    //         else {
-    //             closeMenus();
-    //             updateProjectRedux(res.data[0]);
-    //             history.push(path)
-    //         }
-    //     })
-    //     .catch(err => {throw err});
-    // }
+    function getProject(projectid, path){
+        findProject(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                closeMenus();
+                updateProjectRedux(res.data[0]);
+                history.push(path)
+            }
+        })
+        .catch(err => {throw err});
+    }
 
     // const displayGroups = groups.map( group => {
     //     const index = groups.indexOf(group);
@@ -102,8 +102,7 @@ class BoardMenu extends Component {
             if(project !== null){
                 let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
-                        <Link to={path} onClick={closeMenus()}>
-                            <div className="board-menu-item" >
+                            <div className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
                             <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
                             </div>
@@ -111,7 +110,6 @@ class BoardMenu extends Component {
                                 {project.name}
                             </div>
                         </div>
-                        </Link>
                 )
             }
   })
