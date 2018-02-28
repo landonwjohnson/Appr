@@ -74,6 +74,12 @@
         color: #8C8984;
         text-decoration: none;
         background: transparent;
+        cursor: pointer;
+
+        &:hover{
+            @include lighten-background($secondary, 61%);
+        }
+
 
     }
 }
