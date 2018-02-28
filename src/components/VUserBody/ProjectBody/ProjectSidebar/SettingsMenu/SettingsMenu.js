@@ -1,61 +1,36 @@
 import React, { Component } from 'react';
 import './settingsmenu.scss';
-import BackgroundItem from './BackgroundItem/BackgroundItem';
 
 
 export default class SettingsMenu extends Component {
         constructor(props) {
         super(props);
         this.state = {
-            backgrounds: [],
-            UI: {backgroundMenu: false}
+
         };
     }
 
-    componentDidMount(){
-        findProjectBackgrounds()
-            .then( res => {
-                if (res.status !== 200){
-                    console.log(res);
-                }
-                else{
-                    this.setState({ backgrounds: res.data })
-                }
-            })
-    }
 
 
     render() {
-
-
-        const { handleProjectBackground, selectedBackground, changeProjectBackground, toggleProjectMenu } = this.props;
-        const backgrounds = this.state.backgrounds;
-        const displayBackgroundItems = backgrounds.map( background => {
-            const index = backgrounds.indexOf(background);
-            return(
-                <BackgroundItem key={index} selected={background.background_url === selectedBackground} backgroundImageSource={background.background_url} creatorName={background.creator_name} portfolio={background.portfolio} handleProjectBackground={handleProjectBackground}/> 
-            )
-        })
-
-
-        
+        let { toggleSettingsMenu, toggleBackgroundMenu } = this.props;
 
         return (
             <div>
                  
-                    <div className='project-background-header'>
-                        <input className="change-background-url" type="url" placeholder="Enter Image URL" onChange={(e) => this.props.handleProjectBackground(e.target.value)} />
+                    <div className='project-settings-header'>
+                        <button onClick={(e) => toggleSettingsMenu()}/>
+                        <div className="change-settings-title"> Settings </div>
                     </div>
                     
-                    <ul className='background-list'>
-                            <li className="no-background-box" onClick={(e) => handleProjectBackground('', '#FFF')}>  <label>No Background</label>  </li>
-                            {displayBackgroundItems}
+                    <ul className='settings-list'>
+                        <li onClick={(e) => toggleBackgroundMenu()}>Change Background</li>
+                        <li>Change Name</li>
+                        <li>Archive Project</li>
                     </ul>
 
                     <div className='project-background-footer'>
                         <div className="project-sidebar-buttonset">
-                            <button onClick={(e) => {changeProjectBackground(), toggleProjectMenu()} } className="changeBackgroundBtn">Change</button>
-                            <div onClick={toggleProjectMenu} className="closeBackgroundList"> <span /> </div>
                         </div>
                         
                     </div>

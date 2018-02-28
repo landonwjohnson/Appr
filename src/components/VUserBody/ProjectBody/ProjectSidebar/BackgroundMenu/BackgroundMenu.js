@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
 import { findProjectBackgrounds } from '../../../../../services/project.background.services';
-
 import BackgroundItem from './BackgroundItem/BackgroundItem';
 
 
@@ -31,7 +30,7 @@ export default class BackgroundMenu extends Component {
     render() {
 
 
-        const { handleProjectBackground, selectedBackground, changeProjectBackground, toggleProjectMenu } = this.props;
+        const { handleProjectBackground, selectedBackground, changeProjectBackground, toggleBackgroundMenu } = this.props;
         const backgrounds = this.state.backgrounds;
         const displayBackgroundItems = backgrounds.map( background => {
             const index = backgrounds.indexOf(background);
@@ -57,8 +56,8 @@ export default class BackgroundMenu extends Component {
 
                     <div className='project-background-footer'>
                         <div className="project-sidebar-buttonset">
-                            <button onClick={(e) => {changeProjectBackground(), toggleProjectMenu()} } className="changeBackgroundBtn">Change</button>
-                            <div onClick={toggleProjectMenu} className="closeBackgroundList"> <span /> </div>
+                            <button onClick={(e) => {changeProjectBackground(), toggleBackgroundMenu()} } className="changeBackgroundBtn">Change</button>
+                            <div onClick={(e) => {toggleBackgroundMenu()}} className="closeBackgroundList"> <span /> </div>
                         </div>
                         
                     </div>

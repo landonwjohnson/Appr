@@ -53,7 +53,7 @@ class ProjectSetupSidebar extends Component {
     }
 
     render() {
-        const { userid, projectid, projectName, projectInfo } = this.props;
+        const { userid, projectid, projectName, projectInfo, toggleSettingsMenu } = this.props;
         return (
             <div>
                 <div className='project-sidebar-header'>
@@ -71,7 +71,7 @@ class ProjectSetupSidebar extends Component {
                 </ul>
 
                 <div className='project-sidebar-footer'>
-                    <label onClick={this.props.toggleProjectMenu}>Change Background</label>
+                    <label onClick={(e) => toggleSettingsMenu()}>Change Settings</label>
                     
                 </div>
             </div>

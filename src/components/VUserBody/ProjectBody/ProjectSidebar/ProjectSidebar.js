@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import './projectsidebar.scss';
 import NavMenu from './NavMenu/NavMenu';
 import BackgroundMenu from './BackgroundMenu/BackgroundMenu';
+import SettingsMenu from './SettingsMenu/SettingsMenu';
 import { withRouter } from 'react-router-dom'
 
  class ProjectSidebar extends Component {
@@ -15,17 +16,51 @@ import { withRouter } from 'react-router-dom'
                 hideBackgroundMenu: true
             }
         };
-        this.toggleProjectMenu = this.toggleProjectMenu.bind(this);
+        this.toggleBackgroundMenu = this.toggleBackgroundMenu.bind(this);
+        this.toggleSettingsMenu = this.toggleSettingsMenu.bind(this);
+    }
+
+
+    toggleSettingsMenu(){
+        if(this.state.UI.hideProjectMenu === false){
+            this.setState({ 
+                UI: { 
+                        hideProjectMenu: true, 
+                        hideSettingsMenu: false,
+                        hideBackgroundMenu: true
+                    }
+                })
+        }
+        else if(this.state.UI.hideSettingsMenu === false){
+            this.setState({ 
+                UI: { 
+                        hideProjectMenu: false, 
+                        hideSettingsMenu: true,
+                        hideBackgroundMenu: true,
+                     } 
+                })
+        }
     }
     
 
-    toggleProjectMenu(){
-        this.props.clearProjectBackgroundPreview();
-        if(this.state.UI.hideProjectMenu === false){
-            this.setState({ UI: { hideProjectMenu: true, hideBackgroundMenu: false } })
+    toggleBackgroundMenu(){
+        if(this.state.UI.hideSettingsMenu === false){
+            this.setState({ 
+                UI: { 
+                        hideProjectMenu: true, 
+                        hideSettingsMenu: true,
+                        hideBackgroundMenu: false
+                    }
+                })
         }
         else if(this.state.UI.hideBackgroundMenu === false){
-            this.setState({ UI: { hideProjectMenu: false, hideBackgroundMenu: true } })
+            this.setState({ 
+                UI: { 
+                        hideProjectMenu: true, 
+                        hideSettingsMenu: false,
+                        hideBackgroundMenu: true 
+                    } 
+                })
         }
     }
 
@@ -40,6 +75,11 @@ import { withRouter } from 'react-router-dom'
             "backgroundMenu--hide": this.state.UI.hideBackgroundMenu,
             "backgroundMenu-wrapper": true
         })
+
+        let settingsMenuClass = classnames({
+            "settingsMenu--hide": this.state.UI.hideSettingsMenu,
+            "settingsMenu-wrapper": true
+        })
         
         const {handleProjectBackground, userid, projectid, selectedBackground, changeProjectBackground, projectName } = this.props;
        
@@ -49,10 +89,13 @@ import { withRouter } from 'react-router-dom'
             <div className="project-sidebar">
                 <span className="psb-divider" />
                 <div className={`${navMenuClass}`}>
-                    <NavMenu userid={userid} projectid={projectid} toggleProjectMenu={this.toggleProjectMenu}/>
+                    <NavMenu userid={userid} projectid={projectid} toggleSettingsMenu={this.toggleSettingsMenu} />
                 </div>
-                <div className={backgroundMenuClass} toggleProjectMenu={this.toggleProjectMenu}>
-                    <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleProjectMenu={this.toggleProjectMenu} />
+                <div className={settingsMenuClass} toggleSettingsMenu={this.toggleSettingsMenu}>
+                    <SettingsMenu toggleSettingsMenu={this.toggleSettingsMenu} toggleBackgroundMenu={this.toggleBackgroundMenu} />
+                </div>
+                <div className={backgroundMenuClass} toggleBackgroundMenu={this.toggleBackgroundMenu}>
+                    <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleBackgroundMenu={this.toggleBackgroundMenu} />
                 </div>
             </div>
         )
