@@ -73,6 +73,7 @@ class ProjectBody extends Component {
   changeProjectBackground(){
     let userid = this.props.userInfo.id;
     console.log(userid)
+    
     const projectid = this.props.match.params.projectid;
     let newBackground = this.state.UI.backgroundPreview;
     const { author_id, background, id, name, status_id } = this.props.projectInfo;
