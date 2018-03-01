@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EndpointItem from './EndpointItem/EndpointItem';
 import './endpoints.scss';
 import { findProjectEndpoints, createProjectEndpoint, updateProjectEndpoint, deleteProjectEndpoint } from '../../../../services/project.endpoint.services';
+import { connect } from 'react-redux';
 
 class Endpoints extends Component {
   constructor(props){
@@ -17,38 +18,43 @@ class Endpoints extends Component {
       this.handleResponseChange = this.handleResponseChange.bind(this);
       this.handleRequestChange = this.handleRequestChange.bind(this);
       this.handleSubmitEndpoint = this.handleSubmitEndpoint.bind(this);
+      this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
 }
 
-  componentWillMount(){
-    const projectid = this.props.match.params.projectid;
+  pullFromBackend(projectid, scrollOption){
     findProjectEndpoints(projectid)
-      .then(res => {
-        if (res.status !== 200){
-          alert(res);
+    .then(res => {
+      if (res.status !== 200){
+        alert(res);
+      }
+      else {
+        this.setState({ endpoints: res.data })
+        if(scrollOption === 'yesScroll'){
+          this.scrollToBottom();
         }
-        else {
-          this.setState({ endpoints: res.data })
-        }
-      })
+      }
+    })
+  }
+
+  componentDidMount(){
+    const projectid = this.props.projectInfo.id;
+    this.pullFromBackend(projectid);
   }
 
   //endpoint ITEM add and remove methods
   addEndpointItemHandler(projectid){
-    const reqBody = { endpointName: '', httpVerb: '', urlData: '', responseData: '', requestData: ''};
+    const reqBody = { endpointName: 'Type name here', httpVerb: 'HTTP VERB', urlData: '', responseData: '', requestData: ''};
     createProjectEndpoint(projectid, reqBody)
       .then( res => {
         if (res.status !== 200){
           alert(res);
         }
         else{
-          const newState = this.state.endpoints;
-          newState.push(res.data[0]);
-          this.setState({ endpoints: newState });
-          this.scrollToBottom();
+          this.pullFromBackend(projectid, 'yesScroll');
         }
       })
   }
@@ -90,9 +96,7 @@ class Endpoints extends Component {
           console.log(res);
         }
         else {
-          const newState = this.state.endpoints;
-          newState.splice(index, 1);
-          this.setState( { endpoints: newState } );
+          this.pullFromBackend(projectid);
         }
       })
   }
@@ -131,9 +135,8 @@ class Endpoints extends Component {
 
 
   render() {
-    console.table(this.state.endpoints)
-
-    const { userid, projectid } = this.props.match.params;
+    const userid = this.props.userInfo.id;
+    const projectid = this.props.projectInfo.id;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {
       const index = endpoints.indexOf(endpoint);
@@ -186,4 +189,8 @@ class Endpoints extends Component {
   }
 }
 
-export default Endpoints;
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps) (Endpoints);

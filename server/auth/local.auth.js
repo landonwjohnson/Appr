@@ -13,12 +13,8 @@ passport.use('login', new Strategy(
 
         db.find_user_by_email([ username ])
             .then( user => {
-                if (!user[0]) {
-                    message = 'That email does not match our records.';
-                    return done(message);
-                }
-                if (user[0].password !== password) {
-                    message = 'That password is incorrect.';
+                if (!user[0] || user[0].password !== password) {
+                    message = 'Email or password is incorrect.';
                     return done(message);
                 }
                 return done(null, user[0]);

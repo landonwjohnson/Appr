@@ -20,23 +20,25 @@ class Ideas_Users extends Component {
         this.pullFromDatabase = this.pullFromDatabase.bind(this);
     }
 
-    pullFromDatabase(projectid){
-        const ideaExamples = [
-            { idea_data: 'e.g. Rule the Galaxy.' },
-            { idea_data: 'e.g. Get Baby out of the corner.'}
-        ];
-        const userfieldExamples = [
-            { target_demo_data: 'e.g. Jedi', skill_data: 'diplomacy', description_data: 'what a bunch of squares'},
-            { target_demo_data: 'e.g. Sith', skill_data: 'violence', description_data: 'the cool kids table'}
-        ];
+    scrollToBottomIdeas = () => {
+        this.ideasListEnd.scrollIntoView({ behavior: "smooth" });
+    }
 
+    scrollToBottomUsers = () => {
+        this.usersListEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
+    pullFromDatabase(projectid, scrollOption){
         findProjectIdeas(projectid)
             .then( res => {
                 if (res.status !== 200) {
                     console.log(res);
                 }
                 else {
-                    res.data.length > 0 ? this.setState({ ideas: res.data }) : this.setState({ ideas: ideaExamples });
+                    this.setState({ ideas: res.data })
+                    if(scrollOption === 'ideasYesScroll'){
+                        this.scrollToBottomIdeas();
+                    }
                 }
             })
             .catch(err => {throw err});
@@ -47,14 +49,16 @@ class Ideas_Users extends Component {
                     console.log(res);
                 }
                 else {
-                    res.data.length > 0 ? this.setState({ userfields: res.data }) : this.setState({ userfields: userfieldExamples });
+                    this.setState({ userfields: res.data })
+                    if(scrollOption === 'usersYesScroll'){
+                        this.scrollToBottomUsers();
+                    }
                 }
             })
             .catch(err => {throw err});
-
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const projectid = this.props.projectInfo.id;
         this.pullFromDatabase(projectid);
     }
@@ -76,8 +80,7 @@ class Ideas_Users extends Component {
                         console.log(res);
                     }
                     else {
-                        newState.push(res.data[0]);
-                        this.setState({ ideas: newState });
+                        this.pullFromDatabase(projectid, 'ideasYesScroll')
                     }
                 })
                 .catch(err => {throw err});
@@ -90,8 +93,7 @@ class Ideas_Users extends Component {
                         console.log(res);
                     }
                     else {
-                        newState.push(res.data[0]);
-                        this.setState({ userfields: newState });
+                        this.pullFromDatabase(projectid, 'usersYesScroll');
                     }
                 })
                 .catch(err => {throw err});
@@ -141,11 +143,8 @@ class Ideas_Users extends Component {
     }
 
     handleDeleteField(e, field, index) {
-        const projectid = this.props.match.params.projectid
+        const projectid = this.props.projectInfo.id
         const id = Number(e.target.id);
-        const newState = this.state[field];
-        newState.splice(index, 1);
-        this.setState({ [field]: newState });
 
         if (field === 'ideas') {
             deleteProjectIdea(projectid, id)
@@ -153,6 +152,7 @@ class Ideas_Users extends Component {
                     if (res.status !== 200) {
                         console.log(res);
                     }
+                    this.pullFromDatabase(projectid)
                 })
                 .catch(err => {throw err});
         }
@@ -162,13 +162,15 @@ class Ideas_Users extends Component {
                     if (res.status !== 200) {
                         console.log(res);
                     }
+                    this.pullFromDatabase(projectid)
                 })
                 .catch(err => {throw err});
         }
     }
 
     render() {
-        const { userid, projectid } = this.props.match.params;
+        const projectid = this.props.projectInfo.id;
+        const userid = this.props.userInfo.id;
         const ideas = this.state.ideas;
         const userfields = this.state.userfields;
         const displayIdeas = ideas.map( idea => {
@@ -192,7 +194,7 @@ class Ideas_Users extends Component {
                                     <div className="ideas-list">
                                         {displayIdeas}
                                     </div>
-                                    <div className="ideas-users-footer">
+                                    <div className="ideas-users-footer" ref={(el) => { this.ideasListEnd = el; }}>
                                         <button className="add-button" id="ideas" onClick={() => this.handleAddField('ideas')}> <span/> Add Idea </button>
                                     </div>
                                 </div>
@@ -203,7 +205,7 @@ class Ideas_Users extends Component {
                                     <div className="users-list">
                                         {displayUsers}
                                     </div>
-                                    <div className="ideas-users-footer">
+                                    <div className="ideas-users-footer" ref={(el) => { this.usersListEnd = el; }}>
                                         <button className="add-button"  onClick={() => this.handleAddField('userfields')}> <span/> Add User </button>
                                     </div>
                                 </div>

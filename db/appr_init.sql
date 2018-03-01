@@ -206,9 +206,9 @@ VALUES
 INSERT INTO project ( name, background, author_id, status_id )
 VALUES
     ('Defeat the Empire', 'http://static.independent.co.uk/s3fs-public/thumbnails/image/2016/02/25/17/Star-wars-5.jpg', 2, 1),
-    ('Destroy the Rebels', 'https://www.walldevil.com/wallpapers/a24/star-wars-wallpaper-sandbox-cigarette-lol-house-paper-dark-smoking-light-lightnings-images-saber.jpg', 6, 1),
+    ('Destroy the Rebels', 'https://www.walldevil.com/wallpapers/a24/star-wars-wallpaper-sandbox-cigarette-lol-house-paper-dark-smoking-light-lightnings-images-saber.jpg', 7, 1),
     ('Preserve the Republic', 'https://cdn.europosters.eu/image/1300/40110.jpg', 10, 1),
-    ('Achieve Independence', 'https://images3.alphacoders.com/114/11439.jpg', 15, 1)
+    ('Achieve Independence', 'https://images3.alphacoders.com/114/11439.jpg', 7, 1)
 ;
 
 ---------------------------------Test Project Fields
@@ -358,8 +358,8 @@ VALUES
     (4, 3, 3),
     (5, 3, 3),
     (6, 4, 1),
-    (7, 3, 3),
-    (7, 4, 3),
+    (7, 2, 1),
+    (7, 4, 1),
     (8, 4, 3),
     (9, 4, 3)
 ;

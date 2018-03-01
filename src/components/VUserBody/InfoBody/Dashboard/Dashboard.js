@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './dashboard.scss';
 import './dashboard-projects.scss';
-import { findDashboardInfo } from '../../../../services/dashboard.services';
+import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject } from '../../../../services/project.services';
+import { createProject, findProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import { connect } from 'react-redux';
-import { updateDashboard } from '../../../../actions/actionCreators';
+import { updateDashboard, updatePersonalProjects } from '../../../../actions/actionCreators';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -43,7 +43,13 @@ class Dashboard extends Component {
 			reqBody = {name, authorId: userid};
 			createProject(reqBody)
 				.then( res => {
+					findPersonalProjects(userid)
+					.then(res => {
+						console.log(res.data + '' + 'find personal projects')
+						this.props.updatePersonalProjects(res.data);
+					})
 					if (res.data[0].id) {
+
 						const projectid = res.data[0].id;
 						this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
 					}
@@ -58,9 +64,9 @@ class Dashboard extends Component {
 	render() {
 		const userid = this.props.userInfo.id;
 
-		let displayProjects = this.props.dashboardInfo.projects.map( (project, index) => {
-			console.table(this.props.dashboardInfo.projects)
-			if(project !== null){
+		let displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
+			console.table(this.props.dashboardInfo.personalProjects)
+			if(project.status_id === 1){
 				return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
 			}
 		});
@@ -118,4 +124,4 @@ function mapStateToProps(state){
 	return state;
   }
   
-export default connect( mapStateToProps, {updateDashboard} ) (Dashboard);
+export default connect( mapStateToProps, {updateDashboard, updatePersonalProjects} ) (Dashboard);

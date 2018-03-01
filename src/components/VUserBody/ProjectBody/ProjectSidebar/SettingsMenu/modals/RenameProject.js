@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteProject, updateProject, findProject } from '../../../../../../services/project.services';
 import history from '../../../../../../history';
-import { findDashboardInfo } from '../../../../../../services/dashboard.services';
-import { updateDashboard, updateProjectRedux } from '../../../../../../actions/actionCreators';
+import { findDashboardInfo, findPersonalProjects } from '../../../../../../services/dashboard.services';
+import { updateDashboard, updateProjectRedux, updatePersonalProjects } from '../../../../../../actions/actionCreators';
 
 
 class RenameProject extends Component {
@@ -35,12 +35,12 @@ class RenameProject extends Component {
             findProject(projectid)
                 .then( res => {
                     updateProjectRedux(res.data[0])
-                    findDashboardInfo(userid)
-                        .then( res => {
-                            this.props.updateDashboard(res.data)
-                            
-                            closeProjectNameModal()
-                        })
+                    findPersonalProjects(userid)
+                    .then( res => {
+                      this.props.updatePersonalProjects(res.data)                      
+                      closeProjectNameModal()
+                  })
+
                 })
         })
 }
@@ -89,6 +89,6 @@ class RenameProject extends Component {
   }
 
 
-  export default connect(mapStateToProps, {updateDashboard, updateProjectRedux}) (RenameProject);
+  export default connect(mapStateToProps, {updatePersonalProjects, updateProjectRedux}) (RenameProject);
 
 

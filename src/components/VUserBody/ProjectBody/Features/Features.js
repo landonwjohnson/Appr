@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './features.scss';
 import FeatureItem from "./FeatureItem/FeatureItem";
 import { findProjectFeatures, createProjectFeature, updateProjectFeature, deleteProjectFeature } from '../../../../services/project.feature.services';
-
+import { connect } from 'react-redux';
 class Features extends Component {
     constructor(props) {
         super(props);
         this.state = {
             features: []
         };
+        this.pullFromBackend = this.pullFromBackend.bind(this);
         this.handleAddFeature = this.handleAddFeature.bind(this);
         this.handleChangeFeature = this.handleChangeFeature.bind(this);
         // this.handleSubmitFeature = this.handleSubmitFeature.bind(this);
@@ -20,31 +21,31 @@ class Features extends Component {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
-    componentWillMount() {
-        const featureExamples = [
-            {feature_data: "e.g. A user can click a button"},
-            {feature_data: "e.g. A user can create an account"}
-        ];
-        const projectid = this.props.match.params.projectid;
+    pullFromBackend(projectid, scrollOption){
         findProjectFeatures(projectid)
             .then( res => {
                 if (res.status !== 200) {
                     alert(res);
                 }
                 else {
-                    if (res.data.length === 0) {
-                        this.setState({ features: featureExamples });
-                    }
-                    else {
-                        this.setState({ features: res.data });
+                    this.setState({ features: res.data });
+                    if(scrollOption === 'yesScroll'){
+                        this.scrollToBottom();
                     }
                 }
             })
             .catch(err => {throw err});
     }
 
+
+
+    componentDidMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromBackend(projectid)
+    }
+
     handleAddFeature() {
-        const projectid = this.props.match.params.projectid;
+        const projectid = this.props.projectInfo.id;
         const reqBody = { featureData: '' };
         createProjectFeature(projectid, reqBody)
             .then( res => {
@@ -52,10 +53,7 @@ class Features extends Component {
                     alert(res);
                 }
                 else {
-                    const newState = this.state.features;
-                    newState.push(res.data[0]);
-                    this.setState({ features: newState });
-                    this.scrollToBottom();
+                    this.pullFromBackend(projectid, 'yesScroll')   
                 }
             })
             .catch(err => {throw err});
@@ -67,19 +65,7 @@ class Features extends Component {
         this.setState({ features: newState });
     }
 
-    // handleSubmitFeature(index) {
-    //     const projectid = this.props.match.params.projectid;
-    //     const { id, feature_data } = this.state.features[index];
-    //     const reqBody = { featureData: feature_data };
-    //     updateProjectFeature(projectid, id, reqBody)
-    //         .then( res => {
-    //             if (res.status !== 200) {
-    //                 alert(res);
-    //             }
-    //         })
-    //         .catch(err => {throw err});
 
-    // }
 
     handleDeleteFeature(index) {
         const projectid = this.props.match.params.projectid;
@@ -90,16 +76,14 @@ class Features extends Component {
                     console.log(res);
                 }
                 else {
-                    const newState = this.state.features;
-                    newState.splice(index, 1);
-                    this.setState({ features: newState });
+                    this.pullFromBackend(projectid)
                 }
             })
             .catch(err => {throw err});
     }
 
     handleSaveChange(e, index) {
-        const {projectid} = this.props.match.params;
+          const projectid = this.props.projectInfo.id;
           const featureid = this.state.features[index].id;
           console.log(featureid);
           console.log(projectid);
@@ -113,19 +97,16 @@ class Features extends Component {
               }
           })
           .catch(err => {throw err});
-
       }
 
 
 
 
     render() {
-        console.log(this.props.background);
-
-        const { userid, projectid } = this.props.match.params;
+        const userid = this.props.userInfo.id;
+        const projectid = this.props.projectInfo.id;
         const features = this.state.features;
-        const displayFeatures = features.map( feature => {
-            const index = features.indexOf(feature);
+        const displayFeatures = features.map( (feature, index) => {
             const id = feature.id;
             return (<FeatureItem
                         index={index}
@@ -133,7 +114,6 @@ class Features extends Component {
                         id={id}
                         featureData={feature.feature_data}
                         handleChangeFeature={this.handleChangeFeature}
-                        // handleSubmitFeature={this.handleSubmitFeature}
                         handleDeleteFeature={this.handleDeleteFeature}
                         handleSaveChange={this.handleSaveChange} />
             );
@@ -166,4 +146,8 @@ class Features extends Component {
     }
 }
 
-export default Features;
+
+function mapStateToProps(state){
+    return state
+}
+export default connect(mapStateToProps)(Features);

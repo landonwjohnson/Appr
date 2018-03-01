@@ -59,7 +59,7 @@ class BoardMenu extends Component {
 
   render() {
 
-    const { projectid, closeMenus, updateProjectRedux } = this.props;
+    const { closeMenus, updateProjectRedux } = this.props;
 
 
     // const groups = this.props.dashboardInfo.groups;
@@ -98,8 +98,8 @@ class BoardMenu extends Component {
 
     let userid = this.props.userInfo.id;
 
-    const displayProjects = this.props.dashboardInfo.projects.map( (project, index) => {
-            if(project !== null){
+    const displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
+            if(project.status_id === 1){
                 let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
                             <div className="board-menu-item" onClick={(e) => getProject(project.id, path)} >

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteProject } from '../../../../../../services/project.services';
 import history from '../../../../../../history';
-import { findDashboardInfo } from '../../../../../../services/dashboard.services';
-import { updateDashboard } from '../../../../../../actions/actionCreators';
+import { findDashboardInfo, findPersonalProjects } from '../../../../../../services/dashboard.services';
+import { updatePersonalProjects } from '../../../../../../actions/actionCreators';
 
 
 class ArchiveProject extends Component {
@@ -20,7 +20,7 @@ class ArchiveProject extends Component {
     
     render() {
 
-        const { closeArchiveModal, projectInfo, userInfo, dashboardInfo, updateDashboard } = this.props;
+        const { closeArchiveModal, projectInfo, userInfo, dashboardInfo, updatePersonalProjects } = this.props;
 
         function handleArchive(){
             let projectid = projectInfo.id;
@@ -28,9 +28,9 @@ class ArchiveProject extends Component {
             let path = `/user/${userid}/dashboard`;
             deleteProject(projectid)
                 .then(res =>{
-                  findDashboardInfo(userid)
+                  findPersonalProjects(userid)
                   .then( res => {
-                      updateDashboard(res.data); 
+                      updatePersonalProjects(res.data);
                       history.push(path);                 
                   })
                 })
@@ -69,6 +69,6 @@ class ArchiveProject extends Component {
   }
 
 
-  export default connect(mapStateToProps, {updateDashboard}) (ArchiveProject);
+  export default connect(mapStateToProps, {updatePersonalProjects}) (ArchiveProject);
 
 

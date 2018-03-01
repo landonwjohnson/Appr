@@ -116,7 +116,7 @@ class Header extends Component {
  
       <div>
           <div className={boardMenuClass}>
-                <BoardMenu userid={userid} closeMenus={this.closeMenus}/>
+                <BoardMenu closeMenus={this.closeMenus}/>
           </div>
           <div className="header-container">
                 <div className="nav-bar">
@@ -133,7 +133,7 @@ class Header extends Component {
                         <div className="logo"></div>
                     </div>
                     <div className="user-con">
-                            <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
+                            <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials()}</label> </div>
                             <div className="hello-user">Hello {userInfo.first_name}!</div>
                             <div className="bread-container" onClick={this.handleRightMenuClick}>
                                 <div className={breadMenuTransform} href="#" >

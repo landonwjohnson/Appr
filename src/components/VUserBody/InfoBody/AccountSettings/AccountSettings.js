@@ -98,7 +98,7 @@ class AccountSettings extends Component {
   
   render() {
     const userInfo = this.state.userInfo;
-    const { handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
+    const { handleInitials } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -144,7 +144,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <EditProfile pullFromBackend={this.pullFromBackend} userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} />
+              <EditProfile pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeProfileModal} />
           </Modal>
 
           <Modal 
@@ -153,7 +153,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeEmail pullFromBackend={this.pullFromBackend} userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailSubmit={handleEmailSubmit}/>
+              <ChangeEmail pullFromBackend={this.pullFromBackend}  onCloseBtnClick={this.closeEmailModal} />
           </Modal>
 
           <Modal 
@@ -162,7 +162,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangePassword pullFromBackend={this.pullFromBackend} userInfo={userInfo} onCloseBtnClick={this.closePasswordModal} />
+              <ChangePassword pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closePasswordModal} />
           </Modal>
 
           <Modal 
@@ -171,7 +171,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar pullFromBackend={this.pullFromBackend} userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarSubmit={handleAvatarSubmit} showAvatarFail={this.showAvatarFail}/>
+              <ChangeAvatar pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeAvatarModal}/>
           </Modal>
       </div>
     );
