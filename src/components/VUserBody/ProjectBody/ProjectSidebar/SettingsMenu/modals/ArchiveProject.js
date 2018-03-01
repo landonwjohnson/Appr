@@ -20,7 +20,7 @@ class ArchiveProject extends Component {
     
     render() {
 
-        const { closeArchiveModal, projectInfo, userInfo, dashboardInfo } = this.props;
+        const { closeArchiveModal, projectInfo, userInfo, dashboardInfo, updateDashboard } = this.props;
 
         function handleArchive(){
             let projectid = projectInfo.id;
@@ -28,14 +28,13 @@ class ArchiveProject extends Component {
             let path = `/user/${userid}/dashboard`;
             deleteProject(projectid)
                 .then(res =>{
-                    
+                  findDashboardInfo(userid)
+                  .then( res => {
+                      updateDashboard(res.data); 
+                      history.push(path);                 
+                  })
                 })
-            findDashboardInfo(userid)
-                .then( res => {
-                    updateDashboard(res.data);
-                    console.table(res.data)
-                    history.push(path)
-                })
+
         }
 
       return (
