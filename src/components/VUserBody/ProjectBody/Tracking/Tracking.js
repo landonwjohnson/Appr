@@ -44,8 +44,6 @@ findMeSomeStuff(projectid){
 componentDidMount(){
   const projectid = this.props.projectInfo.id;
   this.findMeSomeStuff(projectid);
-
-
 }
 
 
