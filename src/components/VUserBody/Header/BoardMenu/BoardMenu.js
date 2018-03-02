@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, Redirect, BrowserRouter } from 'react-router-dom';
+import { Link, Redirect, BrowserRouter, withRouter} from 'react-router-dom';
 import history from '../../../../history';
 import './board-menu.scss'
-import { findDashboardInfo } from '../../../../services/dashboard.services';
+import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
 import { findProject } from '../../../../services/project.services';
-import { updateProjectRedux } from '../../../../actions/actionCreators';
+import { updateProjectRedux, updatePersonalProjects } from '../../../../actions/actionCreators';
 import { connect } from 'react-redux';
 
 class BoardMenu extends Component {
@@ -20,7 +20,7 @@ class BoardMenu extends Component {
     }
 
     handleCreateButton(buttonPressed) {
-		const userid = this.props;
+		const userid = this.props.userInfo.id;
 		let name = '';
 		let reqBody = {};
 		if (buttonPressed === 'group') {
@@ -30,7 +30,7 @@ class BoardMenu extends Component {
 				.then( res => {
 					if (res.data[0].id) {
 						const groupid = res.data[0].id;
-						this.props.history.push(`/user/${userid}/group/${groupid}/dashboard`);
+						history.push(`/user/${userid}/group/${groupid}/dashboard`);
 					}
 					else {
 						alert(res.data.message);
@@ -44,9 +44,21 @@ class BoardMenu extends Component {
 			reqBody = {name, authorId: userid};
 			createProject(reqBody)
 				.then( res => {
+                    console.table(res.data)
+
 					if (res.data[0].id) {
-						const projectid = res.data[0].id;
-                        this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+                        const projectid = res.data[0].id;
+                        findProject(projectid)
+                            .then(res => {
+                                updateProjectRedux(res.data[0]);
+                                findPersonalProjects(userid)
+                                .then(res => {
+                                    this.props.updatePersonalProjects(res.data);
+                                    history.push(`/user/${userid}/project/${projectid}/ideas`);
+
+                                })
+                            })
+                        
 					}
 					else {
 						alert(res);
@@ -97,12 +109,12 @@ class BoardMenu extends Component {
     // })
 
     let userid = this.props.userInfo.id;
-
-    const displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
+    let personalProjects = this.props.dashboardInfo.personalProjects;
+    let displayProjects = personalProjects.map( (project, index) => {
             if(project.status_id === 1){
                 let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
-                            <div className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
+                        <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
                             <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
                             </div>
@@ -162,7 +174,7 @@ function mapStateToProps(state){
     return state;
 }
   
-  export default connect( mapStateToProps, {updateProjectRedux} ) (BoardMenu);
+  export default withRouter(connect( mapStateToProps, {updateProjectRedux, updatePersonalProjects} ) (BoardMenu));
 
 
 

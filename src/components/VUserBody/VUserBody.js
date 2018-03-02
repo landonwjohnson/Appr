@@ -25,11 +25,16 @@ class VUserBody extends Component {
   };
 
   componentWillMount(){
+
     const userid = this.props.match.params.userid;
     findUserInfo(userid)
     .then( res => {
-        if (res.data['path']) {
-            console.log(res.data);
+        if (res.data['newPath']) {
+            let newPath = res.data['newPath'];
+            console.log(newPath);
+            console.log(this.props.match.params);
+            console.log(this.props.match.path)
+            history.goBack(`/${newPath}`);
         }
         else {
               let userInfo = {   

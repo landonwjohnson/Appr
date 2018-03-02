@@ -7,10 +7,14 @@ const accountRouter = express.Router();
 // find by id
 accountRouter.get('/:userid', (req, res) => {
     const userId = req.params.userid;
-    if(userId != req.user[0].id)
-        res.redirect(req.session.returnTo || '/');
-        delete req.session.returnTo;
-        // console.log('thats not you1 ' + userId + " " + req.user[0].id );
+    const passportId = req.user[0].id;
+    if(!req.user){
+        res.send({newPath: `login`})
+    }
+    if(userId != req.user[0].id){
+        res.send({newPath: `user/${passportId}/dashboard`})
+    }
+
         // res.redirect('/');
     const db = getDb();
     db.find_user_by_id([ userId ])

@@ -30,8 +30,8 @@ class ProjectBody extends Component {
   }
 
 
-  componentDidMount() {
-    const projectid = this.props.match.params.projectid;
+  componentWillMount() {
+    const projectid = this.props.projectInfo.id || this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {
             if (res.status !== 200) {
@@ -43,6 +43,8 @@ class ProjectBody extends Component {
         })
         .catch(err => {throw err});
   }
+
+
 
 
 
