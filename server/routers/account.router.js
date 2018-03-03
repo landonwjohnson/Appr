@@ -102,4 +102,24 @@ accountRouter.put('/info/update/:userid', (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+
+
+
+//New stuff 03/3/2018
+
+
+
+accountRouter.put('/info/update/password/:userid', (req, res) => {
+    const userId = req.params.userid;
+    const { password } = req.body;
+    if(userId !== req.user[0].id){
+        res.send('NO NO NO NO NO NO NO');
+    }
+    const db = getDb();
+    db.update_user_password([ userId, password])
+    .then(promise => res.send())
+    .catch(err => res.status(500).send(err));
+});
+
+
 module.exports = accountRouter;

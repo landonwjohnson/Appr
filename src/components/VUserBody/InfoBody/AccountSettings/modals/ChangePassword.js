@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class ChangePassword extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            password: ''
+        }
+    }
     
     render() {
       return (
@@ -39,8 +46,13 @@ class ChangePassword extends Component {
     }
   }
 
+  function mapStateToProps(state){
+    return state
+  }
+
   ChangePassword.propTypes = { onCloseBtnClick: PropTypes.func }
   ChangePassword.defaultProps = { onCloseBtnClick: () => {} }
-  export default ChangePassword;
+
+  export default connect(mapStateToProps)(ChangePassword);
 
 

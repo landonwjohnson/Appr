@@ -64,10 +64,10 @@ class Ideas_Users extends Component {
     }
 
 
-    componentWillReceiveProps(nextProps) {
-        const projectid = nextProps.projectInfo.id;
-        this.pullFromDatabase(projectid);
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     const projectid = nextProps.projectInfo.id;
+    //     this.pullFromDatabase(projectid);
+    // }
 
     handleAddField(field) {
         const projectid = this.props.match.params.projectid

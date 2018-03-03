@@ -45,11 +45,21 @@ function updateUserInfo(userid, body) {
         .then(res => res)
         .catch(err => {throw err});
 }
+
+function updateUserPassword(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/password/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+
 export {
     findUser,
     findUsername,
     updateUser,
     deleteUser,
     findUserInfo,
-    updateUserInfo
+    updateUserInfo,
+    updateUserPassword
 };
