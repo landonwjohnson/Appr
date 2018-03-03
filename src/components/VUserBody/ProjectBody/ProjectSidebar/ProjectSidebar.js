@@ -54,6 +54,7 @@ import { withRouter } from 'react-router-dom'
                 })
         }
         else if(this.state.UI.hideBackgroundMenu === false){
+            this.props.clearProjectBackgroundPreview();
             this.setState({ 
                 UI: { 
                         hideProjectMenu: true, 
