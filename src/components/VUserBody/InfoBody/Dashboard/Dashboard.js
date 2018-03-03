@@ -8,6 +8,7 @@ import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import { connect } from 'react-redux';
 import { updatePersonalProjects, updateProjectRedux } from '../../../../actions/actionCreators';
+import NewDashProject from './DashItems/NewDashProject';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -71,7 +72,9 @@ class Dashboard extends Component {
 		let displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
 			console.table(this.props.dashboardInfo.personalProjects)
 			if(project.status_id === 1){
-				return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+				// return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+				return <NewDashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+
 			}
 		});
 		
