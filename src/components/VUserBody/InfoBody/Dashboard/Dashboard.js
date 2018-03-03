@@ -3,11 +3,11 @@ import './dashboard.scss';
 import './dashboard-projects.scss';
 import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject, findProject } from '../../../../services/project.services';
+import { createProject, findProject, updateProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import { connect } from 'react-redux';
-import { updateDashboard, updatePersonalProjects } from '../../../../actions/actionCreators';
+import { updatePersonalProjects, updateProjectRedux } from '../../../../actions/actionCreators';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -49,9 +49,13 @@ class Dashboard extends Component {
 						this.props.updatePersonalProjects(res.data);
 					})
 					if (res.data[0].id) {
-
+						
 						const projectid = res.data[0].id;
-						this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+						findProject(projectid)
+						.then(res => {
+							this.props.updateProjectRedux(res.data[0]);
+							this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+						})
 					}
 					else {
 						alert(res);
@@ -124,4 +128,4 @@ function mapStateToProps(state){
 	return state;
   }
   
-export default connect( mapStateToProps, {updateDashboard, updatePersonalProjects} ) (Dashboard);
+export default connect( mapStateToProps, { updatePersonalProjects, updateProjectRedux} ) (Dashboard);

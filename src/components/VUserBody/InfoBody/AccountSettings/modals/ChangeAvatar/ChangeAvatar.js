@@ -6,19 +6,14 @@ import AvatarIconGallery from './AvatarIconGallery/AvatarIconGallery';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { updateUserInfo } from '../../../../../../services/account.services'
-
+import { connect } from 'react-redux';
 class ChangeAvatar extends Component {
     constructor(props){
         super(props)
         this.state={
             userInfo: {
-                username: this.props.userInfo.username,
-                firstName: this.props.userInfo.firstName,
-                lastName: this.props.userInfo.lastName,
-                email: this.props.userInfo.email,
-                avatar: this.props.userInfo.avatar
+                avatar: ''
             },
-            avatar: this.props.userInfo.avatar,
             UI:{
                 hideChangeURLOption: true,
                 hideAvatarGallery: false
@@ -49,7 +44,14 @@ class ChangeAvatar extends Component {
 
     handleAvatarSubmit(){
         const userid = this.props.userInfo.id;
-        const reqBody = this.state.userInfo;
+        let { username, first_name, last_name, email } = this.props.userInfo;
+        const reqBody = {
+            username, 
+            firstName: first_name,
+            lastName: last_name,
+            email: email,
+            avatar: this.state.userInfo.avatar
+        };
         console.table(reqBody)
         updateUserInfo(userid, reqBody)
           .then( res => {
@@ -126,8 +128,12 @@ class ChangeAvatar extends Component {
     }
   }
 
+  function mapStateToProps(state){
+        return state
+  }
+
   ChangeAvatar.propTypes = { onCloseBtnClick: PropTypes.func }
   ChangeAvatar.defaultProps = { onCloseBtnClick: () => {} }
-  export default ChangeAvatar;
+  export default connect(mapStateToProps)(ChangeAvatar);
 
 

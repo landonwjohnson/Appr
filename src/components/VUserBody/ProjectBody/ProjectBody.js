@@ -30,24 +30,6 @@ class ProjectBody extends Component {
   }
 
 
-  componentWillMount() {
-    const projectid = this.props.projectInfo.id || this.props.match.params.projectid;
-    findProject(projectid)
-        .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-            else {
-                this.props.updateProjectRedux(res.data[0]);
-            }
-        })
-        .catch(err => {throw err});
-  }
-
-
-
-
-
   handleProjectBackgroundPreview(image, color){
     let newBackground = image;
     let newColor = color;

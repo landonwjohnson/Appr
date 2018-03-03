@@ -79,7 +79,7 @@ accountRouter.put('/delete/:userid', (req, res) => {
 //find user info
 accountRouter.get('/info/:userid', (req, res) => {
     const userId = req.params.userid;
-    if(userId !== req.user[0].id)
+    if(userId != req.user[0].id)
     // res.redirect('/');
      console.log('thats not you5');
     const db = getDb();

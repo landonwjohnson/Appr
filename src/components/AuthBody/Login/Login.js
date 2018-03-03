@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import './login.scss';
 import { loginTest, login } from '../../../services/auth.services';
 import { request } from 'https';
+import { updateAuth, updateUser, updatePersonalProjects } from '../../../actions/actionCreators';
+import { findUserInfo } from '../../../services/account.services';
+import {  findPersonalProjects } from '../../../services/dashboard.services';
+
+import { connect } from 'react-redux'
+import history from '../../../history';
+import { withRouter } from 'react-router-dom';
+
 
 class Login extends Component {
 	constructor(props) {
@@ -23,6 +31,7 @@ class Login extends Component {
 	}
 
 	handleSubmitLogin() {
+		const isAuth = this.props.isAuth;
 		const { username, password } = this.state;
 		const creds = { username, password };
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
@@ -38,17 +47,53 @@ class Login extends Component {
 						if (res.data === 'login test was successful!') {
 							login(creds)
 								.then( res => {
-									if (res.status === 200) {
-										this.props.history.push(`/user/${res.data.id}/dashboard`);
+										this.props.updateAuth(true);
+										if(res.status === 200){
+												findUserInfo(res.data.id)
+												.then( res => {
+													if (res.status !== 200) {
+													alert('failed')
+													}
+													if (res.status === 200){
+														let userInfo = {   
+															id: res.data[0].id,
+															username: res.data[0].username,
+															avatar: res.data[0].avatar,
+															first_name: res.data[0].first_name,
+															last_name: res.data[0].last_name,
+															email: res.data[0].email
+															}
+															this.props.updateUser(userInfo)
+											
+															findPersonalProjects(userInfo.id)
+																.then( res => {
+																	this.props.updatePersonalProjects(res.data);
+																	history.push(`/user/${userInfo.id}/dashboard`);
+
+																	if(isAuth === true){
+																		console.log('I should be switching urls')
+																		history.push(`/user/${res.data.id}/dashboard`);
+																	}
+
+																})
+													}
+												})
+												.catch(err => {throw err});
+											}
+
+
+
 									}
-								})
+								)
 								.catch(err => {throw err});
 						}
 						else {
 							alert(res.data);
 						}
 					})
-					.catch(err => {throw err});
+					.catch(err => {
+						this.props.updateAuth(false)
+					});
 			}
 		}
 	}
@@ -93,4 +138,8 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+function mapStateToProps(state){
+	return state
+}
+
+export default withRouter(connect(mapStateToProps, {updateAuth, updateUser, updatePersonalProjects})(Login));

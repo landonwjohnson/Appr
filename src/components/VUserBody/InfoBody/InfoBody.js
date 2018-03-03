@@ -10,13 +10,11 @@ class InfoBody extends Component {
     return (
        <div>
          
-        <Switch>
             <Route component={ Dashboard }  path="/user/:userid/dashboard"/>
             <Route path="/user/:userid/account/settings/:userid" render={(props) => (
                   <AccountSettings handleInitials={handleInitials}  {...props} />
             )}/>
         
-        </Switch>
       </div>
     );
   }

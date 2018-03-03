@@ -4,7 +4,6 @@ import { NavLink, withRouter } from 'react-router-dom';
 import './navmenu.scss';
 import { findProject, updateProject } from '../../../../../services/project.services';
 import { connect } from 'react-redux';
-import { updateDashboard } from '../../../../../actions/actionCreators';
 import { findDashboardInfo } from '../../../../../services/dashboard.services';
 
 class ProjectSetupSidebar extends Component {
@@ -50,4 +49,4 @@ function mapStateToProps(state){
     return state;
 }
 
-export default withRouter(connect(mapStateToProps, {updateDashboard})(ProjectSetupSidebar));
+export default withRouter(connect(mapStateToProps)(ProjectSetupSidebar));

@@ -40,26 +40,13 @@ class AccountSettings extends Component {
             alert(res);
         }
         else {
-              this.setState({ 
-                  userInfo: {   
-                    id: res.data[0].id,
-                    username: res.data[0].username,
-                    avatar: res.data[0].avatar,
-                    firstName: res.data[0].first_name,
-                    lastName: res.data[0].last_name,
-                    email: res.data[0].email
-                  }
-              });
               this.props.updateUser(res.data[0])
         }
     })
     .catch(err => {throw err});
   }
 
-  componentWillMount(){
-    const userid = this.props.match.params.userid;
-    this.pullFromBackend(userid)
-  }
+
 
   //UI Modals
     closeProfileModal() {
@@ -97,7 +84,7 @@ class AccountSettings extends Component {
 
   
   render() {
-    const userInfo = this.state.userInfo;
+    const userInfo = this.props.userInfo;
     const { handleInitials } = this.props;
     console.log(this.state)
     return (
@@ -115,7 +102,7 @@ class AccountSettings extends Component {
                   </div>
                   <div className="name-username-edit-con">
                     <div className="name-and-username">
-                        <div className="headline-22" onClick={this.openProfileModal}>{userInfo.firstName} {userInfo.lastName} </div>
+                        <div className="headline-22" onClick={this.openProfileModal}>{userInfo.first_name} {userInfo.last_name} </div>
                         <div className="text-9">@{userInfo.username}</div>
                     </div>
                     <div className="edit-profile-btn" onClick={this.openProfileModal}>

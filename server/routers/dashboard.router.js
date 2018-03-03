@@ -8,7 +8,10 @@ const dashboardRouter = express.Router();
 
 dashboardRouter.get('/personal-projects/:userid', (req, res) => {
     const userid = req.params.userid;
-    console.log(userid + " " + 'dashboard router get personal projects')
+    let { id } = req.user[0];
+    if(id != userid){
+        res.send('NO')
+    }
     const db = getDb();
     db.find_personal_projects([userid])
         .then( personalProjects => res.send(personalProjects))

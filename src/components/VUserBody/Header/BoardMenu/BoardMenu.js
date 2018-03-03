@@ -50,12 +50,12 @@ class BoardMenu extends Component {
                         const projectid = res.data[0].id;
                         findProject(projectid)
                             .then(res => {
-                                updateProjectRedux(res.data[0]);
+                                this.props.updateProjectRedux(res.data[0]);
                                 findPersonalProjects(userid)
                                 .then(res => {
                                     this.props.updatePersonalProjects(res.data);
+                                    this.props.closeMenus();
                                     history.push(`/user/${userid}/project/${projectid}/ideas`);
-
                                 })
                             })
                         
@@ -66,12 +66,11 @@ class BoardMenu extends Component {
 				})
 				.catch(err => {throw err});
         }
-        this.props.closeMenus();
 	}
 
   render() {
 
-    const { closeMenus, updateProjectRedux } = this.props;
+const { closeMenus, updateProjectRedux } = this.props;
 
 
     // const groups = this.props.dashboardInfo.groups;

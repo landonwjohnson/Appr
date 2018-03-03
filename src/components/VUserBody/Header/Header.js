@@ -17,7 +17,6 @@ class Header extends Component {
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
-            showHeader: false,
             showCurtain: true,
             feedbackModalOpen: false,
             UI: {
@@ -87,7 +86,7 @@ class Header extends Component {
     }
     
   render(){
-    const { userInfo, handleInitials, userid } = this.props;
+    const { userInfo, handleInitials } = this.props;
 
      
 
@@ -151,7 +150,7 @@ class Header extends Component {
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <Link to={`/user/${userid}/account/settings/${userid}`} onClick={this.closeMenus}><li>Settings</li></Link>
+                    <Link to={`/user/${userInfo.id}/account/settings/${userInfo.id}`} onClick={this.closeMenus}><li>Settings</li></Link>
                     <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
