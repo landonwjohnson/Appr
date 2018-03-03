@@ -3,7 +3,7 @@ import addIcon from '../../../../img/icons/add-icon.svg';
 import './controllers.scss';
 import ControllerItem from './ControllerItem/ControllerItem';
 import { createProjectController, findProjectControllers, updateProjectController, deleteProjectController } from '../../../../services/project.controller.services';
-
+import { connect } from 'react-redux';
 class Controllers extends Component {
   constructor(props) {
       super(props);
@@ -14,37 +14,34 @@ class Controllers extends Component {
       this.handleChangeInput = this.handleChangeInput.bind(this);
       this.handleSaveChange = this.handleSaveChange.bind(this);
       this.handleDeleteController = this.handleDeleteController.bind(this);
-      this.handleControllerNameChange = this.handleControllerNameChange.bind(this);
+      this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  componentWillMount() {
-      const controllerExamples = [
-          {
-              when_data: 'User clicks login',
-              do_data: 'land on dashboard page',
-              require_data: 'Username and password'
-          }
-      ]
-      const projectid = this.props.match.params.projectid;
-      findProjectControllers(projectid)
-        .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
+  pullFromBackend(projectid, scrollOption){
+    findProjectControllers(projectid)
+    .then( res => {
+        if (res.status !== 200) {
+            console.log(res);
+        }
+        else {
+            this.setState({controllers: res.data})
+            if(scrollOption === 'yesScroll'){
+                this.scrollToBottom();
             }
-            else {
-                if(res.data.length === 0) {
-                    this.setState({ controllers: controllerExamples });
-                }
-                else {
-                    this.setState({ controllers: res.data });
-                }
-            }
-        })
-        .catch(err => {throw err});
+        }
+    })
+    .catch(err => {throw err});
+  }
+
+
+
+  componentDidMount() {
+      const projectid = this.props.projectInfo.id;
+      this.pullFromBackend(projectid, 'noScroll')
   }
 
   handleAddController() {
@@ -52,15 +49,7 @@ class Controllers extends Component {
     const reqBody = { controllerName: 'Select View', whenData: '', doData: '', requireData: '' };
     createProjectController(projectid, reqBody)
         .then(res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-            else {
-                let newState = this.state.controllers;
-                newState.push(res.data[0]);
-                this.setState({ controllers: newState });
-                this.scrollToBottom();
-            }
+            this.pullFromBackend(projectid, 'yesScroll')
         })
         .catch(err => {throw err});
   }
@@ -72,10 +61,8 @@ class Controllers extends Component {
   }
 
   handleSaveChange(index) {
-      const projectid = this.props.match.params.projectid;
+      const projectid = this.props.projectInfo.id;
       const controllerid = this.state.controllers[index].id;
-      console.log(controllerid)
-      console.log(this.state.controllers[index].controller_name);
       const reqBody = {
           controllerName: this.state.controllers[index].controller_name,
           whenData: this.state.controllers[index].when_data,
@@ -83,9 +70,6 @@ class Controllers extends Component {
           requireData: this.state.controllers[index].require_data
       };
 
-      //Validation
-
-      console.table(reqBody)
       updateProjectController(projectid, controllerid, reqBody)
         .then( res => {
             if (res.status !== 200) {
@@ -98,26 +82,7 @@ class Controllers extends Component {
         .catch(err => {throw err});
   }
 
-  handleControllerNameChange(e, index, value){
-        const projectid = this.props.match.params.projectid;
-        const controllerid = e.target.id;
 
-        console.log(controllerid)
-        const reqBody = {
-            controllerName: value,
-            whenData: this.state.controllers[index].when_data,
-            doData: this.state.controllers[index].do_data,
-            requireData: this.state.controllers[index].require_data
-        };
-
-        updateProjectController(projectid, controllerid, reqBody)
-        .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-        })
-        .catch(err => {throw err});
-  }
 
   handleDeleteController(index) {
     const projectid = this.props.match.params.projectid;
@@ -128,16 +93,14 @@ class Controllers extends Component {
                 console.log(res);
             }
             else {
-                const newState = this.state.controllers;
-                newState.splice(index, 1);
-                this.setState({ controllers: newState });
+                this.pullFromBackend(projectid)
             }
         })
         .catch(err => {throw err});
   }
-  // if we need to we can change the key to equal something else other than the index
+
   render() {
-    const projectid = this.props.match.params.projectid;
+    const projectid = this.props.projectInfo.id;
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
@@ -172,5 +135,8 @@ class Controllers extends Component {
     );
   }
 }
+function mapStateToProps(state){
+    return state;
+}   
 
-export default Controllers;
+export default connect(mapStateToProps) (Controllers);

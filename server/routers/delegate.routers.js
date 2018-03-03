@@ -42,7 +42,9 @@ function delegateRoutesFor(app) {
         avatarsRouter
     )
 
+    
     app.all('*', (req, res) => {
+        // console.log('unknown route ' + req.url);
         res.status(404).send({message: 'Cannot access any resource at ' + req.originalUrl});
     });
     

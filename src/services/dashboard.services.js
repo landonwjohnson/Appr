@@ -9,6 +9,13 @@ function findDashboardInfo(userid) {
         .catch(err => {throw err});
 }
 
+function findPersonalProjects(userid) {
+    return axios
+        .get(`${baseURL}/personal-projects/${userid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
 export {
-    findDashboardInfo
+    findDashboardInfo,
+    findPersonalProjects
 };

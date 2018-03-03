@@ -7,6 +7,7 @@ import Feedback from './Feedback/Feedback';
 import './header.scss';
 import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
+import { connect } from 'react-redux';
 
 
 class Header extends Component {
@@ -16,7 +17,6 @@ class Header extends Component {
             rightMenuOpen: true,
             breadToX: false,
             boardMenuOpen: true,
-            showHeader: false,
             showCurtain: true,
             feedbackModalOpen: false,
             UI: {
@@ -86,7 +86,7 @@ class Header extends Component {
     }
     
   render(){
-    const { userInfo, handleInitials, userid } = this.props;
+    const { userInfo, handleInitials } = this.props;
 
      
 
@@ -115,7 +115,7 @@ class Header extends Component {
  
       <div>
           <div className={boardMenuClass}>
-                <BoardMenu userid={userid} closeMenus={this.closeMenus}/>
+                <BoardMenu closeMenus={this.closeMenus}/>
           </div>
           <div className="header-container">
                 <div className="nav-bar">
@@ -132,8 +132,8 @@ class Header extends Component {
                         <div className="logo"></div>
                     </div>
                     <div className="user-con">
-                            <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
-                            <div className="hello-user">Hello {userInfo.firstName}!</div>
+                            <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials()}</label> </div>
+                            <div className="hello-user">Hello {userInfo.first_name}!</div>
                             <div className="bread-container" onClick={this.handleRightMenuClick}>
                                 <div className={breadMenuTransform} href="#" >
                                     <div className="bread-menu">
@@ -150,7 +150,7 @@ class Header extends Component {
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <Link to={`/user/${userid}/account/settings/${userid}`} onClick={this.closeMenus}><li>Settings</li></Link>
+                    <Link to={`/user/${userInfo.id}/account/settings/${userInfo.id}`} onClick={this.closeMenus}><li>Settings</li></Link>
                     <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
@@ -179,4 +179,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state){
+    const { userInfo } = state;
+    return {
+        userInfo
+    }
+}
+export default connect(mapStateToProps)(Header);

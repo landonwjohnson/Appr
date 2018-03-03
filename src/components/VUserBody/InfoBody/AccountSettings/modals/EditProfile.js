@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
 import { updateUserInfo } from '../../../../../services/account.services'
+import { connect } from 'react-redux';
 
 class EditProfile extends Component {
   constructor(props){
     super(props)
     this.state={
-      username: this.props.userInfo.username,
-      firstName: this.props.userInfo.firstName,
-      lastName: this.props.userInfo.lastName,
-      email: this.props.userInfo.email,
-      avatar: this.props.userInfo.avatar
+      username: '',
+      firstName: '',
+      lastName: '',
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -22,15 +21,23 @@ class EditProfile extends Component {
 
   handleNameSubmit(){
     const userid = this.props.userInfo.id;
-    const reqBody = this.state;
-    console.table(reqBody)
+    let { avatar, email } = this.props.userInfo;
+    let { username, firstName, lastName } = this.state;
+    const reqBody = {
+        username, 
+        firstName,
+        lastName,
+        email,
+        avatar
+    };
     updateUserInfo(userid, reqBody)
       .then( res => {
         if ( res.status !== 200 ) {
           alert(res);
         }
         else{
-          window.location.reload();
+          this.props.pullFromBackend(userid);
+          this.props.onCloseBtnClick();
         }
       })
       .catch(err => {throw err});
@@ -75,12 +82,12 @@ class EditProfile extends Component {
                   
                   <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.firstName} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                      <input className="modal-form" placeholder={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
                     </section>
                   
                   <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.lastName} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" placeholder={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
                   <label className="modal-input-tag">Username</label>
@@ -99,8 +106,12 @@ class EditProfile extends Component {
     }
   }
 
+  function mapStateToProps(state){
+    return state
+  }
+
   EditProfile.propTypes = { onCloseBtnClick: PropTypes.func }
   EditProfile.defaultProps = { onCloseBtnClick: () => {} }
-  export default EditProfile;
+  export default connect(mapStateToProps)(EditProfile);
 
 

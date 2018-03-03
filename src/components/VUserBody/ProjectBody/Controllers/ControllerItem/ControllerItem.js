@@ -10,7 +10,7 @@ class ControllerItem extends Component {
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         let projectid = this.props.projectid;
             findProjectViews(projectid)
             .then( res => {
