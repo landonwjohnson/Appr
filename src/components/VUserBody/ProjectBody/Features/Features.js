@@ -85,8 +85,6 @@ class Features extends Component {
     handleSaveChange(e, index) {
           const projectid = this.props.projectInfo.id;
           const featureid = this.state.features[index].id;
-          console.log(featureid);
-          console.log(projectid);
           const reqBody = {
               featureData: this.state.features[index].feature_data
           };
