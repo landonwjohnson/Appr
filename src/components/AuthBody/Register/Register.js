@@ -7,6 +7,12 @@ import RegEmail from './RegisterFields/RegEmail';
 import RegPassword from './RegisterFields/RegPassword';
 import RegUsername from './RegisterFields/RegUsername';
 
+import history from '../../../history';
+import { connect } from 'react-redux';
+import { updateAuth, updateUser } from '../../../actions/actionCreators';
+import { findUserInfo } from '../../../services/account.services';
+
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -46,20 +52,43 @@ class Register extends Component {
     }
 
     handleButtonRegister() {
+        const isAuth = this.props.isAuth;
         const { firstName, lastName, email, password, username } = this.state;
         const reqBody = { firstName, lastName, email, password, username };
         const creds = { username: email, password };
         register(reqBody)
             .then( res => {
-                if (res.data.message === 'Registration was successful!') {
+                if (res.status === 200) {
                     login(creds)
                         .then( res => {
+                            this.props.updateAuth(true);
                             if (res.status === 200) {
-                                this.props.history.push(`/user/${res.data.id}/dashboard`)
+                                findUserInfo(res.data.id)
+                                .then( res => {
+                                    if (res.status !== 200){
+                                        alert('failed')
+                                    }
+                                    if (res.status === 200){
+                                        let userInfo = {
+                                            id: res.data[0].id,
+                                            username: res.data[0].username,
+                                            avatar: res.data[0].avatar,
+                                            first_name: res.data[0].first_name,
+                                            last_name: res.data[0].last_name,
+                                            email: res.data[0].email
+                                        }
+                                        this.props.updateUser(userInfo)
+
+                                        if(isAuth === true){
+                                            console.log('I should be switching urls')
+                                            history.push(`/user/${res.data.id}/dashboard`);
+                                        }
+                                    }
+                                })
+                            
+                            // this.props.history.push(`/user/${res.data.id}/dashboard`)
                             }
-                            else {
-                                alert(res.data);
-                            }
+                            
                         })
                         .catch(err => {throw err});
                 }
@@ -112,4 +141,8 @@ class Register extends Component {
     }
 }
 
-export default Register;
+function mapStateToProps(state){
+	return state
+}
+
+export default connect(mapStateToProps, {updateAuth, updateUser})(Register);
