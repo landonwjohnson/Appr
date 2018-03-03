@@ -9,10 +9,9 @@ class FeatureItem extends Component {
             feature: {},
             UI: { saveBtn: false }
         };
-        // this.toggleSaveBtn = this.toggleSaveBtn.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { projectid, id } = this.props;
         findProjectFeature(projectid, id)
             .then(res => {
@@ -26,18 +25,6 @@ class FeatureItem extends Component {
             .catch(err => {throw err});
     }
 
-    // toggleSaveBtn(e){
-    //     if (e.target.value !== this.state.feature.feature_data) {
-    //         const newState = this.state.UI;
-    //         newState.saveBtn = true;
-    //         this.setState({ UI: newState });
-    //       }
-    //       else {
-    //         const newState = this.state.UI;
-    //         newState.saveBtn = false;
-    //         this.setState({ UI:  newState });
-    //       }
-    // }
 
     render() {
         const { index, featureData, handleChangeFeature, handleDeleteFeature, handleSaveChange } = this.props;

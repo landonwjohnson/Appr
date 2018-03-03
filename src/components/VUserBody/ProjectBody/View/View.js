@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUId } from '../../../../utils/uid.utils';
 import { createProjectView, findProjectViews, findProjectView, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
 import './view.scss';
+import { connect } from 'react-redux';
 
 class View extends Component {
     constructor(props) {
@@ -9,39 +10,32 @@ class View extends Component {
       this.state={
           views: []
       };
-
       this.handleAddViewButton = this.handleAddViewButton.bind(this);
       this.handleChangeView = this.handleChangeView.bind(this);
       this.handleDeleteViewButton = this.handleDeleteViewButton.bind(this);
+      this.pullFromBackend = this.pullFromBackend.bind(this);
+    }
 
+    pullFromBackend(projectid){
+        findProjectViews(projectid)
+        .then( res => {
+            if(res.status !== 200) {
+              console.log(res);
+            }
+            else {
+                  this.setState({ views: res.data })
+            }
+        })
+        .catch(err => {throw err});
     }
 
     scrollToBottom = () => {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
-    componentWillMount() {
-      const projectid = this.props.match.params.projectid || 1;
-      const viewExamples = [
-          { view_data: 'example: Use the force Luke.' },
-          { view_data: 'example: I like this view' }
-      ];
-
-      findProjectViews(projectid)
-        .then( res => {
-            if(res.status !== 200) {
-              console.log(res);
-            }
-            else {
-                if(res.data.length > 0) {
-                  this.setState({ views: res.data })
-                }
-                else {
-                  this.setState({ views: viewExamples });
-                }
-            }
-        })
-        .catch(err => {throw err});
+    componentDidMount() {
+      const projectid = this.props.projectInfo.id;
+      this.pullFromBackend(projectid);
     }
 
     handleAddViewButton() {
@@ -50,16 +44,12 @@ class View extends Component {
           name: '',
           imageUrl:  ''
         }
-
-
         createProjectView( projectid, reqBody )
             .then(res => {
                 if(res.status !== 200) {
                   console.log(res);
                 } else {
-                   const newState = this.state.views;
-                   newState.push(res.data[0]);
-                   this.setState({ views: newState });
+                   this.pullFromBackend(projectid)
                    this.scrollToBottom();
                 }
             })
@@ -91,23 +81,22 @@ class View extends Component {
     }
 
     handleDeleteViewButton(e, index) {
-        const projectid = Number(this.props.match.params.projectid);
+        const projectid = this.props.projectInfo.id;
         const viewid = Number(e.target.id);
-        const newState = this.state.views;
-        newState.splice(index, 1);
-        this.setState({ views: newState });
 
         deleteProjectView(projectid, viewid)
             .then(res => {
                 if(res.status !== 200) {
                     console.log(res);
                 }
+                this.pullFromBackend(projectid);
             })
             .catch(err => {throw err});
     }
 
   render() {
-    const { userid, projectid } = this.props.match.params;
+    const userid = this.props.userInfo.id;
+    const projectid = this.props.projectInfo.id;
     const views = this.state.views;
     const displayViews = views.map( view => {
         const index = views.indexOf(view);
@@ -146,4 +135,8 @@ class View extends Component {
   }
 }
 
-export default View;
+function mapStateToProps(state){
+    return state
+}
+
+export default connect(mapStateToProps)(View);

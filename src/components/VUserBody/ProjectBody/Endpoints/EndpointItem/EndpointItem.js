@@ -17,7 +17,7 @@ class EndpointItem extends Component {
     this.toggleRequireCon = this.toggleRequireCon.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.toggleRequireCon(this.props.httpVerb, this.props.index)
   }
 

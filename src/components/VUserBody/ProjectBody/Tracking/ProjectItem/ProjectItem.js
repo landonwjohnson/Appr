@@ -37,7 +37,7 @@ findCardsForList(projectid, listid){
   })
 }
 
-componentWillMount() {
+componentDidMount() {
   const projectid = this.props.projectid;
   const listid = this.props.listid;
   this.findCardsForList(projectid, listid);

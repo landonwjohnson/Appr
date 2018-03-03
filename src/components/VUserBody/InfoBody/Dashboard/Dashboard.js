@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 import './dashboard.scss';
 import './dashboard-projects.scss';
-import { findDashboardInfo } from '../../../../services/dashboard.services';
+import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject } from '../../../../services/project.services';
+import { createProject, findProject, updateProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
+import { connect } from 'react-redux';
+import { updatePersonalProjects, updateProjectRedux } from '../../../../actions/actionCreators';
 
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			groups: [],
-			projects: []
+			
 		};
 		this.handleCreateButton = this.handleCreateButton.bind(this);
 	}
 
-	componentWillMount() {
-		const userid = this.props.match.params.userid;
-		findDashboardInfo(userid)
-			.then( res => {
-				res.status !== 200 ? console.log(res) : this.setState(res.data);
-			})
-			.catch(err => {throw err});
-	}
 
 	handleCreateButton(buttonPressed) {
 		const userid = this.props.match.params.userid;
@@ -50,9 +43,19 @@ class Dashboard extends Component {
 			reqBody = {name, authorId: userid};
 			createProject(reqBody)
 				.then( res => {
+					findPersonalProjects(userid)
+					.then(res => {
+						console.log(res.data + '' + 'find personal projects')
+						this.props.updatePersonalProjects(res.data);
+					})
 					if (res.data[0].id) {
+						
 						const projectid = res.data[0].id;
-						this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+						findProject(projectid)
+						.then(res => {
+							this.props.updateProjectRedux(res.data[0]);
+							this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+						})
 					}
 					else {
 						alert(res);
@@ -63,23 +66,24 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const userid = this.props.match.params.userid;
-		const { groups, projects } = this.state;
+		const userid = this.props.userInfo.id;
 
-		const displayProjects = projects.map( project => {
-			const index = projects.indexOf(project);
-			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+		let displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
+			console.table(this.props.dashboardInfo.personalProjects)
+			if(project.status_id === 1){
+				return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+			}
 		});
 		
-		const displayGroups = groups.map( group => {
-			const index = groups.indexOf(group);
-			return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
-		});
+		// const displayGroups = groups.map( group => {
+		// 	const index = groups.indexOf(group);
+		// 	return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
+		// });
 
 
 		return (
 			<div>
-				<div className="dashboard-container">		
+				<div className p="dashboard-container">		
 					<div className="dashboard-wrapper">
 						<div className="personal-list-container">
 							<label className="dash-section-title"> Projects </label>
@@ -96,7 +100,7 @@ class Dashboard extends Component {
 							</ul>
 						</div>
 					
-						<div className="group-list-container">
+						{/* <div className="group-list-container">
 							<label className="dash-section-title"> Groups </label>
 							<ul className="projects-list">
 
@@ -108,7 +112,7 @@ class Dashboard extends Component {
 									</div>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
@@ -116,4 +120,12 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+
+
+
+
+function mapStateToProps(state){
+	return state;
+  }
+  
+export default connect( mapStateToProps, { updatePersonalProjects, updateProjectRedux} ) (Dashboard);

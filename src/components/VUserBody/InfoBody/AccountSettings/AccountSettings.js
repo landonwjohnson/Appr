@@ -8,6 +8,8 @@ import ChangeAvatar from './modals/ChangeAvatar/ChangeAvatar';
 import Modal from 'react-modal';
 import { ModalBox } from './accountsettingsStyled';
 import { findUserInfo } from '../../../../services/account.services';
+import { updateUser } from '../../../../actions/actionCreators';
+import { connect } from 'react-redux';
 
 class AccountSettings extends Component {
   constructor(props){
@@ -28,30 +30,23 @@ class AccountSettings extends Component {
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
+      this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
-  componentWillMount(){
-    const userid = this.props.match.params.userid;
+  pullFromBackend(userid){
     findUserInfo(userid)
     .then( res => {
         if (res.status !== 200) {
             alert(res);
         }
         else {
-              this.setState({ 
-                  userInfo: {   
-                    id: res.data[0].id,
-                    username: res.data[0].username,
-                    avatar: res.data[0].avatar,
-                    firstName: res.data[0].first_name,
-                    lastName: res.data[0].last_name,
-                    email: res.data[0].email
-                  }
-              });
+              this.props.updateUser(res.data[0])
         }
     })
     .catch(err => {throw err});
   }
+
+
 
   //UI Modals
     closeProfileModal() {
@@ -89,8 +84,8 @@ class AccountSettings extends Component {
 
   
   render() {
-    const userInfo = this.state.userInfo;
-    const { handleNameSubmit, handleEmailSubmit, handleAvatarSubmit, handleInitials } = this.props;
+    const userInfo = this.props.userInfo;
+    const { handleInitials } = this.props;
     console.log(this.state)
     return (
       <div className="account-settings-container">
@@ -107,7 +102,7 @@ class AccountSettings extends Component {
                   </div>
                   <div className="name-username-edit-con">
                     <div className="name-and-username">
-                        <div className="headline-22" onClick={this.openProfileModal}>{userInfo.firstName} {userInfo.lastName} </div>
+                        <div className="headline-22" onClick={this.openProfileModal}>{userInfo.first_name} {userInfo.last_name} </div>
                         <div className="text-9">@{userInfo.username}</div>
                     </div>
                     <div className="edit-profile-btn" onClick={this.openProfileModal}>
@@ -136,7 +131,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <EditProfile userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} />
+              <EditProfile pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeProfileModal} />
           </Modal>
 
           <Modal 
@@ -145,7 +140,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailSubmit={handleEmailSubmit}/>
+              <ChangeEmail pullFromBackend={this.pullFromBackend}  onCloseBtnClick={this.closeEmailModal} />
           </Modal>
 
           <Modal 
@@ -154,7 +149,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangePassword userInfo={userInfo} onCloseBtnClick={this.closePasswordModal} />
+              <ChangePassword pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closePasswordModal} />
           </Modal>
 
           <Modal 
@@ -163,11 +158,15 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarSubmit={handleAvatarSubmit} showAvatarFail={this.showAvatarFail}/>
+              <ChangeAvatar pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeAvatarModal}/>
           </Modal>
       </div>
     );
   }
 }
 
-export default AccountSettings;
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps, {updateUser}) (AccountSettings);

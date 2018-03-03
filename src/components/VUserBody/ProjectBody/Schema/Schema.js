@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './schema.scss';
 import SchemaItem from './SchemaItem/SchemaItem';
 import { createProjectSchema, findProjectSchemas, updateProjectSchema, deleteProjectSchema } from '../../../../services/project.schema.services';
-
+import { connect } from 'react-redux';
 
 class Schema extends Component {
   constructor(props){
@@ -15,14 +15,14 @@ class Schema extends Component {
     this.handleSchemaNameChange = this.handleSchemaNameChange.bind(this);
     this.handleSchemaDataChange = this.handleSchemaDataChange.bind(this);
     this.handleSaveChange = this.handleSaveChange.bind(this);
+    this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  componentWillMount(){
-    const projectid = this.props.match.params.projectid;
+  pullFromBackend(projectid, scrollOption){
     findProjectSchemas(projectid)
       .then( res => {
         if (res.status !== 200) {
@@ -30,13 +30,21 @@ class Schema extends Component {
         }
         else {
           this.setState({ schemas: res.data})
+          if(scrollOption === 'yesScroll'){
+            this.scrollToBottom();
+          }
         }
       })
       .catch(err => {throw err});
   }
 
+  componentDidMount(){
+    const projectid = this.props.projectInfo.id;
+    this.pullFromBackend(projectid);
+  }
+
   handleSubmitSchema(index){
-    const projectid = this.props.match.params.projectid;
+    const projectid = this.props.projectInfo.id
     const {schema_name, database_type, schema_data} = this.state.schemas[index];
     const reqBody = {
       schemaName: schema_name,
@@ -55,28 +63,15 @@ class Schema extends Component {
   }
 
   addSchemaItemHandler(){
-    const projectid = this.props.match.params.projectid;
-    const reqBody = {schemaName: 'test', databaseType: 'SQL', schemaData: ''};
+    const projectid = this.props.projectInfo.id;
+    const reqBody = {schemaName: 'Type name here', databaseType: 'SQL', schemaData: ''};
     createProjectSchema(projectid, reqBody)
       .then( res => {
         if (res.status !== 200){
           alert(res);
         }
         else{
-          // const newState = this.state.schemas;
-          // newState.push(res.data[0]);
-          // this.setState({ schemas: newState });
-          findProjectSchemas(projectid)
-            .then( res => {
-              if (res.status !== 200) {
-              console.log(res);
-              }
-              else {
-              this.setState({ schemas: res.data})
-              this.scrollToBottom();
-              }
-            })
-          .catch(err => {throw err});
+          this.pullFromBackend(projectid, 'yesScroll');
         }
       })
       .catch(err => {throw err});
@@ -91,9 +86,6 @@ class Schema extends Component {
           console.log(res);
         }
         else {
-          console.log(res);
-          console.log(res.request.responseURL);
-          console.log(projectid);
           const newState = this.state.schemas;
           newState.splice(index, 1);
           this.setState( { schemas: newState } );
@@ -115,17 +107,14 @@ class Schema extends Component {
   }
 
   handleSaveChange(e, index) {
-    const {projectid} = this.props.match.params;
+    const projectid = this.props.projectInfo.id;
       const schemaid = this.state.schemas[index].id;
-      console.log(schemaid);
-      console.log(projectid);
       const reqBody = {
           schemaName: this.state.schemas[index].schema_name,
           databaseType: this.state.schemas[index].database_type,
           schemaData: this.state.schemas[index].schema_data,
       };
 
-      console.table(reqBody)
       updateProjectSchema(projectid, schemaid, reqBody)
         .then( res => {
             if (res.status !== 200) {
@@ -138,11 +127,10 @@ class Schema extends Component {
 
 
   render() {
-    console.table(this.state.schemas);
-    const { userid, projectid } = this.props.match.params;
+    const userid = this.props.userInfo.id;
+    const projectid = this.props.projectInfo.id;
     const schemas = this.state.schemas;
-    const displaySchemas = schemas.map( schema => {
-      const index = schemas.indexOf(schema);
+    const displaySchemas = schemas.map( (schema, index) => {
       let id = schema.id;
         return <SchemaItem
                   key={`schemaItem${index}`}
@@ -181,4 +169,8 @@ class Schema extends Component {
   }
 }
 
-export default Schema;
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps) (Schema);

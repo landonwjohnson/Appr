@@ -3,7 +3,7 @@ import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
 import classnames from "classnames";
 import { findTrackerLists, deleteTrackerListNew, deleteTrackerCards, createTrackerList, deleteTrackerListCardsNew, updateTrackerList } from '../../../../services/project.tracker.services';
-
+import { connect } from 'react-redux';
 
 
 class Tracking extends Component {
@@ -41,11 +41,9 @@ findMeSomeStuff(projectid){
 
 
 
-componentWillMount(){
-  const projectid = this.props.projectid;
+componentDidMount(){
+  const projectid = this.props.projectInfo.id;
   this.findMeSomeStuff(projectid);
-
-
 }
 
 
@@ -63,7 +61,7 @@ componentWillMount(){
 
   //Trackerlist add remove methods
   addTrackerListHandle(){
-    let projectid = this.props.projectid;
+    const projectid = this.props.projectInfo.id;
     let listOrder = this.state.lists.length + 1;
     let listName = this.state.listName;
     let body = {listName, listOrder};
@@ -92,7 +90,7 @@ componentWillMount(){
   }
 
   removeTrackerListHandle(listid){
-    const projectid = this.props.projectid;
+    const projectid = this.props.projectInfo.id;
 
     deleteTrackerListNew(projectid, listid)
       .then( res => {
@@ -103,7 +101,7 @@ componentWillMount(){
   render() {
 
     const lists = this.state.lists;
-    const projectid = this.props.projectid;
+    const projectid = this.props.projectInfo.id;
 
 
     lists.forEach((list, index) => {
@@ -168,7 +166,10 @@ componentWillMount(){
   }
 }
 
+function mapStateToProps(state){
+  return state
+}
 
 
-export default Tracking;
+export default connect(mapStateToProps)(Tracking);
 
