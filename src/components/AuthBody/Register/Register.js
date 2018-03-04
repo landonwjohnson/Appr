@@ -59,26 +59,37 @@ class Register extends Component {
         const { firstName, lastName, email, password, username } = this.state;
         const reqBody = { firstName, lastName, email, password, username };
         const creds = { username: email, password };
-
+        this.props.updateAuth(true);
         register(reqBody)
             .then( res => {
-                let hashedPassword = res.data;
-                if(res.data){
+                if (res.status !== 200){
+                    alert('register failed')
+                }
+                else{
+                    let hashedPassword = res.data;
                     loginTest(creds)
                         .then( res => {
-                            if(res.data){
+                            if(res.status !== 200){
+                                alert('login test failed')
+                            }
+                            else{
                                 const logInBody = {
                                     username: this.state.email,
                                     password: hashedPassword
                                 }
-                                console.log(logInBody)
                                 login(logInBody)
                                     .then( res => {
-                                        this.props.updateAuth(true);
-                                        if(res.status === 200){
+                                        console.log(res.data)
+                                        if(res.status !== 200){
+                                            alert('login failed')
+                                        }
+                                        else if (res.status === 200) {
                                             findUserInfo(res.data.id)
                                                 .then(res => {
-                                                    if(res.status === 200){
+                                                    if(res.status !== 200){
+                                                        alert('find user info failed')
+                                                    }
+                                                    else{
                                                         let userInfo = {
                                                             id: res.data[0].id,
                                                             username: res.data[0].username,
@@ -92,18 +103,13 @@ class Register extends Component {
                                                     }
                                                 })
                                         }
+                                    
                                     })
-
-                            }
-                            else{
-                                console.log('login failed')
                             }
                         })
                         .catch(err => {throw err})
                     }
-                    else{
-                        console.log('register failed')
-                    }
+
                 })
                 .catch(err => {throw err})
             }

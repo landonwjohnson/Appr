@@ -1,6 +1,8 @@
 const express = require('express');
 const getDb = require('../database/bootstrap.database');
 const accountRouter = express.Router();
+const bcrypt = require('bcryptjs');
+
 
 
 
@@ -114,10 +116,14 @@ accountRouter.put('/info/update/password/:userid', (req, res) => {
     if(userId != req.user[0].id){
         res.send('NO NO NO NO NO NO NO');
     }
-    const db = getDb();
-    db.update_user_password([ userId, password])
-    .then(promise => res.send())
-    .catch(err => res.status(500).send(err));
+    bcrypt.genSalt(10, function(err, salt){
+        bcrypt.hash(password, salt, function(err, hash){
+            const db = getDb();
+            db.update_user_password([ userId, hash])
+            .then(promise => res.send())
+            .catch(err => res.status(500).send(err));
+        });
+    });
 });
 
 accountRouter.put('/info/update/profile/:userid', (req,res) => {
