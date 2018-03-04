@@ -91,7 +91,6 @@ class Register extends Component {
                                     }
                                 )
                                 .catch(err => {throw err})
-                                console.log(this.props.authRouter.verifiedUser)
                         }
                     })
                     .catch(err => {throw err})
