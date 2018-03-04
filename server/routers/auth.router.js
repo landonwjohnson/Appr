@@ -1,16 +1,35 @@
 const express = require('express');
 const getDb = require('../database/bootstrap.database');
 const passport = require('../auth/local.auth');
+const bcrypt = require('bcryptjs');
+
 
 const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
-    const db = getDb();
-    db.register_user([ firstName, lastName, email, password, username ])
-        .then(promise => res.send(promise))
-        .catch(err => res.status(500).send(err));
+    bcrypt.genSalt(10, function(err, salt){
+        bcrypt.hash(password, salt, function(err, hash){
+            const db = getDb();
+            db.register_user([ firstName, lastName, email, hash, username ])
+                .then(promise => res.send(hash))
+                .catch(err => res.status(500).send(err));
+        });
+    });
 })
+
+
+// authRouter.get('/get-password', (req, res) => {
+//     const { firstName, lastName, email, password, username } = req.body;
+//     bcrypt.genSalt(10, function(err, salt){
+//         bcrypt.hash(password, salt, function(err, hash){
+//             const db = getDb();
+//             db.register_user([ firstName, lastName, email, hash, username ])
+//                 .then(promise => res.send(hash))
+//                 .catch(err => res.status(500).send(err));
+//         });
+//     });
+// })
 
 
 
@@ -46,26 +65,28 @@ authRouter.post('/register', (req, res) => {
 authRouter.post('/login-test', (req, res) => {
     const { username, password } = req.body;
     let message = '';
-    const db = getDb();
+    const db = getDb(); 
+
     db.find_user_by_email([ username ])
         .then( user => {
-            if (!user[0]) {
-                message = 'That email does not match our records.';
-                res.send(message);
-            }
-            if (user[0].password !== password) {
-                message = 'That password is incorrect.';
-                res.send(message);
-            }
-            else {
-                message = 'login test was successful!';
-                res.send(message);
-            }
+            console.log(user[0].password)
+            console.log(password)
+
+            bcrypt.compare(password, user[0].password, function(err, result){
+                console.log(result)
+                if(result === true){
+                    message = 'login test was successful!';
+                    res.send(user[0].password);
+                } else {
+                    message = 'Wrong account information!'
+                }
+            })
         })
         .catch(err => {throw err});
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {
+    console.log(req.user)
     res.send(req.user);
 });
 

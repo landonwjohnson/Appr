@@ -62,10 +62,9 @@ class Register extends Component {
 
         register(reqBody)
             .then( res => {
-                if(res.status !== 200){
-                    alert('shit')
-                }
-                else{
+                console.log(res.data)
+
+                if(res.status === 200){
                     this.props.updateAuth(true);
                     login(creds)
                     .then( res => {
@@ -94,6 +93,9 @@ class Register extends Component {
                         }
                     })
                     .catch(err => {throw err})
+                }
+                else{
+                    console.log('shit')
                 }
             })
             .catch(err => {throw err})

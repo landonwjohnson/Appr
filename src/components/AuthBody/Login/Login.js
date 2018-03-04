@@ -32,7 +32,7 @@ class Login extends Component {
 
 	handleSubmitLogin() {
 		const { username, password } = this.state;
-		const creds = { username, password };
+		let creds = { username, password };
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
 			alert('Make sure you entered your email correctly!');
 		}
@@ -43,8 +43,15 @@ class Login extends Component {
 			else {
 				loginTest(creds)
 					.then( res => {
-						if (res.data === 'login test was successful!') {
-							login(creds)
+						const hashedPassword = res.data;
+						if (res.data) {
+							 console.log(hashedPassword)
+							 const logInBody = {
+								 username: this.state.username,
+								 password: res.data
+							 }
+							console.log(logInBody)
+							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
 										if(res.status === 200){
