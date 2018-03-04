@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './register.scss';
-import { register, login } from '../../../services/auth.services';
+import { register, login, loginTest } from '../../../services/auth.services';
 import RegFirstname from './RegisterFields/RegFirstname';
 import RegLastname from './RegisterFields/RegLastname';
 import RegEmail from './RegisterFields/RegEmail';
@@ -62,44 +62,52 @@ class Register extends Component {
 
         register(reqBody)
             .then( res => {
-                console.log(res.data)
-
-                if(res.status === 200){
-                    this.props.updateAuth(true);
-                    login(creds)
-                    .then( res => {
-                        if(res.status !== 200){
-                            alert('failed')
-                        }
-                        if(res.status === 200){
-                            console.log(res.data)
-                            findUserInfo(res.data.id)
-                                .then( res => {
-                                    if(res.status === 200){
-                                        let userInfo = {   
-                                            id: res.data[0].id,
-                                            username: res.data[0].username,
-                                            avatar: res.data[0].avatar,
-                                            first_name: res.data[0].first_name,
-                                            last_name: res.data[0].last_name,
-                                            email: res.data[0].email
+                let hashedPassword = res.data;
+                if(res.data){
+                    loginTest(creds)
+                        .then( res => {
+                            if(res.data){
+                                const logInBody = {
+                                    username: this.state.email,
+                                    password: hashedPassword
+                                }
+                                console.log(logInBody)
+                                login(logInBody)
+                                    .then( res => {
+                                        this.props.updateAuth(true);
+                                        if(res.status === 200){
+                                            findUserInfo(res.data.id)
+                                                .then(res => {
+                                                    if(res.status === 200){
+                                                        let userInfo = {
+                                                            id: res.data[0].id,
+                                                            username: res.data[0].username,
+                                                            avatar: res.data[0].avatar,
+                                                            first_name: res.data[0].first_name,
+                                                            last_name: res.data[0].last_name,
+                                                            email: res.data[0].email
+                                                        }
+                                                        this.props.updateUser(userInfo)
+                                                        history.push(`/user/${userInfo.id}/dashboard`);
+                                                    }
+                                                })
                                         }
-                                        this.props.updateUser(userInfo);
-                                        history.push(`/user/${userInfo.id}/dashboard`);
-                                    }
-                                    }
-                                )
-                                .catch(err => {throw err})
-                        }
-                    })
-                    .catch(err => {throw err})
-                }
-                else{
-                    console.log('shit')
-                }
-            })
-            .catch(err => {throw err})
-    }
+                                    })
+
+                            }
+                            else{
+                                console.log('login failed')
+                            }
+                        })
+                        .catch(err => {throw err})
+                    }
+                    else{
+                        console.log('register failed')
+                    }
+                })
+                .catch(err => {throw err})
+            }
+    
 
     render() {
         const { firstNameReady, lastNameReady, emailReady, passwordReady, usernameReady } = this.state;

@@ -43,14 +43,11 @@ class Login extends Component {
 			else {
 				loginTest(creds)
 					.then( res => {
-						const hashedPassword = res.data;
 						if (res.data) {
-							 console.log(hashedPassword)
 							 const logInBody = {
 								 username: this.state.username,
 								 password: res.data
 							 }
-							console.log(logInBody)
 							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
