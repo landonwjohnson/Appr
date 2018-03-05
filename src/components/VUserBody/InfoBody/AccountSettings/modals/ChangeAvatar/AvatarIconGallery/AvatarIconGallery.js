@@ -14,7 +14,7 @@ class AvatarIconGallery extends Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         findAvatars()
             .then( res => {
                 if (res.status !== 200){
