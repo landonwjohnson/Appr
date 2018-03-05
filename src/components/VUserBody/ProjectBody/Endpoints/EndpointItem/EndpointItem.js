@@ -101,7 +101,6 @@ class EndpointItem extends Component {
                           border={'1px solid #CCC'}
                           height={'120px'}
                           mode="json"
-                          theme="tomorrow"
                           name={`responseEditor` + index}
                           onLoad={this.onLoad}
                           onChange={(e) => {handleResponseChange(e, index)}}

@@ -39,7 +39,7 @@ class Features extends Component {
 
 
 
-    componentDidMount() {
+    componentWillMount() {
         const projectid = this.props.projectInfo.id;
         this.pullFromBackend(projectid)
     }
@@ -101,7 +101,6 @@ class Features extends Component {
 
 
     render() {
-        const userid = this.props.userInfo.id;
         const projectid = this.props.projectInfo.id;
         const features = this.state.features;
         const displayFeatures = features.map( (feature, index) => {

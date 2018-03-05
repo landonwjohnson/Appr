@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect, BrowserRouter, withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import history from '../../../../history';
 import './board-menu.scss'
 import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
@@ -71,10 +71,6 @@ class BoardMenu extends Component {
   render() {
 
 const { closeMenus, updateProjectRedux } = this.props;
-
-
-    // const groups = this.props.dashboardInfo.groups;
-    // const projects = this.props.dashboardInfo.projects;
 
     function getProject(projectid, path){
         findProject(projectid)

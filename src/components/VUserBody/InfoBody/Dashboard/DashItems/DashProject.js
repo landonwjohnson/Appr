@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { findProject } from '../../../../../services/project.services';
 import { updateProjectRedux } from '../../../../../actions/actionCreators';
 import history from '../../../../../history';

@@ -120,7 +120,7 @@ class Header extends Component {
           <div className="header-container">
                 <div className="nav-bar">
                     <div className="board-con" href="#" onClick={this.handleBoardMenuClick} >
-                            <div className="board-icon"><img src={BoardsIcon} /></div>      
+                            <div className="board-icon"><img src={BoardsIcon} alt="board menu" /></div>      
                             <div className="board-text">Projects</div>
                     </div>
                     <div className="header-search"> 

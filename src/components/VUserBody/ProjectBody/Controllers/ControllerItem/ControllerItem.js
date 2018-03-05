@@ -25,7 +25,7 @@ class ControllerItem extends Component {
     }
 
     render() {
-        const { index, controllerid, whenData, doData, requireData, handleDeleteController, handleChangeInput, handleSaveChange, controllerName, handleControllerNameChange } = this.props;
+        const { index, controllerid, whenData, doData, requireData, handleDeleteController, handleChangeInput, handleSaveChange, controllerName } = this.props;
         const views = this.state.views;
         const displayViews = views.map( view => {
             const index = views.indexOf(view);

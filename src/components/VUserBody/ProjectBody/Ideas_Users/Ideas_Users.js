@@ -58,7 +58,7 @@ class Ideas_Users extends Component {
             .catch(err => {throw err});
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const projectid = this.props.projectInfo.id;
         this.pullFromDatabase(projectid);
     }

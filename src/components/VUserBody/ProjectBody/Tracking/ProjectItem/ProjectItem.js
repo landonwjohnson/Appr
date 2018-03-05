@@ -125,7 +125,6 @@ removeTaskItemHandler(id){
 
       updateTrackerCard(projectid, cardid, body)
           .then( res => {
-            console.table(res.data)
           })
           .catch(err => {throw err})
     });

@@ -127,7 +127,6 @@ class Schema extends Component {
 
 
   render() {
-    const userid = this.props.userInfo.id;
     const projectid = this.props.projectInfo.id;
     const schemas = this.state.schemas;
     const displaySchemas = schemas.map( (schema, index) => {

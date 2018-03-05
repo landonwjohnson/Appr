@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './backgroundmenu.scss';
 import { findProjectBackgrounds } from '../../../../../services/project.background.services';
 import BackgroundItem from './BackgroundItem/BackgroundItem';
@@ -14,7 +13,7 @@ export default class BackgroundMenu extends Component {
         };
     }
 
-    componentDidMount(){
+    componentWillMount(){
         findProjectBackgrounds()
             .then( res => {
                 if (res.status !== 200){

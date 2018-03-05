@@ -46,7 +46,6 @@ class Dashboard extends Component {
 				.then( res => {
 					findPersonalProjects(userid)
 					.then(res => {
-						console.log(res.data + '' + 'find personal projects')
 						this.props.updatePersonalProjects(res.data);
 					})
 					if (res.data[0].id) {
