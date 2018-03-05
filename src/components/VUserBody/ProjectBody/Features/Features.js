@@ -39,7 +39,7 @@ class Features extends Component {
 
 
 
-    componentWillMount() {
+    componentDidMount() {
         const projectid = this.props.projectInfo.id;
         this.pullFromBackend(projectid)
     }

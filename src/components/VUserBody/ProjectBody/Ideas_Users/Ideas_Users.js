@@ -59,7 +59,7 @@ class Ideas_Users extends Component {
             .catch(err => {throw err});
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const projectid = this.props.projectInfo.id;
         this.pullFromDatabase(projectid);
     }
@@ -224,7 +224,6 @@ class Ideas_Users extends Component {
                             </div>
                             <div className="ideas-users-area drop-shadow">
                                 <div className="ideas-users-wrapper">
-                                    <div className="area-title"> </div>
                                     <div className="ideas-list">
                                         {displayIdeas}
                                     </div>
@@ -235,7 +234,6 @@ class Ideas_Users extends Component {
                             </div>
                             <div className="ideas-users-area drop-shadow">
                                 <div className="ideas-users-wrapper">
-                                    <div className="area-title"></div>
                                     <div className="users-list">
                                     <div className="users-column-name">
                                         <section>
