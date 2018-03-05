@@ -1,8 +1,8 @@
 
 
 var initialState={
-    groupProjects: ['init'],
-    personalProjects: ['init']
+    groupProjects: [],
+    personalProjects: []
 }
 
 function dashboardInfo(state = initialState, action){
