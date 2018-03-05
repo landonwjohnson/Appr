@@ -17,6 +17,7 @@ class Ideas_Users extends Component {
         this.handleChangeField = this.handleChangeField.bind(this);
         this.submitChangeField = this.submitChangeField.bind(this);
         this.handleDeleteField = this.handleDeleteField.bind(this);
+        this.handleSaveChange = this.handleSaveChange.bind(this);
         this.pullFromDatabase = this.pullFromDatabase.bind(this);
     }
 
@@ -142,6 +143,39 @@ class Ideas_Users extends Component {
         
     }
 
+    handleSaveChange(e, field, index) {
+        const key = e.target.name;
+        const projectid = this.props.projectInfo.id;
+        const id = e.target.id;
+        
+        if (field === 'ideas') {
+            const ideaData = this.state[field][index].idea_data;
+            const reqBody = { ideaData };
+            updateProjectIdea(projectid, id, reqBody)
+            .then(res => {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            const { target_demo_data, skill_data, description_data } = this.state[field][index];
+            const reqBody = {
+                targetDemoData: target_demo_data,
+                skillData: skill_data,
+                descriptionData: description_data
+            };
+            updateProjectUserField(projectid, id, reqBody)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+    }
+
     handleDeleteField(e, field, index) {
         const projectid = this.props.projectInfo.id
         const id = Number(e.target.id);
@@ -175,11 +209,11 @@ class Ideas_Users extends Component {
         const userfields = this.state.userfields;
         const displayIdeas = ideas.map( idea => {
             const index = ideas.indexOf(idea);
-            return <IdeaField key={`idea-${index}`} index={index} ideaid={idea.id} ideaData={idea.idea_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
+            return <IdeaField key={`idea-${index}`} index={index} ideaid={idea.id} ideaData={idea.idea_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField} handleSaveChange={this.handleSaveChange}/>
         });
         const displayUsers = userfields.map( userfield => {
             const index = userfields.indexOf(userfield);
-            return <UserField key={`user-${index}`} index={index} userfieldid={userfield.id} targetDemoData={userfield.target_demo_data} skillData={userfield.skill_data} descriptionData={userfield.description_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
+            return <UserField key={`user-${index}`} index={index} userfieldid={userfield.id} targetDemoData={userfield.target_demo_data} skillData={userfield.skill_data} descriptionData={userfield.description_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField} handleSaveChange={this.handleSaveChange}/>
         });
 
         return (
@@ -190,7 +224,7 @@ class Ideas_Users extends Component {
                             </div>
                             <div className="ideas-users-area drop-shadow">
                                 <div className="ideas-users-wrapper">
-                                    <div className="area-title"> Ideas </div>
+                                    <div className="area-title"> </div>
                                     <div className="ideas-list">
                                         {displayIdeas}
                                     </div>
@@ -201,8 +235,16 @@ class Ideas_Users extends Component {
                             </div>
                             <div className="ideas-users-area drop-shadow">
                                 <div className="ideas-users-wrapper">
-                                    <div className="area-title">Users</div>
+                                    <div className="area-title"></div>
                                     <div className="users-list">
+                                    <div className="users-column-name">
+                                        <section>
+                                            <span><label>Demographic</label></span>
+                                            <span><label>Skills</label></span>
+                                            <span><label>Description</label></span>
+                                        </section>
+
+                                    </div>
                                         {displayUsers}
                                     </div>
                                     <div className="ideas-users-footer" ref={(el) => { this.usersListEnd = el; }}>
