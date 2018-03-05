@@ -11,7 +11,6 @@ var initialState={
 }
 
 function userInfo(state = initialState, action){
-console.log('REDUCER HIT: Action ->', action );
     switch(action.type) {
         case "UPDATE_USER":
             return Object.assign( action.payload );     

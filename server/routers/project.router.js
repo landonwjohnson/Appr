@@ -13,7 +13,7 @@ projectRouter.post('/create', (req, res) => {
             const projectid = project[0].id;
             res.send(project);
             db.create_userproject_relation([ userid, projectid, 1 ])
-                .then(promise => res.send())
+                .then(promise => res.send(project))
                 .catch(err => res.status(500).send(err));
         })
         .catch(err => res.status(500).send(err));

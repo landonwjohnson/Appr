@@ -1,6 +1,6 @@
-const username = 'nydwofnwuphqkf';
-const password = '5c76e2f61eecfca00e882104915bf5b5ca92c8536c4cde8a8c79aef67df0cf51';
-const name = 'ddcab828p8g9m8';
+const username = 'rpejwvmsgzztpf';
+const password = 'df3f70368fb6da3266931cb012bff11e05ffa3d97129b1b0ba65905da1d7a8ab';
+const name = 'db23058ggvu8ca';
 
 module.exports = {
     username,

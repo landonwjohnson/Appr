@@ -1,3 +1,4 @@
+
 const express = require('express');
 const getDb = require('../database/bootstrap.database');
 const passport = require('../auth/local.auth');
@@ -10,6 +11,14 @@ authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
     bcrypt.genSalt(10, function(err, salt){
         bcrypt.hash(password, salt, function(err, hash){
+            console.log(hash);
+            // console.log(password);
+            // let credentials = {
+            //     username: email,
+            //     password: hash
+            // }
+
+            // console.log(credentials)
             const db = getDb();
             db.register_user([ firstName, lastName, email, hash, username ])
                 .then(promise => res.send(hash))
@@ -71,6 +80,10 @@ authRouter.post('/login-test', (req, res) => {
         .then( user => {
             console.log(user[0].password)
             console.log(password)
+            if( password === user[0].password){
+                message = 'login test was successful!';
+                res.send(user[0].password);
+            }
 
             bcrypt.compare(password, user[0].password, function(err, result){
                 console.log(result)

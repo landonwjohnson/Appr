@@ -32,21 +32,21 @@ class RegUsername extends Component {
 
     handleConstraint(e) {
         const username = e.target.value;
-        if (username.length > 0) {
-            this.handleSuccessUsername();
-            const reqBody = { username };
-            findUsername(reqBody)
-                .then( res => {
-                    res.status !== 200 ? console.log(res) : this.handleFailedUsername();
-                })
-                .catch(err => {throw err});
-        }
-        else {
-            this.setState({
-                showUsernameFail: false,
-                showUsernameSuccess: false
-            });
-        }
+        // if (username.length > 0) {
+        //     this.handleSuccessUsername();
+        //     const reqBody = { username };
+        //     findUsername(reqBody)
+        //         .then( res => {
+        //             res.status !== 200 ? console.log(res) : this.handleFailedUsername();
+        //         })
+        //         .catch(err => {throw err});
+        // }
+        // else {
+        //     this.setState({
+        //         showUsernameFail: false,
+        //         showUsernameSuccess: false
+        //     });
+        // }
     }
 
     render() {
@@ -63,7 +63,7 @@ class RegUsername extends Component {
         return (
             <div className={`${successUsernameClass} ${failUsernameClass}`}>
                 <label className="input-tag"> Create a Username </label>
-                <input className="input-solo" type="text" name="username" placeholder="e.g. radar_tech_matt548" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
+                <input className="input-solo" type="text" name="username" placeholder="e.g. radar_tech_matt548" onChange={e => { handleChangeInput(e)}}/>
                 <div className="reg-info">
                     <p className="invalid-text"> Taken! </p>
                     <p className="valid-text"> Available! </p>

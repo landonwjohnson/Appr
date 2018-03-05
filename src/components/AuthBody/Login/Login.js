@@ -77,9 +77,6 @@ class Login extends Component {
 												})
 												.catch(err => {throw err});
 											}
-
-
-
 									}
 								)
 								.catch(err => {throw err});
@@ -120,7 +117,7 @@ class Login extends Component {
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="password"  name="password" placeholder="deathstar4eva" onChange={e => this.handleInputChange(e)}/>
+								<input className="usr-pswd-input" type="password"  name="password" placeholder="iamthebest" onChange={e => this.handleInputChange(e)}/>
 							</div>
 
 							<div className="login-btn-con">

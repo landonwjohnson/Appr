@@ -22,11 +22,11 @@ class Register extends Component {
             email: '',
             password: '',
             username: '',
-            firstNameReady: false,
-            lastNameReady: false,
-            emailReady: false,
-            passwordReady: false,
-            usernameReady: false,
+            firstNameReady: true,
+            lastNameReady: true,
+            emailReady: true,
+            passwordReady: true,
+            usernameReady: true,
             registerCheck: false
         };
 
@@ -62,17 +62,17 @@ class Register extends Component {
         this.props.updateAuth(true);
         register(reqBody)
             .then( res => {
-                if (res.status !== 200){
+                if (res.status === 500){
                     alert('register failed')
                 }
-                else{
+                else if(res.status === 200){
                     let hashedPassword = res.data;
                     loginTest(creds)
                         .then( res => {
-                            if(res.status !== 200){
+                            if(res.status === 500){
                                 alert('login test failed')
                             }
-                            else{
+                            else if(res.status === 200){
                                 const logInBody = {
                                     username: this.state.email,
                                     password: hashedPassword

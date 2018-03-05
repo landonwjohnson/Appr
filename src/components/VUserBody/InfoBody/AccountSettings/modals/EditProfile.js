@@ -79,17 +79,17 @@ class EditProfile extends Component {
                   
                   <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                      <input className="modal-form" defaultValue={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
                     </section>
                   
                   <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
                   <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                 </div>
               <div className="submitModal">
