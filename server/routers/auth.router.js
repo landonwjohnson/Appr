@@ -15,15 +15,16 @@ authRouter.post('/register', (req, res) => {
         .then( user => {
             if(email === user[0].email){
                 res.send({emailError: 'Email already in use'})
-            }    
+            }
+
         })
     //EMAIL VALIDATION//
-
     //PASSWORD VALIDATION//
-    if(password.length < 6){
-        res.send({passwordError: 'Password must contain at least six characters!'})
+    if(password.length < 8){
+        return res.send({passwordError: 'Password must contain at least eight characters!'})
     }
     //PASSWORD VALIDATION//
+
         bcrypt.genSalt(10, function(err, salt){
             bcrypt.hash(password, salt, function(err, hash){
                 console.log(hash);

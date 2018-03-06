@@ -139,6 +139,7 @@ class Register extends Component {
     
 
     render() {
+        console.log(this.state.password)
         const { firstNameReady, lastNameReady, emailReady, passwordReady, usernameReady } = this.state;
         let registerBtn = <div/>
         if (firstNameReady === true && lastNameReady === true && emailReady === true && passwordReady === true && usernameReady === true) {

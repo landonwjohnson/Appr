@@ -21,9 +21,14 @@ class RegPassword extends Component {
                 showPasswordSuccess: false
             })
         }
+        else if(nextProps.password > 8){
+            this.setState({
+                showPasswordFail: false,
+                showPasswordSuccess: true
+            })
+        }
     }
     handleFailedPassword() {
-        this.props.toggleReadySwitch('password', false);
         this.setState({
             showPasswordFail: true,
             showPasswordSuccess: false
@@ -31,7 +36,6 @@ class RegPassword extends Component {
     }
 
     handleSuccessPassword() {
-        this.props.toggleReadySwitch('password', true);
         this.setState({
             showPasswordFail: false,
             showPasswordSuccess: true
@@ -39,17 +43,17 @@ class RegPassword extends Component {
     }
 
     handleConstraint(e) {
-        // const password = e.target.value;
-        // if (password.length > 0) {
-        //     const strongPass = checkStrengthOf(password);
-        //     strongPass === false ? this.handleFailedPassword() : this.handleSuccessPassword();
-        // }
-        // else {
-        //     this.setState({
-        //         showPasswordFail: false,
-        //         showPasswordSuccess: false
-        //     });
-        // }
+        const password = e.target.value;
+        if (password.length > 0) {
+            const strongPass = checkStrengthOf(password);
+            strongPass === false ? this.handleFailedPassword() : this.handleSuccessPassword();
+        }
+        else {
+            this.setState({
+                showPasswordFail: false,
+                showPasswordSuccess: false
+            });
+        }
     }
 
     render() {
