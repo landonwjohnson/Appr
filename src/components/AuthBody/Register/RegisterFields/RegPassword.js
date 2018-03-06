@@ -14,6 +14,14 @@ class RegPassword extends Component {
         this.handleConstraint = this.handleConstraint.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.passwordErrorText !== ''){
+            this.setState({
+                showPasswordFail: true,
+                showPasswordSuccess: false
+            })
+        }
+    }
     handleFailedPassword() {
         this.props.toggleReadySwitch('password', false);
         this.setState({
@@ -31,17 +39,17 @@ class RegPassword extends Component {
     }
 
     handleConstraint(e) {
-        const password = e.target.value;
-        if (password.length > 0) {
-            const strongPass = checkStrengthOf(password);
-            strongPass === false ? this.handleFailedPassword() : this.handleSuccessPassword();
-        }
-        else {
-            this.setState({
-                showPasswordFail: false,
-                showPasswordSuccess: false
-            });
-        }
+        // const password = e.target.value;
+        // if (password.length > 0) {
+        //     const strongPass = checkStrengthOf(password);
+        //     strongPass === false ? this.handleFailedPassword() : this.handleSuccessPassword();
+        // }
+        // else {
+        //     this.setState({
+        //         showPasswordFail: false,
+        //         showPasswordSuccess: false
+        //     });
+        // }
     }
 
     render() {
@@ -60,7 +68,7 @@ class RegPassword extends Component {
                 <label className="input-tag"> Password </label>
                 <input className="input-solo" type="password" name="password" placeholder="e.g. ih8d@ddy" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
                 <div className="reg-info">
-                    <p className="invalid-text"> Try again </p>
+                    <p className="invalid-text"> {this.props.passwordErrorText} </p>
                     <p className="valid-text"> Ready to go! </p>
                 </div>
             </div>

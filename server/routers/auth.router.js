@@ -9,14 +9,21 @@ const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
+    //EMAIL VALIDATION//
     const db = getDb(); 
-
     db.find_user_by_email([ email ])
         .then( user => {
             if(email === user[0].email){
-                res.send({message: 'Email already in use'})
+                res.send({emailError: 'Email already in use'})
             }    
         })
+    //EMAIL VALIDATION//
+
+    //PASSWORD VALIDATION//
+    if(password.length < 6){
+        res.send({passwordError: 'Password must contain at least six characters!'})
+    }
+    //PASSWORD VALIDATION//
         bcrypt.genSalt(10, function(err, salt){
             bcrypt.hash(password, salt, function(err, hash){
                 console.log(hash);

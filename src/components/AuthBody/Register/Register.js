@@ -28,6 +28,7 @@ class Register extends Component {
             passwordReady: true,
             usernameReady: true,
             emailErrorText: '',
+            passwordErrorText: '',
         };
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -43,6 +44,8 @@ class Register extends Component {
     }
 
     toggleReadySwitch(field, ready) {
+        //toggle ready switch should only check if all of
+        //the fields have been filled out, not validation
         const readySwitch = field + 'Ready';
         if (ready === true) {
             this.setState({ [readySwitch]: true });
@@ -55,30 +58,35 @@ class Register extends Component {
     handleButtonRegister() {
         console.log('register button fired!')
 		const isAuth = this.props.authRouter.verifiedUser;
-        
         const { firstName, lastName, email, password } = this.state;
         const ind = email.indexOf("@");
-
         const username = email.slice(0,ind);
-        console.log(username);
         const reqBody = { firstName, lastName, email, password, username };
         const creds = { username: email, password };
-        this.props.updateAuth(true);
         register(reqBody)
             .then( res => {
-                console.log(res.data['message'])
                 if (res.status === 500){
                     alert('register failed')
                 }
-                else if(res.data['message']){
-                    let newErrorText = res.data['message'];
+            //VALIDATION
+                else if(res.data['emailError']){
+                    let newErrorText = res.data['emailError'];
                     this.setState({
                         emailErrorText: newErrorText
                     })
                 }
+                else if(res.data['passwordError']){
+                    let newErrorText = res.data['passwordError'];
+                    console.log(newErrorText)
+                    this.setState({
+                        passwordErrorText: newErrorText
+                    })
+                }
+            //VALIDATION
                 else if(res.status === 200){
                     this.setState({
-                        emailErrorText: ''
+                        emailErrorText: '',
+                        passwordErrorText: ''
                     })
                     let hashedPassword = res.data;
                     loginTest(creds)
@@ -87,6 +95,7 @@ class Register extends Component {
                                 alert('login test failed')
                             }
                             else if(res.status === 200){
+                                this.props.updateAuth(true);
                                 const logInBody = {
                                     username: this.state.email,
                                     password: hashedPassword
@@ -157,7 +166,7 @@ class Register extends Component {
                                     </div>
                                 </div>
                                 <RegEmail emailErrorText={this.state.emailErrorText} emailReady={this.state.emailReady} handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
-                                <RegPassword handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
+                                <RegPassword passwordErrorText={this.state.passwordErrorText} handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                 {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
                                     {registerBtn}
