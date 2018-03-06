@@ -11,6 +11,7 @@ import { updateAuth, updateUser } from '../../../actions/actionCreators';
 import { findUserInfo } from '../../../services/account.services';
 import { withRouter } from 'react-router-dom';
 import history from '../../../history';
+import CreateAccountButton from '../../VUserBody/landomon-UI/CreateAccountButton';
 
 
 class Register extends Component {
@@ -29,6 +30,9 @@ class Register extends Component {
             usernameReady: true,
             emailErrorText: '',
             passwordErrorText: '',
+            createAccountBtnLabel: 'Create New Account',
+            createAccountBtnLoading: false,
+            createAccountBtnDisabled: false
         };
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -86,7 +90,9 @@ class Register extends Component {
                 else if(res.status === 200){
                     this.setState({
                         emailErrorText: '',
-                        passwordErrorText: ''
+                        passwordErrorText: '',
+                        createAccountBtnLabel: 'Registering Account',
+                        createAccountBtnLoading: true
                     })
                     let hashedPassword = res.data;
                     loginTest(creds)
@@ -95,6 +101,9 @@ class Register extends Component {
                                 alert('login test failed')
                             }
                             else if(res.status === 200){
+                                this.setState({
+                                    createAccountBtnLabel: 'Logging in',
+                                })
                                 this.props.updateAuth(true);
                                 const logInBody = {
                                     username: this.state.email,
@@ -107,6 +116,9 @@ class Register extends Component {
                                             alert('login failed')
                                         }
                                         else if (res.status === 200) {
+                                            this.setState({
+                                                createAccountBtnLabel: 'getting user informatio'
+                                            })
                                             findUserInfo(res.data.id)
                                                 .then(res => {
                                                     if(res.status !== 200){
@@ -130,11 +142,22 @@ class Register extends Component {
                                     })
                             }
                         })
-                        .catch(err => {throw err})
+                        .catch(err => {throw err
+                            this.setState({
+                                createAccountBtnLabel: 'Create New Account',
+                                createAccountBtnLoading: false
+                            })
+                        })
+                        
                     }
 
                 })
-                .catch(err => {throw err})
+                .catch(err => {throw err
+                    this.setState({
+                        createAccountBtnLabel: 'Create New Account',
+                        createAccountBtnLoading: false
+                    })
+                })
             }
     
 
@@ -170,7 +193,14 @@ class Register extends Component {
                                 <RegPassword passwordErrorText={this.state.passwordErrorText} handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                 {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
-                                    {registerBtn}
+                                    {/* {registerBtn} */}
+                                    <CreateAccountButton
+                                        onClickAction={this.handleButtonRegister}
+                                        label={this.state.createAccountBtnLabel}
+                                        loading={this.state.createAccountBtnLoading}
+                                        errorText=''
+                                        disabled={this.state.createAccountBtnDisabled}
+                                    />
                                 </div>
                             </div>
                         </div>

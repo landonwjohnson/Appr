@@ -16,7 +16,6 @@ authRouter.post('/register', (req, res) => {
             if(email === user[0].email){
                 res.send({emailError: 'Email already in use'})
             }
-
         })
     //EMAIL VALIDATION//
     //PASSWORD VALIDATION//
@@ -38,18 +37,6 @@ authRouter.post('/register', (req, res) => {
 
 })
 
-
-// authRouter.get('/get-password', (req, res) => {
-//     const { firstName, lastName, email, password, username } = req.body;
-//     bcrypt.genSalt(10, function(err, salt){
-//         bcrypt.hash(password, salt, function(err, hash){
-//             const db = getDb();
-//             db.register_user([ firstName, lastName, email, hash, username ])
-//                 .then(promise => res.send(hash))
-//                 .catch(err => res.status(500).send(err));
-//         });
-//     });
-// })
 
 
 
@@ -106,7 +93,8 @@ authRouter.post('/login-test', (req, res) => {
                 }
             })
         })
-        .catch(err => {throw err});
+        .catch(err => {throw err
+        });
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {
