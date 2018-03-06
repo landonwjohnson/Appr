@@ -8,6 +8,7 @@ import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import { connect } from 'react-redux';
 import { updatePersonalProjects, updateProjectRedux } from '../../../../actions/actionCreators';
+import history from '../../../../history';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -30,7 +31,7 @@ class Dashboard extends Component {
 				.then( res => {
 					if (res.data[0].id) {
 						const groupid = res.data[0].id;
-						this.props.history.push(`/user/${userid}/group/${groupid}/dashboard`);
+						history.push(`/user/${userid}/group/${groupid}/dashboard`);
 					}
 					else {
 						alert(res.data.message);
@@ -45,7 +46,6 @@ class Dashboard extends Component {
 				.then( res => {
 					findPersonalProjects(userid)
 					.then(res => {
-						console.log(res.data + '' + 'find personal projects')
 						this.props.updatePersonalProjects(res.data);
 					})
 					if (res.data[0].id) {
@@ -54,7 +54,9 @@ class Dashboard extends Component {
 						findProject(projectid)
 						.then(res => {
 							this.props.updateProjectRedux(res.data[0]);
-							this.props.history.push(`/user/${userid}/project/${projectid}/ideas`);
+							if(res.status === 200){
+								history.push(`/user/${userid}/project/${projectid}/ideas`);
+							}
 						})
 					}
 					else {
@@ -69,7 +71,6 @@ class Dashboard extends Component {
 		const userid = this.props.userInfo.id;
 
 		let displayProjects = this.props.dashboardInfo.personalProjects.map( (project, index) => {
-			console.table(this.props.dashboardInfo.personalProjects)
 			if(project.status_id === 1){
 				return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
 			}
@@ -83,7 +84,7 @@ class Dashboard extends Component {
 
 		return (
 			<div>
-				<div className p="dashboard-container">		
+				<div className="dashboard-container">		
 					<div className="dashboard-wrapper">
 						<div className="personal-list-container">
 							<label className="dash-section-title"> Projects </label>

@@ -132,10 +132,76 @@
             outline: none;
             font-size: 17px;
         }
+        input:nth-of-type(3){
+            margin-right: 0px;
+          }
 
     }
 }
 
+
+.users-column-name{
+    display: flex;
+    width: 100%;
+    padding-bottom: 10px;
+
+
+ 
+    section{
+        display: flex;
+        width: 100%;
+
+        span{
+            color: #7E7E7E;
+            text-transform: uppercase;
+            border-radius: 3px 3px 3px 3px;
+            width: 100%;
+            outline: none;
+            overflow: hidden;
+            text-align: left;
+            margin-right: 10px;
+            text-overflow: ellipsis;
+
+
+            label{
+                font-size: 17px;
+                font-weight: bold;
+                text-overflow: clip;
+                width: 100%;
+                overflow: hidden;
+            }
+        }
+
+        span:nth-of-type(1){
+            padding-left: 37px;
+          }
+
+          
+        span:nth-of-type(3){
+            overflow: hidden;
+            margin-right: 30px;
+            // margin-right: 0px;
+          }
+        
+        label:nth-of-type(1){
+            max-width: 130px;
+            text-overflow: hidden;
+        }
+
+        label:nth-of-type(2){
+            max-width: 60px;
+            text-overflow: hidden;
+        }
+
+        label:nth-of-type(3){
+            text-overflow: hidden;
+        }
+        
+    }
+    
+
+
+}
 
 
 
@@ -154,4 +220,9 @@
         @include addBtn();
         
     }
+}
+
+
+.delete-column{
+    width: 32px;
 }

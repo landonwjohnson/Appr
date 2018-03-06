@@ -101,12 +101,12 @@ class Features extends Component {
 
 
     render() {
-        const userid = this.props.userInfo.id;
         const projectid = this.props.projectInfo.id;
         const features = this.state.features;
         const displayFeatures = features.map( (feature, index) => {
             const id = feature.id;
             return (<FeatureItem
+                        key={`featuresItem${index}`}
                         index={index}
                         projectid={projectid}
                         id={id}

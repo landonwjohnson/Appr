@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { getUId } from '../../../../utils/uid.utils';
-import { createProjectView, findProjectViews, findProjectView, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
+import { createProjectView, findProjectViews, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
 import './view.scss';
 import { connect } from 'react-redux';
 
@@ -22,7 +21,7 @@ class View extends Component {
             if(res.status !== 200) {
               console.log(res);
             }
-            else {
+            else if(res.data.length > 0) {
                   this.setState({ views: res.data })
             }
         })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect, BrowserRouter, withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import history from '../../../../history';
 import './board-menu.scss'
 import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
@@ -72,10 +72,6 @@ class BoardMenu extends Component {
 
 const { closeMenus, updateProjectRedux } = this.props;
 
-
-    // const groups = this.props.dashboardInfo.groups;
-    // const projects = this.props.dashboardInfo.projects;
-
     function getProject(projectid, path){
         findProject(projectid)
         .then( res => {
@@ -114,7 +110,7 @@ const { closeMenus, updateProjectRedux } = this.props;
                 let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
                         <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
-                            <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
+                            <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
                             </div>
                             <div className="board-item-name">

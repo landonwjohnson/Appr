@@ -61,7 +61,6 @@ class Endpoints extends Component {
 
   handleSubmitEndpoint(index){
     const projectid = this.props.match.params.projectid;
-    // alert('handleSubmitEndpoint FIRED!!!!!')
     const { endpoint_name, http_verb, url_data, response_data, request_data} = this.state.endpoints[index];
     const reqBody = {
       endpointName: endpoint_name,
@@ -72,9 +71,6 @@ class Endpoints extends Component {
     };
 
     const endpointid = Number(this.state.endpoints[index].id);
-    // alert(`the index is ${index}`);
-    // alert(`the endpointid is ${endpointid}`)
-    // alert(`the projectid is ${projectid}`)
     updateProjectEndpoint(projectid, endpointid, reqBody)
       .then( res => {
         if (res.status !== 200){
@@ -85,7 +81,6 @@ class Endpoints extends Component {
   }
 
 
-  //removes it from UI, but does not delete it
   removeEndpointItemHandler(index){
     const projectid = this.props.match.params.projectid;
     const endpointid = this.state.endpoints[index].id;
@@ -135,7 +130,6 @@ class Endpoints extends Component {
 
 
   render() {
-    const userid = this.props.userInfo.id;
     const projectid = this.props.projectInfo.id;
     const endpoints = this.state.endpoints;
     const displayEndpoints = endpoints.map( endpoint => {

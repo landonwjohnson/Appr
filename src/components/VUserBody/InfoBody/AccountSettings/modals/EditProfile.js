@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
-import { updateUserInfo } from '../../../../../services/account.services'
+import { updateUserInfo, updateUserProfile } from '../../../../../services/account.services'
 import { connect } from 'react-redux';
 
 class EditProfile extends Component {
@@ -21,16 +21,13 @@ class EditProfile extends Component {
 
   handleNameSubmit(){
     const userid = this.props.userInfo.id;
-    let { avatar, email } = this.props.userInfo;
     let { username, firstName, lastName } = this.state;
     const reqBody = {
         username, 
         firstName,
-        lastName,
-        email,
-        avatar
+        lastName
     };
-    updateUserInfo(userid, reqBody)
+    updateUserProfile(userid, reqBody)
       .then( res => {
         if ( res.status !== 200 ) {
           alert(res);
@@ -82,17 +79,17 @@ class EditProfile extends Component {
                   
                   <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                      <input className="modal-form" defaultValue={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
                     </section>
                   
                   <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                   
                   <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
-                      <input className="modal-form" placeholder={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
+                      <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                 </div>
               <div className="submitModal">

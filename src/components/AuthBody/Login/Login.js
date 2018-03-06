@@ -31,9 +31,8 @@ class Login extends Component {
 	}
 
 	handleSubmitLogin() {
-		const isAuth = this.props.isAuth;
 		const { username, password } = this.state;
-		const creds = { username, password };
+		let creds = { username, password };
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
 			alert('Make sure you entered your email correctly!');
 		}
@@ -44,8 +43,12 @@ class Login extends Component {
 			else {
 				loginTest(creds)
 					.then( res => {
-						if (res.data === 'login test was successful!') {
-							login(creds)
+						if (res.data) {
+							 const logInBody = {
+								 username: this.state.username,
+								 password: res.data
+							 }
+							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
 										if(res.status === 200){
@@ -68,21 +71,12 @@ class Login extends Component {
 															findPersonalProjects(userInfo.id)
 																.then( res => {
 																	this.props.updatePersonalProjects(res.data);
-																	history.push(`/user/${userInfo.id}/dashboard`);
-
-																	if(isAuth === true){
-																		console.log('I should be switching urls')
-																		history.push(`/user/${res.data.id}/dashboard`);
-																	}
-
+																		history.push(`/user/${userInfo.id}/dashboard`);
 																})
 													}
 												})
 												.catch(err => {throw err});
 											}
-
-
-
 									}
 								)
 								.catch(err => {throw err});
@@ -123,7 +117,7 @@ class Login extends Component {
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
-								<input className="usr-pswd-input" type="password"  name="password" placeholder="deathstar4eva" onChange={e => this.handleInputChange(e)}/>
+								<input className="usr-pswd-input" type="password"  name="password" placeholder="iamthebest" onChange={e => this.handleInputChange(e)}/>
 							</div>
 
 							<div className="login-btn-con">

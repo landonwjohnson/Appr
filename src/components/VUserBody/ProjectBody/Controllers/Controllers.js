@@ -24,8 +24,8 @@ class Controllers extends Component {
   pullFromBackend(projectid, scrollOption){
     findProjectControllers(projectid)
     .then( res => {
-        if (res.status !== 200) {
-            console.log(res);
+        if (res.status === 500) {
+            console.log('Internal Server Error');
         }
         else {
             this.setState({controllers: res.data})
@@ -72,12 +72,6 @@ class Controllers extends Component {
 
       updateProjectController(projectid, controllerid, reqBody)
         .then( res => {
-            if (res.status !== 200) {
-                console.log(res);
-            }
-            else{
-                console.table(res.config.data)
-            }
         })
         .catch(err => {throw err});
   }

@@ -2,11 +2,10 @@
 
 var initialState={
     groupProjects: [],
-    personalProjects: [],
+    personalProjects: []
 }
 
 function dashboardInfo(state = initialState, action){
-console.log('REDUCER HIT: Action ->', action );
     switch(action.type) {
 
         case "UPDATE_PERSONAL_PROJECTS":
