@@ -9,22 +9,25 @@ const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
-    bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash(password, salt, function(err, hash){
-            console.log(hash);
-            // console.log(password);
-            // let credentials = {
-            //     username: email,
-            //     password: hash
-            // }
+    const db = getDb(); 
 
-            // console.log(credentials)
-            const db = getDb();
-            db.register_user([ firstName, lastName, email, hash, username ])
-                .then(promise => res.send(hash))
-                .catch(err => res.status(500).send(err));
+    db.find_user_by_email([ email ])
+        .then( user => {
+            if(email === user[0].email){
+                res.send({message: 'Email already in use'})
+            }    
+        })
+        bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(password, salt, function(err, hash){
+                console.log(hash);
+                const db = getDb();
+                db.register_user([ firstName, lastName, email, hash, username ])
+                    .then(promise => res.send(hash))
+                    .catch(err => res.status(500).send(err));
+            });
         });
-    });
+    
+
 })
 
 

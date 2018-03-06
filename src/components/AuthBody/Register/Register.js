@@ -27,7 +27,7 @@ class Register extends Component {
             emailReady: true,
             passwordReady: true,
             usernameReady: true,
-            registerCheck: false
+            emailErrorText: '',
         };
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -57,19 +57,29 @@ class Register extends Component {
 		const isAuth = this.props.authRouter.verifiedUser;
         
         const { firstName, lastName, email, password } = this.state;
-        const ind= email.indexOf("@");
+        const ind = email.indexOf("@");
 
-        const username= email.slice(0,ind);
+        const username = email.slice(0,ind);
         console.log(username);
         const reqBody = { firstName, lastName, email, password, username };
         const creds = { username: email, password };
         this.props.updateAuth(true);
         register(reqBody)
             .then( res => {
+                console.log(res.data['message'])
                 if (res.status === 500){
                     alert('register failed')
                 }
+                else if(res.data['message']){
+                    let newErrorText = res.data['message'];
+                    this.setState({
+                        emailErrorText: newErrorText
+                    })
+                }
                 else if(res.status === 200){
+                    this.setState({
+                        emailErrorText: ''
+                    })
                     let hashedPassword = res.data;
                     loginTest(creds)
                         .then( res => {
@@ -146,7 +156,7 @@ class Register extends Component {
                                         <RegLastname handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                     </div>
                                 </div>
-                                <RegEmail handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
+                                <RegEmail emailErrorText={this.state.emailErrorText} emailReady={this.state.emailReady} handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                 <RegPassword handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                 {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
