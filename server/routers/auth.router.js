@@ -105,8 +105,6 @@ authRouter.post('/login', passport.authenticate('login'), (req, res) => {
 
 authRouter.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
-    res.send('You are logged out!');
 });
 
 module.exports = authRouter;
