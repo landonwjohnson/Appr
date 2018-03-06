@@ -56,7 +56,11 @@ class Register extends Component {
         console.log('register button fired!')
 		const isAuth = this.props.authRouter.verifiedUser;
         
-        const { firstName, lastName, email, password, username } = this.state;
+        const { firstName, lastName, email, password } = this.state;
+        const ind= email.indexOf("@");
+
+        const username= email.slice(0,ind);
+        console.log(username);
         const reqBody = { firstName, lastName, email, password, username };
         const creds = { username: email, password };
         this.props.updateAuth(true);
@@ -144,7 +148,7 @@ class Register extends Component {
                                 </div>
                                 <RegEmail handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
                                 <RegPassword handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
-                                <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/>
+                                {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
                                     {registerBtn}
                                 </div>
