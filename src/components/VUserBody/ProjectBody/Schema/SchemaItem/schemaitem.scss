@@ -1,0 +1,67 @@
+@import '../../../../_colors.scss';
+
+.new-schema-item {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); 
+    background: #E2E4E6;   
+    border-radius: 5px;    
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+
+    .project-item-header{
+        height: 5px;
+    }
+    .project-item-header button{
+        top: 0px;
+        left: 15px;
+    }
+}
+
+.schemaItem-inner{
+  display: flex;
+  flex-direction: column;
+  
+  .schemaItem-name{
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
+  .sqlCon{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    overflow: hidden;
+
+    label{
+        color: #7E7E7E;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        padding-left: 10px;
+        height: 35px;
+        text-align: left;
+        background: #F0F0F0;
+        text-transform: uppercase;
+        border-bottom: 1px solid #CCC;
+    }
+  }
+
+  
+  
+}
+
+
+
+#responseEditor .ace_editor .ace-tm {
+    width: 100%;
+    
+}
+
+

@@ -1,0 +1,224 @@
+@import '../../../_colors.scss';
+
+.schema-container{
+    width: 100%;
+    height: calc(100vh - 40px);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow-y: auto;
+
+
+    &::-webkit-scrollbar {
+        width: 15px;
+        padding-right: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    &::-webkit-scrollbar-track {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+
+    &::-webkit-scrollbar-thumb {
+        @include darken-background($primary, 20%);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+
+    }
+    &::-webkit-scrollbar-thumb:window-inactive {
+        background-color: rgba(50, 50, 50, 0.40);
+    }
+}
+
+.schema-wrapper{
+    width: 60%;
+    max-height: 100%;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.table-list-container{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-height: 100%;
+    grid-gap: 40px;
+}
+
+.add-table {
+    background-color: $secondary;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.schema-item{
+    margin-top: 20px;
+    padding-top: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    background: $light-color;
+    max-height: 100%;
+    width: 700px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    border-radius: $border-radius;
+
+    .project-item-header{
+        height: 25px;
+        width: 104%;
+    }
+
+    .name-table-row{
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+
+        input{
+            font-size: 20px;
+            color: black;
+            height: 20px;
+            outline: none;
+            width: 100%;
+            background: transparent;
+            border: none;
+            // border-bottom: 1px dashed black;
+        }
+        ::-webkit-input-placeholder {
+            color: #595959;
+            font-size: 20px;
+            text-align: left;
+            font-weight: 300;
+        }
+    }
+}
+
+
+
+.column-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.column-fields-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 410px;
+}
+
+.column-input-text{
+    width: 100%;
+    height: 26px;
+    padding: 0px;
+
+
+}
+.column-input-select{
+    height: 100%;
+    width: 100%;
+    height: 30px;
+
+
+}
+
+.column-checkbox-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 250px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.column-checkbox {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.remove-item {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+}
+
+
+
+
+.column-item-footer{
+
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 30px;
+
+    button {
+        background-color: $secondary;
+        color: white;
+    }
+
+
+}
+
+
+.sm-input {
+    width: 90px;
+    max-height: 30px;
+    margin-right: 20px;
+    outline: none;
+  }
+
+  .md-input {
+    width: 150px;
+    max-height: 30px;
+    margin-right: 20px;
+    outline: none;
+  }
+
+
+  .add-button-footer {
+    width: 100%;
+    button{
+        border-radius: $border-radius;
+        width: 100%;
+        height: 50px;
+        background-color: $secondary;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    }
+}
+
+
+
+  .schema-divider{
+      opacity: 0.3;
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #A9A9A9;
+  }

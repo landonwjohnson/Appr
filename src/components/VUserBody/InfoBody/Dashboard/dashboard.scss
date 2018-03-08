@@ -1,0 +1,28 @@
+
+
+.dashboard-container {
+    height: 100vh;
+    background: #FAFAFA;
+}
+
+.create-project-btn {
+    width: 180px;
+    height: 30px;
+    background-color: gray;
+    border: none;
+    margin-top: 20px;
+}
+
+.create-project-thumb-body{
+
+    img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.create-project-btn-link {
+    text-decoration: none;
+    font-size: 12pt;
+    color: white;
+}

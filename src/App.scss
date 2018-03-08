@@ -1,0 +1,291 @@
+@import './components/_colors.scss';
+
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden; 
+}
+
+.project-section-header{
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 50px;
+  color: white;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.20);
+}
+
+a{
+  text-decoration: none;
+}
+
+.home-container{
+  display: flex;
+ 
+}
+
+.hide-header{
+  display: none;
+}
+
+.landscape-divider{
+  height: 1px;
+  width: 100%;
+  background: #95989A;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.bg-grey{
+  background: #DDDDDD;
+}
+
+.drop-shadow{
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.not-enough-info-btn{
+  color: #95989A;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.default-btn{
+  border-radius: 4px;
+  background-color: #4A4A4A;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.btn-and-icon{
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 4px;
+  background-color: #4A4A4A;
+  outline: none;
+  border: none;
+  color: white;
+
+  img{
+    max-height: 17px;
+    max-width: 17px;
+    padding-right: 8px;
+  }
+  
+
+}
+
+.label-icon-con{
+  // border: 1px solid black;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.add-button{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  max-width: 100%;
+  outline: none;
+  
+  img{
+      position: relative;
+      padding-right: 5px;
+      height: 20px;
+      width: 20px;
+  }
+
+// change relevant spans to buttons for accessibilty e.g. delete-x
+  span{
+    padding-right: 5px;
+    height: 20px;
+    width: 20px;
+    background-image: url('./img/icons/add-icon.svg');
+    background-repeat: no-repeat;
+  }
+}
+
+
+.delete-x{
+  @include darken-color($primary, 10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  padding: auto;
+  background: transparent;
+  border: none;
+  margin: 0;
+  outline: none;
+
+  &:hover{
+      color: #CF513D;
+      transition: 0.2s ease-in-out;
+  }
+}
+
+
+.delete-x-tracker{
+  @include darken-color($primary, 10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  padding: auto;
+  background: transparent;
+  border: none;
+  margin: 0;
+  outline: none;
+
+  &:hover{
+      color: #CF513D;
+      transition: 0.2s ease-in-out;
+  }
+}
+
+.input-incomplete-btn{
+  color: white;
+  width: 50px;
+  height: 35px;
+  font-size: 14px;
+  background: white;
+  border-radius: 0px 3px 3px 0px;
+  border: 1px #CCC solid;
+  border-left: none;
+  font-weight: bold;
+  outline: none;
+}
+
+.input-complete-btn{
+  color: white;
+  height: 35px;
+  font-size: 14px;
+  border-radius: 0px 3px 3px 0px;
+  border: 1px #CCC solid;
+  background: #0079BF;
+  border-left: none;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+
+.project-item-header{
+  max-height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  button{
+      top: 4px;
+      right: 4px;
+      position: relative;
+      padding-right: 10px;
+      background-color: transparent;
+      background-image: url('./img/icons/trashcan-closed-icon.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      
+      opacity: 0.5;
+      cursor: pointer;
+      transition: 0.1s ease-in-out;
+      border: none;
+      outline: none;
+
+      &:hover{
+          background-image: url('./img/icons/trashcan-open-icon.svg');
+          opacity: 0.8;
+          transition: 0.1s ease-in-out;
+      }
+  }
+}
+
+.field-valid{
+  border: #00D16E solid 1.5px !important;
+}
+
+.field-invalid {
+
+  input{
+    border: #FF3560 solid 1px !important;
+  }
+  
+}
+
+
+.v2 {
+  display: none !important;
+}
+
+.v2-placeholder {
+  opacity: 0;
+  
+  img{
+    opacity: 0;
+  }
+}
+
+
+
+//Tracker
+  .saveTBtn{
+    background: #5aac44;
+    font-weight: bolder;
+    line-height: 22px;
+    border: none;
+    border-radius: 3px;
+    display: none;
+    width: 60px;
+    line-height: 22px;
+    height: 30px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .closeTBtn{
+    margin-right: 0px;
+    background: transparent;
+    border: 1px solid red;
+    border: none;
+    border-radius: 3px;
+    display: none;
+    color: #999;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+  
+
+    span{
+      display: block;
+      margin-right: 0px;
+      background-image: url('./img/icons/tracker-close-x-icon.svg');
+      background-repeat: no-repeat;
+      width: 18px;
+      height: 18px;
+      fill: red;
+
+      :hover{
+        fill: blue;
+      }
+    }
+   
+  }
+
+
+  label, button, .project-section-header{
+    user-select: none;
+  }
